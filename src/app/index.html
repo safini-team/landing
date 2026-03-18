@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safini — Kids Earn Screen Time</title>
+    <!-- OG / Twitter Card — domain: safini.fun | update og-image.png path before launch -->
+    <meta property="og:title" content="Safini — Kids Earn Screen Time">
+    <meta property="og:description" content="Replace screen-time battles with a reward system kids actually love. Join 1,247 families on the waitlist.">
+    <meta property="og:image" content="https://safini.fun/og-image.png">
+    <meta property="og:url" content="https://safini.fun">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Safini — Kids Earn Screen Time">
+    <meta name="twitter:description" content="Replace screen-time battles with a reward system kids actually love.">
+    <meta name="twitter:image" content="https://safini.fun/og-image.png">
+
+    <!-- Google Analytics 4 — replace GA_MEASUREMENT_ID before launch -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy: #406093;
+            --navy-deep: #2E4568;
+            --blue: #4C8CE4;
+            --blue-light: #A5C8F7;
+            --blue-pale: #E8F1FC;
+            --green: #91D06C;
+            --green-deep: #6DB44A;
+            --green-light: #D4F0C4;
+            --yellow: #FFF799;
+            --yellow-deep: #E8D83A;
+            --yellow-pale: #FFFDE6;
+            --cream: #FAFCFF;
+            --warm-white: #F7F9FD;
+            --ink: #1B2A40;
+            --ink-light: #3A4F6A;
+            --muted: #6B7F99;
+            --border: #D6E2F0;
+            --card: #FFFFFF;
+            --radius: 20px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--ink);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5 { font-family: 'Bricolage Grotesque', sans-serif; }
+
+        /* ========== NAV ========== */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 16px 24px; transition: all 0.4s ease;
+        }
+        nav.scrolled {
+            background: rgba(250, 252, 255, 0.88);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-logo-icon {
+            width: 42px; height: 42px;
+            background: linear-gradient(135deg, var(--navy), var(--blue));
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 22px; box-shadow: 0 4px 12px rgba(64, 96, 147, 0.3);
+        }
+        .nav-logo-text {
+            font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px;
+            background: linear-gradient(135deg, var(--navy), var(--blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: var(--ink-light); font-weight: 500; font-size: 15px; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--navy); }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 28px; border-radius: 100px;
+            font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px;
+            text-decoration: none; transition: all 0.3s ease; border: none; cursor: pointer;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--navy), var(--blue));
+            color: white; box-shadow: 0 4px 20px rgba(64, 96, 147, 0.35);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(64, 96, 147, 0.45); }
+        .btn-outline {
+            background: transparent; color: var(--navy); border: 2px solid var(--blue-light);
+        }
+        .btn-outline:hover { background: var(--navy); color: white; border-color: var(--navy); }
+
+        /* ========== HERO ========== */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            padding: 120px 24px 80px; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -200px; right: -200px;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(76, 140, 228, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: -100px; left: -150px;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(145, 208, 108, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%;
+        }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, rgba(64, 96, 147, 0.08), rgba(76, 140, 228, 0.08));
+            border: 1px solid var(--blue-light); padding: 8px 18px; border-radius: 100px;
+            font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 24px;
+            animation: fadeUp 0.8s ease both;
+        }
+        .hero h1 {
+            font-size: clamp(42px, 5.5vw, 68px); font-weight: 800;
+            line-height: 1.08; letter-spacing: -0.02em; color: var(--ink);
+            margin-bottom: 24px; animation: fadeUp 0.8s ease 0.1s both;
+        }
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--navy), var(--blue));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero h1 .highlight-green {
+            background: linear-gradient(135deg, var(--green-deep), var(--green));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero-sub {
+            font-size: 19px; line-height: 1.65; color: var(--muted); max-width: 520px;
+            margin-bottom: 36px; animation: fadeUp 0.8s ease 0.2s both;
+        }
+        .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 0.8s ease 0.3s both; }
+        .hero-proof {
+            display: flex; align-items: center; gap: 16px; margin-top: 40px;
+            animation: fadeUp 0.8s ease 0.4s both;
+        }
+        .hero-avatars { display: flex; }
+        .hero-avatars span {
+            width: 38px; height: 38px; border-radius: 50%; border: 3px solid var(--cream);
+            margin-left: -10px; display: flex; align-items: center; justify-content: center; font-size: 18px;
+        }
+        .hero-avatars span:first-child { margin-left: 0; }
+        .hero-proof-text { font-size: 14px; color: var(--muted); line-height: 1.4; }
+        .hero-proof-text strong { color: var(--ink); }
+
+        /* Phone Mockup */
+        .hero-visual {
+            display: flex; justify-content: center; align-items: center;
+            position: relative; animation: fadeUp 0.8s ease 0.3s both;
+        }
+        .phone-mockup {
+            width: 300px; height: 620px; background: var(--ink);
+            border-radius: 44px; padding: 12px;
+            box-shadow: 0 40px 80px rgba(27, 42, 64, 0.22), 0 0 0 1px rgba(76, 140, 228, 0.1),
+            inset 0 0 0 2px rgba(255,255,255,0.08);
+            position: relative; transform: rotate(2deg);
+        }
+        .phone-screen {
+            width: 100%; height: 100%;
+            background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 15%, var(--warm-white) 30%);
+            border-radius: 34px; overflow: hidden; position: relative;
+        }
+        .phone-notch {
+            width: 120px; height: 28px; background: var(--ink);
+            border-radius: 0 0 18px 18px; margin: 0 auto; position: relative; z-index: 2;
+        }
+        .phone-header { text-align: center; padding: 16px 20px 20px; color: white; }
+        .phone-greeting { font-size: 13px; opacity: 0.8; margin-bottom: 4px; }
+        .phone-name { font-family: 'Bricolage Grotesque'; font-size: 20px; font-weight: 700; }
+        .phone-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 16px; margin-top: 8px; }
+        .phone-stat {
+            background: white; border-radius: 16px; padding: 14px; text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .phone-stat-icon { font-size: 20px; margin-bottom: 4px; }
+        .phone-stat-value { font-family: 'Bricolage Grotesque'; font-size: 22px; font-weight: 800; color: var(--ink); }
+        .phone-stat-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+        .phone-tasks { padding: 16px; margin-top: 8px; }
+        .phone-tasks-title { font-family: 'Bricolage Grotesque'; font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
+        .phone-task-item {
+            display: flex; align-items: center; gap: 10px;
+            background: white; border-radius: 12px; padding: 10px 12px; margin-bottom: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+        .phone-task-icon {
+            width: 34px; height: 34px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
+        }
+        .phone-task-info { flex: 1; }
+        .phone-task-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+        .phone-task-reward { font-size: 11px; color: var(--muted); }
+        .phone-task-coins { font-family: 'Bricolage Grotesque'; font-weight: 700; font-size: 13px; color: var(--green-deep); }
+
+        /* Floating elements */
+        .float-coin {
+            position: absolute; width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--yellow-deep), var(--green));
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 22px; box-shadow: 0 8px 24px rgba(145, 208, 108, 0.35);
+            animation: float 3s ease-in-out infinite;
+        }
+        .float-coin.c1 { top: 40px; right: -10px; }
+        .float-coin.c2 { bottom: 120px; left: -20px; animation-delay: 1s; width: 40px; height: 40px; font-size: 18px; }
+        .float-badge {
+            position: absolute; background: white; border-radius: 14px; padding: 10px 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600;
+            animation: float 4s ease-in-out infinite;
+        }
+        .float-badge.b1 { top: 80px; left: -30px; animation-delay: 0.5s; color: var(--green-deep); }
+        .float-badge.b2 { bottom: 60px; right: -20px; animation-delay: 1.5s; color: var(--navy); }
+
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ========== WAVE DIVIDERS ========== */
+        .wave-divider { width: 100%; line-height: 0; overflow: hidden; }
+        .wave-divider svg { display: block; width: 100%; height: auto; }
+
+        /* ========== PROBLEM ========== */
+        .problem { padding: 100px 24px; position: relative; }
+        .problem-inner { max-width: 1200px; margin: 0 auto; }
+        .section-label {
+            font-family: 'Bricolage Grotesque'; font-weight: 700; font-size: 13px;
+            text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 12px;
+        }
+        .problem h2 {
+            font-size: clamp(32px, 4vw, 48px); font-weight: 800; line-height: 1.15;
+            color: var(--ink); max-width: 700px; margin-bottom: 48px;
+        }
+        .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .problem-card {
+            background: var(--card); border-radius: var(--radius);
+            border: 1px solid var(--border); transition: all 0.3s ease;
+            position: relative; overflow: hidden;
+        }
+        .problem-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(64, 96, 147, 0.1); }
+        .problem-card-illustration { width: 100%; height: 200px; position: relative; overflow: hidden; }
+        .problem-card-body { padding: 28px; }
+        .problem-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--ink); }
+        .problem-card p { font-size: 15px; line-height: 1.6; color: var(--muted); }
+
+        /* ========== HOW IT WORKS ========== */
+        .how {
+            padding: 100px 24px;
+            background: linear-gradient(180deg, var(--warm-white) 0%, var(--blue-pale) 50%, var(--warm-white) 100%);
+        }
+        .how-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .how h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 16px; }
+        .how-sub {
+            font-size: 18px; color: var(--muted); max-width: 560px;
+            margin: 0 auto 60px; line-height: 1.6;
+        }
+        .how-steps {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative;
+        }
+        .how-step {
+            background: var(--card); border-radius: var(--radius);
+            padding: 36px 24px 32px; border: 1px solid var(--border);
+            position: relative; transition: all 0.3s ease;
+        }
+        .how-step:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(64, 96, 147, 0.1); }
+        .step-num {
+            width: 44px; height: 44px;
+            background: linear-gradient(135deg, var(--navy), var(--blue));
+            color: white; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Bricolage Grotesque'; font-weight: 800; font-size: 18px;
+            margin: 0 auto 20px;
+        }
+        .how-step-icon { font-size: 42px; margin-bottom: 16px; }
+        .how-step h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--ink); }
+        .how-step p { font-size: 14px; line-height: 1.6; color: var(--muted); }
+        .step-arrow {
+            position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
+            font-size: 24px; color: var(--blue-light); z-index: 2;
+        }
+
+        /* ========== FEATURES ========== */
+        .features { padding: 100px 24px; }
+        .features-inner { max-width: 1200px; margin: 0 auto; }
+        .features h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 800; text-align: center; margin-bottom: 16px; }
+        .features-sub {
+            text-align: center; font-size: 18px; color: var(--muted);
+            max-width: 540px; margin: 0 auto 60px; line-height: 1.6;
+        }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .feature-card {
+            background: var(--card); border-radius: var(--radius);
+            padding: 32px 28px; border: 1px solid var(--border); transition: all 0.3s ease;
+        }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(64, 96, 147, 0.08); }
+        .feature-icon {
+            width: 52px; height: 52px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; margin-bottom: 18px;
+        }
+        .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--ink); }
+        .feature-card p { font-size: 14px; line-height: 1.6; color: var(--muted); }
+
+        /* ========== COMPARISON ========== */
+        .comparison {
+            padding: 100px 24px; background: var(--ink); color: white;
+            position: relative; overflow: hidden;
+        }
+        .comparison::before {
+            content: ''; position: absolute; top: -200px; right: -200px;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(76, 140, 228, 0.15) 0%, transparent 70%);
+        }
+        .comparison-inner { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
+        .comparison .section-label { color: var(--blue-light); }
+        .comparison h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 48px; }
+        .comp-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+        .comp-table th, .comp-table td {
+            padding: 18px 24px; text-align: left; font-size: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .comp-table th {
+            font-family: 'Bricolage Grotesque'; font-weight: 700; font-size: 14px;
+            text-transform: uppercase; letter-spacing: 0.06em; color: var(--blue-light); padding-bottom: 16px;
+        }
+        .comp-table td { color: rgba(255,255,255,0.7); }
+        .comp-table td:first-child { font-weight: 600; color: white; }
+        .comp-table .safini-col { background: rgba(76, 140, 228, 0.14); color: white; font-weight: 600; }
+        .comp-table tr:first-child .safini-col { border-radius: 16px 16px 0 0; }
+        .comp-table tr:last-child .safini-col { border-radius: 0 0 16px 16px; }
+        .comp-check { color: var(--green); font-size: 18px; }
+        .comp-cross { color: rgba(255,255,255,0.25); font-size: 18px; }
+
+        /* ========== TESTIMONIALS ========== */
+        .testimonials {
+            padding: 100px 24px; position: relative;
+            background: linear-gradient(180deg, var(--cream) 0%, var(--yellow-pale) 100%);
+        }
+        .testimonials-inner { max-width: 1200px; margin: 0 auto; }
+        .testimonials h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 800; text-align: center; margin-bottom: 16px; }
+        .testimonials-sub { text-align: center; font-size: 18px; color: var(--muted); margin-bottom: 48px; }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .testimonial-card {
+            background: var(--card); border-radius: var(--radius);
+            padding: 32px 28px; border: 1px solid var(--border); transition: all 0.3s ease;
+        }
+        .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(64, 96, 147, 0.06); }
+        .testimonial-stars { color: var(--yellow-deep); font-size: 15px; margin-bottom: 16px; letter-spacing: 2px; }
+        .testimonial-text { font-size: 15px; line-height: 1.7; color: var(--ink-light); margin-bottom: 20px; font-style: italic; }
+        .testimonial-author { display: flex; align-items: center; gap: 12px; }
+        .testimonial-avatar {
+            width: 42px; height: 42px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 20px;
+        }
+        .testimonial-name { font-weight: 700; font-size: 14px; color: var(--ink); }
+        .testimonial-role { font-size: 13px; color: var(--muted); }
+
+        /* ========== PRICING ========== */
+        .pricing { padding: 100px 24px; }
+        .pricing-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+        .pricing h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 16px; }
+        .pricing-sub { font-size: 18px; color: var(--muted); margin-bottom: 48px; line-height: 1.6; }
+        .pricing-card {
+            background: var(--card); border-radius: 28px;
+            padding: 48px; border: 2px solid var(--blue-light);
+            position: relative; overflow: hidden; max-width: 440px; margin: 0 auto;
+        }
+        .pricing-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
+            background: linear-gradient(90deg, var(--navy), var(--blue), var(--green), var(--yellow));
+        }
+        .pricing-badge {
+            display: inline-block; background: var(--green-light);
+            color: var(--green-deep); font-weight: 600; font-size: 13px;
+            padding: 6px 16px; border-radius: 100px;
+            border: 1px solid rgba(145, 208, 108, 0.3); margin-bottom: 20px;
+        }
+        .pricing-amount { display: flex; align-items: baseline; justify-content: center; gap: 4px; margin-bottom: 8px; }
+        .pricing-dollar { font-family: 'Bricolage Grotesque'; font-size: 20px; font-weight: 700; color: var(--navy); }
+        .pricing-num { font-family: 'Bricolage Grotesque'; font-size: 64px; font-weight: 800; color: var(--ink); line-height: 1; }
+        .pricing-period { font-size: 16px; color: var(--muted); }
+        .pricing-desc { font-size: 15px; color: var(--muted); margin-bottom: 32px; }
+        .pricing-features { list-style: none; text-align: left; margin-bottom: 36px; }
+        .pricing-features li {
+            display: flex; align-items: center; gap: 12px;
+            padding: 10px 0; font-size: 15px; color: var(--ink-light);
+            border-bottom: 1px solid var(--border);
+        }
+        .pricing-features li:last-child { border-bottom: none; }
+        .pricing-features .li-icon {
+            width: 28px; height: 28px; background: var(--green-light);
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            font-size: 14px; flex-shrink: 0; color: var(--green-deep);
+        }
+
+        /* ========== CTA ========== */
+        .cta { padding: 100px 24px; text-align: center; }
+        .cta-inner {
+            max-width: 700px; margin: 0 auto;
+            background: linear-gradient(135deg, var(--navy-deep), var(--navy), var(--blue));
+            border-radius: 32px; padding: 64px 48px; position: relative; overflow: hidden;
+        }
+        .cta-inner::before {
+            content: ''; position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.06) 0%, transparent 50%);
+        }
+        .cta h2 {
+            font-size: clamp(28px, 3.5vw, 40px); font-weight: 800;
+            color: white; margin-bottom: 16px; position: relative; z-index: 1;
+        }
+        .cta p {
+            font-size: 17px; color: rgba(255,255,255,0.8); margin-bottom: 32px;
+            line-height: 1.6; position: relative; z-index: 1;
+        }
+        .cta .btn-white {
+            background: white; color: var(--navy); font-weight: 700;
+            padding: 16px 36px; font-size: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15); position: relative; z-index: 1;
+        }
+        .cta .btn-white:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
+
+        /* ========== FOOTER ========== */
+        footer { padding: 48px 24px; border-top: 1px solid var(--border); }
+        .footer-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .footer-left { display: flex; align-items: center; gap: 10px; }
+        .footer-text { font-size: 14px; color: var(--muted); }
+        .footer-links { display: flex; gap: 24px; list-style: none; }
+        .footer-links a { font-size: 14px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--navy); }
+
+        /* ========== MOBILE NAV ========== */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .nav-hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--ink);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(250, 252, 255, 0.97);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 200;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 36px;
+        }
+        .mobile-nav-overlay.open { display: flex; }
+        .mobile-nav-overlay a {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 28px; font-weight: 700;
+            color: var(--ink); text-decoration: none; transition: color 0.2s;
+        }
+        .mobile-nav-overlay a:hover { color: var(--navy); }
+        .mobile-nav-close {
+            position: absolute; top: 20px; right: 20px;
+            background: none; border: none; font-size: 32px;
+            color: var(--muted); cursor: pointer; line-height: 1;
+        }
+
+        /* ========== WAITLIST FORM ========== */
+        .waitlist-form {
+            display: flex; gap: 12px; max-width: 500px;
+            margin: 0 auto; position: relative; z-index: 1;
+            flex-wrap: wrap; justify-content: center;
+        }
+        .waitlist-input {
+            flex: 1; min-width: 200px; padding: 16px 22px;
+            border-radius: 100px; border: none;
+            font-family: 'DM Sans', sans-serif; font-size: 15px;
+            color: var(--ink);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .waitlist-input:focus { outline: 2px solid rgba(255,255,255,0.5); }
+        .waitlist-input::placeholder { color: var(--muted); }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 900px) {
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero-sub { margin-left: auto; margin-right: auto; }
+            .hero-ctas { justify-content: center; }
+            .hero-proof { justify-content: center; }
+            .hero-visual { margin-top: 40px; }
+            .phone-mockup { transform: rotate(0); }
+            .problem-grid { grid-template-columns: 1fr; }
+            .how-steps { grid-template-columns: repeat(2, 1fr); }
+            .step-arrow { display: none; }
+            .features-grid { grid-template-columns: 1fr; }
+            .testimonial-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .nav-hamburger { display: flex; }
+            .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
+            .comp-table th, .comp-table td { padding: 12px 10px; font-size: 13px; }
+        }
+        @media (max-width: 600px) {
+            .how-steps { grid-template-columns: 1fr; }
+            .cta-inner { padding: 48px 28px; }
+            .pricing-card { padding: 36px 28px; }
+        }
+
+        /* ========== TRUST BADGES ========== */
+        .trust-badges {
+            display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
+            margin: 48px auto 0; max-width: 600px;
+        }
+        .trust-badge {
+            display: flex; align-items: center; gap: 8px;
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 100px; padding: 9px 18px;
+            font-size: 13px; font-weight: 600; color: var(--ink-light);
+        }
+        .trust-badge-icon { font-size: 15px; }
+
+        /* ========== FAQ ========== */
+        .faq { padding: 80px 24px; }
+        .faq-inner { max-width: 720px; margin: 0 auto; }
+        .faq h2 { font-size: clamp(28px, 3.5vw, 40px); font-weight: 800; text-align: center; margin-bottom: 16px; }
+        .faq-sub { text-align: center; font-size: 17px; color: var(--muted); margin-bottom: 48px; line-height: 1.6; }
+        .faq-item {
+            border: 1px solid var(--border); border-radius: 16px;
+            margin-bottom: 12px; overflow: hidden; background: var(--card);
+        }
+        .faq-question {
+            width: 100%; text-align: left; padding: 22px 24px;
+            background: none; border: none; cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700;
+            font-size: 16px; color: var(--ink); transition: color 0.2s;
+        }
+        .faq-question:hover { color: var(--navy); }
+        .faq-chevron { font-size: 18px; color: var(--muted); transition: transform 0.3s ease; flex-shrink: 0; margin-left: 16px; }
+        .faq-item.open .faq-chevron { transform: rotate(180deg); }
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease;
+            padding: 0 24px;
+        }
+        .faq-item.open .faq-answer { max-height: 200px; padding: 0 24px 22px; }
+        .faq-answer p { font-size: 15px; line-height: 1.7; color: var(--muted); }
+
+        /* ========== SHARE BUTTONS ========== */
+        .share-prompt { margin-top: 20px; position: relative; z-index: 1; }
+        .share-prompt p { color: rgba(255,255,255,0.75); font-size: 14px; margin-bottom: 12px; }
+        .share-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+        .share-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 20px; border-radius: 100px;
+            font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px;
+            text-decoration: none; transition: all 0.2s; border: none; cursor: pointer;
+        }
+        .share-btn-twitter { background: #000; color: white; }
+        .share-btn-twitter:hover { background: #222; transform: translateY(-2px); }
+        .share-btn-whatsapp { background: #25D366; color: white; }
+        .share-btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); }
+
+        /* ========== FORM ERROR ========== */
+        #waitlist-error {
+            display: none; color: rgba(255, 160, 140, 1); font-size: 14px;
+            margin-top: 12px; position: relative; z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">
+            <div class="nav-logo-icon">🛡️</div>
+            <span class="nav-logo-text">Safini</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#cta" class="btn btn-primary">Join Waitlist</a></li>
+        </ul>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav-overlay" id="mobile-nav">
+    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">✕</button>
+    <a href="#how" onclick="closeMobileNav()">How It Works</a>
+    <a href="#features" onclick="closeMobileNav()">Features</a>
+    <a href="#pricing" onclick="closeMobileNav()">Pricing</a>
+    <a href="#cta" class="btn btn-primary" onclick="closeMobileNav()">Join Waitlist</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-content">
+            <div class="hero-badge">🚀 Beta launching March 2026</div>
+            <h1>Kids <span class="highlight-green">earn</span> screen time.<br>Parents stay <span class="highlight">in control</span>.</h1>
+            <p class="hero-sub">Safini replaces screen-time battles with a reward system kids actually love. Complete tasks, earn Time Coins, unlock entertainment — no more arguing.</p>
+            <div class="hero-ctas">
+                <a href="#cta" class="btn btn-primary">Join the Waitlist →</a>
+                <a href="#how" class="btn btn-outline">See How It Works</a>
+            </div>
+            <div class="hero-proof">
+                <div class="hero-avatars">
+                    <span style="background: var(--blue-pale);">👩</span>
+                    <span style="background: var(--yellow);">👨</span>
+                    <span style="background: var(--green-light);">👩‍🦱</span>
+                    <span style="background: #FECACA;">👴</span>
+                </div>
+                <div class="hero-proof-text"><strong>1,247 families on the waitlist</strong><br>Validated with 20+ parent interviews</div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="float-coin c1">🪙</div>
+            <div class="float-coin c2">🪙</div>
+            <div class="float-badge b1">✅ +20 coins earned!</div>
+            <div class="float-badge b2">🎮 30m unlocked</div>
+            <div class="phone-mockup">
+                <div class="phone-screen">
+                    <div class="phone-notch"></div>
+                    <div class="phone-header">
+                        <div class="phone-greeting">Good morning 👋</div>
+                        <div class="phone-name">Explorer Leo</div>
+                    </div>
+                    <div class="phone-stats">
+                        <div class="phone-stat">
+                            <div class="phone-stat-icon">🪙</div>
+                            <div class="phone-stat-value">150</div>
+                            <div class="phone-stat-label">Time Coins</div>
+                        </div>
+                        <div class="phone-stat">
+                            <div class="phone-stat-icon">🔥</div>
+                            <div class="phone-stat-value">5</div>
+                            <div class="phone-stat-label">Day Streak</div>
+                        </div>
+                    </div>
+                    <div class="phone-tasks">
+                        <div class="phone-tasks-title">Today's Quests</div>
+                        <div class="phone-task-item">
+                            <div class="phone-task-icon" style="background: var(--blue-pale);">🦉</div>
+                            <div class="phone-task-info">
+                                <div class="phone-task-name">Duolingo Lesson</div>
+                                <div class="phone-task-reward">Complete daily lesson</div>
+                            </div>
+                            <div class="phone-task-coins">🪙 20</div>
+                        </div>
+                        <div class="phone-task-item">
+                            <div class="phone-task-icon" style="background: var(--green-light);">🚶</div>
+                            <div class="phone-task-info">
+                                <div class="phone-task-name">Walk 5,000 Steps</div>
+                                <div class="phone-task-reward">Get moving today!</div>
+                            </div>
+                            <div class="phone-task-coins">🪙 10</div>
+                        </div>
+                        <div class="phone-task-item">
+                            <div class="phone-task-icon" style="background: var(--yellow);">🧩</div>
+                            <div class="phone-task-info">
+                                <div class="phone-task-name">Logic Puzzle</div>
+                                <div class="phone-task-reward">Brain training time</div>
+                            </div>
+                            <div class="phone-task-coins">🪙 20</div>
+                        </div>
+                        <div class="phone-task-item">
+                            <div class="phone-task-icon" style="background: var(--blue-pale);">🛏️</div>
+                            <div class="phone-task-info">
+                                <div class="phone-task-name">Make Your Bed</div>
+                                <div class="phone-task-reward">Parent-assigned</div>
+                            </div>
+                            <div class="phone-task-coins">🪙 5</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
+        <path d="M0,30 C360,60 720,0 1080,30 C1260,50 1380,40 1440,30 L1440,60 L0,60 Z" fill="var(--cream)"/>
+    </svg>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem" id="problem">
+    <div class="problem-inner">
+        <div class="section-label">The Problem</div>
+        <h2>Kids are spending 6–10 hours a day on their phones. Parents are out of options.</h2>
+        <div class="problem-grid">
+
+            <!-- Card 1: Kid doom scrolling in bed at night -->
+            <div class="problem-card">
+                <div class="problem-card-illustration">
+                    <svg width="100%" height="100%" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="200" fill="#1B2A40"/>
+                        <circle cx="50" cy="30" r="1.5" fill="white" opacity="0.4"/>
+                        <circle cx="120" cy="18" r="1" fill="white" opacity="0.3"/>
+                        <circle cx="300" cy="25" r="1.5" fill="white" opacity="0.5"/>
+                        <circle cx="350" cy="55" r="1" fill="white" opacity="0.3"/>
+                        <circle cx="200" cy="12" r="1" fill="white" opacity="0.25"/>
+                        <circle cx="345" cy="35" r="18" fill="#FFF799" opacity="0.12"/>
+                        <circle cx="352" cy="30" r="16" fill="#1B2A40"/>
+                        <text x="20" y="50" font-size="11" fill="white" opacity="0.35" font-family="'DM Sans',sans-serif" font-weight="600">2:47 AM</text>
+                        <rect x="30" y="125" width="340" height="55" rx="10" fill="#2E4568" opacity="0.5"/>
+                        <ellipse cx="110" cy="125" rx="55" ry="12" fill="#406093" opacity="0.35"/>
+                        <path d="M80 135 Q100 108 160 118 L310 118 Q340 112 355 135 L355 170 Q260 180 190 180 Q90 180 65 170 Z" fill="#4C8CE4" opacity="0.15"/>
+                        <circle cx="120" cy="110" r="26" fill="#F5D0B0"/>
+                        <path d="M96 103 Q105 80 120 78 Q135 76 144 95 Q146 100 144 103" fill="#5B3A1A"/>
+                        <path d="M102 82 Q98 70 106 66" stroke="#5B3A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
+                        <path d="M132 78 Q136 65 142 68" stroke="#5B3A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
+                        <circle cx="112" cy="112" r="4.5" fill="white"/>
+                        <circle cx="128" cy="112" r="4.5" fill="white"/>
+                        <circle cx="113" cy="113" r="2.8" fill="#2E4568"/>
+                        <circle cx="129" cy="113" r="2.8" fill="#2E4568"/>
+                        <circle cx="111" cy="111" r="1" fill="white"/>
+                        <circle cx="127" cy="111" r="1" fill="white"/>
+                        <path d="M107 118 Q112 120 117 118" stroke="#D4A590" stroke-width="1.2" fill="none" opacity="0.5"/>
+                        <path d="M123 118 Q128 120 133 118" stroke="#D4A590" stroke-width="1.2" fill="none" opacity="0.5"/>
+                        <ellipse cx="120" cy="124" rx="4" ry="2.5" fill="#E8A090"/>
+                        <circle cx="120" cy="110" r="35" fill="#4C8CE4" opacity="0.06"/>
+                        <path d="M133 118 Q150 105 162 92" stroke="#F5D0B0" stroke-width="9" stroke-linecap="round" fill="none"/>
+                        <path d="M107 118 Q95 105 88 92" stroke="#F5D0B0" stroke-width="9" stroke-linecap="round" fill="none" opacity="0.6"/>
+                        <rect x="152" y="68" width="36" height="56" rx="7" fill="#0F0F1A" stroke="#406093" stroke-width="1.5"/>
+                        <rect x="155" y="74" width="30" height="44" rx="4" fill="#4C8CE4" opacity="0.2"/>
+                        <rect x="158" y="78" width="20" height="3" rx="1.5" fill="white" opacity="0.15"/>
+                        <rect x="158" y="84" width="24" height="3" rx="1.5" fill="white" opacity="0.1"/>
+                        <rect x="158" y="90" width="16" height="3" rx="1.5" fill="white" opacity="0.15"/>
+                        <rect x="158" y="96" width="22" height="3" rx="1.5" fill="white" opacity="0.1"/>
+                        <rect x="158" y="102" width="18" height="3" rx="1.5" fill="white" opacity="0.12"/>
+                        <circle cx="170" cy="82" r="8" fill="#EE1D52" opacity="0.15"/>
+                        <text x="210" y="85" font-size="18" opacity="0.6">😵‍💫</text>
+                        <text x="60" y="90" font-size="14" fill="#4C8CE4" opacity="0.3" font-family="'Bricolage Grotesque',sans-serif" font-weight="700">z Z z</text>
+                    </svg>
+                </div>
+                <div class="problem-card-body">
+                    <h3>📱 Doom scrolling until 3 AM</h3>
+                    <p>Kids spend 6–10 hours glued to YouTube, TikTok, and Roblox — often secretly late at night with zero boundaries.</p>
+                </div>
+            </div>
+
+            <!-- Card 2: Kid ignoring homework -->
+            <div class="problem-card">
+                <div class="problem-card-illustration">
+                    <svg width="100%" height="100%" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="200" fill="#FFF799" opacity="0.35"/>
+                        <rect width="400" height="200" fill="#FFFDE6"/>
+                        <rect x="20" y="145" width="360" height="8" rx="4" fill="#B8860B" opacity="0.2"/>
+                        <rect x="40" y="153" width="7" height="47" rx="2" fill="#B8860B" opacity="0.15"/>
+                        <rect x="352" y="153" width="7" height="47" rx="2" fill="#B8860B" opacity="0.15"/>
+                        <rect x="40" y="105" width="75" height="40" rx="3" fill="white" transform="rotate(-4 40 105)" stroke="#D6E2F0" stroke-width="1"/>
+                        <line x1="50" y1="117" x2="100" y2="115" stroke="#D6E2F0" stroke-width="1.5"/>
+                        <line x1="50" y1="124" x2="95" y2="122" stroke="#D6E2F0" stroke-width="1.5"/>
+                        <line x1="50" y1="131" x2="85" y2="129" stroke="#D6E2F0" stroke-width="1.5"/>
+                        <text x="88" y="135" font-size="22" font-weight="800" fill="#EF4444" font-family="'Bricolage Grotesque',sans-serif" transform="rotate(4 88 135)">F</text>
+                        <line x1="130" y1="128" x2="148" y2="143" stroke="#E8D83A" stroke-width="4" stroke-linecap="round"/>
+                        <polygon points="128,126 130,130 126,129" fill="#E8D83A"/>
+                        <path d="M140 108 L170 102 L200 108 L170 114 Z" fill="white" stroke="#D6E2F0" stroke-width="1"/>
+                        <text x="155" y="110" font-size="6" fill="#6B7F99" font-family="'DM Sans'">MATH</text>
+                        <circle cx="290" cy="85" r="28" fill="#F5D0B0"/>
+                        <path d="M264 78 Q275 55 290 53 Q305 55 316 74 Q318 80 316 85" fill="#3A4F6A"/>
+                        <path d="M264 78 Q258 55 290 48 Q322 55 316 78" stroke="#406093" stroke-width="5" fill="none" stroke-linecap="round"/>
+                        <rect x="255" y="73" width="13" height="17" rx="6" fill="#406093"/>
+                        <rect x="312" y="73" width="13" height="17" rx="6" fill="#406093"/>
+                        <circle cx="282" cy="88" r="4" fill="white"/>
+                        <circle cx="298" cy="88" r="4" fill="white"/>
+                        <circle cx="283" cy="90" r="2.5" fill="#1B2A40"/>
+                        <circle cx="299" cy="90" r="2.5" fill="#1B2A40"/>
+                        <path d="M284 100 Q290 97 296 100" stroke="#D4A590" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <rect x="270" y="112" width="40" height="35" rx="12" fill="#4C8CE4"/>
+                        <path d="M282 125 Q278 115 276 108" stroke="#F5D0B0" stroke-width="8" stroke-linecap="round" fill="none"/>
+                        <path d="M298 125 Q302 115 304 108" stroke="#F5D0B0" stroke-width="8" stroke-linecap="round" fill="none"/>
+                        <rect x="270" y="96" width="28" height="42" rx="5" fill="#1B2A40"/>
+                        <rect x="273" y="101" width="22" height="32" rx="3" fill="#4C8CE4" opacity="0.3"/>
+                        <circle cx="290" cy="85" r="32" fill="#4C8CE4" opacity="0.05"/>
+                    </svg>
+                </div>
+                <div class="problem-card-body">
+                    <h3>📉 Grades drop, focus disappears</h3>
+                    <p>Homework sits untouched while kids are lost in endless feeds. Attention spans and school performance take a nosedive.</p>
+                </div>
+            </div>
+
+            <!-- Card 3: Parent-child conflict -->
+            <div class="problem-card">
+                <div class="problem-card-illustration">
+                    <svg width="100%" height="100%" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="400" height="200" fill="#FCECED"/>
+                        <path d="M190 25 L185 48 L195 45 L188 72" stroke="#F97066" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.35"/>
+                        <path d="M215 18 L210 44 L220 41 L213 65" stroke="#F97066" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.25"/>
+                        <circle cx="130" cy="92" r="30" fill="#F5D0B0"/>
+                        <path d="M102 85 Q112 60 130 58 Q148 60 158 85" fill="#3A4F6A"/>
+                        <line x1="118" y1="84" x2="126" y2="88" stroke="#3A4F6A" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="142" y1="88" x2="136" y2="84" stroke="#3A4F6A" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="123" cy="93" r="3" fill="#1B2A40"/>
+                        <circle cx="137" cy="93" r="3" fill="#1B2A40"/>
+                        <path d="M124 107 Q130 101 136 107" stroke="#C0392B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <rect x="107" y="122" width="46" height="45" rx="14" fill="#F97066" opacity="0.5"/>
+                        <path d="M153 137 Q180 126 205 120" stroke="#F5D0B0" stroke-width="10" stroke-linecap="round" fill="none"/>
+                        <path d="M148 62 Q148 45 170 45 L222 45 Q240 45 240 62 Q240 76 222 76 L168 76 L158 88 L162 76 Q148 76 148 62 Z" fill="white" opacity="0.85"/>
+                        <text x="163" y="63" font-size="11" fill="#EF4444" font-weight="700" font-family="'DM Sans',sans-serif">Give me the</text>
+                        <text x="174" y="75" font-size="11" fill="#EF4444" font-weight="700" font-family="'DM Sans',sans-serif">phone! 😤</text>
+                        <circle cx="300" cy="98" r="26" fill="#F5D0B0"/>
+                        <path d="M276 91 Q285 72 300 70 Q315 72 324 91" fill="#5B3A1A"/>
+                        <path d="M280 76 Q276 64 284 62" stroke="#5B3A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
+                        <line x1="290" y1="92" x2="296" y2="89" stroke="#5B3A1A" stroke-width="2" stroke-linecap="round"/>
+                        <line x1="310" y1="89" x2="306" y2="92" stroke="#5B3A1A" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="293" cy="98" r="3" fill="#1B2A40"/>
+                        <circle cx="307" cy="98" r="3" fill="#1B2A40"/>
+                        <path d="M295 110 Q300 106 305 110" stroke="#D4A590" stroke-width="2" fill="none"/>
+                        <rect x="278" y="124" width="44" height="42" rx="12" fill="#4C8CE4"/>
+                        <rect x="288" y="115" width="22" height="36" rx="5" fill="#1B2A40"/>
+                        <rect x="291" y="120" width="16" height="26" rx="3" fill="#4C8CE4" opacity="0.35"/>
+                        <text x="230" y="110" font-size="20" opacity="0.5">⚡</text>
+                        <text x="220" y="155" font-size="14" opacity="0.3">💢</text>
+                        <circle cx="330" cy="72" r="4" fill="white" opacity="0.5"/>
+                        <circle cx="338" cy="62" r="6" fill="white" opacity="0.5"/>
+                        <path d="M335 40 Q335 28 350 28 L370 28 Q380 28 380 40 Q380 50 370 50 L350 50 Q335 50 335 40Z" fill="white" opacity="0.6"/>
+                        <text x="345" y="43" font-size="11" fill="#406093" font-weight="600" font-family="'DM Sans'">NO! 😡</text>
+                    </svg>
+                </div>
+                <div class="problem-card-body">
+                    <h3>😤 Daily battles, zero solutions</h3>
+                    <p>Taking the phone away creates arguments, resentment, and a cycle of bargaining that exhausts the entire family.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- WAVE -->
+<div class="wave-divider">
+    <svg viewBox="0 0 1440 50" preserveAspectRatio="none">
+        <path d="M0,25 C360,50 720,0 1080,25 C1260,40 1380,30 1440,25 L1440,50 L0,50 Z" fill="var(--blue-pale)" opacity="0.5"/>
+    </svg>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+    <div class="how-inner">
+        <div class="section-label">How It Works</div>
+        <h2>From conflict to cooperation in 4 steps</h2>
+        <p class="how-sub">Safini turns screen time into something kids earn through productive habits — and parents configure the rules.</p>
+        <div class="how-steps">
+            <div class="how-step">
+                <div class="step-num">1</div>
+                <div class="how-step-icon">⚙️</div>
+                <h3>Parents Set Rules</h3>
+                <p>Choose which apps to limit, set Time Coin exchange rates, and create tasks for your child.</p>
+                <span class="step-arrow">→</span>
+            </div>
+            <div class="how-step">
+                <div class="step-num">2</div>
+                <div class="how-step-icon">✅</div>
+                <h3>Kids Complete Tasks</h3>
+                <p>Duolingo lessons, step goals, puzzles, chores, reading — productive actions that build real habits.</p>
+                <span class="step-arrow">→</span>
+            </div>
+            <div class="how-step">
+                <div class="step-num">3</div>
+                <div class="how-step-icon">🪙</div>
+                <h3>Earn Time Coins</h3>
+                <p>Every completed task earns coins. Kids see their balance grow and unlock new levels and streaks.</p>
+                <span class="step-arrow">→</span>
+            </div>
+            <div class="how-step">
+                <div class="step-num">4</div>
+                <div class="how-step-icon">🎮</div>
+                <h3>Unlock Entertainment</h3>
+                <p>Spend coins on YouTube, Roblox, Minecraft, and more. Fair, transparent, and conflict-free.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+    <div class="features-inner">
+        <div class="section-label" style="text-align:center;">Features</div>
+        <h2>Everything families need</h2>
+        <p class="features-sub">Two apps, one system. Kids get a fun experience. Parents get peace of mind.</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon" style="background: var(--blue-pale);">📊</div>
+                <h3>Parent Dashboard</h3>
+                <p>See earned coins, redeemed minutes, task completions, and screen-time trends at a glance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background: var(--yellow);">🎯</div>
+                <h3>Custom Tasks</h3>
+                <p>Create one-off or recurring tasks — homework, chores, reading, outdoor time — with custom coin values.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background: var(--green-light);">🏪</div>
+                <h3>Reward Store</h3>
+                <p>Kids spend coins on app time or avatar upgrades. Clear costs, visible progress, instant gratification.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background: var(--blue-pale);">🤖</div>
+                <h3>KidsGPT AI Tutor</h3>
+                <p>A safe, child-friendly AI that explains school topics, answers questions, and encourages learning.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background: var(--yellow);">🔥</div>
+                <h3>Streaks & Levels</h3>
+                <p>Gamified progression keeps kids motivated. Badges, streaks, and levels make good habits feel rewarding.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon" style="background: var(--green-light);">⏱️</div>
+                <h3>App Time Limits</h3>
+                <p>Set per-app daily limits. Kids earn extra minutes through productive tasks instead of begging for more.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comparison" id="compare">
+    <div class="comparison-inner">
+        <div class="section-label">Why Safini</div>
+        <h2>Control apps block. Safini motivates.</h2>
+        <table class="comp-table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Control Apps</th>
+                <th>Learning Apps</th>
+                <th class="safini-col">Safini ✨</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr><td>Screen time limits</td><td><span class="comp-check">✓</span></td><td><span class="comp-cross">✗</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
+            <tr><td>Educational tasks</td><td><span class="comp-cross">✗</span></td><td><span class="comp-check">✓</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
+            <tr><td>Gamified rewards</td><td><span class="comp-cross">✗</span></td><td><span class="comp-cross">✗</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
+            <tr><td>Child motivation</td><td><span class="comp-cross">✗</span></td><td>Partial</td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
+            <tr><td>AI tutor for kids</td><td><span class="comp-cross">✗</span></td><td><span class="comp-cross">✗</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
+            <tr><td>Reduces family conflict</td><td><span class="comp-cross">✗</span></td><td><span class="comp-cross">✗</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+    <div class="testimonials-inner">
+        <div class="section-label" style="text-align:center;">What Parents Say</div>
+        <h2>From our parent interviews</h2>
+        <p class="testimonials-sub">Real feedback from 20+ families we spoke to during validation.</p>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"I've tried taking the phone away, and it always ends in a fight. A system where my son actually earns his YouTube time? That changes everything."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar" style="background: var(--blue-pale);">👩</div>
+                    <div>
+                        <div class="testimonial-name">Sarah M.</div>
+                        <div class="testimonial-role">Mother of 9-year-old</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"My daughter would play Roblox all day if she could. I love the idea that she'd need to read or do homework first. It makes screen time a reward, not a right."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar" style="background: var(--green-light);">👨</div>
+                    <div>
+                        <div class="testimonial-name">David T.</div>
+                        <div class="testimonial-role">Father of 7- and 11-year-old</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"We've used parental controls before but they just create resentment. A coin system where the child feels in control of earning — that's much smarter."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar" style="background: var(--yellow);">👩‍🦱</div>
+                    <div>
+                        <div class="testimonial-name">Jennifer L.</div>
+                        <div class="testimonial-role">Mother of 6- and 13-year-old</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+    <div class="pricing-inner">
+        <div class="section-label" style="text-align:center;">Simple Pricing</div>
+        <h2>One plan. The whole family.</h2>
+        <p class="pricing-sub">No per-child fees, no surprise charges. One subscription covers your entire family.</p>
+        <div class="pricing-card">
+            <div class="pricing-badge">🎉 Early bird pricing</div>
+            <div class="pricing-amount">
+                <span class="pricing-dollar">$</span>
+                <span class="pricing-num">4</span>
+                <span class="pricing-period">/ month</span>
+            </div>
+            <p class="pricing-desc">Per family, billed monthly</p>
+            <ul class="pricing-features">
+                <li><span class="li-icon">✓</span> Unlimited children profiles</li>
+                <li><span class="li-icon">✓</span> Full parent dashboard & insights</li>
+                <li><span class="li-icon">✓</span> All task types & reward store</li>
+                <li><span class="li-icon">✓</span> KidsGPT AI tutor access</li>
+                <li><span class="li-icon">✓</span> Avatar customization & levels</li>
+                <li><span class="li-icon">✓</span> App time limits & controls</li>
+            </ul>
+            <a href="#cta" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 16px;">Join the Waitlist →</a>
+        </div>
+        <div class="trust-badges">
+            <div class="trust-badge"><span class="trust-badge-icon">🔒</span> Built with child privacy in mind</div>
+            <div class="trust-badge"><span class="trust-badge-icon">🚫</span> No ads, ever</div>
+            <div class="trust-badge"><span class="trust-badge-icon">🙅</span> No data sold</div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+    <div class="faq-inner">
+        <div class="section-label" style="text-align:center;">FAQ</div>
+        <h2>Questions parents ask</h2>
+        <p class="faq-sub">Everything you need to know before joining the waitlist.</p>
+
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+                Is Safini available now?
+                <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer" role="region">
+                <p>Not yet — we're in private beta and launching soon. Join the waitlist to get early access before we open to the public. Early members lock in the $4/month founding price.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+                What devices does Safini work on?
+                <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer" role="region">
+                <p>Safini will be available on iOS and Android for both the parent dashboard and the child app. A web dashboard for parents is also planned for launch.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+                Is my child's data safe?
+                <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer" role="region">
+                <p>Protecting children's privacy is central to how we built Safini. We don't show ads, we don't sell data, and we only collect what's necessary to run the app. Your family's information is never shared with third parties.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+                Won't this cause more conflict if kids can't earn enough coins?
+                <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer" role="region">
+                <p>The whole design is built around making kids feel in control — not punished. Parents set fair tasks and coin rates. Kids see exactly what they need to do to unlock their favourite apps. The transparency is what makes it work: no more arbitrary decisions, no more "because I said so."</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+                How much does it cost after the beta?
+                <span class="faq-chevron">▼</span>
+            </button>
+            <div class="faq-answer" role="region">
+                <p>Safini is $4/month for your whole family — unlimited children profiles, all features included. Waitlist members lock in this founding price. No per-child fees, no hidden charges.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+    <div class="cta-inner">
+        <h2>Ready to end the screen-time battle?</h2>
+        <p>Join families who are building healthier digital habits — without the daily arguments. Be among the first to try Safini.</p>
+        <form class="waitlist-form" id="waitlist-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <label for="waitlist-email" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);">Email address</label>
+            <input id="waitlist-email" type="email" name="email" placeholder="Your email address" required class="waitlist-input">
+            <button type="submit" class="btn btn-white">Join Waitlist →</button>
+        </form>
+        <p id="waitlist-error"></p>
+        <div id="waitlist-success" style="display:none;">
+            <p style="color: rgba(255,255,255,0.95); font-size: 18px; font-weight: 700; margin-top: 16px; position: relative; z-index: 1;">🎉 You're on the list!</p>
+            <p style="color: rgba(255,255,255,0.75); font-size: 15px; margin-top: 6px; position: relative; z-index: 1;">We'll be in touch when Safini launches.</p>
+            <div class="share-prompt">
+                <p>Know another parent who'd love this? Share Safini:</p>
+                <div class="share-buttons">
+                    <a class="share-btn share-btn-twitter" href="#" id="share-twitter" target="_blank" rel="noopener">𝕏 Share on X</a>
+                    <a class="share-btn share-btn-whatsapp" href="#" id="share-whatsapp" target="_blank" rel="noopener">💬 Share on WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-left">
+            <span style="font-size: 22px;">🛡️</span>
+            <span class="nav-logo-text" style="font-size: 18px;">Safini</span>
+            <span class="footer-text" style="margin-left: 8px;">© 2026 Safini AI. All rights reserved.</span>
+        </div>
+        <ul class="footer-links">
+            <li><a href="mailto:safini.team@gmail.com">safini.team@gmail.com</a></li>
+        </ul>
+    </div>
+</footer>
+
+<script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+    // Hamburger menu
+    const hamburger = document.getElementById('nav-hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileClose = document.getElementById('mobile-nav-close');
+    function closeMobileNav() { mobileNav.classList.remove('open'); document.body.style.overflow = ''; }
+    hamburger.addEventListener('click', () => { mobileNav.classList.add('open'); document.body.style.overflow = 'hidden'; });
+    mobileClose.addEventListener('click', closeMobileNav);
+    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileNav));
+
+    // Social share URLs — domain: safini.fun (locked)
+    const SITE_URL = 'https://safini.fun';
+    const SHARE_TEXT = 'I just joined the Safini waitlist — an app where kids earn screen time by completing tasks 🎯 No more arguments. Join me:';
+    document.getElementById('share-twitter').href =
+        'https://twitter.com/intent/tweet?text=' + encodeURIComponent(SHARE_TEXT + ' ' + SITE_URL);
+    document.getElementById('share-whatsapp').href =
+        'https://wa.me/?text=' + encodeURIComponent(SHARE_TEXT + ' ' + SITE_URL);
+
+    // Waitlist form — with 10s timeout, error message, confetti, and GA4 event
+    const waitlistForm = document.getElementById('waitlist-form');
+    const waitlistError = document.getElementById('waitlist-error');
+    waitlistForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = waitlistForm.querySelector('button[type=submit]');
+        btn.textContent = 'Joining...';
+        btn.disabled = true;
+        waitlistError.style.display = 'none';
+
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 10000);
+
+        try {
+            const resp = await fetch(waitlistForm.action, {
+                method: 'POST',
+                body: new FormData(waitlistForm),
+                headers: { 'Accept': 'application/json' },
+                signal: controller.signal
+            });
+            clearTimeout(timeout);
+
+            if (resp.ok) {
+                waitlistForm.style.display = 'none';
+                document.getElementById('waitlist-success').style.display = 'block';
+                // Confetti burst
+                if (typeof confetti !== 'undefined') {
+                    confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ['#406093','#4C8CE4','#91D06C','#FFF799'] });
+                }
+                // GA4 event
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'waitlist_signup', { event_category: 'engagement', event_label: 'waitlist_form' });
+                }
+            } else {
+                btn.textContent = 'Join Waitlist →';
+                btn.disabled = false;
+                waitlistError.textContent = 'Something went wrong — please try again.';
+                waitlistError.style.display = 'block';
+            }
+        } catch (err) {
+            clearTimeout(timeout);
+            btn.textContent = 'Join Waitlist →';
+            btn.disabled = false;
+            waitlistError.textContent = err.name === 'AbortError'
+                ? 'Request timed out — please check your connection and try again.'
+                : 'Something went wrong — please try again.';
+            waitlistError.style.display = 'block';
+        }
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item.open').forEach(el => {
+                el.classList.remove('open');
+                el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+            });
+            if (!isOpen) {
+                item.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+            }
+        });
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.problem-card, .how-step, .feature-card, .testimonial-card').forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = `all 0.6s ease ${i % 4 * 0.1}s`;
+        observer.observe(el);
+    });
+</script>
+</body>
+</html>
