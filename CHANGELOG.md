@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.1.0] - 2026-03-19
+
+### Changed
+- Moved `src/app/index.html` → `index.html` (repo root) for simpler deployment
+
 ## [0.1.0.0] - 2026-03-19
 
 ### Added
