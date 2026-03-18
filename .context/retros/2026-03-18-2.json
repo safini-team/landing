@@ -1,0 +1,48 @@
+{
+  "date": "2026-03-18",
+  "window": "7d",
+  "metrics": {
+    "commits": 1,
+    "contributors": 1,
+    "prs_merged": 0,
+    "insertions": 1290,
+    "deletions": 21,
+    "net_loc": 1269,
+    "test_loc": 0,
+    "test_ratio": 0.0,
+    "active_days": 2,
+    "sessions": 2,
+    "deep_sessions": 1,
+    "avg_session_minutes": 105,
+    "loc_per_session_hour": 350,
+    "feat_pct": 1.0,
+    "fix_pct": 0.0,
+    "peak_hour": 0,
+    "ai_assisted_commits": 1,
+    "features_shipped": 11,
+    "working_tree_only": true
+  },
+  "authors": {
+    "ilkhom19": {
+      "commits": 1,
+      "insertions": 1290,
+      "deletions": 21,
+      "test_ratio": 0.0,
+      "top_area": "src/app/index.html"
+    }
+  },
+  "version_range": ["initial", "initial"],
+  "streak_days": 1,
+  "backlog": {
+    "total_open": 1,
+    "p0_p1": 0,
+    "p2": 1,
+    "completed_this_period": 0,
+    "added_this_period": 1
+  },
+  "gstack_reviews": {
+    "ceo_review": "SCOPE_EXPANSION",
+    "eng_review": "FULL_REVIEW_CLEAN"
+  },
+  "tweetable": "Week of Mar 12: 1 commit, +1.3k LOC in flight, 11 features built, 2 reviews passed | Streak: 1d (main needs your commit!)"
+}
