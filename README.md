@@ -6,6 +6,8 @@ The marketing landing page for **Safini** — a family screen-time reward app. T
 
 **Live domain:** `safini.fun` · **Contact:** `safini.team@gmail.com` · **Version:** `0.1.0.0`
 
+> **Entry point:** `index.html` (repo root)
+
 ---
 
 ## What This Is
@@ -20,9 +22,10 @@ A conversion-optimised waitlist page. A parent who fought with their kid over a 
 
 ```
 landing/
+├── index.html                  # The entire page — HTML + CSS + JS in one file
 ├── src/
-│   └── app/
-│       └── index.html          # The entire page — HTML + CSS + JS in one file
+│   ├── app/                    # (legacy path — page now lives at repo root)
+│   └── components/             # Component files
 ├── docs/
 │   └── designs/
 │       └── safini-landing.md   # CEO plan: vision, scope decisions, pre-launch checklist
@@ -42,11 +45,11 @@ No build step. Open the file directly:
 
 ```bash
 # Option 1: Python (zero dependencies, available everywhere)
-cd src/app && python3 -m http.server 8080
+python3 -m http.server 8080
 # → http://localhost:8080
 
 # Option 2: Any static file server
-npx serve src/app
+npx serve .
 # → http://localhost:3000
 ```
 
@@ -163,7 +166,7 @@ Two placeholders must be replaced before the page goes live:
 ### 1. Formspree Form ID
 
 ```html
-<!-- src/app/index.html, line 1128 -->
+<!-- index.html, ~line 1128 -->
 <form action="https://formspree.io/f/YOUR_FORM_ID" ...>
 ```
 
@@ -175,7 +178,7 @@ Two placeholders must be replaced before the page goes live:
 ### 2. Google Analytics 4 Measurement ID
 
 ```html
-<!-- src/app/index.html, lines 19 and 24 -->
+<!-- index.html, lines 19 and 24 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
 gtag('config', 'GA_MEASUREMENT_ID');
 ```
@@ -190,8 +193,8 @@ Upload a `1200×630px` image to `https://safini.fun/og-image.png`. This is what 
 
 ### Full Pre-Launch Checklist
 
-- [ ] Replace `YOUR_FORM_ID` in `src/app/index.html:1128` (Formspree)
-- [ ] Replace `GA_MEASUREMENT_ID` in `src/app/index.html:19,24` (GA4) — 2 occurrences
+- [ ] Replace `YOUR_FORM_ID` in `index.html:~1128` (Formspree)
+- [ ] Replace `GA_MEASUREMENT_ID` in `index.html:19,24` (GA4) — 2 occurrences
 - [ ] Upload `og-image.png` to `safini.fun/og-image.png` (1200×630px)
 - [ ] Deploy to `safini.fun` (Vercel recommended — drag-and-drop `src/app/`)
 - [ ] Submit a test email end-to-end and verify receipt in inbox
@@ -206,17 +209,17 @@ The entire page is `src/app/index.html`. Deploy it as a static site anywhere:
 
 **Vercel (recommended):**
 1. Connect GitHub repo at [vercel.com/new](https://vercel.com/new)
-2. Set root directory to `src/app`
+2. Leave root directory as `/` (repo root — `index.html` is at the root)
 3. Set custom domain to `safini.fun`
 4. Done — auto-deploys on every push to `main`
 
 **Netlify:**
 1. Connect GitHub repo
-2. Set publish directory to `src/app`
+2. Set publish directory to `/` (repo root)
 3. Add custom domain
 
 **GitHub Pages:**
-1. `Settings → Pages → Source: main branch → /src/app`
+1. `Settings → Pages → Source: main branch → / (root)`
 2. Set custom domain `safini.fun` in the Pages settings
 
 ---
