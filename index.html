@@ -32,23 +32,28 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --navy: #406093;
-            --navy-deep: #2E4568;
-            --blue: #4C8CE4;
-            --blue-light: #A5C8F7;
-            --blue-pale: #E8F1FC;
-            --green: #91D06C;
-            --green-deep: #6DB44A;
-            --green-light: #D4F0C4;
-            --yellow: #FFF799;
-            --yellow-deep: #E8D83A;
-            --yellow-pale: #FFFDE6;
-            --cream: #FAFCFF;
-            --warm-white: #F7F9FD;
-            --ink: #1B2A40;
-            --ink-light: #3A4F6A;
-            --muted: #6B7F99;
-            --border: #D6E2F0;
+            --navy: #8100D1;
+            --navy-rgb: 129, 0, 209;
+            --navy-deep: #5D0098;
+            --blue: #B500B2;
+            --blue-rgb: 181, 0, 178;
+            --blue-light: #E7C8F6;
+            --blue-pale: #F8EDFF;
+            --green: #FF52A0;
+            --green-rgb: 255, 82, 160;
+            --green-deep: #B500B2;
+            --green-light: #FFE4D8;
+            --yellow: #FFA47F;
+            --yellow-rgb: 255, 164, 127;
+            --yellow-deep: #FF52A0;
+            --yellow-pale: #FFF1EA;
+            --cream: #FFF8FE;
+            --warm-white: #FFF4FC;
+            --ink: #1D1233;
+            --ink-rgb: 29, 18, 51;
+            --ink-light: #4C3B67;
+            --muted: #7C6B94;
+            --border: #EAD8F6;
             --card: #FFFFFF;
             --radius: 20px;
         }
@@ -71,7 +76,7 @@
             padding: 16px 24px; transition: all 0.4s ease;
         }
         nav.scrolled {
-            background: rgba(250, 252, 255, 0.88);
+            background: rgba(255, 248, 254, 0.88);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
         }
@@ -79,17 +84,14 @@
             max-width: 1200px; margin: 0 auto;
             display: flex; align-items: center; justify-content: space-between;
         }
-        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-        .nav-logo-icon {
-            width: 42px; height: 42px;
-            background: linear-gradient(135deg, var(--navy), var(--blue));
-            border-radius: 12px; display: flex; align-items: center; justify-content: center;
-            font-size: 22px; box-shadow: 0 4px 12px rgba(64, 96, 147, 0.3);
+        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+        .brand-logo-frame {
+            width: 176px; height: 58px; overflow: hidden;
+            border-radius: 18px; display: block; flex-shrink: 0;
         }
-        .nav-logo-text {
-            font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px;
-            background: linear-gradient(135deg, var(--navy), var(--blue));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        .brand-logo-image {
+            width: 100%; height: 100%; object-fit: cover; object-position: center;
+            display: block; filter: drop-shadow(0 10px 18px rgba(var(--navy-rgb), 0.12));
         }
         .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
         .nav-links a {
@@ -104,9 +106,15 @@
         }
         .btn-primary {
             background: linear-gradient(135deg, var(--navy), var(--blue));
-            color: white; box-shadow: 0 4px 20px rgba(64, 96, 147, 0.35);
+            color: white; box-shadow: 0 4px 20px rgba(var(--navy-rgb), 0.35);
         }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(64, 96, 147, 0.45); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(var(--navy-rgb), 0.45); }
+        .nav-links .btn-primary,
+        .nav-links .btn-primary:hover,
+        .mobile-nav-overlay .btn-primary,
+        .mobile-nav-overlay .btn-primary:hover {
+            color: white;
+        }
         .btn-outline {
             background: transparent; color: var(--navy); border: 2px solid var(--blue-light);
         }
@@ -120,13 +128,13 @@
         .hero::before {
             content: ''; position: absolute; top: -200px; right: -200px;
             width: 700px; height: 700px;
-            background: radial-gradient(circle, rgba(76, 140, 228, 0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(var(--blue-rgb), 0.12) 0%, transparent 70%);
             pointer-events: none;
         }
         .hero::after {
             content: ''; position: absolute; bottom: -100px; left: -150px;
             width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(145, 208, 108, 0.06) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(var(--green-rgb), 0.08) 0%, transparent 70%);
             pointer-events: none;
         }
         .hero-inner {
@@ -135,7 +143,7 @@
         }
         .hero-badge {
             display: inline-flex; align-items: center; gap: 8px;
-            background: linear-gradient(135deg, rgba(64, 96, 147, 0.08), rgba(76, 140, 228, 0.08));
+            background: linear-gradient(135deg, rgba(var(--navy-rgb), 0.08), rgba(var(--green-rgb), 0.12));
             border: 1px solid var(--blue-light); padding: 8px 18px; border-radius: 100px;
             font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 24px;
             animation: fadeUp 0.8s ease both;
@@ -179,7 +187,7 @@
         .phone-mockup {
             width: 300px; height: 620px; background: var(--ink);
             border-radius: 44px; padding: 12px;
-            box-shadow: 0 40px 80px rgba(27, 42, 64, 0.22), 0 0 0 1px rgba(76, 140, 228, 0.1),
+            box-shadow: 0 40px 80px rgba(var(--ink-rgb), 0.22), 0 0 0 1px rgba(var(--blue-rgb), 0.12),
             inset 0 0 0 2px rgba(255,255,255,0.08);
             position: relative; transform: rotate(2deg);
         }
@@ -222,9 +230,9 @@
         /* Floating elements */
         .float-coin {
             position: absolute; width: 50px; height: 50px;
-            background: linear-gradient(135deg, var(--yellow-deep), var(--green));
+            background: linear-gradient(135deg, var(--blue), var(--yellow));
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 22px; box-shadow: 0 8px 24px rgba(145, 208, 108, 0.35);
+            font-size: 22px; box-shadow: 0 8px 24px rgba(var(--yellow-rgb), 0.32);
             animation: float 3s ease-in-out infinite;
         }
         .float-coin.c1 { top: 40px; right: -10px; }
@@ -262,7 +270,7 @@
             border: 1px solid var(--border); transition: all 0.3s ease;
             position: relative; overflow: hidden;
         }
-        .problem-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(64, 96, 147, 0.1); }
+        .problem-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(var(--navy-rgb), 0.12); }
         .problem-card-illustration { width: 100%; height: 200px; position: relative; overflow: hidden; }
         .problem-card-body { padding: 28px; }
         .problem-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--ink); }
@@ -287,7 +295,7 @@
             padding: 36px 24px 32px; border: 1px solid var(--border);
             position: relative; transition: all 0.3s ease;
         }
-        .how-step:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(64, 96, 147, 0.1); }
+        .how-step:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(var(--navy-rgb), 0.12); }
         .step-num {
             width: 44px; height: 44px;
             background: linear-gradient(135deg, var(--navy), var(--blue));
@@ -317,7 +325,7 @@
             background: var(--card); border-radius: var(--radius);
             padding: 32px 28px; border: 1px solid var(--border); transition: all 0.3s ease;
         }
-        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(64, 96, 147, 0.08); }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(var(--navy-rgb), 0.1); }
         .feature-icon {
             width: 52px; height: 52px; border-radius: 14px;
             display: flex; align-items: center; justify-content: center;
@@ -334,7 +342,7 @@
         .comparison::before {
             content: ''; position: absolute; top: -200px; right: -200px;
             width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(76, 140, 228, 0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(var(--green-rgb), 0.18) 0%, transparent 70%);
         }
         .comparison-inner { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
         .comparison .section-label { color: var(--blue-light); }
@@ -350,7 +358,7 @@
         }
         .comp-table td { color: rgba(255,255,255,0.7); }
         .comp-table td:first-child { font-weight: 600; color: white; }
-        .comp-table .safini-col { background: rgba(76, 140, 228, 0.14); color: white; font-weight: 600; }
+        .comp-table .safini-col { background: rgba(var(--green-rgb), 0.16); color: white; font-weight: 600; }
         .comp-table tr:first-child .safini-col { border-radius: 16px 16px 0 0; }
         .comp-table tr:last-child .safini-col { border-radius: 0 0 16px 16px; }
         .comp-check { color: var(--green); font-size: 18px; }
@@ -369,7 +377,7 @@
             background: var(--card); border-radius: var(--radius);
             padding: 32px 28px; border: 1px solid var(--border); transition: all 0.3s ease;
         }
-        .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(64, 96, 147, 0.06); }
+        .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(var(--navy-rgb), 0.08); }
         .testimonial-stars { color: var(--yellow-deep); font-size: 15px; margin-bottom: 16px; letter-spacing: 2px; }
         .testimonial-text { font-size: 15px; line-height: 1.7; color: var(--ink-light); margin-bottom: 20px; font-style: italic; }
         .testimonial-author { display: flex; align-items: center; gap: 12px; }
@@ -398,7 +406,7 @@
             display: inline-block; background: var(--green-light);
             color: var(--green-deep); font-weight: 600; font-size: 13px;
             padding: 6px 16px; border-radius: 100px;
-            border: 1px solid rgba(145, 208, 108, 0.3); margin-bottom: 20px;
+            border: 1px solid rgba(var(--green-rgb), 0.25); margin-bottom: 20px;
         }
         .pricing-amount { display: flex; align-items: baseline; justify-content: center; gap: 4px; margin-bottom: 8px; }
         .pricing-dollar { font-family: 'Bricolage Grotesque'; font-size: 20px; font-weight: 700; color: var(--navy); }
@@ -451,7 +459,8 @@
             max-width: 1200px; margin: 0 auto;
             display: flex; align-items: center; justify-content: space-between;
         }
-        .footer-left { display: flex; align-items: center; gap: 10px; }
+        .footer-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .footer-logo .brand-logo-frame { width: 150px; height: 50px; }
         .footer-text { font-size: 14px; color: var(--muted); }
         .footer-links { display: flex; gap: 24px; list-style: none; }
         .footer-links a { font-size: 14px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
@@ -479,7 +488,7 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(250, 252, 255, 0.97);
+            background: rgba(255, 248, 254, 0.97);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             z-index: 200;
@@ -539,6 +548,8 @@
             .how-steps { grid-template-columns: 1fr; }
             .cta-inner { padding: 48px 28px; }
             .pricing-card { padding: 36px 28px; }
+            .brand-logo-frame { width: 154px; height: 50px; }
+            .footer-logo .brand-logo-frame { width: 142px; height: 46px; }
         }
 
         /* ========== TRUST BADGES ========== */
@@ -597,7 +608,7 @@
 
         /* ========== FORM ERROR ========== */
         #waitlist-error {
-            display: none; color: rgba(255, 160, 140, 1); font-size: 14px;
+            display: none; color: rgba(var(--green-rgb), 1); font-size: 14px;
             margin-top: 12px; position: relative; z-index: 1;
         }
     </style>
@@ -607,9 +618,10 @@
 <!-- NAV -->
 <nav id="nav">
     <div class="nav-inner">
-        <a href="#" class="nav-logo">
-            <div class="nav-logo-icon">🛡️</div>
-            <span class="nav-logo-text">Safini</span>
+        <a href="#" class="nav-logo" aria-label="Safini home">
+            <span class="brand-logo-frame">
+                <img src="photoLibrary.png" alt="Safini" class="brand-logo-image" decoding="async">
+            </span>
         </a>
         <ul class="nav-links">
             <li><a href="#how">How It Works</a></li>
@@ -648,7 +660,7 @@
                     <span style="background: var(--blue-pale);">👩</span>
                     <span style="background: var(--yellow);">👨</span>
                     <span style="background: var(--green-light);">👩‍🦱</span>
-                    <span style="background: #FECACA;">👴</span>
+                    <span style="background: var(--yellow-pale);">👴</span>
                 </div>
                 <div class="hero-proof-text"><strong>1,247 families on the waitlist</strong><br>Validated with 20+ parent interviews</div>
             </div>
@@ -737,36 +749,36 @@
             <div class="problem-card">
                 <div class="problem-card-illustration">
                     <svg width="100%" height="100%" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="400" height="200" fill="#1B2A40"/>
+                        <rect width="400" height="200" fill="#1D1233"/>
                         <circle cx="50" cy="30" r="1.5" fill="white" opacity="0.4"/>
                         <circle cx="120" cy="18" r="1" fill="white" opacity="0.3"/>
                         <circle cx="300" cy="25" r="1.5" fill="white" opacity="0.5"/>
                         <circle cx="350" cy="55" r="1" fill="white" opacity="0.3"/>
                         <circle cx="200" cy="12" r="1" fill="white" opacity="0.25"/>
-                        <circle cx="345" cy="35" r="18" fill="#FFF799" opacity="0.12"/>
-                        <circle cx="352" cy="30" r="16" fill="#1B2A40"/>
+                        <circle cx="345" cy="35" r="18" fill="#FFA47F" opacity="0.12"/>
+                        <circle cx="352" cy="30" r="16" fill="#1D1233"/>
                         <text x="20" y="50" font-size="11" fill="white" opacity="0.35" font-family="'DM Sans',sans-serif" font-weight="600">2:47 AM</text>
-                        <rect x="30" y="125" width="340" height="55" rx="10" fill="#2E4568" opacity="0.5"/>
-                        <ellipse cx="110" cy="125" rx="55" ry="12" fill="#406093" opacity="0.35"/>
-                        <path d="M80 135 Q100 108 160 118 L310 118 Q340 112 355 135 L355 170 Q260 180 190 180 Q90 180 65 170 Z" fill="#4C8CE4" opacity="0.15"/>
+                        <rect x="30" y="125" width="340" height="55" rx="10" fill="#5D0098" opacity="0.5"/>
+                        <ellipse cx="110" cy="125" rx="55" ry="12" fill="#8100D1" opacity="0.35"/>
+                        <path d="M80 135 Q100 108 160 118 L310 118 Q340 112 355 135 L355 170 Q260 180 190 180 Q90 180 65 170 Z" fill="#B500B2" opacity="0.15"/>
                         <circle cx="120" cy="110" r="26" fill="#F5D0B0"/>
                         <path d="M96 103 Q105 80 120 78 Q135 76 144 95 Q146 100 144 103" fill="#5B3A1A"/>
                         <path d="M102 82 Q98 70 106 66" stroke="#5B3A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
                         <path d="M132 78 Q136 65 142 68" stroke="#5B3A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
                         <circle cx="112" cy="112" r="4.5" fill="white"/>
                         <circle cx="128" cy="112" r="4.5" fill="white"/>
-                        <circle cx="113" cy="113" r="2.8" fill="#2E4568"/>
-                        <circle cx="129" cy="113" r="2.8" fill="#2E4568"/>
+                        <circle cx="113" cy="113" r="2.8" fill="#5D0098"/>
+                        <circle cx="129" cy="113" r="2.8" fill="#5D0098"/>
                         <circle cx="111" cy="111" r="1" fill="white"/>
                         <circle cx="127" cy="111" r="1" fill="white"/>
                         <path d="M107 118 Q112 120 117 118" stroke="#D4A590" stroke-width="1.2" fill="none" opacity="0.5"/>
                         <path d="M123 118 Q128 120 133 118" stroke="#D4A590" stroke-width="1.2" fill="none" opacity="0.5"/>
                         <ellipse cx="120" cy="124" rx="4" ry="2.5" fill="#E8A090"/>
-                        <circle cx="120" cy="110" r="35" fill="#4C8CE4" opacity="0.06"/>
+                        <circle cx="120" cy="110" r="35" fill="#B500B2" opacity="0.06"/>
                         <path d="M133 118 Q150 105 162 92" stroke="#F5D0B0" stroke-width="9" stroke-linecap="round" fill="none"/>
                         <path d="M107 118 Q95 105 88 92" stroke="#F5D0B0" stroke-width="9" stroke-linecap="round" fill="none" opacity="0.6"/>
-                        <rect x="152" y="68" width="36" height="56" rx="7" fill="#0F0F1A" stroke="#406093" stroke-width="1.5"/>
-                        <rect x="155" y="74" width="30" height="44" rx="4" fill="#4C8CE4" opacity="0.2"/>
+                        <rect x="152" y="68" width="36" height="56" rx="7" fill="#0F0F1A" stroke="#8100D1" stroke-width="1.5"/>
+                        <rect x="155" y="74" width="30" height="44" rx="4" fill="#B500B2" opacity="0.2"/>
                         <rect x="158" y="78" width="20" height="3" rx="1.5" fill="white" opacity="0.15"/>
                         <rect x="158" y="84" width="24" height="3" rx="1.5" fill="white" opacity="0.1"/>
                         <rect x="158" y="90" width="16" height="3" rx="1.5" fill="white" opacity="0.15"/>
@@ -774,7 +786,7 @@
                         <rect x="158" y="102" width="18" height="3" rx="1.5" fill="white" opacity="0.12"/>
                         <circle cx="170" cy="82" r="8" fill="#EE1D52" opacity="0.15"/>
                         <text x="210" y="85" font-size="18" opacity="0.6">😵‍💫</text>
-                        <text x="60" y="90" font-size="14" fill="#4C8CE4" opacity="0.3" font-family="'Bricolage Grotesque',sans-serif" font-weight="700">z Z z</text>
+                        <text x="60" y="90" font-size="14" fill="#B500B2" opacity="0.3" font-family="'Bricolage Grotesque',sans-serif" font-weight="700">z Z z</text>
                     </svg>
                 </div>
                 <div class="problem-card-body">
@@ -787,36 +799,36 @@
             <div class="problem-card">
                 <div class="problem-card-illustration">
                     <svg width="100%" height="100%" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="400" height="200" fill="#FFF799" opacity="0.35"/>
-                        <rect width="400" height="200" fill="#FFFDE6"/>
+                        <rect width="400" height="200" fill="#FFA47F" opacity="0.25"/>
+                        <rect width="400" height="200" fill="#FFF1EA"/>
                         <rect x="20" y="145" width="360" height="8" rx="4" fill="#B8860B" opacity="0.2"/>
                         <rect x="40" y="153" width="7" height="47" rx="2" fill="#B8860B" opacity="0.15"/>
                         <rect x="352" y="153" width="7" height="47" rx="2" fill="#B8860B" opacity="0.15"/>
-                        <rect x="40" y="105" width="75" height="40" rx="3" fill="white" transform="rotate(-4 40 105)" stroke="#D6E2F0" stroke-width="1"/>
-                        <line x1="50" y1="117" x2="100" y2="115" stroke="#D6E2F0" stroke-width="1.5"/>
-                        <line x1="50" y1="124" x2="95" y2="122" stroke="#D6E2F0" stroke-width="1.5"/>
-                        <line x1="50" y1="131" x2="85" y2="129" stroke="#D6E2F0" stroke-width="1.5"/>
+                        <rect x="40" y="105" width="75" height="40" rx="3" fill="white" transform="rotate(-4 40 105)" stroke="#EAD8F6" stroke-width="1"/>
+                        <line x1="50" y1="117" x2="100" y2="115" stroke="#EAD8F6" stroke-width="1.5"/>
+                        <line x1="50" y1="124" x2="95" y2="122" stroke="#EAD8F6" stroke-width="1.5"/>
+                        <line x1="50" y1="131" x2="85" y2="129" stroke="#EAD8F6" stroke-width="1.5"/>
                         <text x="88" y="135" font-size="22" font-weight="800" fill="#EF4444" font-family="'Bricolage Grotesque',sans-serif" transform="rotate(4 88 135)">F</text>
-                        <line x1="130" y1="128" x2="148" y2="143" stroke="#E8D83A" stroke-width="4" stroke-linecap="round"/>
-                        <polygon points="128,126 130,130 126,129" fill="#E8D83A"/>
-                        <path d="M140 108 L170 102 L200 108 L170 114 Z" fill="white" stroke="#D6E2F0" stroke-width="1"/>
-                        <text x="155" y="110" font-size="6" fill="#6B7F99" font-family="'DM Sans'">MATH</text>
+                        <line x1="130" y1="128" x2="148" y2="143" stroke="#FF52A0" stroke-width="4" stroke-linecap="round"/>
+                        <polygon points="128,126 130,130 126,129" fill="#FF52A0"/>
+                        <path d="M140 108 L170 102 L200 108 L170 114 Z" fill="white" stroke="#EAD8F6" stroke-width="1"/>
+                        <text x="155" y="110" font-size="6" fill="#7C6B94" font-family="'DM Sans'">MATH</text>
                         <circle cx="290" cy="85" r="28" fill="#F5D0B0"/>
-                        <path d="M264 78 Q275 55 290 53 Q305 55 316 74 Q318 80 316 85" fill="#3A4F6A"/>
-                        <path d="M264 78 Q258 55 290 48 Q322 55 316 78" stroke="#406093" stroke-width="5" fill="none" stroke-linecap="round"/>
-                        <rect x="255" y="73" width="13" height="17" rx="6" fill="#406093"/>
-                        <rect x="312" y="73" width="13" height="17" rx="6" fill="#406093"/>
+                        <path d="M264 78 Q275 55 290 53 Q305 55 316 74 Q318 80 316 85" fill="#4C3B67"/>
+                        <path d="M264 78 Q258 55 290 48 Q322 55 316 78" stroke="#8100D1" stroke-width="5" fill="none" stroke-linecap="round"/>
+                        <rect x="255" y="73" width="13" height="17" rx="6" fill="#8100D1"/>
+                        <rect x="312" y="73" width="13" height="17" rx="6" fill="#8100D1"/>
                         <circle cx="282" cy="88" r="4" fill="white"/>
                         <circle cx="298" cy="88" r="4" fill="white"/>
-                        <circle cx="283" cy="90" r="2.5" fill="#1B2A40"/>
-                        <circle cx="299" cy="90" r="2.5" fill="#1B2A40"/>
+                        <circle cx="283" cy="90" r="2.5" fill="#1D1233"/>
+                        <circle cx="299" cy="90" r="2.5" fill="#1D1233"/>
                         <path d="M284 100 Q290 97 296 100" stroke="#D4A590" stroke-width="2" fill="none" stroke-linecap="round"/>
-                        <rect x="270" y="112" width="40" height="35" rx="12" fill="#4C8CE4"/>
+                        <rect x="270" y="112" width="40" height="35" rx="12" fill="#B500B2"/>
                         <path d="M282 125 Q278 115 276 108" stroke="#F5D0B0" stroke-width="8" stroke-linecap="round" fill="none"/>
                         <path d="M298 125 Q302 115 304 108" stroke="#F5D0B0" stroke-width="8" stroke-linecap="round" fill="none"/>
-                        <rect x="270" y="96" width="28" height="42" rx="5" fill="#1B2A40"/>
-                        <rect x="273" y="101" width="22" height="32" rx="3" fill="#4C8CE4" opacity="0.3"/>
-                        <circle cx="290" cy="85" r="32" fill="#4C8CE4" opacity="0.05"/>
+                        <rect x="270" y="96" width="28" height="42" rx="5" fill="#1D1233"/>
+                        <rect x="273" y="101" width="22" height="32" rx="3" fill="#B500B2" opacity="0.3"/>
+                        <circle cx="290" cy="85" r="32" fill="#B500B2" opacity="0.05"/>
                     </svg>
                 </div>
                 <div class="problem-card-body">
@@ -833,11 +845,11 @@
                         <path d="M190 25 L185 48 L195 45 L188 72" stroke="#F97066" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.35"/>
                         <path d="M215 18 L210 44 L220 41 L213 65" stroke="#F97066" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.25"/>
                         <circle cx="130" cy="92" r="30" fill="#F5D0B0"/>
-                        <path d="M102 85 Q112 60 130 58 Q148 60 158 85" fill="#3A4F6A"/>
-                        <line x1="118" y1="84" x2="126" y2="88" stroke="#3A4F6A" stroke-width="2.5" stroke-linecap="round"/>
-                        <line x1="142" y1="88" x2="136" y2="84" stroke="#3A4F6A" stroke-width="2.5" stroke-linecap="round"/>
-                        <circle cx="123" cy="93" r="3" fill="#1B2A40"/>
-                        <circle cx="137" cy="93" r="3" fill="#1B2A40"/>
+                        <path d="M102 85 Q112 60 130 58 Q148 60 158 85" fill="#4C3B67"/>
+                        <line x1="118" y1="84" x2="126" y2="88" stroke="#4C3B67" stroke-width="2.5" stroke-linecap="round"/>
+                        <line x1="142" y1="88" x2="136" y2="84" stroke="#4C3B67" stroke-width="2.5" stroke-linecap="round"/>
+                        <circle cx="123" cy="93" r="3" fill="#1D1233"/>
+                        <circle cx="137" cy="93" r="3" fill="#1D1233"/>
                         <path d="M124 107 Q130 101 136 107" stroke="#C0392B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
                         <rect x="107" y="122" width="46" height="45" rx="14" fill="#F97066" opacity="0.5"/>
                         <path d="M153 137 Q180 126 205 120" stroke="#F5D0B0" stroke-width="10" stroke-linecap="round" fill="none"/>
@@ -849,18 +861,18 @@
                         <path d="M280 76 Q276 64 284 62" stroke="#5B3A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
                         <line x1="290" y1="92" x2="296" y2="89" stroke="#5B3A1A" stroke-width="2" stroke-linecap="round"/>
                         <line x1="310" y1="89" x2="306" y2="92" stroke="#5B3A1A" stroke-width="2" stroke-linecap="round"/>
-                        <circle cx="293" cy="98" r="3" fill="#1B2A40"/>
-                        <circle cx="307" cy="98" r="3" fill="#1B2A40"/>
+                        <circle cx="293" cy="98" r="3" fill="#1D1233"/>
+                        <circle cx="307" cy="98" r="3" fill="#1D1233"/>
                         <path d="M295 110 Q300 106 305 110" stroke="#D4A590" stroke-width="2" fill="none"/>
-                        <rect x="278" y="124" width="44" height="42" rx="12" fill="#4C8CE4"/>
-                        <rect x="288" y="115" width="22" height="36" rx="5" fill="#1B2A40"/>
-                        <rect x="291" y="120" width="16" height="26" rx="3" fill="#4C8CE4" opacity="0.35"/>
+                        <rect x="278" y="124" width="44" height="42" rx="12" fill="#B500B2"/>
+                        <rect x="288" y="115" width="22" height="36" rx="5" fill="#1D1233"/>
+                        <rect x="291" y="120" width="16" height="26" rx="3" fill="#B500B2" opacity="0.35"/>
                         <text x="230" y="110" font-size="20" opacity="0.5">⚡</text>
                         <text x="220" y="155" font-size="14" opacity="0.3">💢</text>
                         <circle cx="330" cy="72" r="4" fill="white" opacity="0.5"/>
                         <circle cx="338" cy="62" r="6" fill="white" opacity="0.5"/>
                         <path d="M335 40 Q335 28 350 28 L370 28 Q380 28 380 40 Q380 50 370 50 L350 50 Q335 50 335 40Z" fill="white" opacity="0.6"/>
-                        <text x="345" y="43" font-size="11" fill="#406093" font-weight="600" font-family="'DM Sans'">NO! 😡</text>
+                        <text x="345" y="43" font-size="11" fill="#8100D1" font-weight="600" font-family="'DM Sans'">NO! 😡</text>
                     </svg>
                 </div>
                 <div class="problem-card-body">
@@ -1149,9 +1161,12 @@
 <footer>
     <div class="footer-inner">
         <div class="footer-left">
-            <span style="font-size: 22px;">🛡️</span>
-            <span class="nav-logo-text" style="font-size: 18px;">Safini</span>
-            <span class="footer-text" style="margin-left: 8px;">© 2026 Safini AI. All rights reserved.</span>
+            <a href="#" class="nav-logo footer-logo" aria-label="Safini home">
+                <span class="brand-logo-frame">
+                    <img src="photoLibrary.png" alt="Safini" class="brand-logo-image" decoding="async">
+                </span>
+            </a>
+            <span class="footer-text">© 2026 Safini AI. All rights reserved.</span>
         </div>
         <ul class="footer-links">
             <li><a href="mailto:safini.team@gmail.com">safini.team@gmail.com</a></li>
@@ -1208,7 +1223,7 @@
                 document.getElementById('waitlist-success').style.display = 'block';
                 // Confetti burst
                 if (typeof confetti !== 'undefined') {
-                    confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ['#406093','#4C8CE4','#91D06C','#FFF799'] });
+                    confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ['#8100D1','#B500B2','#FF52A0','#FFA47F'] });
                 }
                 // GA4 event
                 if (typeof gtag !== 'undefined') {
