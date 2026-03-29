@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safini — Kids Earn Screen Time</title>
+    <title id="page-title">Safini — Дети зарабатывают экранное время</title>
     <!-- OG / Twitter Card — domain: safini.fun | update og-image.png path before launch -->
-    <meta property="og:title" content="Safini — Kids Earn Screen Time">
-    <meta property="og:description" content="Replace screen-time battles with a reward system kids actually love. Join 1,247 families on the waitlist.">
+    <meta id="meta-og-title" property="og:title" content="Safini — Дети зарабатывают экранное время">
+    <meta id="meta-og-description" property="og:description" content="Safini заменяет споры из-за гаджетов системой наград, которую дети действительно любят. Присоединяйтесь к 1 247 семьям в листе ожидания.">
     <meta property="og:image" content="https://safini.fun/og-image.png">
     <meta property="og:url" content="https://safini.fun">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Safini — Kids Earn Screen Time">
-    <meta name="twitter:description" content="Replace screen-time battles with a reward system kids actually love.">
+    <meta id="meta-twitter-title" name="twitter:title" content="Safini — Дети зарабатывают экранное время">
+    <meta id="meta-twitter-description" name="twitter:description" content="Safini заменяет споры из-за гаджетов системой наград, которую дети действительно любят.">
     <meta name="twitter:image" content="https://safini.fun/og-image.png">
 
     <!-- Google Analytics 4 — replace GA_MEASUREMENT_ID before launch -->
@@ -98,6 +98,27 @@
             text-decoration: none; color: var(--ink-light); font-weight: 500; font-size: 15px; transition: color 0.2s;
         }
         .nav-links a:hover { color: var(--navy); }
+        .nav-desktop-controls {
+            display: flex; align-items: center; gap: 18px;
+        }
+        .lang-switcher {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 5px; border-radius: 999px;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(var(--navy-rgb), 0.12);
+            box-shadow: 0 8px 24px rgba(var(--navy-rgb), 0.08);
+        }
+        .lang-btn {
+            min-width: 48px; padding: 9px 12px; border: none; border-radius: 999px;
+            background: transparent; color: var(--ink-light);
+            font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700;
+            letter-spacing: 0.04em; cursor: pointer; transition: all 0.25s ease;
+        }
+        .lang-btn:hover { color: var(--navy); }
+        .lang-btn.active {
+            background: linear-gradient(135deg, var(--navy), var(--blue));
+            color: white; box-shadow: 0 8px 20px rgba(var(--navy-rgb), 0.24);
+        }
         .btn {
             display: inline-flex; align-items: center; gap: 8px;
             padding: 12px 28px; border-radius: 100px;
@@ -509,6 +530,9 @@
             background: none; border: none; font-size: 32px;
             color: var(--muted); cursor: pointer; line-height: 1;
         }
+        .mobile-nav-lang {
+            position: absolute; top: 18px; left: 20px;
+        }
 
         /* ========== WAITLIST FORM ========== */
         .waitlist-form {
@@ -540,6 +564,9 @@
             .features-grid { grid-template-columns: 1fr; }
             .testimonial-grid { grid-template-columns: 1fr; }
             .nav-links { display: none; }
+            .nav-desktop-controls {
+                gap: 12px;
+            }
             .nav-hamburger { display: flex; }
             .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
             .comp-table th, .comp-table td { padding: 12px 10px; font-size: 13px; }
@@ -550,6 +577,9 @@
             .pricing-card { padding: 36px 28px; }
             .brand-logo-frame { width: 154px; height: 50px; }
             .footer-logo .brand-logo-frame { width: 142px; height: 46px; }
+            .lang-btn {
+                min-width: 44px; padding-left: 10px; padding-right: 10px;
+            }
         }
 
         /* ========== TRUST BADGES ========== */
@@ -623,37 +653,49 @@
                 <img src="photoLibrary.png" alt="Safini" class="brand-logo-image" decoding="async">
             </span>
         </a>
-        <ul class="nav-links">
-            <li><a href="#how">How It Works</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#cta" class="btn btn-primary">Join Waitlist</a></li>
-        </ul>
-        <button class="nav-hamburger" id="nav-hamburger" aria-label="Open menu">
-            <span></span><span></span><span></span>
-        </button>
+        <div class="nav-desktop-controls">
+            <ul class="nav-links">
+                <li><a href="#how" data-i18n="nav.how">Как это работает</a></li>
+                <li><a href="#features" data-i18n="nav.features">Возможности</a></li>
+                <li><a href="#pricing" data-i18n="nav.pricing">Цена</a></li>
+                <li><a href="#cta" class="btn btn-primary" data-i18n="nav.cta">В лист ожидания</a></li>
+            </ul>
+            <div class="lang-switcher" data-i18n-aria-label="lang.switcher" aria-label="Переключение языка">
+                <button type="button" class="lang-btn" data-lang-trigger="ru" aria-pressed="true">RU</button>
+                <button type="button" class="lang-btn" data-lang-trigger="en" aria-pressed="false">EN</button>
+            </div>
+            <button class="nav-hamburger" id="nav-hamburger" data-i18n-aria-label="lang.openMenu" aria-label="Открыть меню">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
     </div>
 </nav>
 
 <!-- MOBILE NAV -->
 <div class="mobile-nav-overlay" id="mobile-nav">
-    <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close menu">✕</button>
-    <a href="#how" onclick="closeMobileNav()">How It Works</a>
-    <a href="#features" onclick="closeMobileNav()">Features</a>
-    <a href="#pricing" onclick="closeMobileNav()">Pricing</a>
-    <a href="#cta" class="btn btn-primary" onclick="closeMobileNav()">Join Waitlist</a>
+    <div class="mobile-nav-lang">
+        <div class="lang-switcher" data-i18n-aria-label="lang.switcher" aria-label="Переключение языка">
+            <button type="button" class="lang-btn" data-lang-trigger="ru" aria-pressed="true">RU</button>
+            <button type="button" class="lang-btn" data-lang-trigger="en" aria-pressed="false">EN</button>
+        </div>
+    </div>
+    <button class="mobile-nav-close" id="mobile-nav-close" data-i18n-aria-label="lang.closeMenu" aria-label="Закрыть меню">✕</button>
+    <a href="#how" data-i18n="nav.how" onclick="closeMobileNav()">Как это работает</a>
+    <a href="#features" data-i18n="nav.features" onclick="closeMobileNav()">Возможности</a>
+    <a href="#pricing" data-i18n="nav.pricing" onclick="closeMobileNav()">Цена</a>
+    <a href="#cta" class="btn btn-primary" data-i18n="nav.cta" onclick="closeMobileNav()">В лист ожидания</a>
 </div>
 
 <!-- HERO -->
 <section class="hero">
     <div class="hero-inner">
         <div class="hero-content">
-            <div class="hero-badge">🚀 Beta launching March 2026</div>
-            <h1>Kids <span class="highlight-green">earn</span> screen time.<br>Parents stay <span class="highlight">in control</span>.</h1>
-            <p class="hero-sub">Safini replaces screen-time battles with a reward system kids actually love. Complete tasks, earn Time Coins, unlock entertainment — no more arguing.</p>
+            <div class="hero-badge" data-i18n="hero.badge">🚀 Бета-запуск в апреле 2026</div>
+            <h1 data-i18n-html="hero.title">Дети <span class="highlight-green">зарабатывают</span> экранное время.<br>Родители остаются <span class="highlight">в контроле</span>.</h1>
+            <p class="hero-sub" data-i18n="hero.sub">Safini заменяет споры из-за гаджетов системой наград, которую дети действительно любят. Выполняйте задания, зарабатывайте Time Coins, открывайте развлечения без ежедневных ссор.</p>
             <div class="hero-ctas">
-                <a href="#cta" class="btn btn-primary">Join the Waitlist →</a>
-                <a href="#how" class="btn btn-outline">See How It Works</a>
+                <a href="#cta" class="btn btn-primary" data-i18n="hero.ctaPrimary">Вступить в лист ожидания →</a>
+                <a href="#how" class="btn btn-outline" data-i18n="hero.ctaSecondary">Посмотреть, как это работает</a>
             </div>
             <div class="hero-proof">
                 <div class="hero-avatars">
@@ -662,65 +704,65 @@
                     <span style="background: var(--green-light);">👩‍🦱</span>
                     <span style="background: var(--yellow-pale);">👴</span>
                 </div>
-                <div class="hero-proof-text"><strong>1,247 families on the waitlist</strong><br>Validated with 20+ parent interviews</div>
+                <div class="hero-proof-text" data-i18n-html="hero.proof"><strong>1 247 семей уже в листе ожидания</strong><br>Подтверждено 20+ интервью с родителями</div>
             </div>
         </div>
 
         <div class="hero-visual">
             <div class="float-coin c1">🪙</div>
             <div class="float-coin c2">🪙</div>
-            <div class="float-badge b1">✅ +20 coins earned!</div>
-            <div class="float-badge b2">🎮 30m unlocked</div>
+            <div class="float-badge b1" data-i18n="hero.floatEarned">✅ +20 монет заработано!</div>
+            <div class="float-badge b2" data-i18n="hero.floatUnlocked">🎮 Открыто 30 мин</div>
             <div class="phone-mockup">
                 <div class="phone-screen">
                     <div class="phone-notch"></div>
                     <div class="phone-header">
-                        <div class="phone-greeting">Good morning 👋</div>
-                        <div class="phone-name">Explorer Leo</div>
+                        <div class="phone-greeting" data-i18n="hero.phone.greeting">Доброе утро 👋</div>
+                        <div class="phone-name" data-i18n="hero.phone.name">Исследователь Лео</div>
                     </div>
                     <div class="phone-stats">
                         <div class="phone-stat">
                             <div class="phone-stat-icon">🪙</div>
                             <div class="phone-stat-value">150</div>
-                            <div class="phone-stat-label">Time Coins</div>
+                            <div class="phone-stat-label" data-i18n="hero.phone.coinsLabel">Монеты времени</div>
                         </div>
                         <div class="phone-stat">
                             <div class="phone-stat-icon">🔥</div>
                             <div class="phone-stat-value">5</div>
-                            <div class="phone-stat-label">Day Streak</div>
+                            <div class="phone-stat-label" data-i18n="hero.phone.streakLabel">Дней подряд</div>
                         </div>
                     </div>
                     <div class="phone-tasks">
-                        <div class="phone-tasks-title">Today's Quests</div>
+                        <div class="phone-tasks-title" data-i18n="hero.phone.tasksTitle">Сегодняшние квесты</div>
                         <div class="phone-task-item">
                             <div class="phone-task-icon" style="background: var(--blue-pale);">🦉</div>
                             <div class="phone-task-info">
-                                <div class="phone-task-name">Duolingo Lesson</div>
-                                <div class="phone-task-reward">Complete daily lesson</div>
+                                <div class="phone-task-name" data-i18n="hero.phone.task1.name">Урок в Duolingo</div>
+                                <div class="phone-task-reward" data-i18n="hero.phone.task1.reward">Завершить ежедневный урок</div>
                             </div>
                             <div class="phone-task-coins">🪙 20</div>
                         </div>
                         <div class="phone-task-item">
                             <div class="phone-task-icon" style="background: var(--green-light);">🚶</div>
                             <div class="phone-task-info">
-                                <div class="phone-task-name">Walk 5,000 Steps</div>
-                                <div class="phone-task-reward">Get moving today!</div>
+                                <div class="phone-task-name" data-i18n="hero.phone.task2.name">Пройти 5 000 шагов</div>
+                                <div class="phone-task-reward" data-i18n="hero.phone.task2.reward">Добавь движения сегодня!</div>
                             </div>
                             <div class="phone-task-coins">🪙 10</div>
                         </div>
                         <div class="phone-task-item">
                             <div class="phone-task-icon" style="background: var(--yellow);">🧩</div>
                             <div class="phone-task-info">
-                                <div class="phone-task-name">Logic Puzzle</div>
-                                <div class="phone-task-reward">Brain training time</div>
+                                <div class="phone-task-name" data-i18n="hero.phone.task3.name">Логическая задача</div>
+                                <div class="phone-task-reward" data-i18n="hero.phone.task3.reward">Время потренировать мозг</div>
                             </div>
                             <div class="phone-task-coins">🪙 20</div>
                         </div>
                         <div class="phone-task-item">
                             <div class="phone-task-icon" style="background: var(--blue-pale);">🛏️</div>
                             <div class="phone-task-info">
-                                <div class="phone-task-name">Make Your Bed</div>
-                                <div class="phone-task-reward">Parent-assigned</div>
+                                <div class="phone-task-name" data-i18n="hero.phone.task4.name">Заправить кровать</div>
+                                <div class="phone-task-reward" data-i18n="hero.phone.task4.reward">Задание от родителей</div>
                             </div>
                             <div class="phone-task-coins">🪙 5</div>
                         </div>
@@ -741,8 +783,8 @@
 <!-- PROBLEM -->
 <section class="problem" id="problem">
     <div class="problem-inner">
-        <div class="section-label">The Problem</div>
-        <h2>Kids are spending 6–10 hours a day on their phones. Parents are out of options.</h2>
+        <div class="section-label" data-i18n="problem.label">Проблема</div>
+        <h2 data-i18n="problem.title">Дети проводят в телефонах по 6–10 часов в день. У родителей заканчиваются варианты.</h2>
         <div class="problem-grid">
 
             <!-- Card 1: Kid doom scrolling in bed at night -->
@@ -757,7 +799,7 @@
                         <circle cx="200" cy="12" r="1" fill="white" opacity="0.25"/>
                         <circle cx="345" cy="35" r="18" fill="#FFA47F" opacity="0.12"/>
                         <circle cx="352" cy="30" r="16" fill="#1D1233"/>
-                        <text x="20" y="50" font-size="11" fill="white" opacity="0.35" font-family="'DM Sans',sans-serif" font-weight="600">2:47 AM</text>
+                        <text x="20" y="50" font-size="11" fill="white" opacity="0.35" font-family="'DM Sans',sans-serif" font-weight="600" data-i18n="problem.card1.time">2:47 ночи</text>
                         <rect x="30" y="125" width="340" height="55" rx="10" fill="#5D0098" opacity="0.5"/>
                         <ellipse cx="110" cy="125" rx="55" ry="12" fill="#8100D1" opacity="0.35"/>
                         <path d="M80 135 Q100 108 160 118 L310 118 Q340 112 355 135 L355 170 Q260 180 190 180 Q90 180 65 170 Z" fill="#B500B2" opacity="0.15"/>
@@ -790,8 +832,8 @@
                     </svg>
                 </div>
                 <div class="problem-card-body">
-                    <h3>📱 Doom scrolling until 3 AM</h3>
-                    <p>Kids spend 6–10 hours glued to YouTube, TikTok, and Roblox — often secretly late at night with zero boundaries.</p>
+                    <h3 data-i18n="problem.card1.title">📱 Бесконечный скролл до 3 ночи</h3>
+                    <p data-i18n="problem.card1.body">Дети проводят по 6–10 часов в YouTube, TikTok и Roblox, часто тайком поздно ночью и без каких-либо границ.</p>
                 </div>
             </div>
 
@@ -812,7 +854,7 @@
                         <line x1="130" y1="128" x2="148" y2="143" stroke="#FF52A0" stroke-width="4" stroke-linecap="round"/>
                         <polygon points="128,126 130,130 126,129" fill="#FF52A0"/>
                         <path d="M140 108 L170 102 L200 108 L170 114 Z" fill="white" stroke="#EAD8F6" stroke-width="1"/>
-                        <text x="155" y="110" font-size="6" fill="#7C6B94" font-family="'DM Sans'">MATH</text>
+                        <text x="150" y="110" font-size="6" fill="#7C6B94" font-family="'DM Sans'" data-i18n="problem.card2.subject">МАТЕМ.</text>
                         <circle cx="290" cy="85" r="28" fill="#F5D0B0"/>
                         <path d="M264 78 Q275 55 290 53 Q305 55 316 74 Q318 80 316 85" fill="#4C3B67"/>
                         <path d="M264 78 Q258 55 290 48 Q322 55 316 78" stroke="#8100D1" stroke-width="5" fill="none" stroke-linecap="round"/>
@@ -832,8 +874,8 @@
                     </svg>
                 </div>
                 <div class="problem-card-body">
-                    <h3>📉 Grades drop, focus disappears</h3>
-                    <p>Homework sits untouched while kids are lost in endless feeds. Attention spans and school performance take a nosedive.</p>
+                    <h3 data-i18n="problem.card2.title">📉 Оценки падают, концентрация исчезает</h3>
+                    <p data-i18n="problem.card2.body">Домашка остается нетронутой, пока дети тонут в бесконечных лентах. Внимание и учебные результаты резко ухудшаются.</p>
                 </div>
             </div>
 
@@ -854,8 +896,8 @@
                         <rect x="107" y="122" width="46" height="45" rx="14" fill="#F97066" opacity="0.5"/>
                         <path d="M153 137 Q180 126 205 120" stroke="#F5D0B0" stroke-width="10" stroke-linecap="round" fill="none"/>
                         <path d="M148 62 Q148 45 170 45 L222 45 Q240 45 240 62 Q240 76 222 76 L168 76 L158 88 L162 76 Q148 76 148 62 Z" fill="white" opacity="0.85"/>
-                        <text x="163" y="63" font-size="11" fill="#EF4444" font-weight="700" font-family="'DM Sans',sans-serif">Give me the</text>
-                        <text x="174" y="75" font-size="11" fill="#EF4444" font-weight="700" font-family="'DM Sans',sans-serif">phone! 😤</text>
+                        <text x="159" y="63" font-size="10" fill="#EF4444" font-weight="700" font-family="'DM Sans',sans-serif" data-i18n="problem.card3.bubble1">Отдай мне</text>
+                        <text x="167" y="75" font-size="10" fill="#EF4444" font-weight="700" font-family="'DM Sans',sans-serif" data-i18n="problem.card3.bubble2">телефон! 😤</text>
                         <circle cx="300" cy="98" r="26" fill="#F5D0B0"/>
                         <path d="M276 91 Q285 72 300 70 Q315 72 324 91" fill="#5B3A1A"/>
                         <path d="M280 76 Q276 64 284 62" stroke="#5B3A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
@@ -872,12 +914,12 @@
                         <circle cx="330" cy="72" r="4" fill="white" opacity="0.5"/>
                         <circle cx="338" cy="62" r="6" fill="white" opacity="0.5"/>
                         <path d="M335 40 Q335 28 350 28 L370 28 Q380 28 380 40 Q380 50 370 50 L350 50 Q335 50 335 40Z" fill="white" opacity="0.6"/>
-                        <text x="345" y="43" font-size="11" fill="#8100D1" font-weight="600" font-family="'DM Sans'">NO! 😡</text>
+                        <text x="349" y="43" font-size="11" fill="#8100D1" font-weight="600" font-family="'DM Sans'" data-i18n="problem.card3.reply">Нет! 😡</text>
                     </svg>
                 </div>
                 <div class="problem-card-body">
-                    <h3>😤 Daily battles, zero solutions</h3>
-                    <p>Taking the phone away creates arguments, resentment, and a cycle of bargaining that exhausts the entire family.</p>
+                    <h3 data-i18n="problem.card3.title">😤 Ежедневные ссоры без решения</h3>
+                    <p data-i18n="problem.card3.body">Забрать телефон значит получить споры, обиду и бесконечный торг, который выматывает всю семью.</p>
                 </div>
             </div>
 
@@ -895,36 +937,36 @@
 <!-- HOW IT WORKS -->
 <section class="how" id="how">
     <div class="how-inner">
-        <div class="section-label">How It Works</div>
-        <h2>From conflict to cooperation in 4 steps</h2>
-        <p class="how-sub">Safini turns screen time into something kids earn through productive habits — and parents configure the rules.</p>
+        <div class="section-label" data-i18n="how.label">Как это работает</div>
+        <h2 data-i18n="how.title">От конфликтов к сотрудничеству за 4 шага</h2>
+        <p class="how-sub" data-i18n="how.sub">Safini превращает экранное время в награду за полезные привычки, а родители настраивают правила.</p>
         <div class="how-steps">
             <div class="how-step">
                 <div class="step-num">1</div>
                 <div class="how-step-icon">⚙️</div>
-                <h3>Parents Set Rules</h3>
-                <p>Choose which apps to limit, set Time Coin exchange rates, and create tasks for your child.</p>
+                <h3 data-i18n="how.step1.title">Родители задают правила</h3>
+                <p data-i18n="how.step1.body">Выберите, какие приложения ограничить, настройте курс Time Coins и создайте задания для ребенка.</p>
                 <span class="step-arrow">→</span>
             </div>
             <div class="how-step">
                 <div class="step-num">2</div>
                 <div class="how-step-icon">✅</div>
-                <h3>Kids Complete Tasks</h3>
-                <p>Duolingo lessons, step goals, puzzles, chores, reading — productive actions that build real habits.</p>
+                <h3 data-i18n="how.step2.title">Дети выполняют задания</h3>
+                <p data-i18n="how.step2.body">Уроки Duolingo, шаги, головоломки, домашние дела, чтение: полезные действия, которые формируют реальные привычки.</p>
                 <span class="step-arrow">→</span>
             </div>
             <div class="how-step">
                 <div class="step-num">3</div>
                 <div class="how-step-icon">🪙</div>
-                <h3>Earn Time Coins</h3>
-                <p>Every completed task earns coins. Kids see their balance grow and unlock new levels and streaks.</p>
+                <h3 data-i18n="how.step3.title">Зарабатывают Time Coins</h3>
+                <p data-i18n="how.step3.body">Каждое выполненное задание приносит монеты. Ребенок видит рост баланса и открывает новые уровни и серии.</p>
                 <span class="step-arrow">→</span>
             </div>
             <div class="how-step">
                 <div class="step-num">4</div>
                 <div class="how-step-icon">🎮</div>
-                <h3>Unlock Entertainment</h3>
-                <p>Spend coins on YouTube, Roblox, Minecraft, and more. Fair, transparent, and conflict-free.</p>
+                <h3 data-i18n="how.step4.title">Открывают развлечения</h3>
+                <p data-i18n="how.step4.body">Тратьте монеты на YouTube, Roblox, Minecraft и не только. Честно, прозрачно и без конфликтов.</p>
             </div>
         </div>
     </div>
@@ -933,39 +975,39 @@
 <!-- FEATURES -->
 <section class="features" id="features">
     <div class="features-inner">
-        <div class="section-label" style="text-align:center;">Features</div>
-        <h2>Everything families need</h2>
-        <p class="features-sub">Two apps, one system. Kids get a fun experience. Parents get peace of mind.</p>
+        <div class="section-label" style="text-align:center;" data-i18n="features.label">Возможности</div>
+        <h2 data-i18n="features.title">Все, что нужно семье</h2>
+        <p class="features-sub" data-i18n="features.sub">Два приложения, одна система. Детям интересно, родителям спокойно.</p>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon" style="background: var(--blue-pale);">📊</div>
-                <h3>Parent Dashboard</h3>
-                <p>See earned coins, redeemed minutes, task completions, and screen-time trends at a glance.</p>
+                <h3 data-i18n="features.card1.title">Панель родителя</h3>
+                <p data-i18n="features.card1.body">Смотрите заработанные монеты, потраченные минуты, выполненные задания и тренды экранного времени в одном месте.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="background: var(--yellow);">🎯</div>
-                <h3>Custom Tasks</h3>
-                <p>Create one-off or recurring tasks — homework, chores, reading, outdoor time — with custom coin values.</p>
+                <h3 data-i18n="features.card2.title">Гибкие задания</h3>
+                <p data-i18n="features.card2.body">Создавайте разовые и регулярные задания: домашка, дела по дому, чтение, прогулки с любым количеством монет.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="background: var(--green-light);">🏪</div>
-                <h3>Reward Store</h3>
-                <p>Kids spend coins on app time or avatar upgrades. Clear costs, visible progress, instant gratification.</p>
+                <h3 data-i18n="features.card3.title">Магазин наград</h3>
+                <p data-i18n="features.card3.body">Дети тратят монеты на время в приложениях или улучшения аватара. Понятная цена, видимый прогресс, мгновенная награда.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="background: var(--blue-pale);">🤖</div>
-                <h3>KidsGPT AI Tutor</h3>
-                <p>A safe, child-friendly AI that explains school topics, answers questions, and encourages learning.</p>
+                <h3 data-i18n="features.card4.title">AI-тьютор KidsGPT</h3>
+                <p data-i18n="features.card4.body">Безопасный ИИ-помощник для детей, который объясняет школьные темы, отвечает на вопросы и поддерживает интерес к учебе.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="background: var(--yellow);">🔥</div>
-                <h3>Streaks & Levels</h3>
-                <p>Gamified progression keeps kids motivated. Badges, streaks, and levels make good habits feel rewarding.</p>
+                <h3 data-i18n="features.card5.title">Серии и уровни</h3>
+                <p data-i18n="features.card5.body">Игровой прогресс поддерживает мотивацию. Значки, серии и уровни делают полезные привычки по-настоящему увлекательными.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon" style="background: var(--green-light);">⏱️</div>
-                <h3>App Time Limits</h3>
-                <p>Set per-app daily limits. Kids earn extra minutes through productive tasks instead of begging for more.</p>
+                <h3 data-i18n="features.card6.title">Лимиты по приложениям</h3>
+                <p data-i18n="features.card6.body">Настраивайте дневные лимиты для каждого приложения. Дополнительные минуты дети зарабатывают делом, а не уговорами.</p>
             </div>
         </div>
     </div>
@@ -974,24 +1016,24 @@
 <!-- COMPARISON -->
 <section class="comparison" id="compare">
     <div class="comparison-inner">
-        <div class="section-label">Why Safini</div>
-        <h2>Control apps block. Safini motivates.</h2>
+        <div class="section-label" data-i18n="comparison.label">Почему Safini</div>
+        <h2 data-i18n="comparison.title">Обычные контролеры блокируют. Safini мотивирует.</h2>
         <table class="comp-table">
             <thead>
             <tr>
                 <th></th>
-                <th>Control Apps</th>
-                <th>Learning Apps</th>
-                <th class="safini-col">Safini ✨</th>
+                <th data-i18n="comparison.head.control">Контролирующие приложения</th>
+                <th data-i18n="comparison.head.learning">Обучающие приложения</th>
+                <th class="safini-col" data-i18n="comparison.head.safini">Safini ✨</th>
             </tr>
             </thead>
             <tbody>
-            <tr><td>Screen time limits</td><td><span class="comp-check">✓</span></td><td><span class="comp-cross">✗</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
-            <tr><td>Educational tasks</td><td><span class="comp-cross">✗</span></td><td><span class="comp-check">✓</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
-            <tr><td>Gamified rewards</td><td><span class="comp-cross">✗</span></td><td><span class="comp-cross">✗</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
-            <tr><td>Child motivation</td><td><span class="comp-cross">✗</span></td><td>Partial</td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
-            <tr><td>AI tutor for kids</td><td><span class="comp-cross">✗</span></td><td><span class="comp-cross">✗</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
-            <tr><td>Reduces family conflict</td><td><span class="comp-cross">✗</span></td><td><span class="comp-cross">✗</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
+            <tr><td data-i18n="comparison.row1">Лимиты экранного времени</td><td><span class="comp-check">✓</span></td><td><span class="comp-cross">✗</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
+            <tr><td data-i18n="comparison.row2">Обучающие задания</td><td><span class="comp-cross">✗</span></td><td><span class="comp-check">✓</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
+            <tr><td data-i18n="comparison.row3">Игровые награды</td><td><span class="comp-cross">✗</span></td><td><span class="comp-cross">✗</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
+            <tr><td data-i18n="comparison.row4">Мотивация ребенка</td><td><span class="comp-cross">✗</span></td><td data-i18n="comparison.partial">Частично</td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
+            <tr><td data-i18n="comparison.row5">AI-тьютор для детей</td><td><span class="comp-cross">✗</span></td><td><span class="comp-cross">✗</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
+            <tr><td data-i18n="comparison.row6">Меньше конфликтов в семье</td><td><span class="comp-cross">✗</span></td><td><span class="comp-cross">✗</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
             </tbody>
         </table>
     </div>
@@ -1000,40 +1042,40 @@
 <!-- TESTIMONIALS -->
 <section class="testimonials" id="testimonials">
     <div class="testimonials-inner">
-        <div class="section-label" style="text-align:center;">What Parents Say</div>
-        <h2>From our parent interviews</h2>
-        <p class="testimonials-sub">Real feedback from 20+ families we spoke to during validation.</p>
+        <div class="section-label" style="text-align:center;" data-i18n="testimonials.label">Что говорят родители</div>
+        <h2 data-i18n="testimonials.title">Отзывы из интервью с родителями</h2>
+        <p class="testimonials-sub" data-i18n="testimonials.sub">Реальные комментарии от 20+ семей, с которыми мы говорили на этапе проверки идеи.</p>
         <div class="testimonial-grid">
             <div class="testimonial-card">
                 <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"I've tried taking the phone away, and it always ends in a fight. A system where my son actually earns his YouTube time? That changes everything."</p>
+                <p class="testimonial-text" data-i18n="testimonials.card1.quote">"Я пробовала просто забирать телефон, и каждый раз это заканчивалось скандалом. Система, где сын сам зарабатывает время на YouTube, меняет все."</p>
                 <div class="testimonial-author">
                     <div class="testimonial-avatar" style="background: var(--blue-pale);">👩</div>
                     <div>
                         <div class="testimonial-name">Sarah M.</div>
-                        <div class="testimonial-role">Mother of 9-year-old</div>
+                        <div class="testimonial-role" data-i18n="testimonials.card1.role">Мама 9-летнего ребенка</div>
                     </div>
                 </div>
             </div>
             <div class="testimonial-card">
                 <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"My daughter would play Roblox all day if she could. I love the idea that she'd need to read or do homework first. It makes screen time a reward, not a right."</p>
+                <p class="testimonial-text" data-i18n="testimonials.card2.quote">"Моя дочь могла бы сидеть в Roblox весь день. Мне нравится идея, что сначала нужно почитать или сделать уроки. Тогда экранное время становится наградой, а не правом."</p>
                 <div class="testimonial-author">
                     <div class="testimonial-avatar" style="background: var(--green-light);">👨</div>
                     <div>
                         <div class="testimonial-name">David T.</div>
-                        <div class="testimonial-role">Father of 7- and 11-year-old</div>
+                        <div class="testimonial-role" data-i18n="testimonials.card2.role">Папа детей 7 и 11 лет</div>
                     </div>
                 </div>
             </div>
             <div class="testimonial-card">
                 <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"We've used parental controls before but they just create resentment. A coin system where the child feels in control of earning — that's much smarter."</p>
+                <p class="testimonial-text" data-i18n="testimonials.card3.quote">"Мы уже пользовались родительским контролем, но он только вызывал раздражение. Система монет, где ребенок чувствует, что сам влияет на результат, гораздо умнее."</p>
                 <div class="testimonial-author">
                     <div class="testimonial-avatar" style="background: var(--yellow);">👩‍🦱</div>
                     <div>
                         <div class="testimonial-name">Jennifer L.</div>
-                        <div class="testimonial-role">Mother of 6- and 13-year-old</div>
+                        <div class="testimonial-role" data-i18n="testimonials.card3.role">Мама детей 6 и 13 лет</div>
                     </div>
                 </div>
             </div>
@@ -1044,31 +1086,31 @@
 <!-- PRICING -->
 <section class="pricing" id="pricing">
     <div class="pricing-inner">
-        <div class="section-label" style="text-align:center;">Simple Pricing</div>
-        <h2>One plan. The whole family.</h2>
-        <p class="pricing-sub">No per-child fees, no surprise charges. One subscription covers your entire family.</p>
+        <div class="section-label" style="text-align:center;" data-i18n="pricing.label">Простая цена</div>
+        <h2 data-i18n="pricing.title">Один тариф для всей семьи</h2>
+        <p class="pricing-sub" data-i18n="pricing.sub">Без доплат за каждого ребенка и скрытых платежей. Одна подписка покрывает всю семью.</p>
         <div class="pricing-card">
-            <div class="pricing-badge">🎉 Early bird pricing</div>
+            <div class="pricing-badge" data-i18n="pricing.badge">🎉 Цена для раннего доступа</div>
             <div class="pricing-amount">
                 <span class="pricing-dollar">$</span>
                 <span class="pricing-num">4</span>
-                <span class="pricing-period">/ month</span>
+                <span class="pricing-period" data-i18n="pricing.period">/ месяц</span>
             </div>
-            <p class="pricing-desc">Per family, billed monthly</p>
+            <p class="pricing-desc" data-i18n="pricing.desc">За семью, списание раз в месяц</p>
             <ul class="pricing-features">
-                <li><span class="li-icon">✓</span> Unlimited children profiles</li>
-                <li><span class="li-icon">✓</span> Full parent dashboard & insights</li>
-                <li><span class="li-icon">✓</span> All task types & reward store</li>
-                <li><span class="li-icon">✓</span> KidsGPT AI tutor access</li>
-                <li><span class="li-icon">✓</span> Avatar customization & levels</li>
-                <li><span class="li-icon">✓</span> App time limits & controls</li>
+                <li><span class="li-icon">✓</span><span data-i18n="pricing.feature1">Неограниченное число детских профилей</span></li>
+                <li><span class="li-icon">✓</span><span data-i18n="pricing.feature2">Полная панель родителя и аналитика</span></li>
+                <li><span class="li-icon">✓</span><span data-i18n="pricing.feature3">Все типы заданий и магазин наград</span></li>
+                <li><span class="li-icon">✓</span><span data-i18n="pricing.feature4">Доступ к AI-тьютору KidsGPT</span></li>
+                <li><span class="li-icon">✓</span><span data-i18n="pricing.feature5">Кастомизация аватара и уровни</span></li>
+                <li><span class="li-icon">✓</span><span data-i18n="pricing.feature6">Лимиты и контроль приложений</span></li>
             </ul>
-            <a href="#cta" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 16px;">Join the Waitlist →</a>
+            <a href="#cta" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 16px;" data-i18n="pricing.cta">Вступить в лист ожидания →</a>
         </div>
         <div class="trust-badges">
-            <div class="trust-badge"><span class="trust-badge-icon">🔒</span> Built with child privacy in mind</div>
-            <div class="trust-badge"><span class="trust-badge-icon">🚫</span> No ads, ever</div>
-            <div class="trust-badge"><span class="trust-badge-icon">🙅</span> No data sold</div>
+            <div class="trust-badge"><span class="trust-badge-icon">🔒</span><span data-i18n="pricing.trust1">Разработано с учетом приватности детей</span></div>
+            <div class="trust-badge"><span class="trust-badge-icon">🚫</span><span data-i18n="pricing.trust2">Никакой рекламы</span></div>
+            <div class="trust-badge"><span class="trust-badge-icon">🙅</span><span data-i18n="pricing.trust3">Мы не продаем данные</span></div>
         </div>
     </div>
 </section>
@@ -1076,57 +1118,57 @@
 <!-- FAQ -->
 <section class="faq" id="faq">
     <div class="faq-inner">
-        <div class="section-label" style="text-align:center;">FAQ</div>
-        <h2>Questions parents ask</h2>
-        <p class="faq-sub">Everything you need to know before joining the waitlist.</p>
+        <div class="section-label" style="text-align:center;" data-i18n="faq.label">FAQ</div>
+        <h2 data-i18n="faq.title">Вопросы, которые задают родители</h2>
+        <p class="faq-sub" data-i18n="faq.sub">Все, что нужно знать перед вступлением в лист ожидания.</p>
 
         <div class="faq-item">
             <button class="faq-question" aria-expanded="false">
-                Is Safini available now?
+                <span data-i18n="faq.q1.q">Safini уже доступен?</span>
                 <span class="faq-chevron">▼</span>
             </button>
             <div class="faq-answer" role="region">
-                <p>Not yet — we're in private beta and launching soon. Join the waitlist to get early access before we open to the public. Early members lock in the $4/month founding price.</p>
+                <p data-i18n="faq.q1.a">Пока нет: сейчас идет закрытая бета, а полноценный запуск уже близко. Вступите в лист ожидания, чтобы получить ранний доступ до публичного релиза. Участники листа ожидания фиксируют стартовую цену в $4 в месяц.</p>
             </div>
         </div>
 
         <div class="faq-item">
             <button class="faq-question" aria-expanded="false">
-                What devices does Safini work on?
+                <span data-i18n="faq.q2.q">На каких устройствах будет работать Safini?</span>
                 <span class="faq-chevron">▼</span>
             </button>
             <div class="faq-answer" role="region">
-                <p>Safini will be available on iOS and Android for both the parent dashboard and the child app. A web dashboard for parents is also planned for launch.</p>
+                <p data-i18n="faq.q2.a">Safini выйдет на iOS и Android как для родительской панели, так и для детского приложения. К запуску также планируется веб-панель для родителей.</p>
             </div>
         </div>
 
         <div class="faq-item">
             <button class="faq-question" aria-expanded="false">
-                Is my child's data safe?
+                <span data-i18n="faq.q3.q">Данные моего ребенка в безопасности?</span>
                 <span class="faq-chevron">▼</span>
             </button>
             <div class="faq-answer" role="region">
-                <p>Protecting children's privacy is central to how we built Safini. We don't show ads, we don't sell data, and we only collect what's necessary to run the app. Your family's information is never shared with third parties.</p>
+                <p data-i18n="faq.q3.a">Защита детской приватности была в центре разработки Safini. Мы не показываем рекламу, не продаем данные и собираем только то, что действительно нужно для работы приложения. Информация вашей семьи не передается третьим лицам.</p>
             </div>
         </div>
 
         <div class="faq-item">
             <button class="faq-question" aria-expanded="false">
-                Won't this cause more conflict if kids can't earn enough coins?
+                <span data-i18n="faq.q4.q">Не вызовет ли это еще больше конфликтов, если ребенок не сможет набрать достаточно монет?</span>
                 <span class="faq-chevron">▼</span>
             </button>
             <div class="faq-answer" role="region">
-                <p>The whole design is built around making kids feel in control — not punished. Parents set fair tasks and coin rates. Kids see exactly what they need to do to unlock their favourite apps. The transparency is what makes it work: no more arbitrary decisions, no more "because I said so."</p>
+                <p data-i18n="faq.q4.a">Вся логика Safini построена так, чтобы ребенок чувствовал не наказание, а контроль над процессом. Родители задают честные задания и стоимость наград, а дети точно видят, что нужно сделать, чтобы открыть любимые приложения. Прозрачность и убирает конфликты: никаких случайных решений и «потому что я так сказал».</p>
             </div>
         </div>
 
         <div class="faq-item">
             <button class="faq-question" aria-expanded="false">
-                How much does it cost after the beta?
+                <span data-i18n="faq.q5.q">Сколько это будет стоить после беты?</span>
                 <span class="faq-chevron">▼</span>
             </button>
             <div class="faq-answer" role="region">
-                <p>Safini is $4/month for your whole family — unlimited children profiles, all features included. Waitlist members lock in this founding price. No per-child fees, no hidden charges.</p>
+                <p data-i18n="faq.q5.a">Safini стоит $4 в месяц за всю семью: неограниченное число детских профилей и все функции включены. Участники листа ожидания сохраняют эту стартовую цену. Без доплат за ребенка и скрытых платежей.</p>
             </div>
         </div>
     </div>
@@ -1135,22 +1177,22 @@
 <!-- CTA -->
 <section class="cta" id="cta">
     <div class="cta-inner">
-        <h2>Ready to end the screen-time battle?</h2>
-        <p>Join families who are building healthier digital habits — without the daily arguments. Be among the first to try Safini.</p>
+        <h2 data-i18n="cta.title">Готовы закончить битву за экранное время?</h2>
+        <p data-i18n="cta.sub">Присоединяйтесь к семьям, которые формируют более здоровые цифровые привычки без ежедневных споров. Попробуйте Safini одними из первых.</p>
         <form class="waitlist-form" id="waitlist-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <label for="waitlist-email" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);">Email address</label>
-            <input id="waitlist-email" type="email" name="email" placeholder="Your email address" required class="waitlist-input">
-            <button type="submit" class="btn btn-white">Join Waitlist →</button>
+            <label for="waitlist-email" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);" data-i18n="cta.form.label">Email</label>
+            <input id="waitlist-email" type="email" name="email" data-i18n-placeholder="cta.form.placeholder" placeholder="Ваш email" required class="waitlist-input">
+            <button type="submit" class="btn btn-white" data-i18n="cta.form.submit">В лист ожидания →</button>
         </form>
         <p id="waitlist-error"></p>
         <div id="waitlist-success" style="display:none;">
-            <p style="color: rgba(255,255,255,0.95); font-size: 18px; font-weight: 700; margin-top: 16px; position: relative; z-index: 1;">🎉 You're on the list!</p>
-            <p style="color: rgba(255,255,255,0.75); font-size: 15px; margin-top: 6px; position: relative; z-index: 1;">We'll be in touch when Safini launches.</p>
+            <p style="color: rgba(255,255,255,0.95); font-size: 18px; font-weight: 700; margin-top: 16px; position: relative; z-index: 1;" data-i18n="cta.success.title">🎉 Вы в списке!</p>
+            <p style="color: rgba(255,255,255,0.75); font-size: 15px; margin-top: 6px; position: relative; z-index: 1;" data-i18n="cta.success.sub">Мы напишем вам, когда Safini запустится.</p>
             <div class="share-prompt">
-                <p>Know another parent who'd love this? Share Safini:</p>
+                <p data-i18n="cta.success.sharePrompt">Знаете еще одного родителя, которому это подойдет? Поделитесь Safini:</p>
                 <div class="share-buttons">
-                    <a class="share-btn share-btn-twitter" href="#" id="share-twitter" target="_blank" rel="noopener">𝕏 Share on X</a>
-                    <a class="share-btn share-btn-whatsapp" href="#" id="share-whatsapp" target="_blank" rel="noopener">💬 Share on WhatsApp</a>
+                    <a class="share-btn share-btn-twitter" href="#" id="share-twitter" target="_blank" rel="noopener" data-i18n="cta.success.shareX">𝕏 Поделиться в X</a>
+                    <a class="share-btn share-btn-whatsapp" href="#" id="share-whatsapp" target="_blank" rel="noopener" data-i18n="cta.success.shareWhatsapp">💬 Поделиться в WhatsApp</a>
                 </div>
             </div>
         </div>
@@ -1166,7 +1208,7 @@
                     <img src="photoLibrary.png" alt="Safini" class="brand-logo-image" decoding="async">
                 </span>
             </a>
-            <span class="footer-text">© 2026 Safini AI. All rights reserved.</span>
+            <span class="footer-text" data-i18n="footer.copy">© 2026 Safini AI. Все права защищены.</span>
         </div>
         <ul class="footer-links">
             <li><a href="mailto:safini.team@gmail.com">safini.team@gmail.com</a></li>
@@ -1175,36 +1217,418 @@
 </footer>
 
 <script>
-    // Nav scroll effect
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+    const translations = {
+        ru: {
+            "meta.title": "Safini — Дети зарабатывают экранное время",
+            "meta.ogTitle": "Safini — Дети зарабатывают экранное время",
+            "meta.ogDescription": "Safini заменяет споры из-за гаджетов системой наград, которую дети действительно любят. Присоединяйтесь к 1 247 семьям в листе ожидания.",
+            "meta.twitterTitle": "Safini — Дети зарабатывают экранное время",
+            "meta.twitterDescription": "Safini заменяет споры из-за гаджетов системой наград, которую дети действительно любят.",
+            "lang.switcher": "Переключение языка",
+            "lang.openMenu": "Открыть меню",
+            "lang.closeMenu": "Закрыть меню",
+            "nav.how": "Как это работает",
+            "nav.features": "Возможности",
+            "nav.pricing": "Цена",
+            "nav.cta": "В лист ожидания",
+            "hero.badge": "🚀 Бета-запуск в апреле 2026",
+            "hero.title": "Дети <span class=\"highlight-green\">зарабатывают</span> экранное время.<br>Родители остаются <span class=\"highlight\">в контроле</span>.",
+            "hero.sub": "Safini заменяет споры из-за гаджетов системой наград, которую дети действительно любят. Выполняйте задания, зарабатывайте Time Coins и открывайте развлечения без ежедневных ссор.",
+            "hero.ctaPrimary": "Вступить в лист ожидания →",
+            "hero.ctaSecondary": "Посмотреть, как это работает",
+            "hero.proof": "<strong>1 247 семей уже в листе ожидания</strong><br>Подтверждено 20+ интервью с родителями",
+            "hero.floatEarned": "✅ +20 монет заработано!",
+            "hero.floatUnlocked": "🎮 Открыто 30 мин",
+            "hero.phone.greeting": "Доброе утро 👋",
+            "hero.phone.name": "Исследователь Лео",
+            "hero.phone.coinsLabel": "Монеты времени",
+            "hero.phone.streakLabel": "Дней подряд",
+            "hero.phone.tasksTitle": "Сегодняшние квесты",
+            "hero.phone.task1.name": "Урок в Duolingo",
+            "hero.phone.task1.reward": "Завершить ежедневный урок",
+            "hero.phone.task2.name": "Пройти 5 000 шагов",
+            "hero.phone.task2.reward": "Добавь движения сегодня!",
+            "hero.phone.task3.name": "Логическая задача",
+            "hero.phone.task3.reward": "Время потренировать мозг",
+            "hero.phone.task4.name": "Заправить кровать",
+            "hero.phone.task4.reward": "Задание от родителей",
+            "problem.label": "Проблема",
+            "problem.title": "Дети проводят в телефонах по 6–10 часов в день. У родителей заканчиваются варианты.",
+            "problem.card1.time": "2:47 ночи",
+            "problem.card1.title": "📱 Бесконечный скролл до 3 ночи",
+            "problem.card1.body": "Дети проводят по 6–10 часов в YouTube, TikTok и Roblox, часто тайком поздно ночью и без каких-либо границ.",
+            "problem.card2.subject": "МАТЕМ.",
+            "problem.card2.title": "📉 Оценки падают, концентрация исчезает",
+            "problem.card2.body": "Домашка остается нетронутой, пока дети тонут в бесконечных лентах. Внимание и учебные результаты резко ухудшаются.",
+            "problem.card3.bubble1": "Отдай мне",
+            "problem.card3.bubble2": "телефон! 😤",
+            "problem.card3.reply": "Нет! 😡",
+            "problem.card3.title": "😤 Ежедневные ссоры без решения",
+            "problem.card3.body": "Забрать телефон значит получить споры, обиду и бесконечный торг, который выматывает всю семью.",
+            "how.label": "Как это работает",
+            "how.title": "От конфликтов к сотрудничеству за 4 шага",
+            "how.sub": "Safini превращает экранное время в награду за полезные привычки, а родители настраивают правила.",
+            "how.step1.title": "Родители задают правила",
+            "how.step1.body": "Выберите, какие приложения ограничить, настройте курс Time Coins и создайте задания для ребенка.",
+            "how.step2.title": "Дети выполняют задания",
+            "how.step2.body": "Уроки Duolingo, шаги, головоломки, домашние дела, чтение: полезные действия, которые формируют реальные привычки.",
+            "how.step3.title": "Зарабатывают Time Coins",
+            "how.step3.body": "Каждое выполненное задание приносит монеты. Ребенок видит рост баланса и открывает новые уровни и серии.",
+            "how.step4.title": "Открывают развлечения",
+            "how.step4.body": "Тратьте монеты на YouTube, Roblox, Minecraft и не только. Честно, прозрачно и без конфликтов.",
+            "features.label": "Возможности",
+            "features.title": "Все, что нужно семье",
+            "features.sub": "Два приложения, одна система. Детям интересно, родителям спокойно.",
+            "features.card1.title": "Панель родителя",
+            "features.card1.body": "Смотрите заработанные монеты, потраченные минуты, выполненные задания и тренды экранного времени в одном месте.",
+            "features.card2.title": "Гибкие задания",
+            "features.card2.body": "Создавайте разовые и регулярные задания: домашка, дела по дому, чтение, прогулки с любым количеством монет.",
+            "features.card3.title": "Магазин наград",
+            "features.card3.body": "Дети тратят монеты на время в приложениях или улучшения аватара. Понятная цена, видимый прогресс, мгновенная награда.",
+            "features.card4.title": "AI-тьютор KidsGPT",
+            "features.card4.body": "Безопасный ИИ-помощник для детей, который объясняет школьные темы, отвечает на вопросы и поддерживает интерес к учебе.",
+            "features.card5.title": "Серии и уровни",
+            "features.card5.body": "Игровой прогресс поддерживает мотивацию. Значки, серии и уровни делают полезные привычки по-настоящему увлекательными.",
+            "features.card6.title": "Лимиты по приложениям",
+            "features.card6.body": "Настраивайте дневные лимиты для каждого приложения. Дополнительные минуты дети зарабатывают делом, а не уговорами.",
+            "comparison.label": "Почему Safini",
+            "comparison.title": "Обычные контролеры блокируют. Safini мотивирует.",
+            "comparison.head.control": "Контролирующие приложения",
+            "comparison.head.learning": "Обучающие приложения",
+            "comparison.head.safini": "Safini ✨",
+            "comparison.row1": "Лимиты экранного времени",
+            "comparison.row2": "Обучающие задания",
+            "comparison.row3": "Игровые награды",
+            "comparison.row4": "Мотивация ребенка",
+            "comparison.partial": "Частично",
+            "comparison.row5": "AI-тьютор для детей",
+            "comparison.row6": "Меньше конфликтов в семье",
+            "testimonials.label": "Что говорят родители",
+            "testimonials.title": "Отзывы из интервью с родителями",
+            "testimonials.sub": "Реальные комментарии от 20+ семей, с которыми мы говорили на этапе проверки идеи.",
+            "testimonials.card1.quote": "\"Я пробовала просто забирать телефон, и каждый раз это заканчивалось скандалом. Система, где сын сам зарабатывает время на YouTube, меняет все.\"",
+            "testimonials.card1.role": "Мама 9-летнего ребенка",
+            "testimonials.card2.quote": "\"Моя дочь могла бы сидеть в Roblox весь день. Мне нравится идея, что сначала нужно почитать или сделать уроки. Тогда экранное время становится наградой, а не правом.\"",
+            "testimonials.card2.role": "Папа детей 7 и 11 лет",
+            "testimonials.card3.quote": "\"Мы уже пользовались родительским контролем, но он только вызывал раздражение. Система монет, где ребенок чувствует, что сам влияет на результат, гораздо умнее.\"",
+            "testimonials.card3.role": "Мама детей 6 и 13 лет",
+            "pricing.label": "Простая цена",
+            "pricing.title": "Один тариф для всей семьи",
+            "pricing.sub": "Без доплат за каждого ребенка и скрытых платежей. Одна подписка покрывает всю семью.",
+            "pricing.badge": "🎉 Цена для раннего доступа",
+            "pricing.period": "/ месяц",
+            "pricing.desc": "За семью, списание раз в месяц",
+            "pricing.feature1": "Неограниченное число детских профилей",
+            "pricing.feature2": "Полная панель родителя и аналитика",
+            "pricing.feature3": "Все типы заданий и магазин наград",
+            "pricing.feature4": "Доступ к AI-тьютору KidsGPT",
+            "pricing.feature5": "Кастомизация аватара и уровни",
+            "pricing.feature6": "Лимиты и контроль приложений",
+            "pricing.cta": "Вступить в лист ожидания →",
+            "pricing.trust1": "Разработано с учетом приватности детей",
+            "pricing.trust2": "Никакой рекламы",
+            "pricing.trust3": "Мы не продаем данные",
+            "faq.label": "FAQ",
+            "faq.title": "Вопросы, которые задают родители",
+            "faq.sub": "Все, что нужно знать перед вступлением в лист ожидания.",
+            "faq.q1.q": "Safini уже доступен?",
+            "faq.q1.a": "Пока нет: сейчас идет закрытая бета, а полноценный запуск уже близко. Вступите в лист ожидания, чтобы получить ранний доступ до публичного релиза. Участники листа ожидания фиксируют стартовую цену в $4 в месяц.",
+            "faq.q2.q": "На каких устройствах будет работать Safini?",
+            "faq.q2.a": "Safini выйдет на iOS и Android как для родительской панели, так и для детского приложения. К запуску также планируется веб-панель для родителей.",
+            "faq.q3.q": "Данные моего ребенка в безопасности?",
+            "faq.q3.a": "Защита детской приватности была в центре разработки Safini. Мы не показываем рекламу, не продаем данные и собираем только то, что действительно нужно для работы приложения. Информация вашей семьи не передается третьим лицам.",
+            "faq.q4.q": "Не вызовет ли это еще больше конфликтов, если ребенок не сможет набрать достаточно монет?",
+            "faq.q4.a": "Вся логика Safini построена так, чтобы ребенок чувствовал не наказание, а контроль над процессом. Родители задают честные задания и стоимость наград, а дети точно видят, что нужно сделать, чтобы открыть любимые приложения. Прозрачность и убирает конфликты: никаких случайных решений и «потому что я так сказал».",
+            "faq.q5.q": "Сколько это будет стоить после беты?",
+            "faq.q5.a": "Safini стоит $4 в месяц за всю семью: неограниченное число детских профилей и все функции включены. Участники листа ожидания сохраняют эту стартовую цену. Без доплат за ребенка и скрытых платежей.",
+            "cta.title": "Готовы закончить битву за экранное время?",
+            "cta.sub": "Присоединяйтесь к семьям, которые формируют более здоровые цифровые привычки без ежедневных споров. Попробуйте Safini одними из первых.",
+            "cta.form.label": "Email",
+            "cta.form.placeholder": "Ваш email",
+            "cta.form.submit": "В лист ожидания →",
+            "cta.form.submitting": "Отправляем...",
+            "cta.success.title": "🎉 Вы в списке!",
+            "cta.success.sub": "Мы напишем вам, когда Safini запустится.",
+            "cta.success.sharePrompt": "Знаете еще одного родителя, которому это подойдет? Поделитесь Safini:",
+            "cta.success.shareX": "𝕏 Поделиться в X",
+            "cta.success.shareWhatsapp": "💬 Поделиться в WhatsApp",
+            "cta.error.generic": "Что-то пошло не так. Попробуйте еще раз.",
+            "cta.error.timeout": "Запрос занял слишком много времени. Проверьте подключение и попробуйте снова.",
+            "cta.shareText": "Я только что вступил(а) в лист ожидания Safini — это приложение, где дети зарабатывают экранное время, выполняя задания 🎯 Больше никаких ежедневных споров. Присоединяйтесь:",
+            "footer.copy": "© 2026 Safini AI. Все права защищены."
+        },
+        en: {
+            "meta.title": "Safini — Kids Earn Screen Time",
+            "meta.ogTitle": "Safini — Kids Earn Screen Time",
+            "meta.ogDescription": "Safini replaces screen-time battles with a reward system kids actually love. Join 1,247 families on the waitlist.",
+            "meta.twitterTitle": "Safini — Kids Earn Screen Time",
+            "meta.twitterDescription": "Safini replaces screen-time battles with a reward system kids actually love.",
+            "lang.switcher": "Language switcher",
+            "lang.openMenu": "Open menu",
+            "lang.closeMenu": "Close menu",
+            "nav.how": "How It Works",
+            "nav.features": "Features",
+            "nav.pricing": "Pricing",
+            "nav.cta": "Join Waitlist",
+            "hero.badge": "🚀 Beta launching April 2026",
+            "hero.title": "Kids <span class=\"highlight-green\">earn</span> screen time.<br>Parents stay <span class=\"highlight\">in control</span>.",
+            "hero.sub": "Safini replaces screen-time battles with a reward system kids actually love. Complete tasks, earn Time Coins, and unlock entertainment without the daily arguments.",
+            "hero.ctaPrimary": "Join the Waitlist →",
+            "hero.ctaSecondary": "See How It Works",
+            "hero.proof": "<strong>1,247 families on the waitlist</strong><br>Validated with 20+ parent interviews",
+            "hero.floatEarned": "✅ +20 coins earned!",
+            "hero.floatUnlocked": "🎮 30m unlocked",
+            "hero.phone.greeting": "Good morning 👋",
+            "hero.phone.name": "Explorer Leo",
+            "hero.phone.coinsLabel": "Time Coins",
+            "hero.phone.streakLabel": "Day Streak",
+            "hero.phone.tasksTitle": "Today's Quests",
+            "hero.phone.task1.name": "Duolingo Lesson",
+            "hero.phone.task1.reward": "Complete daily lesson",
+            "hero.phone.task2.name": "Walk 5,000 Steps",
+            "hero.phone.task2.reward": "Get moving today!",
+            "hero.phone.task3.name": "Logic Puzzle",
+            "hero.phone.task3.reward": "Brain training time",
+            "hero.phone.task4.name": "Make Your Bed",
+            "hero.phone.task4.reward": "Parent-assigned",
+            "problem.label": "The Problem",
+            "problem.title": "Kids are spending 6-10 hours a day on their phones. Parents are out of options.",
+            "problem.card1.time": "2:47 AM",
+            "problem.card1.title": "📱 Doom scrolling until 3 AM",
+            "problem.card1.body": "Kids spend 6-10 hours glued to YouTube, TikTok, and Roblox, often secretly late at night with zero boundaries.",
+            "problem.card2.subject": "MATH",
+            "problem.card2.title": "📉 Grades drop, focus disappears",
+            "problem.card2.body": "Homework sits untouched while kids are lost in endless feeds. Attention spans and school performance take a nosedive.",
+            "problem.card3.bubble1": "Give me the",
+            "problem.card3.bubble2": "phone! 😤",
+            "problem.card3.reply": "NO! 😡",
+            "problem.card3.title": "😤 Daily battles, zero solutions",
+            "problem.card3.body": "Taking the phone away creates arguments, resentment, and a cycle of bargaining that exhausts the entire family.",
+            "how.label": "How It Works",
+            "how.title": "From conflict to cooperation in 4 steps",
+            "how.sub": "Safini turns screen time into something kids earn through productive habits, while parents set the rules.",
+            "how.step1.title": "Parents Set Rules",
+            "how.step1.body": "Choose which apps to limit, set Time Coin exchange rates, and create tasks for your child.",
+            "how.step2.title": "Kids Complete Tasks",
+            "how.step2.body": "Duolingo lessons, step goals, puzzles, chores, reading: productive actions that build real habits.",
+            "how.step3.title": "Earn Time Coins",
+            "how.step3.body": "Every completed task earns coins. Kids watch their balance grow and unlock new levels and streaks.",
+            "how.step4.title": "Unlock Entertainment",
+            "how.step4.body": "Spend coins on YouTube, Roblox, Minecraft, and more. Fair, transparent, and conflict-free.",
+            "features.label": "Features",
+            "features.title": "Everything families need",
+            "features.sub": "Two apps, one system. Kids get a fun experience. Parents get peace of mind.",
+            "features.card1.title": "Parent Dashboard",
+            "features.card1.body": "See earned coins, redeemed minutes, completed tasks, and screen-time trends at a glance.",
+            "features.card2.title": "Custom Tasks",
+            "features.card2.body": "Create one-off or recurring tasks for homework, chores, reading, or outdoor time with custom coin values.",
+            "features.card3.title": "Reward Store",
+            "features.card3.body": "Kids spend coins on app time or avatar upgrades. Clear costs, visible progress, instant gratification.",
+            "features.card4.title": "KidsGPT AI Tutor",
+            "features.card4.body": "A safe, child-friendly AI that explains school topics, answers questions, and encourages learning.",
+            "features.card5.title": "Streaks & Levels",
+            "features.card5.body": "Gamified progression keeps kids motivated. Badges, streaks, and levels make good habits feel rewarding.",
+            "features.card6.title": "App Time Limits",
+            "features.card6.body": "Set daily limits for each app. Kids earn extra minutes through productive tasks instead of begging for more.",
+            "comparison.label": "Why Safini",
+            "comparison.title": "Control apps block. Safini motivates.",
+            "comparison.head.control": "Control Apps",
+            "comparison.head.learning": "Learning Apps",
+            "comparison.head.safini": "Safini ✨",
+            "comparison.row1": "Screen time limits",
+            "comparison.row2": "Educational tasks",
+            "comparison.row3": "Gamified rewards",
+            "comparison.row4": "Child motivation",
+            "comparison.partial": "Partial",
+            "comparison.row5": "AI tutor for kids",
+            "comparison.row6": "Reduces family conflict",
+            "testimonials.label": "What Parents Say",
+            "testimonials.title": "From our parent interviews",
+            "testimonials.sub": "Real feedback from 20+ families we spoke to during validation.",
+            "testimonials.card1.quote": "\"I've tried taking the phone away, and it always ends in a fight. A system where my son actually earns his YouTube time? That changes everything.\"",
+            "testimonials.card1.role": "Mother of a 9-year-old",
+            "testimonials.card2.quote": "\"My daughter would play Roblox all day if she could. I love the idea that she'd need to read or do homework first. It makes screen time a reward, not a right.\"",
+            "testimonials.card2.role": "Father of 7- and 11-year-olds",
+            "testimonials.card3.quote": "\"We've used parental controls before, but they just create resentment. A coin system where the child feels in control of earning is much smarter.\"",
+            "testimonials.card3.role": "Mother of 6- and 13-year-olds",
+            "pricing.label": "Simple Pricing",
+            "pricing.title": "One plan. The whole family.",
+            "pricing.sub": "No per-child fees, no surprise charges. One subscription covers your entire family.",
+            "pricing.badge": "🎉 Early bird pricing",
+            "pricing.period": "/ month",
+            "pricing.desc": "Per family, billed monthly",
+            "pricing.feature1": "Unlimited children profiles",
+            "pricing.feature2": "Full parent dashboard & insights",
+            "pricing.feature3": "All task types & reward store",
+            "pricing.feature4": "KidsGPT AI tutor access",
+            "pricing.feature5": "Avatar customization & levels",
+            "pricing.feature6": "App time limits & controls",
+            "pricing.cta": "Join the Waitlist →",
+            "pricing.trust1": "Built with child privacy in mind",
+            "pricing.trust2": "No ads, ever",
+            "pricing.trust3": "No data sold",
+            "faq.label": "FAQ",
+            "faq.title": "Questions parents ask",
+            "faq.sub": "Everything you need to know before joining the waitlist.",
+            "faq.q1.q": "Is Safini available now?",
+            "faq.q1.a": "Not yet. We're in private beta and launching soon. Join the waitlist to get early access before we open to the public. Early members lock in the $4/month founding price.",
+            "faq.q2.q": "What devices will Safini support?",
+            "faq.q2.a": "Safini will launch on iOS and Android for both the parent dashboard and the child app. A web dashboard for parents is also planned.",
+            "faq.q3.q": "Is my child's data safe?",
+            "faq.q3.a": "Protecting children's privacy is central to how we built Safini. We don't show ads, we don't sell data, and we only collect what's necessary to run the app. Your family's information is never shared with third parties.",
+            "faq.q4.q": "Won't this create more conflict if kids can't earn enough coins?",
+            "faq.q4.a": "The whole product is designed to make kids feel in control, not punished. Parents set fair tasks and coin rates. Kids see exactly what they need to do to unlock their favorite apps. That transparency is what makes it work: no arbitrary decisions and no more 'because I said so.'",
+            "faq.q5.q": "How much will it cost after beta?",
+            "faq.q5.a": "Safini is $4/month for your whole family with unlimited child profiles and all features included. Waitlist members lock in this founding price. No per-child fees and no hidden charges.",
+            "cta.title": "Ready to end the screen-time battle?",
+            "cta.sub": "Join families building healthier digital habits without the daily arguments. Be among the first to try Safini.",
+            "cta.form.label": "Email address",
+            "cta.form.placeholder": "Your email address",
+            "cta.form.submit": "Join Waitlist →",
+            "cta.form.submitting": "Joining...",
+            "cta.success.title": "🎉 You're on the list!",
+            "cta.success.sub": "We'll be in touch when Safini launches.",
+            "cta.success.sharePrompt": "Know another parent who'd love this? Share Safini:",
+            "cta.success.shareX": "𝕏 Share on X",
+            "cta.success.shareWhatsapp": "💬 Share on WhatsApp",
+            "cta.error.generic": "Something went wrong. Please try again.",
+            "cta.error.timeout": "The request timed out. Please check your connection and try again.",
+            "cta.shareText": "I just joined the Safini waitlist, an app where kids earn screen time by completing tasks 🎯 No more daily arguments. Join me:",
+            "footer.copy": "© 2026 Safini AI. All rights reserved."
+        }
+    };
 
-    // Hamburger menu
+    const DEFAULT_LANGUAGE = 'ru';
+    const LANGUAGE_STORAGE_KEY = 'safini-language';
+    const SITE_URL = 'https://safini.fun';
+
+    const nav = document.getElementById('nav');
     const hamburger = document.getElementById('nav-hamburger');
     const mobileNav = document.getElementById('mobile-nav');
     const mobileClose = document.getElementById('mobile-nav-close');
-    function closeMobileNav() { mobileNav.classList.remove('open'); document.body.style.overflow = ''; }
-    hamburger.addEventListener('click', () => { mobileNav.classList.add('open'); document.body.style.overflow = 'hidden'; });
-    mobileClose.addEventListener('click', closeMobileNav);
-    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileNav));
-
-    // Social share URLs — domain: safini.fun (locked)
-    const SITE_URL = 'https://safini.fun';
-    const SHARE_TEXT = 'I just joined the Safini waitlist — an app where kids earn screen time by completing tasks 🎯 No more arguments. Join me:';
-    document.getElementById('share-twitter').href =
-        'https://twitter.com/intent/tweet?text=' + encodeURIComponent(SHARE_TEXT + ' ' + SITE_URL);
-    document.getElementById('share-whatsapp').href =
-        'https://wa.me/?text=' + encodeURIComponent(SHARE_TEXT + ' ' + SITE_URL);
-
-    // Waitlist form — with 10s timeout, error message, confetti, and GA4 event
     const waitlistForm = document.getElementById('waitlist-form');
     const waitlistError = document.getElementById('waitlist-error');
+    const waitlistSubmitButton = waitlistForm.querySelector('button[type=submit]');
+    const shareTwitter = document.getElementById('share-twitter');
+    const shareWhatsapp = document.getElementById('share-whatsapp');
+    let currentLanguage = DEFAULT_LANGUAGE;
+
+    const getTranslation = (lang, key) => translations[lang]?.[key] || translations[DEFAULT_LANGUAGE][key] || '';
+
+    function closeMobileNav() {
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    function updateMetaContent(id, value) {
+        const metaElement = document.getElementById(id);
+        if (metaElement) {
+            metaElement.setAttribute('content', value);
+        }
+    }
+
+    function updateShareLinks(lang) {
+        const shareText = getTranslation(lang, 'cta.shareText');
+        const encoded = encodeURIComponent(`${shareText} ${SITE_URL}`);
+        shareTwitter.href = `https://twitter.com/intent/tweet?text=${encoded}`;
+        shareWhatsapp.href = `https://wa.me/?text=${encoded}`;
+    }
+
+    function updateLanguageButtons(lang) {
+        document.querySelectorAll('[data-lang-trigger]').forEach(button => {
+            const isActive = button.dataset.langTrigger === lang;
+            button.classList.toggle('active', isActive);
+            button.setAttribute('aria-pressed', String(isActive));
+        });
+    }
+
+    function syncFormState() {
+        const isLoading = waitlistForm.dataset.state === 'loading';
+        waitlistSubmitButton.disabled = isLoading;
+        waitlistSubmitButton.textContent = getTranslation(
+            currentLanguage,
+            isLoading ? 'cta.form.submitting' : 'cta.form.submit'
+        );
+
+        const errorKey = waitlistError.dataset.errorKey;
+        if (errorKey) {
+            waitlistError.textContent = getTranslation(currentLanguage, errorKey);
+            waitlistError.style.display = 'block';
+        } else {
+            waitlistError.textContent = '';
+            waitlistError.style.display = 'none';
+        }
+    }
+
+    function applyTranslations(lang) {
+        currentLanguage = translations[lang] ? lang : DEFAULT_LANGUAGE;
+        document.documentElement.lang = currentLanguage;
+
+        const pageTitle = getTranslation(currentLanguage, 'meta.title');
+        document.title = pageTitle;
+        document.getElementById('page-title').textContent = pageTitle;
+
+        updateMetaContent('meta-og-title', getTranslation(currentLanguage, 'meta.ogTitle'));
+        updateMetaContent('meta-og-description', getTranslation(currentLanguage, 'meta.ogDescription'));
+        updateMetaContent('meta-twitter-title', getTranslation(currentLanguage, 'meta.twitterTitle'));
+        updateMetaContent('meta-twitter-description', getTranslation(currentLanguage, 'meta.twitterDescription'));
+
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            element.textContent = getTranslation(currentLanguage, element.dataset.i18n);
+        });
+
+        document.querySelectorAll('[data-i18n-html]').forEach(element => {
+            element.innerHTML = getTranslation(currentLanguage, element.dataset.i18nHtml);
+        });
+
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+            element.setAttribute('placeholder', getTranslation(currentLanguage, element.dataset.i18nPlaceholder));
+        });
+
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(element => {
+            element.setAttribute('aria-label', getTranslation(currentLanguage, element.dataset.i18nAriaLabel));
+        });
+
+        updateShareLinks(currentLanguage);
+        updateLanguageButtons(currentLanguage);
+        syncFormState();
+
+        try {
+            localStorage.setItem(LANGUAGE_STORAGE_KEY, currentLanguage);
+        } catch (error) {
+            // Ignore storage errors and keep the selection in-memory.
+        }
+    }
+
+    function getInitialLanguage() {
+        try {
+            const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
+            if (stored && translations[stored]) {
+                return stored;
+            }
+        } catch (error) {
+            // Ignore storage errors and fall back to the default language.
+        }
+        return DEFAULT_LANGUAGE;
+    }
+
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+    hamburger.addEventListener('click', () => {
+        mobileNav.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    });
+    mobileClose.addEventListener('click', closeMobileNav);
+    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileNav));
+    document.querySelectorAll('[data-lang-trigger]').forEach(button => {
+        button.addEventListener('click', () => applyTranslations(button.dataset.langTrigger));
+    });
+
     waitlistForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const btn = waitlistForm.querySelector('button[type=submit]');
-        btn.textContent = 'Joining...';
-        btn.disabled = true;
-        waitlistError.style.display = 'none';
+        waitlistForm.dataset.state = 'loading';
+        delete waitlistError.dataset.errorKey;
+        syncFormState();
 
         const controller = new AbortController();
         const timeout = setTimeout(() => controller.abort(), 10000);
@@ -1219,32 +1643,31 @@
             clearTimeout(timeout);
 
             if (resp.ok) {
+                waitlistForm.dataset.state = 'success';
                 waitlistForm.style.display = 'none';
                 document.getElementById('waitlist-success').style.display = 'block';
-                // Confetti burst
                 if (typeof confetti !== 'undefined') {
                     confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ['#8100D1','#B500B2','#FF52A0','#FFA47F'] });
                 }
-                // GA4 event
                 if (typeof gtag !== 'undefined') {
                     gtag('event', 'waitlist_signup', { event_category: 'engagement', event_label: 'waitlist_form' });
                 }
             } else {
-                btn.textContent = 'Join Waitlist →';
-                btn.disabled = false;
-                waitlistError.textContent = 'Something went wrong — please try again.';
-                waitlistError.style.display = 'block';
+                waitlistForm.dataset.state = 'idle';
+                waitlistError.dataset.errorKey = 'cta.error.generic';
+                syncFormState();
             }
         } catch (err) {
             clearTimeout(timeout);
-            btn.textContent = 'Join Waitlist →';
-            btn.disabled = false;
-            waitlistError.textContent = err.name === 'AbortError'
-                ? 'Request timed out — please check your connection and try again.'
-                : 'Something went wrong — please try again.';
-            waitlistError.style.display = 'block';
+            waitlistForm.dataset.state = 'idle';
+            waitlistError.dataset.errorKey = err.name === 'AbortError'
+                ? 'cta.error.timeout'
+                : 'cta.error.generic';
+            syncFormState();
         }
     });
+
+    applyTranslations(getInitialLanguage());
 
     // FAQ accordion
     document.querySelectorAll('.faq-question').forEach(btn => {
