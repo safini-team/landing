@@ -92,7 +92,7 @@ The page is structured to answer a parent's questions in order:
 
 ### Confetti
 - `canvas-confetti@1.9.3` loaded from jsDelivr CDN (`defer`)
-- Fires on successful form submission with brand colours: `#406093`, `#4C8CE4`, `#91D06C`, `#FFF799`
+- Fires on successful form submission with brand colours: `#8100D1`, `#B500B2`, `#FF52A0`, `#FFA47F`
 - Safely guarded: `if (typeof confetti !== 'undefined')` — no error if CDN fails
 
 ### Google Analytics 4
@@ -140,17 +140,17 @@ All colours are defined as CSS custom properties in `:root`:
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| `--navy` | `#406093` | Primary brand, gradients, buttons |
-| `--navy-deep` | `#2E4568` | Phone mockup header |
-| `--blue` | `#4C8CE4` | Accents, links, step numbers |
-| `--blue-light` | `#A5C8F7` | Borders, step arrows |
-| `--blue-pale` | `#E8F1FC` | Section backgrounds |
-| `--green` | `#91D06C` | Success states, coin rewards |
-| `--green-deep` | `#6DB44A` | Green CTA text |
-| `--yellow` | `#FFF799` | Confetti, decorative |
-| `--cream` | `#FAFCFF` | Page background |
-| `--ink` | `#1B2A40` | Primary text |
-| `--muted` | `#6B7F99` | Secondary text |
+| `--navy` | `#8100D1` | Primary brand, gradients, buttons |
+| `--navy-deep` | `#5D0098` | Phone mockup header |
+| `--blue` | `#B500B2` | Accents, links, step numbers |
+| `--blue-light` | `#E7C8F6` | Borders, step arrows |
+| `--blue-pale` | `#F8EDFF` | Section backgrounds |
+| `--green` | `#FF52A0` | Success states, coins, comparison checks |
+| `--green-deep` | `#B500B2` | Accent text on reward and pricing elements |
+| `--yellow` | `#FFA47F` | Confetti, decorative highlights |
+| `--cream` | `#FFF8FE` | Page background |
+| `--ink` | `#1D1233` | Primary text |
+| `--muted` | `#7C6B94` | Secondary text |
 | `--radius` | `20px` | Card border-radius |
 
 **Fonts:**
