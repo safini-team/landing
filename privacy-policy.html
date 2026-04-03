@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Политика конфиденциальности — Safini</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #7B2FBE;
+    --purple-dark: #5A1F8A;
+    --purple-light: #9B59D9;
+    --purple-soft: #F3EAFF;
+    --accent: #A855F7;
+    --text: #1A1A2E;
+    --muted: #6B7280;
+    --bg: #FAFAFA;
+    --white: #FFFFFF;
+    --border: #EDE8F5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #4A1080 0%, #7B2FBE 50%, #9B59D9 100%);
+    padding: 60px 24px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 250px; height: 250px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .logo-icon {
+    width: 48px; height: 48px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+
+  .logo-name {
+    font-family: 'Nunito', sans-serif;
+    font-size: 26px;
+    font-weight: 900;
+    color: white;
+    letter-spacing: -0.5px;
+  }
+
+  .hero h1 {
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(28px, 6vw, 42px);
+    font-weight: 900;
+    color: white;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+
+  .hero-sub {
+    color: rgba(255,255,255,0.75);
+    font-size: 16px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .hero-date {
+    display: inline-block;
+    margin-top: 20px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+  }
+
+  /* WAVE */
+  .wave {
+    display: block;
+    margin-top: -2px;
+  }
+
+  /* MAIN */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px 60px;
+  }
+
+  /* QUICK NAV */
+  .nav-box {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px 32px;
+    margin: -30px auto 40px;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 8px 40px rgba(123,47,190,0.10);
+  }
+
+  .nav-box h3 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--purple);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .nav-links a {
+    background: var(--purple-soft);
+    color: var(--purple);
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.2s;
+  }
+
+  .nav-links a:hover {
+    background: var(--purple);
+    color: white;
+    transform: translateY(-1px);
+  }
+
+  /* SECTIONS */
+  .section {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 16px rgba(123,47,190,0.05);
+    animation: fadeUp 0.5s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section:nth-child(1) { animation-delay: 0.05s; }
+  .section:nth-child(2) { animation-delay: 0.10s; }
+  .section:nth-child(3) { animation-delay: 0.15s; }
+  .section:nth-child(4) { animation-delay: 0.20s; }
+  .section:nth-child(5) { animation-delay: 0.25s; }
+  .section:nth-child(6) { animation-delay: 0.30s; }
+  .section:nth-child(7) { animation-delay: 0.35s; }
+  .section:nth-child(8) { animation-delay: 0.40s; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .section-icon {
+    width: 44px; height: 44px;
+    background: var(--purple-soft);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .section h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .section p {
+    color: #444;
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+
+  .section p:last-child { margin-bottom: 0; }
+
+  .list {
+    list-style: none;
+    padding: 0;
+    margin: 12px 0;
+  }
+
+  .list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+    color: #444;
+  }
+
+  .list li:last-child { border-bottom: none; }
+
+  .list li::before {
+    content: '•';
+    color: var(--purple);
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 1.4;
+    flex-shrink: 0;
+  }
+
+  /* HIGHLIGHT BOX */
+  .highlight {
+    background: var(--purple-soft);
+    border-left: 4px solid var(--purple);
+    border-radius: 0 12px 12px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  .highlight p {
+    color: var(--purple-dark);
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  /* CHILDREN BADGE */
+  .badge-children {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #7B2FBE, #A855F7);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  /* CONTACT */
+  .contact-card {
+    background: linear-gradient(135deg, #4A1080, #7B2FBE);
+    border-radius: 20px;
+    padding: 32px;
+    text-align: center;
+    color: white;
+    margin-top: 40px;
+  }
+
+  .contact-card h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 10px;
+  }
+
+  .contact-card p {
+    color: rgba(255,255,255,0.8);
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .contact-email {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    backdrop-filter: blur(10px);
+    transition: all 0.2s;
+  }
+
+  .contact-email:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateY(-2px);
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  footer span {
+    color: var(--purple);
+    font-weight: 700;
+  }
+
+  @media (max-width: 600px) {
+    .section { padding: 24px 20px; }
+    .nav-box { padding: 22px 20px; }
+    .hero { padding: 48px 20px 70px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="logo">
+    <div class="logo-icon">🛡️</div>
+    <div class="logo-name">Safini</div>
+  </div>
+  <h1>Политика конфиденциальности</h1>
+  <p class="hero-sub">Мы серьёзно относимся к защите данных вашей семьи</p>
+  <div class="hero-date">Дата вступления в силу: 3 апреля 2026 г.</div>
+</div>
+
+<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#7B2FBE">
+  <path d="M0,60 C360,0 1080,0 1440,60 L1440,60 L0,60 Z" fill="#FAFAFA"/>
+</svg>
+
+<!-- MAIN -->
+<div class="container">
+
+  <!-- NAV -->
+  <div class="nav-box">
+    <h3>Содержание</h3>
+    <div class="nav-links">
+      <a href="#info">Что мы собираем</a>
+      <a href="#use">Как используем</a>
+      <a href="#children">Дети</a>
+      <a href="#storage">Хранение</a>
+      <a href="#third">Третьи стороны</a>
+      <a href="#rights">Ваши права</a>
+      <a href="#security">Безопасность</a>
+      <a href="#contact">Контакты</a>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <h2>Общие положения</h2>
+    </div>
+    <p>Приложение <strong>Safini</strong> («мы», «нас», «наше») — это семейное приложение для управления экранным временем и выдачи заданий детям. Настоящая политика конфиденциальности объясняет, какие данные мы собираем, как используем и как защищаем их.</p>
+    <p>Используя Safini, вы соглашаетесь с условиями настоящей политики. Если вы не согласны — пожалуйста, не используйте приложение.</p>
+    <div class="highlight">
+      <p>🔒 Мы никогда не продаём и не передаём личные данные третьим лицам в коммерческих целях.</p>
+    </div>
+  </div>
+
+  <!-- WHAT WE COLLECT -->
+  <div class="section" id="info">
+    <div class="section-header">
+      <div class="section-icon">📊</div>
+      <h2>Какие данные мы собираем</h2>
+    </div>
+    <p>При использовании Safini мы можем собирать следующие данные:</p>
+    <ul class="list">
+      <li>Имя и возраст ребёнка (указывается родителем при создании профиля)</li>
+      <li>Email-адрес родителя/опекуна для создания аккаунта</li>
+      <li>Данные о выполненных заданиях и квестах</li>
+      <li>Статистика использования приложений на устройстве ребёнка (экранное время)</li>
+      <li>Данные о шагах и физической активности (если разрешено)</li>
+      <li>Заработанные и потраченные TimeCoins внутри приложения</li>
+    </ul>
+    <p>Мы <strong>не собираем</strong>: геолокацию, фотографии, контакты, финансовые данные, биометрию.</p>
+  </div>
+
+  <!-- HOW WE USE -->
+  <div class="section" id="use">
+    <div class="section-header">
+      <div class="section-icon">⚙️</div>
+      <h2>Как мы используем данные</h2>
+    </div>
+    <p>Собранные данные используются исключительно для:</p>
+    <ul class="list">
+      <li>Предоставления функций приложения (задания, квесты, награды)</li>
+      <li>Синхронизации между родительским и детским устройствами</li>
+      <li>Отображения статистики прогресса ребёнка родителю</li>
+      <li>Управления лимитами экранного времени</li>
+      <li>Улучшения качества приложения (анонимная аналитика)</li>
+      <li>Отправки важных уведомлений о работе сервиса</li>
+    </ul>
+  </div>
+
+  <!-- CHILDREN -->
+  <div class="section" id="children">
+    <div class="section-header">
+      <div class="section-icon">👨‍👩‍👧</div>
+      <h2>Данные детей</h2>
+    </div>
+    <div class="badge-children">👶 Специальная защита для детей</div>
+    <p>Мы понимаем особую важность защиты данных несовершеннолетних и соблюдаем требования законодательства о защите данных детей, включая COPPA (США) и GDPR-K (ЕС).</p>
+    <ul class="list">
+      <li>Профиль ребёнка создаётся только родителем или законным опекуном</li>
+      <li>Дети не могут самостоятельно зарегистрироваться в приложении</li>
+      <li>Мы не показываем рекламу детям</li>
+      <li>Данные детей не передаются третьим лицам</li>
+      <li>Родитель в любой момент может удалить профиль ребёнка и все связанные данные</li>
+    </ul>
+    <div class="highlight">
+      <p>👪 Все данные ребёнка хранятся под контролем родительского аккаунта. Без согласия родителя никакие данные о ребёнке не обрабатываются.</p>
+    </div>
+  </div>
+
+  <!-- STORAGE -->
+  <div class="section" id="storage">
+    <div class="section-header">
+      <div class="section-icon">💾</div>
+      <h2>Хранение и удаление данных</h2>
+    </div>
+    <p>Данные хранятся на защищённых серверах с шифрованием. Мы храним данные только пока ваш аккаунт активен или пока это необходимо для работы сервиса.</p>
+    <ul class="list">
+      <li>При удалении аккаунта все данные удаляются в течение 30 дней</li>
+      <li>Резервные копии удаляются в течение 90 дней</li>
+      <li>Анонимная статистика может храниться бессрочно</li>
+    </ul>
+    <p>Вы можете запросить удаление своих данных в любое время, написав нам на email.</p>
+  </div>
+
+  <!-- THIRD PARTIES -->
+  <div class="section" id="third">
+    <div class="section-header">
+      <div class="section-icon">🔗</div>
+      <h2>Третьи стороны</h2>
+    </div>
+    <p>Мы можем использовать следующие сторонние сервисы для работы приложения:</p>
+    <ul class="list">
+      <li><strong>Supabase</strong> — авторизация, база данных</li>
+      <li><strong>Apple HealthKit / Google Fit</strong> — данные о шагах (только с разрешения пользователя)</li>
+    </ul>
+    <p>Все сторонние сервисы имеют собственные политики конфиденциальности. Мы передаём только минимально необходимые данные и только для обеспечения работы приложения.</p>
+    <div class="highlight">
+      <p>🚫 Мы не передаём данные рекламным сетям и не используем данные для таргетированной рекламы.</p>
+    </div>
+  </div>
+
+  <!-- RIGHTS -->
+  <div class="section" id="rights">
+    <div class="section-header">
+      <div class="section-icon">✅</div>
+      <h2>Ваши права</h2>
+    </div>
+    <p>Вы имеете право:</p>
+    <ul class="list">
+      <li>Запросить доступ к своим персональным данным</li>
+      <li>Исправить неточные или устаревшие данные</li>
+      <li>Удалить свои данные («право на забвение»)</li>
+      <li>Отозвать согласие на обработку данных</li>
+      <li>Экспортировать свои данные в машиночитаемом формате</li>
+      <li>Подать жалобу в надзорный орган по защите данных</li>
+    </ul>
+    <p>Для реализации любого из этих прав напишите нам на email, указанный ниже. Мы ответим в течение 30 дней.</p>
+  </div>
+
+  <!-- SECURITY -->
+  <div class="section" id="security">
+    <div class="section-header">
+      <div class="section-icon">🔐</div>
+      <h2>Безопасность данных</h2>
+    </div>
+    <p>Мы применяем технические и организационные меры для защиты ваших данных:</p>
+    <ul class="list">
+      <li>Шифрование данных при передаче (TLS/HTTPS)</li>
+      <li>Шифрование данных при хранении</li>
+      <li>Ограниченный доступ к данным только для авторизованных сотрудников</li>
+      <li>Регулярные проверки безопасности</li>
+    </ul>
+    <p>Несмотря на все меры предосторожности, ни одна система не является абсолютно защищённой. При обнаружении утечки данных мы уведомим вас в течение 72 часов.</p>
+  </div>
+
+  <!-- CHANGES -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-icon">📝</div>
+      <h2>Изменения в политике</h2>
+    </div>
+    <p>Мы можем обновлять настоящую политику конфиденциальности. При существенных изменениях мы уведомим вас через приложение или по email не менее чем за 7 дней до вступления изменений в силу.</p>
+    <p>Актуальная версия политики всегда доступна на этой странице. Дата последнего обновления указана вверху страницы.</p>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-card" id="contact">
+    <h2>Остались вопросы?</h2>
+    <p>Если у вас есть вопросы о конфиденциальности или вы хотите воспользоваться своими правами — напишите нам.</p>
+    <a href="mailto:safini.team@gmail.com" class="contact-email">✉️ safini.team@gmail.com</a>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 <span>Safini</span>. Все права защищены.<br>
+  Последнее обновление: 3 апреля 2026 г.
+</footer>
+
+</body>
+</html>
