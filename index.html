@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Safini — Raise kids safely in a world built for endless scrolling.</title>
 <meta property="og:title" content="Safini — Raise kids safely in a world built for endless scrolling." />
 <meta property="og:description" content="Safini is the all-in-one app that helps parents turn screen time into growth time. Kids earn screen time by completing activities that support real cognitive development." />
@@ -626,6 +626,108 @@
 
   .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
   .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* ============ SAFE-AREA (notched phones) ============ */
+  @supports (padding: env(safe-area-inset-top)) {
+    .nav {
+      padding-left: max(14px, env(safe-area-inset-left));
+      padding-right: max(14px, env(safe-area-inset-right));
+    }
+    footer { padding-bottom: max(28px, calc(20px + env(safe-area-inset-bottom))); }
+  }
+
+  /* ============ TABLET ============ */
+  @media (max-width: 640px) {
+    section.block { padding: 72px 0; }
+    .hero-meta { gap: 14px; flex-wrap: wrap; }
+    .tcard { padding: 20px 18px; }
+    .tcard p { font-size: 14px; }
+    .partners-row { gap: 20px; }
+    .logo-strip { gap: 18px; }
+    .logo-strip .lg { font-size: 16px; }
+  }
+
+  /* ============ PHONE (≤480px) ============ */
+  @media (max-width: 480px) {
+    .container { padding: 0 16px; }
+
+    /* nav */
+    .nav { margin: 8px 12px 0; padding: 10px 14px; border-radius: 18px; }
+    .nav-brand { font-size: 18px; gap: 8px; }
+    .nav-brand img { width: 28px; height: 28px; }
+    .nav-cta { padding: 8px 13px; font-size: 13px; }
+
+    /* hero */
+    .hero { padding: 44px 0 16px; }
+    section.block { padding: 60px 0; }
+    .head { margin-bottom: 36px; }
+    .head p { font-size: 15px; }
+    .hero-sub { font-size: 16px; max-width: 100%; }
+    .tagline-row { gap: 8px; }
+    .tagline-row span { font-size: 13px; padding: 7px 12px; }
+    .hero-ctas { flex-direction: column; gap: 10px; }
+    .hero-ctas .btn { width: 100%; justify-content: center; }
+    .hero-meta { gap: 12px; }
+
+    /* product shot */
+    .product-shot { aspect-ratio: 1 / 1.1; border-radius: 20px; }
+    .phone { width: min(200px, 54vw); height: min(410px, 112vw); border-radius: 30px; border-width: 6px; }
+
+    /* bento */
+    .bcard { padding: 22px 18px; min-height: unset; }
+    .bcard .big-num { font-size: clamp(44px, 13vw, 72px); }
+    .bcard h3 { font-size: 19px; }
+
+    /* steps */
+    .step { padding: 26px 20px; }
+    .step h4 { font-size: 20px; }
+
+    /* cognitive select */
+    .cs-hero { padding: 20px 12px 22px; }
+    .cs-podium { width: 170px; height: 170px; }
+    .cs-fini { width: 124px; height: 124px; }
+    .cs-fn { font-size: 20px; margin: 4px 0 12px; }
+    .cs-row { padding: 14px 16px; }
+    .cs-row p { font-size: 14px; }
+    .cs-slot { padding: 12px 6px 10px; border-radius: 14px; }
+    .cs-avatar { width: 46px; height: 46px; }
+    .cs-avatar img { width: 34px; height: 34px; }
+    .cs-slot .cs-name { font-size: 11px; }
+    .cs-nav { width: 36px; height: 36px; font-size: 18px; }
+    .cs-nav.prev { left: 8px; }
+    .cs-nav.next { right: 8px; }
+
+    /* pricing */
+    .plan { padding: 28px 20px; }
+
+    /* faq */
+    .faq-q { font-size: 15px; padding: 18px 18px; gap: 12px; }
+    .faq-a p { padding: 0 18px 18px; font-size: 14px; }
+
+    /* cta */
+    .cta-block { padding: 40px 0 72px; }
+    .cta-card { border-radius: 24px; padding: 44px 18px 48px; }
+    .cta-card p { font-size: 15px; }
+    .waitlist { flex-direction: column; border-radius: 16px; padding: 8px; gap: 6px; }
+    .waitlist input { padding: 13px 16px; text-align: center; border-radius: 8px; }
+    .waitlist button { width: 100%; padding: 14px 20px; border-radius: 10px; }
+
+    /* footer */
+    .foot-wrap { grid-template-columns: 1fr; gap: 28px; }
+    footer { padding: 44px 0 24px; }
+    .foot-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .news-form { max-width: 320px; }
+  }
+
+  /* ============ SMALL PHONE (≤360px) ============ */
+  @media (max-width: 360px) {
+    .container { padding: 0 14px; }
+    .nav { margin: 6px 10px 0; }
+    .nav-brand { font-size: 16px; }
+    .nav-cta { font-size: 12px; padding: 7px 11px; }
+    .cs-roster { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .cs-slot { padding: 10px 4px 8px; }
+  }
 </style>
 </head>
 <body>
@@ -968,6 +1070,7 @@
           <li><a href="privacy-policy.html">Privacy &amp; COPPA</a></li>
           <li><a href="#">Terms</a></li>
           <li><a href="#">Clinical advisory</a></li>
+          <li><a href="media-kit.html">Media Kit</a></li>
           <li><a href="mailto:safini.team@gmail.com">safini.team@gmail.com</a></li>
         </ul>
       </div>
