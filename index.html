@@ -934,10 +934,12 @@
     <div class="cta-card">
       <h2>Raise unscrolled kids.</h2>
       <p>We're opening the parent alpha. Drop your email and we'll send an invite the moment the next cohort opens.</p>
-      <form class="waitlist" onsubmit="event.preventDefault(); this.querySelector('button').textContent='You’re on the list ✶'; this.querySelector('input').value='';">
-        <input type="email" placeholder="parent@household.email" required />
+      <form class="waitlist" id="waitlist-form" action="https://api.safini.fun/v1/waiting-list" method="POST">
+        <input id="waitlist-email" type="email" name="email" placeholder="parent@household.email" required />
         <button type="submit">Join waitlist →</button>
       </form>
+      <p id="waitlist-error" style="color:#ff6b6b; font-size:14px; margin-top:8px; display:none;"></p>
+      <div id="waitlist-success" style="display:none; margin-top:16px; color:#fff; font-weight:600; font-size:16px;">🎉 You’re on the list! We’ll be in touch when Safini launches.</div>
       <div class="tiny"></div>
     </div>
   </div>
@@ -1112,6 +1114,63 @@
     });
 
     select(0);
+  })();
+
+  // waitlist form
+  (function () {
+    const form = document.getElementById('waitlist-form');
+    const errorEl = document.getElementById('waitlist-error');
+    const successEl = document.getElementById('waitlist-success');
+    const btn = form.querySelector('button[type=submit]');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true;
+      btn.textContent = 'Joining...';
+      errorEl.style.display = 'none';
+
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 10000);
+      const email = document.getElementById('waitlist-email').value.trim();
+      const rawUtm = new URLSearchParams(window.location.search).get('utm_source');
+      const utmSource = rawUtm ? 'landing_page+' + rawUtm : 'landing_page';
+
+      try {
+        const resp = await fetch(form.action, {
+          method: 'POST',
+          body: JSON.stringify({ email, utm_source: utmSource }),
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          signal: controller.signal
+        });
+        clearTimeout(timeout);
+
+        if (resp.status === 201) {
+          form.style.display = 'none';
+          successEl.style.display = 'block';
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'waitlist_signup', { event_category: 'engagement', event_label: 'waitlist_form' });
+          }
+        } else if (resp.status === 409) {
+          errorEl.textContent = 'This email is already on the waitlist.';
+          errorEl.style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Join waitlist →';
+        } else {
+          errorEl.textContent = 'Something went wrong. Please try again.';
+          errorEl.style.display = 'block';
+          btn.disabled = false;
+          btn.textContent = 'Join waitlist →';
+        }
+      } catch (err) {
+        clearTimeout(timeout);
+        errorEl.textContent = err.name === 'AbortError'
+          ? 'Request timed out. Please check your connection and try again.'
+          : 'Something went wrong. Please try again.';
+        errorEl.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Join waitlist →';
+      }
+    });
   })();
 
   // smooth scroll
