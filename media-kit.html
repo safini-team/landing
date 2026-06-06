@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Safini — Media Kit</title>
+<meta name="description" content="Download Safini brand assets, logos, and brand guidelines." />
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --violet: #8100D1;
+    --magenta: #B500B2;
+    --pink: #FF52A0;
+    --peach: #FFA47F;
+    --ink: #15021f;
+    --ink-2: #2b0a3a;
+    --paper: #fff5ef;
+    --paper-2: #ffe9dc;
+    --line: rgba(21, 2, 31, 0.12);
+    --display: "Quicksand", system-ui, sans-serif;
+    --sans: "Quicksand", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--pink); color: white; }
+
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 100;
+    opacity: 0.05; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+
+  /* ── NAV ── */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px;
+    margin: 16px auto 0;
+    max-width: 1100px;
+    background: rgba(255, 245, 239, 0.88);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    box-shadow: 0 8px 30px -16px rgba(129,0,209,0.3);
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--display); font-weight: 700; font-size: 21px;
+    letter-spacing: -0.01em; text-decoration: none; color: var(--ink);
+  }
+  .nav-brand img { width: 32px; height: 32px; border-radius: 9px; }
+  .nav-back {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 14px; font-weight: 600; color: var(--ink);
+    text-decoration: none; opacity: .7;
+    transition: opacity .2s ease;
+  }
+  .nav-back:hover { opacity: 1; }
+  .nav-back svg { width: 16px; height: 16px; }
+
+  /* ── HERO ── */
+  .mk-hero {
+    padding: 80px 0 60px;
+    text-align: center;
+  }
+  .mk-label {
+    display: inline-block;
+    font-family: var(--mono); font-size: 12px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.16em; color: var(--violet);
+    margin-bottom: 18px;
+  }
+  .mk-hero h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1.02; letter-spacing: -0.02em;
+    margin: 0 0 18px;
+  }
+  .mk-hero p {
+    font-size: 17px; font-weight: 500; line-height: 1.6;
+    color: color-mix(in oklab, var(--ink) 68%, transparent);
+    max-width: 56ch; margin: 0 auto;
+  }
+
+  /* ── SECTION ── */
+  .mk-section { padding: 60px 0; }
+  .mk-section + .mk-section { border-top: 1px solid var(--line); }
+  .mk-section-head { margin-bottom: 36px; }
+  .mk-section-head h2 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(24px, 3.2vw, 36px);
+    letter-spacing: -0.01em; margin: 0 0 8px;
+  }
+  .mk-section-head p {
+    font-size: 15px; font-weight: 500; line-height: 1.55;
+    color: color-mix(in oklab, var(--ink) 65%, transparent); margin: 0;
+  }
+  .section-tag {
+    display: inline-block;
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.16em; color: var(--violet);
+    margin-bottom: 10px;
+  }
+
+  /* ── ASSET GRID ── */
+  .asset-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 760px) { .asset-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .asset-grid { grid-template-columns: 1fr; } }
+
+  .asset-card {
+    background: white; border: 1px solid var(--line);
+    border-radius: 24px; overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: box-shadow .25s ease, transform .25s ease;
+  }
+  .asset-card:hover { transform: translateY(-3px); box-shadow: 0 20px 44px -22px rgba(129,0,209,0.35); }
+
+  .asset-preview {
+    display: flex; align-items: center; justify-content: center;
+    padding: 40px 28px;
+    min-height: 200px;
+  }
+  .asset-preview.light { background: white; }
+  .asset-preview.dark  { background: var(--ink); }
+  .asset-preview.violet { background: var(--violet); }
+  .asset-preview.checker {
+    background-color: #f0f0f0;
+    background-image:
+      linear-gradient(45deg, #e0e0e0 25%, transparent 25%),
+      linear-gradient(-45deg, #e0e0e0 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #e0e0e0 75%),
+      linear-gradient(-45deg, transparent 75%, #e0e0e0 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  }
+  .asset-preview img {
+    max-width: 100%; max-height: 160px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.18));
+  }
+
+  .asset-info {
+    padding: 20px 22px 22px;
+    border-top: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .asset-meta { display: flex; flex-direction: column; gap: 4px; }
+  .asset-name {
+    font-family: var(--display); font-weight: 700; font-size: 16px;
+    color: var(--ink);
+  }
+  .asset-detail {
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: color-mix(in oklab, var(--ink) 50%, transparent);
+  }
+  .asset-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag {
+    font-family: var(--mono); font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    background: var(--paper-2); color: var(--ink);
+    padding: 4px 9px; border-radius: 6px;
+    border: 1px solid var(--line);
+  }
+  .asset-downloads { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn-dl {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 10px 18px; border-radius: 999px;
+    font-family: var(--sans); font-size: 13px; font-weight: 600;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .btn-dl svg { width: 14px; height: 14px; flex: none; }
+  .btn-dl-primary {
+    background: var(--ink); color: var(--paper);
+  }
+  .btn-dl-primary:hover { background: var(--violet); transform: translateY(-1px); }
+  .btn-dl-ghost {
+    background: transparent; color: var(--ink);
+    border: 1.5px solid var(--line-strong, rgba(21,2,31,0.85));
+  }
+  .btn-dl-ghost:hover { background: var(--ink); color: var(--paper); transform: translateY(-1px); }
+
+  /* ── COLOR PALETTE ── */
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 760px) { .color-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 480px) { .color-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .color-swatch {
+    border-radius: 18px; overflow: hidden;
+    border: 1px solid var(--line);
+    background: white;
+  }
+  .swatch-block {
+    height: 80px;
+  }
+  .swatch-info {
+    padding: 12px 14px;
+  }
+  .swatch-name {
+    font-family: var(--display); font-weight: 700; font-size: 14px;
+    color: var(--ink); margin-bottom: 3px;
+  }
+  .swatch-hex {
+    font-family: var(--mono); font-size: 12px;
+    color: color-mix(in oklab, var(--ink) 58%, transparent);
+    cursor: pointer;
+    transition: color .15s ease;
+  }
+  .swatch-hex:hover { color: var(--violet); }
+  .swatch-hex.copied { color: var(--violet); }
+
+  /* ── TYPOGRAPHY ── */
+  .type-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  @media (max-width: 640px) { .type-grid { grid-template-columns: 1fr; } }
+
+  .type-card {
+    background: white; border: 1px solid var(--line);
+    border-radius: 20px; padding: 28px 26px;
+  }
+  .type-label {
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--violet); margin-bottom: 16px;
+  }
+  .type-sample-display {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(28px, 4.5vw, 48px);
+    line-height: 1.05; letter-spacing: -0.02em;
+    color: var(--ink); margin-bottom: 16px;
+  }
+  .type-sample-mono {
+    font-family: var(--mono); font-size: 16px; font-weight: 500;
+    line-height: 1.6; color: var(--ink); margin-bottom: 16px;
+  }
+  .type-detail {
+    font-size: 14px; font-weight: 500; line-height: 1.55;
+    color: color-mix(in oklab, var(--ink) 62%, transparent);
+  }
+  .type-weights {
+    display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px;
+  }
+  .weight-chip {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--paper-2); border-radius: 8px; padding: 7px 12px;
+    font-size: 13px; font-weight: 500;
+    border: 1px solid var(--line);
+  }
+  .weight-chip span {
+    font-family: var(--mono); font-size: 11px;
+    color: color-mix(in oklab, var(--ink) 55%, transparent);
+  }
+
+  /* ── USAGE NOTES ── */
+  .usage-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  @media (max-width: 640px) { .usage-grid { grid-template-columns: 1fr; } }
+
+  .usage-card {
+    border-radius: 18px; padding: 22px 24px;
+    border: 1px solid var(--line);
+  }
+  .usage-card.do { background: #f0faf4; border-color: #b6e8c8; }
+  .usage-card.dont { background: #fff2f2; border-color: #f8c8c8; }
+  .usage-card h4 {
+    font-family: var(--display); font-weight: 700; font-size: 16px;
+    margin: 0 0 12px; display: flex; align-items: center; gap: 8px;
+  }
+  .usage-card.do h4 { color: #166534; }
+  .usage-card.dont h4 { color: #991b1b; }
+  .usage-card ul {
+    margin: 0; padding: 0; list-style: none;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .usage-card li {
+    font-size: 14px; font-weight: 500; line-height: 1.45;
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .usage-card.do li { color: #166534; }
+  .usage-card.dont li { color: #991b1b; }
+  .usage-card li::before { content: attr(data-bullet); flex: none; font-weight: 700; }
+
+  /* ── FOOTER ── */
+  .mk-footer {
+    padding: 40px 0 32px;
+    border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .mk-footer-brand {
+    display: flex; align-items: center; gap: 9px;
+    font-family: var(--display); font-weight: 700; font-size: 18px;
+    text-decoration: none; color: var(--ink);
+  }
+  .mk-footer-brand img { width: 30px; height: 30px; border-radius: 8px; }
+  .mk-footer-links {
+    display: flex; gap: 20px; flex-wrap: wrap;
+  }
+  .mk-footer-links a {
+    font-size: 13px; font-weight: 500; color: var(--ink);
+    text-decoration: none; opacity: .65;
+  }
+  .mk-footer-links a:hover { opacity: 1; }
+
+  /* ── MOBILE ── */
+  @supports (padding: env(safe-area-inset-top)) {
+    .nav {
+      padding-left: max(14px, env(safe-area-inset-left));
+      padding-right: max(14px, env(safe-area-inset-right));
+    }
+    .mk-footer { padding-bottom: max(32px, calc(20px + env(safe-area-inset-bottom))); }
+  }
+
+  @media (max-width: 480px) {
+    .container { padding: 0 16px; }
+    .nav { margin: 8px 12px 0; padding: 10px 14px; border-radius: 18px; }
+    .nav-brand { font-size: 18px; }
+    .nav-brand img { width: 28px; height: 28px; }
+    .mk-hero { padding: 56px 0 44px; }
+    .mk-section { padding: 44px 0; }
+    .asset-preview { padding: 32px 20px; min-height: 160px; }
+    .asset-info { padding: 16px 18px 20px; }
+    .mk-footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-brand">
+    <img src="assets/safini-penguin.png" alt="Safini" />Safini
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Back to site
+  </a>
+</nav>
+
+<!-- HERO -->
+<header class="mk-hero">
+  <div class="container">
+    <div class="mk-label">Press &amp; media</div>
+    <h1>Safini Media Kit</h1>
+    <p>Logos, mascots, brand colors, and guidelines for press coverage, partnerships, and integrations. Please read the usage notes before publishing.</p>
+  </div>
+</header>
+
+<!-- ASSETS -->
+<section class="mk-section">
+  <div class="container">
+    <div class="mk-section-head">
+      <div class="section-tag">Brand assets</div>
+      <h2>Logos &amp; Characters</h2>
+      <p>Use the version that works best on your background. Always use the original files — don't redraw or distort.</p>
+    </div>
+
+    <div class="asset-grid">
+
+      <div class="asset-card">
+        <div class="asset-preview checker">
+          <img src="assets/safini-penguin.png" alt="Safini Penguin Icon" />
+        </div>
+        <div class="asset-info">
+          <div class="asset-meta">
+            <div class="asset-name">Fini — App Icon</div>
+            <div class="asset-detail">PNG · Transparent</div>
+          </div>
+          <div class="asset-tags">
+            <span class="tag">Icon</span>
+            <span class="tag">Mascot</span>
+            <span class="tag">Transparent BG</span>
+          </div>
+          <div class="asset-downloads">
+            <a href="assets/safini-penguin.png" download="safini-fini-icon.png" class="btn-dl btn-dl-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 11l4 4 4-4M3 17v3a1 1 0 001 1h16a1 1 0 001-1v-3"/></svg>
+              Download PNG
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="asset-card">
+        <div class="asset-preview light">
+          <img src="assets/safini-logo.png" alt="Safini Logo" />
+        </div>
+        <div class="asset-info">
+          <div class="asset-meta">
+            <div class="asset-name">Safini Logo — Light</div>
+            <div class="asset-detail">PNG · Light background</div>
+          </div>
+          <div class="asset-tags">
+            <span class="tag">Logo</span>
+            <span class="tag">Wordmark</span>
+            <span class="tag">Light BG</span>
+          </div>
+          <div class="asset-downloads">
+            <a href="assets/safini-logo.png" download="safini-logo-light.png" class="btn-dl btn-dl-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 11l4 4 4-4M3 17v3a1 1 0 001 1h16a1 1 0 001-1v-3"/></svg>
+              Download PNG
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="asset-card">
+        <div class="asset-preview violet">
+          <img src="assets/safini-mascot.png" alt="Safini Mascot" style="filter: drop-shadow(0 12px 24px rgba(0,0,0,0.4));" />
+        </div>
+        <div class="asset-info">
+          <div class="asset-meta">
+            <div class="asset-name">Fini — Full Mascot</div>
+            <div class="asset-detail">PNG · Transparent</div>
+          </div>
+          <div class="asset-tags">
+            <span class="tag">Mascot</span>
+            <span class="tag">Full Body</span>
+            <span class="tag">Transparent BG</span>
+          </div>
+          <div class="asset-downloads">
+            <a href="assets/safini-mascot.png" download="safini-mascot-full.png" class="btn-dl btn-dl-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 11l4 4 4-4M3 17v3a1 1 0 001 1h16a1 1 0 001-1v-3"/></svg>
+              Download PNG
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COLOR PALETTE -->
+<section class="mk-section">
+  <div class="container">
+    <div class="mk-section-head">
+      <div class="section-tag">Brand colors</div>
+      <h2>Color Palette</h2>
+      <p>Click any hex code to copy it. Violet is the primary brand color; use the full palette for illustrations and UI accents.</p>
+    </div>
+
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#8100D1;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Violet</div>
+          <div class="swatch-hex" data-hex="#8100D1">#8100D1</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#B500B2;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Magenta</div>
+          <div class="swatch-hex" data-hex="#B500B2">#B500B2</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#FF52A0;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Pink</div>
+          <div class="swatch-hex" data-hex="#FF52A0">#FF52A0</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#FFA47F;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Peach</div>
+          <div class="swatch-hex" data-hex="#FFA47F">#FFA47F</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#15021f;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Ink</div>
+          <div class="swatch-hex" data-hex="#15021f">#15021f</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#fff5ef; border-bottom: 1px solid rgba(21,2,31,0.1);"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Paper</div>
+          <div class="swatch-hex" data-hex="#fff5ef">#fff5ef</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section class="mk-section">
+  <div class="container">
+    <div class="mk-section-head">
+      <div class="section-tag">Typography</div>
+      <h2>Typefaces</h2>
+      <p>Both fonts are available free on Google Fonts.</p>
+    </div>
+
+    <div class="type-grid">
+      <div class="type-card">
+        <div class="type-label">Display &amp; Body — Quicksand</div>
+        <div class="type-sample-display">Beat the brainrot.</div>
+        <div class="type-detail">
+          Used for all headings, UI labels, buttons, and body copy. Rounded, friendly, and highly legible at small sizes.
+        </div>
+        <div class="type-weights">
+          <div class="weight-chip" style="font-weight:400">Regular <span>400</span></div>
+          <div class="weight-chip" style="font-weight:500">Medium <span>500</span></div>
+          <div class="weight-chip" style="font-weight:600">SemiBold <span>600</span></div>
+          <div class="weight-chip" style="font-weight:700">Bold <span>700</span></div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-label">Monospace — JetBrains Mono</div>
+        <div class="type-sample-mono">FOCUS · MEMORY<br />COGNITION / 2026</div>
+        <div class="type-detail">
+          Used for labels, section tags, metadata, hex codes, and any technical/data context. Adds a precision feel against Quicksand's warmth.
+        </div>
+        <div class="type-weights">
+          <div class="weight-chip" style="font-family:monospace; font-weight:400">Regular <span>400</span></div>
+          <div class="weight-chip" style="font-family:monospace; font-weight:600">SemiBold <span>600</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USAGE NOTES -->
+<section class="mk-section">
+  <div class="container">
+    <div class="mk-section-head">
+      <div class="section-tag">Guidelines</div>
+      <h2>Usage Notes</h2>
+      <p>A few simple rules to keep the brand consistent wherever it appears.</p>
+    </div>
+
+    <div class="usage-grid">
+      <div class="usage-card do">
+        <h4>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+          Do
+        </h4>
+        <ul>
+          <li data-bullet="✓">Use the provided PNG files without modification.</li>
+          <li data-bullet="✓">Refer to the product as "Safini" (capital S, no space).</li>
+          <li data-bullet="✓">Give the mascot adequate clear space — at least its own width on all sides.</li>
+          <li data-bullet="✓">Use Violet (#8100D1) as the primary accent when the full brand palette isn't available.</li>
+          <li data-bullet="✓">Contact us before using assets in video, merchandise, or co-branded materials.</li>
+        </ul>
+      </div>
+      <div class="usage-card dont">
+        <h4>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          Don't
+        </h4>
+        <ul>
+          <li data-bullet="✗">Stretch, rotate, recolor, or add effects to the logo or mascot.</li>
+          <li data-bullet="✗">Spell it "SAFINI", "safini", or "Safini app".</li>
+          <li data-bullet="✗">Place the logo on a background where contrast is insufficient.</li>
+          <li data-bullet="✗">Use the mascot in contexts that could be seen as endorsing third-party products.</li>
+          <li data-bullet="✗">Recreate the logo or mascot from scratch.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="mk-section" style="padding-bottom: 80px;">
+  <div class="container" style="text-align: center;">
+    <div class="mk-section-head" style="margin-bottom: 0;">
+      <div class="section-tag">Press contact</div>
+      <h2>Need something else?</h2>
+      <p style="margin-bottom: 28px;">Custom formats, high-res exports, interview requests, or partnership inquiries — reach out directly.</p>
+      <a href="mailto:safini.team@gmail.com" class="btn-dl btn-dl-primary" style="font-size: 15px; padding: 14px 28px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        safini.team@gmail.com
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="mk-footer">
+      <a href="index.html" class="mk-footer-brand">
+        <img src="assets/safini-penguin.png" alt="Safini" />
+        Safini
+      </a>
+      <div class="mk-footer-links">
+        <a href="index.html">Back to site</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="mailto:safini.team@gmail.com">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.swatch-hex').forEach(el => {
+    el.addEventListener('click', () => {
+      const hex = el.dataset.hex;
+      navigator.clipboard.writeText(hex).then(() => {
+        const orig = el.textContent;
+        el.textContent = 'Copied!';
+        el.classList.add('copied');
+        setTimeout(() => { el.textContent = orig; el.classList.remove('copied'); }, 1400);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
