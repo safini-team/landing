@@ -1,1717 +1,1130 @@
-<!DOCTYPE html>
-<html lang="ru">
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">Safini — Дети зарабатывают экранное время</title>
-    <!-- OG / Twitter Card — domain: safini.fun | update og-image.png path before launch -->
-    <meta id="meta-og-title" property="og:title" content="Safini — Дети зарабатывают экранное время">
-    <meta id="meta-og-description" property="og:description" content="Safini заменяет споры из-за гаджетов системой наград, которую дети действительно любят. Присоединяйтесь к 1 247 семьям в листе ожидания.">
-    <meta property="og:image" content="https://safini.fun/og-image.png">
-    <meta property="og:url" content="https://safini.fun">
-    <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta id="meta-twitter-title" name="twitter:title" content="Safini — Дети зарабатывают экранное время">
-    <meta id="meta-twitter-description" name="twitter:description" content="Safini заменяет споры из-за гаджетов системой наград, которую дети действительно любят.">
-    <meta name="twitter:image" content="https://safini.fun/og-image.png">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Safini — Raise kids safely in a world built for endless scrolling.</title>
+<meta property="og:title" content="Safini — Raise kids safely in a world built for endless scrolling." />
+<meta property="og:description" content="Safini is the all-in-one app that helps parents turn screen time into growth time. Kids earn screen time by completing activities that support real cognitive development." />
+<meta property="og:image" content="https://safini.fun/og-image.png" />
+<meta property="og:url" content="https://safini.fun" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Safini — Raise kids safely in a world built for endless scrolling." />
+<meta name="twitter:description" content="Safini is the all-in-one app that helps parents turn screen time into growth time." />
+<meta name="twitter:image" content="https://safini.fun/og-image.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --violet: #8100D1;
+    --magenta: #B500B2;
+    --pink: #FF52A0;
+    --peach: #FFA47F;
+    --ink: #15021f;
+    --ink-2: #2b0a3a;
+    --paper: #fff5ef;
+    --paper-2: #ffe9dc;
+    --line: rgba(21, 2, 31, 0.12);
+    --line-strong: rgba(21, 2, 31, 0.85);
+    --display: "Quicksand", system-ui, sans-serif;
+    --sans: "Quicksand", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
 
-    <!-- Google Analytics 4 — replace GA_MEASUREMENT_ID before launch -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--pink); color: white; }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 100;
+    opacity: 0.06; mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
 
-        :root {
-            --navy: #8100D1;
-            --navy-rgb: 129, 0, 209;
-            --navy-deep: #5D0098;
-            --blue: #B500B2;
-            --blue-rgb: 181, 0, 178;
-            --blue-light: #E7C8F6;
-            --blue-pale: #F8EDFF;
-            --green: #FF52A0;
-            --green-rgb: 255, 82, 160;
-            --green-deep: #B500B2;
-            --green-light: #FFE4D8;
-            --yellow: #FFA47F;
-            --yellow-rgb: 255, 164, 127;
-            --yellow-deep: #FF52A0;
-            --yellow-pale: #FFF1EA;
-            --cream: #FFF8FE;
-            --warm-white: #FFF4FC;
-            --ink: #1D1233;
-            --ink-rgb: 29, 18, 51;
-            --ink-light: #4C3B67;
-            --muted: #7C6B94;
-            --border: #EAD8F6;
-            --card: #FFFFFF;
-            --radius: 20px;
-        }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
 
-        html { scroll-behavior: smooth; }
+  /* ============ NAV ============ */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px;
+    margin: 16px auto 0;
+    max-width: 1100px;
+    background: rgba(255, 245, 239, 0.82);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    box-shadow: 0 8px 30px -16px rgba(129,0,209,0.35);
+  }
+  .nav-brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--display); font-weight: 700; font-size: 21px;
+    letter-spacing: -0.01em; text-decoration: none; color: var(--ink);
+  }
+  .nav-brand img { width: 32px; height: 32px; border-radius: 9px; }
+  .nav-links { display: flex; gap: 26px; font-size: 14px; font-weight: 500; }
+  .nav-links a { color: var(--ink); text-decoration: none; opacity: .72; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-cta {
+    background: var(--ink); color: var(--paper);
+    padding: 9px 18px; border-radius: 999px;
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .nav-cta:hover { background: var(--violet); transform: translateY(-1px); }
+  @media (max-width: 860px) { .nav-links { display: none; } }
 
-        body {
-            font-family: 'DM Sans', sans-serif;
-            background: var(--cream);
-            color: var(--ink);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+  /* ============ HERO ============ */
+  .hero { padding: 70px 0 30px; }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.05fr 1fr;
+    gap: 56px; align-items: center;
+  }
+  @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: 44px; } }
 
-        h1, h2, h3, h4, h5 { font-family: 'Bricolage Grotesque', sans-serif; }
+  .social-proof {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: 13px; font-weight: 600; color: var(--ink);
+    background: white; border: 1px solid var(--line);
+    padding: 6px 14px 6px 6px; border-radius: 999px;
+  }
+  .avatars { display: flex; }
+  .avatars span {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 2px solid white; margin-left: -8px;
+    background: var(--violet);
+  }
+  .avatars span:first-child { margin-left: 0; background: var(--pink); }
+  .avatars span:nth-child(2) { background: var(--magenta); }
+  .avatars span:nth-child(3) { background: var(--peach); }
+  .social-proof b { color: var(--violet); }
 
-        /* ========== NAV ========== */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            padding: 16px 24px; transition: all 0.4s ease;
-        }
-        nav.scrolled {
-            background: rgba(255, 248, 254, 0.88);
-            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-        .nav-inner {
-            max-width: 1200px; margin: 0 auto;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-        .brand-logo-frame {
-            width: 176px; height: 58px; overflow: hidden;
-            border-radius: 18px; display: block; flex-shrink: 0;
-        }
-        .brand-logo-image {
-            width: 100%; height: 100%; object-fit: cover; object-position: center;
-            display: block; filter: drop-shadow(0 10px 18px rgba(var(--navy-rgb), 0.12));
-        }
-        .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
-        .nav-links a {
-            text-decoration: none; color: var(--ink-light); font-weight: 500; font-size: 15px; transition: color 0.2s;
-        }
-        .nav-links a:hover { color: var(--navy); }
-        .nav-desktop-controls {
-            display: flex; align-items: center; gap: 18px;
-        }
-        .lang-switcher {
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 5px; border-radius: 999px;
-            background: rgba(255, 255, 255, 0.72);
-            border: 1px solid rgba(var(--navy-rgb), 0.12);
-            box-shadow: 0 8px 24px rgba(var(--navy-rgb), 0.08);
-        }
-        .lang-btn {
-            min-width: 48px; padding: 9px 12px; border: none; border-radius: 999px;
-            background: transparent; color: var(--ink-light);
-            font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 700;
-            letter-spacing: 0.04em; cursor: pointer; transition: all 0.25s ease;
-        }
-        .lang-btn:hover { color: var(--navy); }
-        .lang-btn.active {
-            background: linear-gradient(135deg, var(--navy), var(--blue));
-            color: white; box-shadow: 0 8px 20px rgba(var(--navy-rgb), 0.24);
-        }
-        .btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 12px 28px; border-radius: 100px;
-            font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px;
-            text-decoration: none; transition: all 0.3s ease; border: none; cursor: pointer;
-        }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--navy), var(--blue));
-            color: white; box-shadow: 0 4px 20px rgba(var(--navy-rgb), 0.35);
-        }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(var(--navy-rgb), 0.45); }
-        .nav-links .btn-primary,
-        .nav-links .btn-primary:hover,
-        .mobile-nav-overlay .btn-primary,
-        .mobile-nav-overlay .btn-primary:hover {
-            color: white;
-        }
-        .btn-outline {
-            background: transparent; color: var(--navy); border: 2px solid var(--blue-light);
-        }
-        .btn-outline:hover { background: var(--navy); color: white; border-color: var(--navy); }
+  h1.hero-title {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(38px, 5.2vw, 66px);
+    line-height: 1.04; letter-spacing: -0.02em;
+    margin: 22px 0 0;
+    text-wrap: balance;
+  }
+  .hero-title .grad {
+    color: var(--violet);
+  }
+  .hero-title .strike { position: relative; display: inline-block; }
+  .hero-title .strike::after {
+    content: ""; position: absolute; left: -4%; right: -4%; top: 52%;
+    height: 0.1em; background: var(--ink); transform: rotate(-3deg); border-radius: 2px;
+  }
+  .hero-sub {
+    margin-top: 22px; max-width: 480px;
+    font-size: 18px; line-height: 1.55; font-weight: 500;
+    color: color-mix(in oklab, var(--ink) 75%, transparent);
+  }
+  .hero-sub strong { color: var(--violet); font-weight: 700; }
+  .tagline-row {
+    margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px;
+  }
+  .tagline-row span {
+    font-family: var(--display); font-weight: 600; font-size: 14px;
+    color: var(--ink); background: white;
+    border: 1px solid var(--line); border-radius: 999px;
+    padding: 8px 16px; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .tagline-row span::before {
+    content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--pink);
+  }
+  .tagline-row span:nth-child(2)::before { background: var(--violet); }
+  .tagline-row span:nth-child(3)::before { background: var(--peach); }
 
-        /* ========== HERO ========== */
-        .hero {
-            min-height: 100vh; display: flex; align-items: center;
-            padding: 120px 24px 80px; position: relative; overflow: hidden;
-        }
-        .hero::before {
-            content: ''; position: absolute; top: -200px; right: -200px;
-            width: 700px; height: 700px;
-            background: radial-gradient(circle, rgba(var(--blue-rgb), 0.12) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .hero::after {
-            content: ''; position: absolute; bottom: -100px; left: -150px;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(var(--green-rgb), 0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .hero-inner {
-            max-width: 1200px; margin: 0 auto;
-            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%;
-        }
-        .hero-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: linear-gradient(135deg, rgba(var(--navy-rgb), 0.08), rgba(var(--green-rgb), 0.12));
-            border: 1px solid var(--blue-light); padding: 8px 18px; border-radius: 100px;
-            font-size: 14px; font-weight: 500; color: var(--navy); margin-bottom: 24px;
-            animation: fadeUp 0.8s ease both;
-        }
-        .hero h1 {
-            font-size: clamp(42px, 5.5vw, 68px); font-weight: 800;
-            line-height: 1.08; letter-spacing: -0.02em; color: var(--ink);
-            margin-bottom: 24px; animation: fadeUp 0.8s ease 0.1s both;
-        }
-        .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--navy), var(--blue));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .hero h1 .highlight-green {
-            background: linear-gradient(135deg, var(--green-deep), var(--green));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .hero-sub {
-            font-size: 19px; line-height: 1.65; color: var(--muted); max-width: 520px;
-            margin-bottom: 36px; animation: fadeUp 0.8s ease 0.2s both;
-        }
-        .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; animation: fadeUp 0.8s ease 0.3s both; }
-        .hero-proof {
-            display: flex; align-items: center; gap: 16px; margin-top: 40px;
-            animation: fadeUp 0.8s ease 0.4s both;
-        }
-        .hero-avatars { display: flex; }
-        .hero-avatars span {
-            width: 38px; height: 38px; border-radius: 50%; border: 3px solid var(--cream);
-            margin-left: -10px; display: flex; align-items: center; justify-content: center; font-size: 18px;
-        }
-        .hero-avatars span:first-child { margin-left: 0; }
-        .hero-proof-text { font-size: 14px; color: var(--muted); line-height: 1.4; }
-        .hero-proof-text strong { color: var(--ink); }
+  .hero-ctas { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 26px; border-radius: 999px;
+    font-size: 16px; font-weight: 600; text-decoration: none;
+    border: none; cursor: pointer; font-family: var(--sans);
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-primary {
+    background: var(--ink); color: var(--paper);
+    box-shadow: 0 10px 30px -10px color-mix(in oklab, var(--violet) 60%, transparent);
+  }
+  .btn-primary:hover { transform: translateY(-2px); background: var(--violet); }
+  .btn-ghost { background: white; color: var(--ink); border: 1px solid var(--line-strong); }
+  .btn-ghost:hover { background: var(--ink); color: var(--paper); }
 
-        /* Phone Mockup */
-        .hero-visual {
-            display: flex; justify-content: center; align-items: center;
-            position: relative; animation: fadeUp 0.8s ease 0.3s both;
-        }
-        .phone-mockup {
-            width: 300px; height: 620px; background: var(--ink);
-            border-radius: 44px; padding: 12px;
-            box-shadow: 0 40px 80px rgba(var(--ink-rgb), 0.22), 0 0 0 1px rgba(var(--blue-rgb), 0.12),
-            inset 0 0 0 2px rgba(255,255,255,0.08);
-            position: relative; transform: rotate(2deg);
-        }
-        .phone-screen {
-            width: 100%; height: 100%;
-            background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 15%, var(--warm-white) 30%);
-            border-radius: 34px; overflow: hidden; position: relative;
-        }
-        .phone-notch {
-            width: 120px; height: 28px; background: var(--ink);
-            border-radius: 0 0 18px 18px; margin: 0 auto; position: relative; z-index: 2;
-        }
-        .phone-header { text-align: center; padding: 16px 20px 20px; color: white; }
-        .phone-greeting { font-size: 13px; opacity: 0.8; margin-bottom: 4px; }
-        .phone-name { font-family: 'Bricolage Grotesque'; font-size: 20px; font-weight: 700; }
-        .phone-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 16px; margin-top: 8px; }
-        .phone-stat {
-            background: white; border-radius: 16px; padding: 14px; text-align: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        }
-        .phone-stat-icon { font-size: 20px; margin-bottom: 4px; }
-        .phone-stat-value { font-family: 'Bricolage Grotesque'; font-size: 22px; font-weight: 800; color: var(--ink); }
-        .phone-stat-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
-        .phone-tasks { padding: 16px; margin-top: 8px; }
-        .phone-tasks-title { font-family: 'Bricolage Grotesque'; font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 10px; }
-        .phone-task-item {
-            display: flex; align-items: center; gap: 10px;
-            background: white; border-radius: 12px; padding: 10px 12px; margin-bottom: 8px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-        }
-        .phone-task-icon {
-            width: 34px; height: 34px; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;
-        }
-        .phone-task-info { flex: 1; }
-        .phone-task-name { font-size: 13px; font-weight: 600; color: var(--ink); }
-        .phone-task-reward { font-size: 11px; color: var(--muted); }
-        .phone-task-coins { font-family: 'Bricolage Grotesque'; font-weight: 700; font-size: 13px; color: var(--green-deep); }
+  .hero-meta {
+    margin-top: 30px; display: flex; gap: 22px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: color-mix(in oklab, var(--ink) 58%, transparent);
+  }
+  .hero-meta span { display: flex; align-items: center; gap: 7px; }
+  .hero-meta span::before { content: ""; width: 6px; height: 6px; background: var(--violet); border-radius: 50%; }
 
-        /* Floating elements */
-        .float-coin {
-            position: absolute; width: 50px; height: 50px;
-            background: linear-gradient(135deg, var(--blue), var(--yellow));
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 22px; box-shadow: 0 8px 24px rgba(var(--yellow-rgb), 0.32);
-            animation: float 3s ease-in-out infinite;
-        }
-        .float-coin.c1 { top: 40px; right: -10px; }
-        .float-coin.c2 { bottom: 120px; left: -20px; animation-delay: 1s; width: 40px; height: 40px; font-size: 18px; }
-        .float-badge {
-            position: absolute; background: white; border-radius: 14px; padding: 10px 16px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-            display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600;
-            animation: float 4s ease-in-out infinite;
-        }
-        .float-badge.b1 { top: 80px; left: -30px; animation-delay: 0.5s; color: var(--green-deep); }
-        .float-badge.b2 { bottom: 60px; right: -20px; animation-delay: 1.5s; color: var(--navy); }
+  /* product screenshot — phone mockup */
+  .product-shot {
+    position: relative; aspect-ratio: 4 / 3.4;
+    border-radius: 28px; overflow: hidden;
+    background: var(--ink);
+    border: 1px solid var(--line);
+    display: grid; place-items: center;
+    box-shadow: 0 40px 80px -36px rgba(129,0,209,0.5);
+  }
+  .phone {
+    width: 234px; height: 480px;
+    background: var(--ink-2);
+    border-radius: 38px; border: 8px solid #0c0114;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+    position: relative; overflow: hidden;
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+  .phone-notch {
+    position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+    width: 90px; height: 22px; background: #0c0114; border-radius: 999px; z-index: 3;
+  }
+  .phone-screen {
+    position: absolute; inset: 0; padding: 40px 16px 16px;
+    background: var(--paper);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .ps-top { display: flex; align-items: center; justify-content: space-between; }
+  .ps-hi { font-family: var(--display); font-weight: 700; font-size: 16px; color: var(--ink); }
+  .ps-coins {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--pink);
+    color: white; font-weight: 700; font-size: 13px;
+    padding: 4px 10px; border-radius: 999px;
+  }
+  .ps-coins .c { width: 14px; height: 14px; border-radius: 50%; background: rgba(255,255,255,.85); display:grid; place-items:center; color: var(--magenta); font-size: 9px; }
+  .ps-card {
+    background: white; border-radius: 16px; padding: 12px;
+    border: 1px solid var(--line); display: flex; align-items: center; gap: 10px;
+  }
+  .ps-ic { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; color: white; flex: none; }
+  .ps-meta b { font-family: var(--display); font-size: 13px; display: block; color: var(--ink); }
+  .ps-meta small { font-size: 10px; color: color-mix(in oklab, var(--ink) 60%, transparent); }
+  .ps-plus { margin-left: auto; font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--violet); flex:none; }
+  .ps-bar { height: 8px; border-radius: 999px; background: var(--paper-2); overflow: hidden; }
+  .ps-bar i { display: block; height: 100%; border-radius: 999px; background: var(--violet); }
 
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  /* ============ PARTNERS ============ */
+  .partners { padding: 40px 0 20px; }
+  .partners-row {
+    display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+    justify-content: center;
+  }
+  .partners-label {
+    font-family: var(--mono); font-size: 12px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: color-mix(in oklab, var(--ink) 55%, transparent);
+  }
+  .logo-strip { display: flex; gap: 36px; flex-wrap: wrap; align-items: center; justify-content: center; }
+  .logo-strip .lg {
+    font-family: var(--display); font-weight: 700; font-size: 19px;
+    color: color-mix(in oklab, var(--ink) 45%, transparent);
+    display: flex; align-items: center; gap: 8px;
+    filter: grayscale(1); transition: filter .2s ease, color .2s ease;
+  }
+  .logo-strip .lg:hover { filter: grayscale(0); color: var(--violet); }
+  .logo-strip .lg svg { width: 22px; height: 22px; }
 
-        /* ========== WAVE DIVIDERS ========== */
-        .wave-divider { width: 100%; line-height: 0; overflow: hidden; }
-        .wave-divider svg { display: block; width: 100%; height: auto; }
+  /* ============ SECTION SHELL ============ */
+  section.block { padding: 100px 0; }
+  .head { text-align: center; max-width: 720px; margin: 0 auto 56px; }
+  .section-label {
+    display: inline-block;
+    font-family: var(--mono); font-size: 12px; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.16em; color: var(--violet);
+    margin-bottom: 16px;
+  }
+  h2.section-title {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(34px, 4.6vw, 58px);
+    line-height: 1.02; letter-spacing: -0.02em; margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  h2.section-title em {
+    font-style: normal;
+    color: var(--violet);
+  }
+  .head p {
+    font-size: 17px; line-height: 1.55; font-weight: 500;
+    color: color-mix(in oklab, var(--ink) 70%, transparent); margin: 0;
+  }
 
-        /* ========== PROBLEM ========== */
-        .problem { padding: 100px 24px; position: relative; }
-        .problem-inner { max-width: 1200px; margin: 0 auto; }
-        .section-label {
-            font-family: 'Bricolage Grotesque'; font-weight: 700; font-size: 13px;
-            text-transform: uppercase; letter-spacing: 0.1em; color: var(--blue); margin-bottom: 12px;
-        }
-        .problem h2 {
-            font-size: clamp(32px, 4vw, 48px); font-weight: 800; line-height: 1.15;
-            color: var(--ink); max-width: 700px; margin-bottom: 48px;
-        }
-        .problem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .problem-card {
-            background: var(--card); border-radius: var(--radius);
-            border: 1px solid var(--border); transition: all 0.3s ease;
-            position: relative; overflow: hidden;
-        }
-        .problem-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(var(--navy-rgb), 0.12); }
-        .problem-card-illustration { width: 100%; height: 200px; position: relative; overflow: hidden; }
-        .problem-card-body { padding: 28px; }
-        .problem-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: var(--ink); }
-        .problem-card p { font-size: 15px; line-height: 1.6; color: var(--muted); }
+  /* ============ BENEFITS (bento) ============ */
+  .bento {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr; gap: 18px;
+  }
+  @media (max-width: 900px) { .bento { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .bento { grid-template-columns: 1fr; } }
 
-        /* ========== HOW IT WORKS ========== */
-        .how {
-            padding: 100px 24px;
-            background: linear-gradient(180deg, var(--warm-white) 0%, var(--blue-pale) 50%, var(--warm-white) 100%);
-        }
-        .how-inner { max-width: 1200px; margin: 0 auto; text-align: center; }
-        .how h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 16px; }
-        .how-sub {
-            font-size: 18px; color: var(--muted); max-width: 560px;
-            margin: 0 auto 60px; line-height: 1.6;
-        }
-        .how-steps {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; position: relative;
-        }
-        .how-step {
-            background: var(--card); border-radius: var(--radius);
-            padding: 36px 24px 32px; border: 1px solid var(--border);
-            position: relative; transition: all 0.3s ease;
-        }
-        .how-step:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(var(--navy-rgb), 0.12); }
-        .step-num {
-            width: 44px; height: 44px;
-            background: linear-gradient(135deg, var(--navy), var(--blue));
-            color: white; border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Bricolage Grotesque'; font-weight: 800; font-size: 18px;
-            margin: 0 auto 20px;
-        }
-        .how-step-icon { font-size: 42px; margin-bottom: 16px; }
-        .how-step h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; color: var(--ink); }
-        .how-step p { font-size: 14px; line-height: 1.6; color: var(--muted); }
-        .step-arrow {
-            position: absolute; right: -20px; top: 50%; transform: translateY(-50%);
-            font-size: 24px; color: var(--blue-light); z-index: 2;
-        }
+  .bcard {
+    background: white; border: 1px solid var(--line);
+    border-radius: 24px; padding: 30px;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease;
+    min-height: 220px;
+  }
+  .bcard:hover { transform: translateY(-4px); box-shadow: 0 24px 50px -28px rgba(129,0,209,0.4); }
+  .bcard.span2 { grid-column: span 2; }
+  @media (max-width: 560px) { .bcard.span2 { grid-column: span 1; } }
+  .bcard.dark {
+    background: var(--ink);
+    color: var(--paper); border-color: transparent;
+  }
+  .bcard .b-ic {
+    width: 50px; height: 50px; border-radius: 14px;
+    display: grid; place-items: center; color: white; margin-bottom: 18px;
+    background: var(--violet);
+  }
+  .bcard:nth-child(2) .b-ic { background: var(--magenta); }
+  .bcard:nth-child(3) .b-ic { background: var(--pink); }
+  .bcard:nth-child(4) .b-ic { background: var(--peach); }
+  .bcard:nth-child(5) .b-ic { background: var(--violet); }
+  .bcard h3 {
+    font-family: var(--display); font-weight: 700; font-size: 21px;
+    margin: 0 0 8px; letter-spacing: -0.01em;
+  }
+  .bcard p {
+    margin: 0; font-size: 14px; line-height: 1.55; font-weight: 500;
+    color: color-mix(in oklab, var(--ink) 68%, transparent);
+  }
+  .bcard.dark p { color: color-mix(in oklab, var(--paper) 72%, transparent); }
+  .bcard .big-num {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(48px, 6vw, 76px); line-height: 0.9; letter-spacing: -0.03em;
+    color: var(--peach);
+    margin-bottom: 6px;
+  }
 
-        /* ========== FEATURES ========== */
-        .features { padding: 100px 24px; }
-        .features-inner { max-width: 1200px; margin: 0 auto; }
-        .features h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 800; text-align: center; margin-bottom: 16px; }
-        .features-sub {
-            text-align: center; font-size: 18px; color: var(--muted);
-            max-width: 540px; margin: 0 auto 60px; line-height: 1.6;
-        }
-        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .feature-card {
-            background: var(--card); border-radius: var(--radius);
-            padding: 32px 28px; border: 1px solid var(--border); transition: all 0.3s ease;
-        }
-        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(var(--navy-rgb), 0.1); }
-        .feature-icon {
-            width: 52px; height: 52px; border-radius: 14px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 24px; margin-bottom: 18px;
-        }
-        .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--ink); }
-        .feature-card p { font-size: 14px; line-height: 1.6; color: var(--muted); }
+  /* ============ HOW IT WORKS ============ */
+  .how { background: var(--paper-2); }
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  @media (max-width: 800px) { .steps { grid-template-columns: 1fr; } }
+  .step {
+    background: white; border: 1px solid var(--line); border-radius: 24px;
+    padding: 34px; position: relative;
+  }
+  .step .n {
+    width: 46px; height: 46px; border-radius: 14px;
+    background: var(--ink); color: var(--paper);
+    font-family: var(--display); font-weight: 700; font-size: 20px;
+    display: grid; place-items: center; margin-bottom: 22px;
+  }
+  .step:nth-child(2) .n { background: var(--violet); }
+  .step:nth-child(3) .n { background: var(--pink); }
+  .step h4 { font-family: var(--display); font-weight: 700; font-size: 22px; margin: 0 0 10px; letter-spacing:-0.01em; }
+  .step p { margin: 0; font-size: 15px; line-height: 1.55; font-weight: 500; color: color-mix(in oklab, var(--ink) 70%, transparent); }
 
-        /* ========== COMPARISON ========== */
-        .comparison {
-            padding: 100px 24px; background: var(--ink); color: white;
-            position: relative; overflow: hidden;
-        }
-        .comparison::before {
-            content: ''; position: absolute; top: -200px; right: -200px;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(var(--green-rgb), 0.18) 0%, transparent 70%);
-        }
-        .comparison-inner { max-width: 1000px; margin: 0 auto; position: relative; z-index: 1; }
-        .comparison .section-label { color: var(--blue-light); }
-        .comparison h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 48px; }
-        .comp-table { width: 100%; border-collapse: separate; border-spacing: 0; }
-        .comp-table th, .comp-table td {
-            padding: 18px 24px; text-align: left; font-size: 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-        .comp-table th {
-            font-family: 'Bricolage Grotesque'; font-weight: 700; font-size: 14px;
-            text-transform: uppercase; letter-spacing: 0.06em; color: var(--blue-light); padding-bottom: 16px;
-        }
-        .comp-table td { color: rgba(255,255,255,0.7); }
-        .comp-table td:first-child { font-weight: 600; color: white; }
-        .comp-table .safini-col { background: rgba(var(--green-rgb), 0.16); color: white; font-weight: 600; }
-        .comp-table tr:first-child .safini-col { border-radius: 16px 16px 0 0; }
-        .comp-table tr:last-child .safini-col { border-radius: 0 0 16px 16px; }
-        .comp-check { color: var(--green); font-size: 18px; }
-        .comp-cross { color: rgba(255,255,255,0.25); font-size: 18px; }
+  /* ============ COGNITIVE CHARACTER SELECT ============ */
+  .cogselect { background: var(--ink); color: var(--paper); overflow: hidden; }
+  .cogselect .section-label { color: var(--peach); }
+  .cogselect h2.section-title { color: var(--paper); }
+  .cogselect h2.section-title em { color: var(--peach); }
+  .cogselect .head p { color: color-mix(in oklab, var(--paper) 72%, transparent); }
 
-        /* ========== TESTIMONIALS ========== */
-        .testimonials {
-            padding: 100px 24px; position: relative;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--yellow-pale) 100%);
-        }
-        .testimonials-inner { max-width: 1200px; margin: 0 auto; }
-        .testimonials h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 800; text-align: center; margin-bottom: 16px; }
-        .testimonials-sub { text-align: center; font-size: 18px; color: var(--muted); margin-bottom: 48px; }
-        .testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .testimonial-card {
-            background: var(--card); border-radius: var(--radius);
-            padding: 32px 28px; border: 1px solid var(--border); transition: all 0.3s ease;
-        }
-        .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(var(--navy-rgb), 0.08); }
-        .testimonial-stars { color: var(--yellow-deep); font-size: 15px; margin-bottom: 16px; letter-spacing: 2px; }
-        .testimonial-text { font-size: 15px; line-height: 1.7; color: var(--ink-light); margin-bottom: 20px; font-style: italic; }
-        .testimonial-author { display: flex; align-items: center; gap: 12px; }
-        .testimonial-avatar {
-            width: 42px; height: 42px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 20px;
-        }
-        .testimonial-name { font-weight: 700; font-size: 14px; color: var(--ink); }
-        .testimonial-role { font-size: 13px; color: var(--muted); }
+  .cs-stage {
+    --fn: var(--violet); --fnfg: #fff;
+    display: grid; grid-template-columns: 1fr 1.1fr; gap: 36px; align-items: stretch;
+    margin-top: 12px;
+  }
+  @media (max-width: 880px) { .cs-stage { grid-template-columns: 1fr; gap: 24px; } }
 
-        /* ========== PRICING ========== */
-        .pricing { padding: 100px 24px; }
-        .pricing-inner { max-width: 800px; margin: 0 auto; text-align: center; }
-        .pricing h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 800; margin-bottom: 16px; }
-        .pricing-sub { font-size: 18px; color: var(--muted); margin-bottom: 48px; line-height: 1.6; }
-        .pricing-card {
-            background: var(--card); border-radius: 28px;
-            padding: 48px; border: 2px solid var(--blue-light);
-            position: relative; overflow: hidden; max-width: 440px; margin: 0 auto;
-        }
-        .pricing-card::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px;
-            background: linear-gradient(90deg, var(--navy), var(--blue), var(--green), var(--yellow));
-        }
-        .pricing-badge {
-            display: inline-block; background: var(--green-light);
-            color: var(--green-deep); font-weight: 600; font-size: 13px;
-            padding: 6px 16px; border-radius: 100px;
-            border: 1px solid rgba(var(--green-rgb), 0.25); margin-bottom: 20px;
-        }
-        .pricing-amount { display: flex; align-items: baseline; justify-content: center; gap: 4px; margin-bottom: 8px; }
-        .pricing-dollar { font-family: 'Bricolage Grotesque'; font-size: 20px; font-weight: 700; color: var(--navy); }
-        .pricing-num { font-family: 'Bricolage Grotesque'; font-size: 64px; font-weight: 800; color: var(--ink); line-height: 1; }
-        .pricing-period { font-size: 16px; color: var(--muted); }
-        .pricing-desc { font-size: 15px; color: var(--muted); margin-bottom: 32px; }
-        .pricing-features { list-style: none; text-align: left; margin-bottom: 36px; }
-        .pricing-features li {
-            display: flex; align-items: center; gap: 12px;
-            padding: 10px 0; font-size: 15px; color: var(--ink-light);
-            border-bottom: 1px solid var(--border);
-        }
-        .pricing-features li:last-child { border-bottom: none; }
-        .pricing-features .li-icon {
-            width: 28px; height: 28px; background: var(--green-light);
-            border-radius: 8px; display: flex; align-items: center; justify-content: center;
-            font-size: 14px; flex-shrink: 0; color: var(--green-deep);
-        }
+  /* character card */
+  .cs-hero {
+    position: relative;
+    background: rgba(255,245,239,0.04);
+    border: 1px solid rgba(255,245,239,0.14);
+    border-radius: 28px;
+    padding: 28px 22px 30px;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  .cs-hero::before {
+    content: ""; position: absolute; left: 50%; top: 38%;
+    width: 360px; height: 360px; transform: translate(-50%,-50%);
+    background: var(--fn); border-radius: 50%;
+    filter: blur(70px); opacity: 0.45; transition: background .45s ease;
+    pointer-events: none;
+  }
+  .cs-counter {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em;
+    color: color-mix(in oklab, var(--paper) 60%, transparent);
+    position: relative; z-index: 2;
+  }
+  .cs-podium {
+    position: relative; z-index: 2;
+    width: 230px; height: 230px; margin: 6px 0 4px;
+    display: grid; place-items: center;
+  }
+  .cs-ring {
+    position: absolute; inset: 8px; border-radius: 50%;
+    border: 2px dashed color-mix(in oklab, var(--fn) 70%, transparent);
+    animation: csspin 24s linear infinite; transition: border-color .45s ease;
+  }
+  @keyframes csspin { to { transform: rotate(360deg); } }
+  .cs-disc {
+    position: absolute; inset: 30px; border-radius: 50%;
+    background: var(--fn); opacity: 0.16; transition: background .45s ease;
+  }
+  .cs-fini {
+    position: relative; z-index: 3;
+    width: 168px; height: 168px; object-fit: contain;
+    filter: drop-shadow(0 16px 28px rgba(0,0,0,0.45));
+    animation: csfloat 5s ease-in-out infinite;
+  }
+  @keyframes csfloat { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-10px); } }
+  .cs-emblem {
+    position: absolute; z-index: 4; right: 18px; bottom: 14px;
+    width: 56px; height: 56px; border-radius: 16px;
+    background: var(--fn); color: var(--fnfg);
+    display: grid; place-items: center;
+    box-shadow: 0 10px 22px -8px rgba(0,0,0,0.6);
+    border: 3px solid var(--ink);
+    transition: background .45s ease, color .45s ease;
+  }
+  .cs-class {
+    position: relative; z-index: 2;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--fn); margin-top: 6px; transition: color .45s ease;
+  }
+  .cs-fn {
+    position: relative; z-index: 2;
+    font-family: var(--display); font-weight: 700; font-size: 26px;
+    letter-spacing: -0.01em; margin: 6px 0 16px; color: var(--paper);
+  }
+  .cs-power {
+    position: relative; z-index: 2; width: 100%; max-width: 280px;
+  }
+  .cs-power .lab {
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: color-mix(in oklab, var(--paper) 60%, transparent); margin-bottom: 7px;
+  }
+  .cs-pips { display: flex; gap: 6px; }
+  .cs-pips i { flex: 1; height: 10px; border-radius: 999px; background: rgba(255,245,239,0.14); transition: background .3s ease, box-shadow .3s ease; }
+  .cs-pips i.on { background: var(--fn); box-shadow: 0 0 10px -2px var(--fn); }
 
-        /* ========== CTA ========== */
-        .cta { padding: 100px 24px; text-align: center; }
-        .cta-inner {
-            max-width: 700px; margin: 0 auto;
-            background: linear-gradient(135deg, var(--navy-deep), var(--navy), var(--blue));
-            border-radius: 32px; padding: 64px 48px; position: relative; overflow: hidden;
-        }
-        .cta-inner::before {
-            content: ''; position: absolute; top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.06) 0%, transparent 50%);
-        }
-        .cta h2 {
-            font-size: clamp(28px, 3.5vw, 40px); font-weight: 800;
-            color: white; margin-bottom: 16px; position: relative; z-index: 1;
-        }
-        .cta p {
-            font-size: 17px; color: rgba(255,255,255,0.8); margin-bottom: 32px;
-            line-height: 1.6; position: relative; z-index: 1;
-        }
-        .cta .btn-white {
-            background: white; color: var(--navy); font-weight: 700;
-            padding: 16px 36px; font-size: 16px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15); position: relative; z-index: 1;
-        }
-        .cta .btn-white:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
+  .cs-nav {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 5;
+    width: 42px; height: 42px; border-radius: 50%;
+    background: var(--paper); color: var(--ink); border: none; cursor: pointer;
+    display: grid; place-items: center; font-size: 22px; line-height: 1;
+    box-shadow: 0 8px 20px -8px rgba(0,0,0,0.5); transition: transform .2s ease, background .2s ease;
+  }
+  .cs-nav:hover { transform: translateY(-50%) scale(1.08); background: var(--peach); }
+  .cs-nav.prev { left: 12px; }
+  .cs-nav.next { right: 12px; }
 
-        /* ========== FOOTER ========== */
-        footer { padding: 48px 24px; border-top: 1px solid var(--border); }
-        .footer-inner {
-            max-width: 1200px; margin: 0 auto;
-            display: flex; align-items: center; justify-content: space-between;
-        }
-        .footer-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .footer-logo .brand-logo-frame { width: 150px; height: 50px; }
-        .footer-text { font-size: 14px; color: var(--muted); }
-        .footer-links { display: flex; gap: 24px; list-style: none; }
-        .footer-links a { font-size: 14px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-        .footer-links a:hover { color: var(--navy); }
+  /* info panel */
+  .cs-info { display: flex; flex-direction: column; gap: 14px; }
+  .cs-row {
+    background: rgba(255,245,239,0.04);
+    border: 1px solid rgba(255,245,239,0.14);
+    border-left: 3px solid var(--fn);
+    border-radius: 16px; padding: 20px 22px;
+    transition: border-left-color .45s ease;
+  }
+  .cs-row .cs-label {
+    display: flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: color-mix(in oklab, var(--paper) 60%, transparent); margin-bottom: 8px;
+  }
+  .cs-row.does .cs-label { color: var(--peach); }
+  .cs-row.degrade .cs-label { color: #ff8fb4; }
+  .cs-row.train .cs-label { color: var(--fn); transition: color .45s ease; }
+  .cs-row p {
+    margin: 0; font-size: 16px; line-height: 1.5; font-weight: 500;
+    color: color-mix(in oklab, var(--paper) 92%, transparent);
+  }
+  .cs-row .cs-label svg { width: 15px; height: 15px; }
 
-        /* ========== MOBILE NAV ========== */
-        .nav-hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-        }
-        .nav-hamburger span {
-            display: block;
-            width: 22px;
-            height: 2px;
-            background: var(--ink);
-            border-radius: 2px;
-            transition: all 0.3s ease;
-        }
-        .mobile-nav-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(255, 248, 254, 0.97);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 200;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 36px;
-        }
-        .mobile-nav-overlay.open { display: flex; }
-        .mobile-nav-overlay a {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: 28px; font-weight: 700;
-            color: var(--ink); text-decoration: none; transition: color 0.2s;
-        }
-        .mobile-nav-overlay a:hover { color: var(--navy); }
-        .mobile-nav-close {
-            position: absolute; top: 20px; right: 20px;
-            background: none; border: none; font-size: 32px;
-            color: var(--muted); cursor: pointer; line-height: 1;
-        }
-        .mobile-nav-lang {
-            position: absolute; top: 18px; left: 20px;
-        }
+  /* roster */
+  .cs-roster {
+    margin-top: 22px;
+    display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px;
+  }
+  @media (max-width: 720px) { .cs-roster { grid-template-columns: repeat(3, 1fr); } }
+  .cs-slot {
+    --c: var(--violet);
+    background: rgba(255,245,239,0.04);
+    border: 1px solid rgba(255,245,239,0.14);
+    border-radius: 18px; padding: 16px 10px 14px; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 9px;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease;
+    color: var(--paper);
+  }
+  .cs-slot:hover { transform: translateY(-3px); background: rgba(255,245,239,0.08); }
+  .cs-slot.active { border-color: var(--c); background: color-mix(in oklab, var(--c) 16%, transparent); transform: translateY(-3px); }
+  .cs-avatar {
+    position: relative; width: 56px; height: 56px; border-radius: 50%;
+    background: color-mix(in oklab, var(--c) 26%, var(--ink));
+    display: grid; place-items: center; flex: none;
+  }
+  .cs-slot.active .cs-avatar { box-shadow: 0 0 0 3px var(--c); }
+  .cs-avatar img { width: 42px; height: 42px; object-fit: contain; }
+  .cs-avatar .badge {
+    position: absolute; right: -4px; bottom: -4px;
+    width: 24px; height: 24px; border-radius: 8px; background: var(--c); color: #fff;
+    display: grid; place-items: center; border: 2px solid var(--ink);
+  }
+  .cs-avatar .badge svg { width: 13px; height: 13px; }
+  .cs-slot[data-fg="ink"] .cs-avatar .badge { color: var(--ink); }
+  .cs-slot[data-fg="ink"] .cs-emblem { color: var(--ink); }
+  .cs-slot .cs-name {
+    font-family: var(--display); font-weight: 600; font-size: 12px; line-height: 1.2;
+    text-align: center; color: color-mix(in oklab, var(--paper) 85%, transparent);
+  }
+  .cs-slot .cs-num { font-family: var(--mono); font-size: 9px; letter-spacing: 0.1em; color: color-mix(in oklab, var(--paper) 50%, transparent); }
 
-        /* ========== WAITLIST FORM ========== */
-        .waitlist-form {
-            display: flex; gap: 12px; max-width: 500px;
-            margin: 0 auto; position: relative; z-index: 1;
-            flex-wrap: wrap; justify-content: center;
-        }
-        .waitlist-input {
-            flex: 1; min-width: 200px; padding: 16px 22px;
-            border-radius: 100px; border: none;
-            font-family: 'DM Sans', sans-serif; font-size: 15px;
-            color: var(--ink);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        .waitlist-input:focus { outline: 2px solid rgba(255,255,255,0.5); }
-        .waitlist-input::placeholder { color: var(--muted); }
+  /* ============ PRICING ============ */
+  .pricing { }
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+  .plans.single { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; }
+  .plans.single .plan.feature { transform: none; }
+  @media (max-width: 880px) { .plans { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
+  .plan {
+    background: white; border: 1px solid var(--line); border-radius: 26px;
+    padding: 34px 30px; display: flex; flex-direction: column;
+    position: relative;
+  }
+  .plan.feature {
+    background: var(--ink);
+    color: var(--paper); border-color: transparent;
+    transform: scale(1.04); z-index: 2;
+    box-shadow: 0 40px 80px -34px rgba(129,0,209,0.6);
+  }
+  @media (max-width: 880px) { .plan.feature { transform: none; } }
+  .plan .badge {
+    position: absolute; top: 22px; right: 22px;
+    font-family: var(--mono); font-size: 10px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    background: var(--pink);
+    color: white; padding: 5px 11px; border-radius: 999px;
+  }
+  .plan .tier { font-family: var(--display); font-weight: 700; font-size: 17px; letter-spacing: 0.02em; }
+  .plan.feature .tier { color: var(--peach); }
+  .plan .price {
+    font-family: var(--display); font-weight: 700;
+    font-size: 46px; letter-spacing: -0.02em; margin: 14px 0 4px; line-height: 1;
+  }
+  .plan .price span { font-size: 15px; font-weight: 600; opacity: .6; }
+  .plan .price-note { font-size: 13px; font-weight: 500; color: color-mix(in oklab, var(--ink) 60%, transparent); margin-bottom: 22px; }
+  .plan.feature .price-note { color: color-mix(in oklab, var(--paper) 65%, transparent); }
+  .plan .plan-cta {
+    display: block; text-align: center; text-decoration: none;
+    padding: 13px; border-radius: 999px; font-weight: 600; font-size: 15px;
+    background: var(--ink); color: var(--paper); margin-bottom: 24px;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .plan .plan-cta:hover { transform: translateY(-2px); background: var(--violet); }
+  .plan.feature .plan-cta { background: var(--paper); color: var(--ink); }
+  .plan.feature .plan-cta:hover { background: var(--peach); }
+  .plan ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .plan li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; font-weight: 500; line-height: 1.4; }
+  .plan li svg { width: 18px; height: 18px; flex: none; margin-top: 1px; color: var(--violet); }
+  .plan.feature li svg { color: var(--peach); }
+  .plan.feature li { color: color-mix(in oklab, var(--paper) 88%, transparent); }
 
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 900px) {
-            .hero-inner { grid-template-columns: 1fr; text-align: center; }
-            .hero-sub { margin-left: auto; margin-right: auto; }
-            .hero-ctas { justify-content: center; }
-            .hero-proof { justify-content: center; }
-            .hero-visual { margin-top: 40px; }
-            .phone-mockup { transform: rotate(0); }
-            .problem-grid { grid-template-columns: 1fr; }
-            .how-steps { grid-template-columns: repeat(2, 1fr); }
-            .step-arrow { display: none; }
-            .features-grid { grid-template-columns: 1fr; }
-            .testimonial-grid { grid-template-columns: 1fr; }
-            .nav-links { display: none; }
-            .nav-desktop-controls {
-                gap: 12px;
-            }
-            .nav-hamburger { display: flex; }
-            .footer-inner { flex-direction: column; gap: 24px; text-align: center; }
-            .comp-table th, .comp-table td { padding: 12px 10px; font-size: 13px; }
-        }
-        @media (max-width: 600px) {
-            .how-steps { grid-template-columns: 1fr; }
-            .cta-inner { padding: 48px 28px; }
-            .pricing-card { padding: 36px 28px; }
-            .brand-logo-frame { width: 154px; height: 50px; }
-            .footer-logo .brand-logo-frame { width: 142px; height: 46px; }
-            .lang-btn {
-                min-width: 44px; padding-left: 10px; padding-right: 10px;
-            }
-        }
+  /* ============ TESTIMONIALS ============ */
+  .testi { background: var(--ink); color: var(--paper); }
+  .testi h2.section-title em { color: var(--peach); }
+  .testi .head p { color: color-mix(in oklab, var(--paper) 72%, transparent); }
+  .testi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  @media (max-width: 980px) { .testi-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .testi-grid { grid-template-columns: 1fr; } }
+  .tcard {
+    background: rgba(255,245,239,0.06); border: 1px solid rgba(255,245,239,0.14);
+    border-radius: 22px; padding: 26px; display: flex; flex-direction: column;
+  }
+  .stars { color: var(--peach); letter-spacing: 2px; font-size: 14px; margin-bottom: 14px; }
+  .tcard p { font-size: 15px; line-height: 1.55; font-weight: 500; margin: 0 0 22px; color: color-mix(in oklab, var(--paper) 90%, transparent); }
+  .tcard .who { display: flex; align-items: center; gap: 12px; margin-top: auto; }
+  .tcard .who .av { width: 38px; height: 38px; border-radius: 50%; background: var(--violet); flex: none; }
+  .tcard:nth-child(2) .who .av { background: var(--pink); }
+  .tcard:nth-child(3) .who .av { background: var(--magenta); }
+  .tcard:nth-child(4) .who .av { background: var(--peach); }
+  .tcard .who b { font-family: var(--display); font-weight: 700; font-size: 14px; display: block; }
+  .tcard .who small { font-size: 12px; color: color-mix(in oklab, var(--paper) 60%, transparent); }
 
-        /* ========== TRUST BADGES ========== */
-        .trust-badges {
-            display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;
-            margin: 48px auto 0; max-width: 600px;
-        }
-        .trust-badge {
-            display: flex; align-items: center; gap: 8px;
-            background: var(--card); border: 1px solid var(--border);
-            border-radius: 100px; padding: 9px 18px;
-            font-size: 13px; font-weight: 600; color: var(--ink-light);
-        }
-        .trust-badge-icon { font-size: 15px; }
+  /* ============ FAQ ============ */
+  .faq-wrap { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+  .faq-item { background: white; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+  .faq-q {
+    width: 100%; text-align: left; background: none; border: none; cursor: pointer;
+    padding: 22px 24px; font-family: var(--display); font-weight: 600; font-size: 18px;
+    color: var(--ink); display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  }
+  .faq-q .pm { flex: none; width: 24px; height: 24px; position: relative; transition: transform .3s ease; }
+  .faq-q .pm::before, .faq-q .pm::after {
+    content: ""; position: absolute; background: var(--violet); border-radius: 2px;
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+  }
+  .faq-q .pm::before { width: 14px; height: 2.5px; }
+  .faq-q .pm::after { width: 2.5px; height: 14px; transition: transform .3s ease; }
+  .faq-item.open .pm::after { transform: translate(-50%,-50%) scaleY(0); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+  .faq-a p { margin: 0; padding: 0 24px 24px; font-size: 15px; line-height: 1.6; font-weight: 500; color: color-mix(in oklab, var(--ink) 70%, transparent); }
 
-        /* ========== FAQ ========== */
-        .faq { padding: 80px 24px; }
-        .faq-inner { max-width: 720px; margin: 0 auto; }
-        .faq h2 { font-size: clamp(28px, 3.5vw, 40px); font-weight: 800; text-align: center; margin-bottom: 16px; }
-        .faq-sub { text-align: center; font-size: 17px; color: var(--muted); margin-bottom: 48px; line-height: 1.6; }
-        .faq-item {
-            border: 1px solid var(--border); border-radius: 16px;
-            margin-bottom: 12px; overflow: hidden; background: var(--card);
-        }
-        .faq-question {
-            width: 100%; text-align: left; padding: 22px 24px;
-            background: none; border: none; cursor: pointer;
-            display: flex; justify-content: space-between; align-items: center;
-            font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700;
-            font-size: 16px; color: var(--ink); transition: color 0.2s;
-        }
-        .faq-question:hover { color: var(--navy); }
-        .faq-chevron { font-size: 18px; color: var(--muted); transition: transform 0.3s ease; flex-shrink: 0; margin-left: 16px; }
-        .faq-item.open .faq-chevron { transform: rotate(180deg); }
-        .faq-answer {
-            max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease;
-            padding: 0 24px;
-        }
-        .faq-item.open .faq-answer { max-height: 200px; padding: 0 24px 22px; }
-        .faq-answer p { font-size: 15px; line-height: 1.7; color: var(--muted); }
+  /* ============ CTA SECTION ============ */
+  .cta-block { padding: 60px 0 110px; }
+  .cta-card {
+    border-radius: 36px; padding: clamp(48px, 7vw, 96px) 40px; text-align: center;
+    background: var(--violet);
+    color: white; position: relative; overflow: hidden;
+    box-shadow: 0 50px 90px -40px rgba(129,0,209,0.7);
+  }
+  .cta-card h2 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(36px, 5.4vw, 68px); line-height: 1.0; letter-spacing: -0.02em;
+    margin: 0 auto 18px; max-width: 16ch;
+  }
+  .cta-card p { max-width: 50ch; margin: 0 auto 32px; font-size: 17px; font-weight: 500; line-height: 1.55; color: rgba(255,255,255,0.9); }
+  .waitlist { max-width: 460px; margin: 0 auto; display: flex; gap: 8px; padding: 8px; background: white; border-radius: 999px; }
+  .waitlist input { flex: 1; border: none; background: transparent; padding: 12px 18px; font-family: var(--sans); font-size: 16px; font-weight: 500; color: var(--ink); outline: none; }
+  .waitlist button { background: var(--ink); color: var(--paper); border: none; padding: 12px 24px; border-radius: 999px; font-family: var(--sans); font-weight: 600; cursor: pointer; font-size: 15px; transition: background .2s ease; }
+  .waitlist button:hover { background: var(--violet); }
+  .cta-card .tiny { margin-top: 16px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.8); }
 
-        /* ========== SHARE BUTTONS ========== */
-        .share-prompt { margin-top: 20px; position: relative; z-index: 1; }
-        .share-prompt p { color: rgba(255,255,255,0.75); font-size: 14px; margin-bottom: 12px; }
-        .share-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-        .share-btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 10px 20px; border-radius: 100px;
-            font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 14px;
-            text-decoration: none; transition: all 0.2s; border: none; cursor: pointer;
-        }
-        .share-btn-twitter { background: #000; color: white; }
-        .share-btn-twitter:hover { background: #222; transform: translateY(-2px); }
-        .share-btn-whatsapp { background: #25D366; color: white; }
-        .share-btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); }
+  /* ============ FOOTER ============ */
+  footer { padding: 56px 0 28px; border-top: 1px solid var(--line); }
+  .foot-wrap { display: grid; grid-template-columns: 2fr 1fr 1fr 1.4fr; gap: 36px; }
+  @media (max-width: 820px) { .foot-wrap { grid-template-columns: 1fr 1fr; } }
+  .foot-brand { font-family: var(--display); font-size: 24px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+  .foot-brand img { width: 36px; height: 36px; border-radius: 10px; }
+  .foot-tag { font-size: 14px; font-weight: 500; margin: 14px 0 0; color: color-mix(in oklab, var(--ink) 65%, transparent); max-width: 34ch; line-height: 1.55; }
+  .foot-col h5 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: color-mix(in oklab, var(--ink) 55%, transparent); margin: 0 0 16px; font-weight: 500; }
+  .foot-col ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .foot-col a { color: var(--ink); text-decoration: none; font-size: 14px; font-weight: 500; }
+  .foot-col a:hover { color: var(--violet); }
+  .news-form { display: flex; gap: 8px; padding: 6px; background: white; border: 1px solid var(--line); border-radius: 999px; margin-top: 4px; }
+  .news-form input { flex: 1; border: none; background: transparent; padding: 8px 12px; font-family: var(--sans); font-size: 14px; font-weight: 500; outline: none; color: var(--ink); }
+  .news-form button { background: var(--ink); color: var(--paper); border: none; border-radius: 999px; width: 38px; cursor: pointer; display: grid; place-items: center; }
+  .foot-bottom {
+    margin-top: 44px; padding-top: 22px; border-top: 1px solid var(--line);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+    font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em;
+    color: color-mix(in oklab, var(--ink) 55%, transparent);
+  }
 
-        /* ========== FORM ERROR ========== */
-        #waitlist-error {
-            display: none; color: rgba(var(--green-rgb), 1); font-size: 14px;
-            margin-top: 12px; position: relative; z-index: 1;
-        }
-    </style>
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="nav">
-    <div class="nav-inner">
-        <a href="#" class="nav-logo" aria-label="Safini home">
-            <span class="brand-logo-frame">
-                <img src="photoLibrary.png" alt="Safini" class="brand-logo-image" decoding="async">
-            </span>
-        </a>
-        <div class="nav-desktop-controls">
-            <ul class="nav-links">
-                <li><a href="#how" data-i18n="nav.how">Как это работает</a></li>
-                <li><a href="#features" data-i18n="nav.features">Возможности</a></li>
-                <li><a href="#pricing" data-i18n="nav.pricing">Цена</a></li>
-                <li><a href="#cta" class="btn btn-primary" data-i18n="nav.cta">В лист ожидания</a></li>
-            </ul>
-            <div class="lang-switcher" data-i18n-aria-label="lang.switcher" aria-label="Переключение языка">
-                <button type="button" class="lang-btn" data-lang-trigger="ru" aria-pressed="true">RU</button>
-                <button type="button" class="lang-btn" data-lang-trigger="en" aria-pressed="false">EN</button>
-            </div>
-            <button class="nav-hamburger" id="nav-hamburger" data-i18n-aria-label="lang.openMenu" aria-label="Открыть меню">
-                <span></span><span></span><span></span>
-            </button>
-        </div>
-    </div>
+<!-- ===================== NAV ===================== -->
+<nav class="nav" data-screen-label="nav">
+  <a href="#" class="nav-brand"><img src="assets/safini-penguin.png" alt="Safini" />Safini</a>
+  <div class="nav-links">
+    <a href="#benefits">Benefits</a>
+    <a href="#how">How it works</a>
+    <a href="#functions">Powers</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a href="#cta" class="nav-cta">Join the waitlist</a>
 </nav>
 
-<!-- MOBILE NAV -->
-<div class="mobile-nav-overlay" id="mobile-nav">
-    <div class="mobile-nav-lang">
-        <div class="lang-switcher" data-i18n-aria-label="lang.switcher" aria-label="Переключение языка">
-            <button type="button" class="lang-btn" data-lang-trigger="ru" aria-pressed="true">RU</button>
-            <button type="button" class="lang-btn" data-lang-trigger="en" aria-pressed="false">EN</button>
+<!-- ===================== HERO ===================== -->
+<header class="hero" data-screen-label="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="social-proof">
+          <span class="avatars"><span></span><span></span><span></span></span>
+          <span><b>1,200+ families</b> already on the waitlist</span>
         </div>
-    </div>
-    <button class="mobile-nav-close" id="mobile-nav-close" data-i18n-aria-label="lang.closeMenu" aria-label="Закрыть меню">✕</button>
-    <a href="#how" data-i18n="nav.how" onclick="closeMobileNav()">Как это работает</a>
-    <a href="#features" data-i18n="nav.features" onclick="closeMobileNav()">Возможности</a>
-    <a href="#pricing" data-i18n="nav.pricing" onclick="closeMobileNav()">Цена</a>
-    <a href="#cta" class="btn btn-primary" data-i18n="nav.cta" onclick="closeMobileNav()">В лист ожидания</a>
-</div>
+        <h1 class="hero-title">Raise kids <span class="grad">safely</span> in a world built for endless scrolling.</h1>
+        <p class="hero-sub">Safini is the all-in-one app that helps parents turn screen time into <strong>growth time</strong>.</p>
+        <div class="tagline-row">
+          <span>Healthier screen time</span>
+          <span>Smarter routines</span>
+          <span>Happier parents</span>
+        </div>
+        <div class="hero-ctas">
+          <a href="#cta" class="btn btn-primary">Join the parent waitlist
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#how" class="btn btn-ghost">See how it works</a>
+        </div>
+      </div>
 
-<!-- HERO -->
-<section class="hero">
-    <div class="hero-inner">
-        <div class="hero-content">
-            <div class="hero-badge" data-i18n="hero.badge">🚀 Бета-запуск в апреле 2026</div>
-            <h1 data-i18n-html="hero.title">Дети <span class="highlight-green">зарабатывают</span> экранное время.<br>Родители остаются <span class="highlight">в контроле</span>.</h1>
-            <p class="hero-sub" data-i18n="hero.sub">Safini заменяет споры из-за гаджетов системой наград, которую дети действительно любят. Выполняйте задания, зарабатывайте Time Coins, открывайте развлечения без ежедневных ссор.</p>
-            <div class="hero-ctas">
-                <a href="#cta" class="btn btn-primary" data-i18n="hero.ctaPrimary">Вступить в лист ожидания →</a>
-                <a href="#how" class="btn btn-outline" data-i18n="hero.ctaSecondary">Посмотреть, как это работает</a>
+      <div class="product-shot" aria-hidden="true">
+        <div class="phone">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="ps-top">
+              <div class="ps-hi">Hi, Mia 👋</div>
+              <div class="ps-coins"><span class="c">¢</span> 42</div>
             </div>
-            <div class="hero-proof">
-                <div class="hero-avatars">
-                    <span style="background: var(--blue-pale);">👩</span>
-                    <span style="background: var(--yellow);">👨</span>
-                    <span style="background: var(--green-light);">👩‍🦱</span>
-                    <span style="background: var(--yellow-pale);">👴</span>
-                </div>
-                <div class="hero-proof-text" data-i18n-html="hero.proof"><strong>1 247 семей уже в листе ожидания</strong><br>Подтверждено 20+ интервью с родителями</div>
+            <div class="ps-card">
+              <div class="ps-ic" style="background:var(--violet)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+              </div>
+              <div class="ps-meta"><b>Read 20 minutes</b><small>Sustained attention</small></div>
+              <div class="ps-plus">+8</div>
             </div>
+            <div class="ps-card">
+              <div class="ps-ic" style="background:var(--magenta)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12l-3-3M20 16H8l3 3"/></svg>
+              </div>
+              <div class="ps-meta"><b>Chess puzzle</b><small>Working memory</small></div>
+              <div class="ps-plus">+5</div>
+            </div>
+            <div class="ps-card" style="flex-direction:column; align-items:stretch; gap:8px;">
+              <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:600;"><span>YouTube unlocked</span><span style="color:var(--violet)">28 / 45 min</span></div>
+              <div class="ps-bar"><i style="width:62%"></i></div>
+            </div>
+            <div class="ps-card">
+              <div class="ps-ic" style="background:var(--pink)">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18l4-6 4 3 4-7 4 5"/></svg>
+              </div>
+              <div class="ps-meta"><b>Focus +12% this week</b><small>Cognitive report</small></div>
+            </div>
+          </div>
         </div>
-
-        <div class="hero-visual">
-            <div class="float-coin c1">🪙</div>
-            <div class="float-coin c2">🪙</div>
-            <div class="float-badge b1" data-i18n="hero.floatEarned">✅ +20 монет заработано!</div>
-            <div class="float-badge b2" data-i18n="hero.floatUnlocked">🎮 Открыто 30 мин</div>
-            <div class="phone-mockup">
-                <div class="phone-screen">
-                    <div class="phone-notch"></div>
-                    <div class="phone-header">
-                        <div class="phone-greeting" data-i18n="hero.phone.greeting">Доброе утро 👋</div>
-                        <div class="phone-name" data-i18n="hero.phone.name">Исследователь Лео</div>
-                    </div>
-                    <div class="phone-stats">
-                        <div class="phone-stat">
-                            <div class="phone-stat-icon">🪙</div>
-                            <div class="phone-stat-value">150</div>
-                            <div class="phone-stat-label" data-i18n="hero.phone.coinsLabel">Монеты времени</div>
-                        </div>
-                        <div class="phone-stat">
-                            <div class="phone-stat-icon">🔥</div>
-                            <div class="phone-stat-value">5</div>
-                            <div class="phone-stat-label" data-i18n="hero.phone.streakLabel">Дней подряд</div>
-                        </div>
-                    </div>
-                    <div class="phone-tasks">
-                        <div class="phone-tasks-title" data-i18n="hero.phone.tasksTitle">Сегодняшние квесты</div>
-                        <div class="phone-task-item">
-                            <div class="phone-task-icon" style="background: var(--blue-pale);">🦉</div>
-                            <div class="phone-task-info">
-                                <div class="phone-task-name" data-i18n="hero.phone.task1.name">Урок в Duolingo</div>
-                                <div class="phone-task-reward" data-i18n="hero.phone.task1.reward">Завершить ежедневный урок</div>
-                            </div>
-                            <div class="phone-task-coins">🪙 20</div>
-                        </div>
-                        <div class="phone-task-item">
-                            <div class="phone-task-icon" style="background: var(--green-light);">🚶</div>
-                            <div class="phone-task-info">
-                                <div class="phone-task-name" data-i18n="hero.phone.task2.name">Пройти 5 000 шагов</div>
-                                <div class="phone-task-reward" data-i18n="hero.phone.task2.reward">Добавь движения сегодня!</div>
-                            </div>
-                            <div class="phone-task-coins">🪙 10</div>
-                        </div>
-                        <div class="phone-task-item">
-                            <div class="phone-task-icon" style="background: var(--yellow);">🧩</div>
-                            <div class="phone-task-info">
-                                <div class="phone-task-name" data-i18n="hero.phone.task3.name">Логическая задача</div>
-                                <div class="phone-task-reward" data-i18n="hero.phone.task3.reward">Время потренировать мозг</div>
-                            </div>
-                            <div class="phone-task-coins">🪙 20</div>
-                        </div>
-                        <div class="phone-task-item">
-                            <div class="phone-task-icon" style="background: var(--blue-pale);">🛏️</div>
-                            <div class="phone-task-info">
-                                <div class="phone-task-name" data-i18n="hero.phone.task4.name">Заправить кровать</div>
-                                <div class="phone-task-reward" data-i18n="hero.phone.task4.reward">Задание от родителей</div>
-                            </div>
-                            <div class="phone-task-coins">🪙 5</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
+  </div>
+</header>
+
+<!-- ===================== PARTNERS ===================== -->
+<section class="partners" data-screen-label="partners">
+  <div class="container">
+    <div class="partners-row">
+      <div class="partners-label">Built &amp; piloted with</div>
+      <div class="logo-strip">
+        <span class="lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg>Schools</span>
+        <span class="lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/></svg>Clinics</span>
+        <span class="lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Pediatric psych</span>
+        <span class="lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6 6 .5-4.5 4 1.5 6-6-3.5L6 18.5 7.5 12.5 3 8.5 9 8z"/></svg>Advisory board</span>
+        <span class="lg"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM4 21v-2a6 6 0 0112 0v2"/></svg>Parent council</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- WAVE -->
-<div class="wave-divider">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none">
-        <path d="M0,30 C360,60 720,0 1080,30 C1260,50 1380,40 1440,30 L1440,60 L0,60 Z" fill="var(--cream)"/>
-    </svg>
-</div>
-
-<!-- PROBLEM -->
-<section class="problem" id="problem">
-    <div class="problem-inner">
-        <div class="section-label" data-i18n="problem.label">Проблема</div>
-        <h2 data-i18n="problem.title">Дети проводят в телефонах по 6–10 часов в день. У родителей заканчиваются варианты.</h2>
-        <div class="problem-grid">
-
-            <!-- Card 1: Kid doom scrolling in bed at night -->
-            <div class="problem-card">
-                <div class="problem-card-illustration">
-                    <svg width="100%" height="100%" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="400" height="200" fill="#1D1233"/>
-                        <circle cx="50" cy="30" r="1.5" fill="white" opacity="0.4"/>
-                        <circle cx="120" cy="18" r="1" fill="white" opacity="0.3"/>
-                        <circle cx="300" cy="25" r="1.5" fill="white" opacity="0.5"/>
-                        <circle cx="350" cy="55" r="1" fill="white" opacity="0.3"/>
-                        <circle cx="200" cy="12" r="1" fill="white" opacity="0.25"/>
-                        <circle cx="345" cy="35" r="18" fill="#FFA47F" opacity="0.12"/>
-                        <circle cx="352" cy="30" r="16" fill="#1D1233"/>
-                        <text x="20" y="50" font-size="11" fill="white" opacity="0.35" font-family="'DM Sans',sans-serif" font-weight="600" data-i18n="problem.card1.time">2:47 ночи</text>
-                        <rect x="30" y="125" width="340" height="55" rx="10" fill="#5D0098" opacity="0.5"/>
-                        <ellipse cx="110" cy="125" rx="55" ry="12" fill="#8100D1" opacity="0.35"/>
-                        <path d="M80 135 Q100 108 160 118 L310 118 Q340 112 355 135 L355 170 Q260 180 190 180 Q90 180 65 170 Z" fill="#B500B2" opacity="0.15"/>
-                        <circle cx="120" cy="110" r="26" fill="#F5D0B0"/>
-                        <path d="M96 103 Q105 80 120 78 Q135 76 144 95 Q146 100 144 103" fill="#5B3A1A"/>
-                        <path d="M102 82 Q98 70 106 66" stroke="#5B3A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
-                        <path d="M132 78 Q136 65 142 68" stroke="#5B3A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
-                        <circle cx="112" cy="112" r="4.5" fill="white"/>
-                        <circle cx="128" cy="112" r="4.5" fill="white"/>
-                        <circle cx="113" cy="113" r="2.8" fill="#5D0098"/>
-                        <circle cx="129" cy="113" r="2.8" fill="#5D0098"/>
-                        <circle cx="111" cy="111" r="1" fill="white"/>
-                        <circle cx="127" cy="111" r="1" fill="white"/>
-                        <path d="M107 118 Q112 120 117 118" stroke="#D4A590" stroke-width="1.2" fill="none" opacity="0.5"/>
-                        <path d="M123 118 Q128 120 133 118" stroke="#D4A590" stroke-width="1.2" fill="none" opacity="0.5"/>
-                        <ellipse cx="120" cy="124" rx="4" ry="2.5" fill="#E8A090"/>
-                        <circle cx="120" cy="110" r="35" fill="#B500B2" opacity="0.06"/>
-                        <path d="M133 118 Q150 105 162 92" stroke="#F5D0B0" stroke-width="9" stroke-linecap="round" fill="none"/>
-                        <path d="M107 118 Q95 105 88 92" stroke="#F5D0B0" stroke-width="9" stroke-linecap="round" fill="none" opacity="0.6"/>
-                        <rect x="152" y="68" width="36" height="56" rx="7" fill="#0F0F1A" stroke="#8100D1" stroke-width="1.5"/>
-                        <rect x="155" y="74" width="30" height="44" rx="4" fill="#B500B2" opacity="0.2"/>
-                        <rect x="158" y="78" width="20" height="3" rx="1.5" fill="white" opacity="0.15"/>
-                        <rect x="158" y="84" width="24" height="3" rx="1.5" fill="white" opacity="0.1"/>
-                        <rect x="158" y="90" width="16" height="3" rx="1.5" fill="white" opacity="0.15"/>
-                        <rect x="158" y="96" width="22" height="3" rx="1.5" fill="white" opacity="0.1"/>
-                        <rect x="158" y="102" width="18" height="3" rx="1.5" fill="white" opacity="0.12"/>
-                        <circle cx="170" cy="82" r="8" fill="#EE1D52" opacity="0.15"/>
-                        <text x="210" y="85" font-size="18" opacity="0.6">😵‍💫</text>
-                        <text x="60" y="90" font-size="14" fill="#B500B2" opacity="0.3" font-family="'Bricolage Grotesque',sans-serif" font-weight="700">z Z z</text>
-                    </svg>
-                </div>
-                <div class="problem-card-body">
-                    <h3 data-i18n="problem.card1.title">📱 Бесконечный скролл до 3 ночи</h3>
-                    <p data-i18n="problem.card1.body">Дети проводят по 6–10 часов в YouTube, TikTok и Roblox, часто тайком поздно ночью и без каких-либо границ.</p>
-                </div>
-            </div>
-
-            <!-- Card 2: Kid ignoring homework -->
-            <div class="problem-card">
-                <div class="problem-card-illustration">
-                    <svg width="100%" height="100%" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="400" height="200" fill="#FFA47F" opacity="0.25"/>
-                        <rect width="400" height="200" fill="#FFF1EA"/>
-                        <rect x="20" y="145" width="360" height="8" rx="4" fill="#B8860B" opacity="0.2"/>
-                        <rect x="40" y="153" width="7" height="47" rx="2" fill="#B8860B" opacity="0.15"/>
-                        <rect x="352" y="153" width="7" height="47" rx="2" fill="#B8860B" opacity="0.15"/>
-                        <rect x="40" y="105" width="75" height="40" rx="3" fill="white" transform="rotate(-4 40 105)" stroke="#EAD8F6" stroke-width="1"/>
-                        <line x1="50" y1="117" x2="100" y2="115" stroke="#EAD8F6" stroke-width="1.5"/>
-                        <line x1="50" y1="124" x2="95" y2="122" stroke="#EAD8F6" stroke-width="1.5"/>
-                        <line x1="50" y1="131" x2="85" y2="129" stroke="#EAD8F6" stroke-width="1.5"/>
-                        <text x="88" y="135" font-size="22" font-weight="800" fill="#EF4444" font-family="'Bricolage Grotesque',sans-serif" transform="rotate(4 88 135)">F</text>
-                        <line x1="130" y1="128" x2="148" y2="143" stroke="#FF52A0" stroke-width="4" stroke-linecap="round"/>
-                        <polygon points="128,126 130,130 126,129" fill="#FF52A0"/>
-                        <path d="M140 108 L170 102 L200 108 L170 114 Z" fill="white" stroke="#EAD8F6" stroke-width="1"/>
-                        <text x="150" y="110" font-size="6" fill="#7C6B94" font-family="'DM Sans'" data-i18n="problem.card2.subject">МАТЕМ.</text>
-                        <circle cx="290" cy="85" r="28" fill="#F5D0B0"/>
-                        <path d="M264 78 Q275 55 290 53 Q305 55 316 74 Q318 80 316 85" fill="#4C3B67"/>
-                        <path d="M264 78 Q258 55 290 48 Q322 55 316 78" stroke="#8100D1" stroke-width="5" fill="none" stroke-linecap="round"/>
-                        <rect x="255" y="73" width="13" height="17" rx="6" fill="#8100D1"/>
-                        <rect x="312" y="73" width="13" height="17" rx="6" fill="#8100D1"/>
-                        <circle cx="282" cy="88" r="4" fill="white"/>
-                        <circle cx="298" cy="88" r="4" fill="white"/>
-                        <circle cx="283" cy="90" r="2.5" fill="#1D1233"/>
-                        <circle cx="299" cy="90" r="2.5" fill="#1D1233"/>
-                        <path d="M284 100 Q290 97 296 100" stroke="#D4A590" stroke-width="2" fill="none" stroke-linecap="round"/>
-                        <rect x="270" y="112" width="40" height="35" rx="12" fill="#B500B2"/>
-                        <path d="M282 125 Q278 115 276 108" stroke="#F5D0B0" stroke-width="8" stroke-linecap="round" fill="none"/>
-                        <path d="M298 125 Q302 115 304 108" stroke="#F5D0B0" stroke-width="8" stroke-linecap="round" fill="none"/>
-                        <rect x="270" y="96" width="28" height="42" rx="5" fill="#1D1233"/>
-                        <rect x="273" y="101" width="22" height="32" rx="3" fill="#B500B2" opacity="0.3"/>
-                        <circle cx="290" cy="85" r="32" fill="#B500B2" opacity="0.05"/>
-                    </svg>
-                </div>
-                <div class="problem-card-body">
-                    <h3 data-i18n="problem.card2.title">📉 Оценки падают, концентрация исчезает</h3>
-                    <p data-i18n="problem.card2.body">Домашка остается нетронутой, пока дети тонут в бесконечных лентах. Внимание и учебные результаты резко ухудшаются.</p>
-                </div>
-            </div>
-
-            <!-- Card 3: Parent-child conflict -->
-            <div class="problem-card">
-                <div class="problem-card-illustration">
-                    <svg width="100%" height="100%" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="400" height="200" fill="#FCECED"/>
-                        <path d="M190 25 L185 48 L195 45 L188 72" stroke="#F97066" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.35"/>
-                        <path d="M215 18 L210 44 L220 41 L213 65" stroke="#F97066" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.25"/>
-                        <circle cx="130" cy="92" r="30" fill="#F5D0B0"/>
-                        <path d="M102 85 Q112 60 130 58 Q148 60 158 85" fill="#4C3B67"/>
-                        <line x1="118" y1="84" x2="126" y2="88" stroke="#4C3B67" stroke-width="2.5" stroke-linecap="round"/>
-                        <line x1="142" y1="88" x2="136" y2="84" stroke="#4C3B67" stroke-width="2.5" stroke-linecap="round"/>
-                        <circle cx="123" cy="93" r="3" fill="#1D1233"/>
-                        <circle cx="137" cy="93" r="3" fill="#1D1233"/>
-                        <path d="M124 107 Q130 101 136 107" stroke="#C0392B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-                        <rect x="107" y="122" width="46" height="45" rx="14" fill="#F97066" opacity="0.5"/>
-                        <path d="M153 137 Q180 126 205 120" stroke="#F5D0B0" stroke-width="10" stroke-linecap="round" fill="none"/>
-                        <path d="M148 62 Q148 45 170 45 L222 45 Q240 45 240 62 Q240 76 222 76 L168 76 L158 88 L162 76 Q148 76 148 62 Z" fill="white" opacity="0.85"/>
-                        <text x="159" y="63" font-size="10" fill="#EF4444" font-weight="700" font-family="'DM Sans',sans-serif" data-i18n="problem.card3.bubble1">Отдай мне</text>
-                        <text x="167" y="75" font-size="10" fill="#EF4444" font-weight="700" font-family="'DM Sans',sans-serif" data-i18n="problem.card3.bubble2">телефон! 😤</text>
-                        <circle cx="300" cy="98" r="26" fill="#F5D0B0"/>
-                        <path d="M276 91 Q285 72 300 70 Q315 72 324 91" fill="#5B3A1A"/>
-                        <path d="M280 76 Q276 64 284 62" stroke="#5B3A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
-                        <line x1="290" y1="92" x2="296" y2="89" stroke="#5B3A1A" stroke-width="2" stroke-linecap="round"/>
-                        <line x1="310" y1="89" x2="306" y2="92" stroke="#5B3A1A" stroke-width="2" stroke-linecap="round"/>
-                        <circle cx="293" cy="98" r="3" fill="#1D1233"/>
-                        <circle cx="307" cy="98" r="3" fill="#1D1233"/>
-                        <path d="M295 110 Q300 106 305 110" stroke="#D4A590" stroke-width="2" fill="none"/>
-                        <rect x="278" y="124" width="44" height="42" rx="12" fill="#B500B2"/>
-                        <rect x="288" y="115" width="22" height="36" rx="5" fill="#1D1233"/>
-                        <rect x="291" y="120" width="16" height="26" rx="3" fill="#B500B2" opacity="0.35"/>
-                        <text x="230" y="110" font-size="20" opacity="0.5">⚡</text>
-                        <text x="220" y="155" font-size="14" opacity="0.3">💢</text>
-                        <circle cx="330" cy="72" r="4" fill="white" opacity="0.5"/>
-                        <circle cx="338" cy="62" r="6" fill="white" opacity="0.5"/>
-                        <path d="M335 40 Q335 28 350 28 L370 28 Q380 28 380 40 Q380 50 370 50 L350 50 Q335 50 335 40Z" fill="white" opacity="0.6"/>
-                        <text x="349" y="43" font-size="11" fill="#8100D1" font-weight="600" font-family="'DM Sans'" data-i18n="problem.card3.reply">Нет! 😡</text>
-                    </svg>
-                </div>
-                <div class="problem-card-body">
-                    <h3 data-i18n="problem.card3.title">😤 Ежедневные ссоры без решения</h3>
-                    <p data-i18n="problem.card3.body">Забрать телефон значит получить споры, обиду и бесконечный торг, который выматывает всю семью.</p>
-                </div>
-            </div>
-
-        </div>
+<!-- ===================== BENEFITS ===================== -->
+<section class="block" id="benefits" data-screen-label="benefits">
+  <div class="container">
+    <div class="head">
+      <span class="section-label">Why parents choose Safini</span>
+      <h2 class="section-title">Not another blocker. We show your child is getting sharper.</h2>
+      <p style="font-size: 18px">Instead of brainrot, doomscrolling, and passive consumption, kids earn screen time by completing activities that support real cognitive development. With Fini, their friendly guide, children stay motivated, build better habits, and feel encouraged every step of the way.</p>
     </div>
+
+    <div class="bento">
+      <div class="bcard span2 dark">
+        <div class="big-num">+12%</div>
+        <h3>See weekly focus improve</h3>
+        <p>A plain-language cognitive growth report tracks sustained attention, working memory, executive function and more - so you finally know whether a child is actually improving, not just being blocked.</p>
+      </div>
+      <div class="bcard">
+        <div class="b-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <h3>Earned, not arbitrary</h3>
+        <p>Tasks award Time Coins; coins unlock minutes inside YouTube, Roblox, Minecraft. Screen time stops being a daily battle.</p>
+      </div>
+      <div class="bcard">
+        <div class="b-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 18a6 6 0 113-11.5"/><path d="M12 9v3l2 1"/><circle cx="16" cy="18" r="2"/></svg></div>
+        <h3>AI that asks, not answers</h3>
+        <p>KidsGPT, our Socratic AI tutor, refuses to hand over finished homework - it scaffolds questions until your child finds it themselves.</p>
+      </div>
+      <div class="bcard span2">
+        <div class="b-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a4 4 0 014-4h10a4 4 0 014 4v8a4 4 0 01-4 4H7a4 4 0 01-4-4z"/><path d="M8 10h8M8 14h5"/></svg></div>
+        <h3>The LLM door, closed</h3>
+        <p>During focus mode, external AI apps and AI browser modes are blocked. No silent shortcuts around the thinking.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- WAVE -->
-<div class="wave-divider">
-    <svg viewBox="0 0 1440 50" preserveAspectRatio="none">
-        <path d="M0,25 C360,50 720,0 1080,25 C1260,40 1380,30 1440,25 L1440,50 L0,50 Z" fill="var(--blue-pale)" opacity="0.5"/>
-    </svg>
-</div>
-
-<!-- HOW IT WORKS -->
-<section class="how" id="how">
-    <div class="how-inner">
-        <div class="section-label" data-i18n="how.label">Как это работает</div>
-        <h2 data-i18n="how.title">От конфликтов к сотрудничеству за 4 шага</h2>
-        <p class="how-sub" data-i18n="how.sub">Safini превращает экранное время в награду за полезные привычки, а родители настраивают правила.</p>
-        <div class="how-steps">
-            <div class="how-step">
-                <div class="step-num">1</div>
-                <div class="how-step-icon">⚙️</div>
-                <h3 data-i18n="how.step1.title">Родители задают правила</h3>
-                <p data-i18n="how.step1.body">Выберите, какие приложения ограничить, настройте курс Time Coins и создайте задания для ребенка.</p>
-                <span class="step-arrow">→</span>
-            </div>
-            <div class="how-step">
-                <div class="step-num">2</div>
-                <div class="how-step-icon">✅</div>
-                <h3 data-i18n="how.step2.title">Дети выполняют задания</h3>
-                <p data-i18n="how.step2.body">Уроки Duolingo, шаги, головоломки, домашние дела, чтение: полезные действия, которые формируют реальные привычки.</p>
-                <span class="step-arrow">→</span>
-            </div>
-            <div class="how-step">
-                <div class="step-num">3</div>
-                <div class="how-step-icon">🪙</div>
-                <h3 data-i18n="how.step3.title">Зарабатывают Time Coins</h3>
-                <p data-i18n="how.step3.body">Каждое выполненное задание приносит монеты. Ребенок видит рост баланса и открывает новые уровни и серии.</p>
-                <span class="step-arrow">→</span>
-            </div>
-            <div class="how-step">
-                <div class="step-num">4</div>
-                <div class="how-step-icon">🎮</div>
-                <h3 data-i18n="how.step4.title">Открывают развлечения</h3>
-                <p data-i18n="how.step4.body">Тратьте монеты на YouTube, Roblox, Minecraft и не только. Честно, прозрачно и без конфликтов.</p>
-            </div>
-        </div>
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="block how" id="how" data-screen-label="how-it-works">
+  <div class="container">
+    <div class="head">
+      <span class="section-label">How it works</span>
+      <h2 class="section-title">Get started in <em>3 simple steps</em></h2>
+      <p>No complicated setup. Configure once, and the earn-then-spend loop runs itself with AI</p>
     </div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">1</div>
+        <h4>Set it up &amp; assess</h4>
+        <p>Pick the apps you want controlled and set your approval rules. Your child takes a 5-minute, game-based cognitive baseline.</p>
+      </div>
+      <div class="step">
+        <div class="n">2</div>
+        <h4>Earn &amp; unlock</h4>
+        <p>Reading, lessons, chess, steps, chores - each task is tagged to a cognitive function and pays out Time Coins that unlock entertainment minutes.</p>
+      </div>
+      <div class="step">
+        <div class="n">3</div>
+        <h4>Watch them grow</h4>
+        <p>Every 2-4 weeks Safini re-assesses and updates the growth report, so you can see exactly which functions are improving.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- FEATURES -->
-<section class="features" id="features">
-    <div class="features-inner">
-        <div class="section-label" style="text-align:center;" data-i18n="features.label">Возможности</div>
-        <h2 data-i18n="features.title">Все, что нужно семье</h2>
-        <p class="features-sub" data-i18n="features.sub">Два приложения, одна система. Детям интересно, родителям спокойно.</p>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon" style="background: var(--blue-pale);">📊</div>
-                <h3 data-i18n="features.card1.title">Панель родителя</h3>
-                <p data-i18n="features.card1.body">Смотрите заработанные монеты, потраченные минуты, выполненные задания и тренды экранного времени в одном месте.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon" style="background: var(--yellow);">🎯</div>
-                <h3 data-i18n="features.card2.title">Гибкие задания</h3>
-                <p data-i18n="features.card2.body">Создавайте разовые и регулярные задания: домашка, дела по дому, чтение, прогулки с любым количеством монет.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon" style="background: var(--green-light);">🏪</div>
-                <h3 data-i18n="features.card3.title">Магазин наград</h3>
-                <p data-i18n="features.card3.body">Дети тратят монеты на время в приложениях или улучшения аватара. Понятная цена, видимый прогресс, мгновенная награда.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon" style="background: var(--blue-pale);">🤖</div>
-                <h3 data-i18n="features.card4.title">AI-тьютор KidsGPT</h3>
-                <p data-i18n="features.card4.body">Безопасный ИИ-помощник для детей, который объясняет школьные темы, отвечает на вопросы и поддерживает интерес к учебе.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon" style="background: var(--yellow);">🔥</div>
-                <h3 data-i18n="features.card5.title">Серии и уровни</h3>
-                <p data-i18n="features.card5.body">Игровой прогресс поддерживает мотивацию. Значки, серии и уровни делают полезные привычки по-настоящему увлекательными.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon" style="background: var(--green-light);">⏱️</div>
-                <h3 data-i18n="features.card6.title">Лимиты по приложениям</h3>
-                <p data-i18n="features.card6.body">Настраивайте дневные лимиты для каждого приложения. Дополнительные минуты дети зарабатывают делом, а не уговорами.</p>
-            </div>
-        </div>
+<!-- ===================== COGNITIVE CHARACTER SELECT ===================== -->
+<section class="block cogselect" id="functions" data-screen-label="cognitive-functions">
+  <div class="container">
+    <div class="head">
+      <span class="section-label">Cognitive functions framework</span>
+      <h2 class="section-title">Choose a power. <em>Fini trains it.</em></h2>
+      <p>Every task, every AI feature, and every measurement in Safini maps to at least one of six cognitive functions — the spine of the product, and what makes the outcomes legible to schools and clinicians.</p>
     </div>
+
+    <div class="cs-stage" id="csStage">
+      <div class="cs-hero">
+        <button class="cs-nav prev" id="csPrev" aria-label="Previous">&#8249;</button>
+        <div class="cs-counter" id="csCounter">01 / 06</div>
+        <div class="cs-podium">
+          <div class="cs-ring"></div>
+          <div class="cs-disc"></div>
+          <img src="assets/safini-penguin.png" alt="Fini" class="cs-fini" />
+          <div class="cs-emblem" id="csEmblem"></div>
+        </div>
+        <div class="cs-class" id="csClass">The Focus Keeper</div>
+        <div class="cs-fn" id="csFn">Sustained attention</div>
+        <div class="cs-power">
+          <div class="lab"><span>Trainable power</span><span id="csLv">6 levels</span></div>
+          <div class="cs-pips" id="csPips"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <button class="cs-nav next" id="csNext" aria-label="Next">&#8250;</button>
+      </div>
+
+      <div class="cs-info">
+        <div class="cs-row does">
+          <span class="cs-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>What it does</span>
+          <p id="csDoes"></p>
+        </div>
+        <div class="cs-row degrade">
+          <span class="cs-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 4.3 2.5 18a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 4.3a2 2 0 0 0-3.4 0z"/></svg>How phones &amp; AI degrade it</span>
+          <p id="csDegrade"></p>
+        </div>
+        <div class="cs-row train">
+          <span class="cs-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>How Safini trains it</span>
+          <p id="csTrain"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cs-roster" id="csRoster"></div>
+  </div>
 </section>
 
-<!-- COMPARISON -->
-<section class="comparison" id="compare">
-    <div class="comparison-inner">
-        <div class="section-label" data-i18n="comparison.label">Почему Safini</div>
-        <h2 data-i18n="comparison.title">Обычные контролеры блокируют. Safini мотивирует.</h2>
-        <table class="comp-table">
-            <thead>
-            <tr>
-                <th></th>
-                <th data-i18n="comparison.head.control">Контролирующие приложения</th>
-                <th data-i18n="comparison.head.learning">Обучающие приложения</th>
-                <th class="safini-col" data-i18n="comparison.head.safini">Safini ✨</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr><td data-i18n="comparison.row1">Лимиты экранного времени</td><td><span class="comp-check">✓</span></td><td><span class="comp-cross">✗</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
-            <tr><td data-i18n="comparison.row2">Обучающие задания</td><td><span class="comp-cross">✗</span></td><td><span class="comp-check">✓</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
-            <tr><td data-i18n="comparison.row3">Игровые награды</td><td><span class="comp-cross">✗</span></td><td><span class="comp-cross">✗</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
-            <tr><td data-i18n="comparison.row4">Мотивация ребенка</td><td><span class="comp-cross">✗</span></td><td data-i18n="comparison.partial">Частично</td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
-            <tr><td data-i18n="comparison.row5">AI-тьютор для детей</td><td><span class="comp-cross">✗</span></td><td><span class="comp-cross">✗</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
-            <tr><td data-i18n="comparison.row6">Меньше конфликтов в семье</td><td><span class="comp-cross">✗</span></td><td><span class="comp-cross">✗</span></td><td class="safini-col"><span class="comp-check">✓</span></td></tr>
-            </tbody>
-        </table>
+<!-- ===================== PRICING ===================== -->
+<section class="block pricing" id="pricing" data-screen-label="pricing">
+  <div class="container">
+    <div class="head">
+      <span class="section-label">Simple pricing</span>
+      <h2 class="section-title">One plan for <em>the whole family</em></h2>
+      <p>No per-child fees, no hidden charges. One subscription covers your entire family.</p>
     </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials" id="testimonials">
-    <div class="testimonials-inner">
-        <div class="section-label" style="text-align:center;" data-i18n="testimonials.label">Что говорят родители</div>
-        <h2 data-i18n="testimonials.title">Отзывы из интервью с родителями</h2>
-        <p class="testimonials-sub" data-i18n="testimonials.sub">Реальные комментарии от 20+ семей, с которыми мы говорили на этапе проверки идеи.</p>
-        <div class="testimonial-grid">
-            <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text" data-i18n="testimonials.card1.quote">"Я пробовала просто забирать телефон, и каждый раз это заканчивалось скандалом. Система, где сын сам зарабатывает время на YouTube, меняет все."</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar" style="background: var(--blue-pale);">👩</div>
-                    <div>
-                        <div class="testimonial-name">Sarah M.</div>
-                        <div class="testimonial-role" data-i18n="testimonials.card1.role">Мама 9-летнего ребенка</div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text" data-i18n="testimonials.card2.quote">"Моя дочь могла бы сидеть в Roblox весь день. Мне нравится идея, что сначала нужно почитать или сделать уроки. Тогда экранное время становится наградой, а не правом."</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar" style="background: var(--green-light);">👨</div>
-                    <div>
-                        <div class="testimonial-name">David T.</div>
-                        <div class="testimonial-role" data-i18n="testimonials.card2.role">Папа детей 7 и 11 лет</div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text" data-i18n="testimonials.card3.quote">"Мы уже пользовались родительским контролем, но он только вызывал раздражение. Система монет, где ребенок чувствует, что сам влияет на результат, гораздо умнее."</p>
-                <div class="testimonial-author">
-                    <div class="testimonial-avatar" style="background: var(--yellow);">👩‍🦱</div>
-                    <div>
-                        <div class="testimonial-name">Jennifer L.</div>
-                        <div class="testimonial-role" data-i18n="testimonials.card3.role">Мама детей 6 и 13 лет</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- PRICING -->
-<section class="pricing" id="pricing">
-    <div class="pricing-inner">
-        <div class="section-label" style="text-align:center;" data-i18n="pricing.label">Простая цена</div>
-        <h2 data-i18n="pricing.title">Один тариф для всей семьи</h2>
-        <p class="pricing-sub" data-i18n="pricing.sub">Без доплат за каждого ребенка и скрытых платежей. Одна подписка покрывает всю семью.</p>
-        <div class="pricing-card">
-            <div class="pricing-badge" data-i18n="pricing.badge">🎉 Цена для раннего доступа</div>
-            <div class="pricing-amount">
-                <span class="pricing-dollar">$</span>
-                <span class="pricing-num">4</span>
-                <span class="pricing-period" data-i18n="pricing.period">/ месяц</span>
-            </div>
-            <p class="pricing-desc" data-i18n="pricing.desc">За семью, списание раз в месяц</p>
-            <ul class="pricing-features">
-                <li><span class="li-icon">✓</span><span data-i18n="pricing.feature1">Неограниченное число детских профилей</span></li>
-                <li><span class="li-icon">✓</span><span data-i18n="pricing.feature2">Полная панель родителя и аналитика</span></li>
-                <li><span class="li-icon">✓</span><span data-i18n="pricing.feature3">Все типы заданий и магазин наград</span></li>
-                <li><span class="li-icon">✓</span><span data-i18n="pricing.feature4">Доступ к AI-тьютору KidsGPT</span></li>
-                <li><span class="li-icon">✓</span><span data-i18n="pricing.feature5">Кастомизация аватара и уровни</span></li>
-                <li><span class="li-icon">✓</span><span data-i18n="pricing.feature6">Лимиты и контроль приложений</span></li>
-            </ul>
-            <a href="#cta" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 16px;" data-i18n="pricing.cta">Вступить в лист ожидания →</a>
-        </div>
-        <div class="trust-badges">
-            <div class="trust-badge"><span class="trust-badge-icon">🔒</span><span data-i18n="pricing.trust1">Разработано с учетом приватности детей</span></div>
-            <div class="trust-badge"><span class="trust-badge-icon">🚫</span><span data-i18n="pricing.trust2">Никакой рекламы</span></div>
-            <div class="trust-badge"><span class="trust-badge-icon">🙅</span><span data-i18n="pricing.trust3">Мы не продаем данные</span></div>
-        </div>
-    </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq" id="faq">
-    <div class="faq-inner">
-        <div class="section-label" style="text-align:center;" data-i18n="faq.label">FAQ</div>
-        <h2 data-i18n="faq.title">Вопросы, которые задают родители</h2>
-        <p class="faq-sub" data-i18n="faq.sub">Все, что нужно знать перед вступлением в лист ожидания.</p>
-
-        <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-                <span data-i18n="faq.q1.q">Safini уже доступен?</span>
-                <span class="faq-chevron">▼</span>
-            </button>
-            <div class="faq-answer" role="region">
-                <p data-i18n="faq.q1.a">Пока нет: сейчас идет закрытая бета, а полноценный запуск уже близко. Вступите в лист ожидания, чтобы получить ранний доступ до публичного релиза. Участники листа ожидания фиксируют стартовую цену в $4 в месяц.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-                <span data-i18n="faq.q2.q">На каких устройствах будет работать Safini?</span>
-                <span class="faq-chevron">▼</span>
-            </button>
-            <div class="faq-answer" role="region">
-                <p data-i18n="faq.q2.a">Safini выйдет на iOS и Android как для родительской панели, так и для детского приложения. К запуску также планируется веб-панель для родителей.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-                <span data-i18n="faq.q3.q">Данные моего ребенка в безопасности?</span>
-                <span class="faq-chevron">▼</span>
-            </button>
-            <div class="faq-answer" role="region">
-                <p data-i18n="faq.q3.a">Защита детской приватности была в центре разработки Safini. Мы не показываем рекламу, не продаем данные и собираем только то, что действительно нужно для работы приложения. Информация вашей семьи не передается третьим лицам.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-                <span data-i18n="faq.q4.q">Не вызовет ли это еще больше конфликтов, если ребенок не сможет набрать достаточно монет?</span>
-                <span class="faq-chevron">▼</span>
-            </button>
-            <div class="faq-answer" role="region">
-                <p data-i18n="faq.q4.a">Вся логика Safini построена так, чтобы ребенок чувствовал не наказание, а контроль над процессом. Родители задают честные задания и стоимость наград, а дети точно видят, что нужно сделать, чтобы открыть любимые приложения. Прозрачность и убирает конфликты: никаких случайных решений и «потому что я так сказал».</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <button class="faq-question" aria-expanded="false">
-                <span data-i18n="faq.q5.q">Сколько это будет стоить после беты?</span>
-                <span class="faq-chevron">▼</span>
-            </button>
-            <div class="faq-answer" role="region">
-                <p data-i18n="faq.q5.a">Safini стоит $4 в месяц за всю семью: неограниченное число детских профилей и все функции включены. Участники листа ожидания сохраняют эту стартовую цену. Без доплат за ребенка и скрытых платежей.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA -->
-<section class="cta" id="cta">
-    <div class="cta-inner">
-        <h2 data-i18n="cta.title">Готовы закончить битву за экранное время?</h2>
-        <p data-i18n="cta.sub">Присоединяйтесь к семьям, которые формируют более здоровые цифровые привычки без ежедневных споров. Попробуйте Safini одними из первых.</p>
-        <form class="waitlist-form" id="waitlist-form" action="https://api.safini.fun/v1/waiting-list" method="POST">
-            <label for="waitlist-email" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);" data-i18n="cta.form.label">Email</label>
-            <input id="waitlist-email" type="email" name="email" data-i18n-placeholder="cta.form.placeholder" placeholder="Ваш email" required class="waitlist-input">
-            <button type="submit" class="btn btn-white" data-i18n="cta.form.submit">В лист ожидания →</button>
-        </form>
-        <p id="waitlist-error"></p>
-        <div id="waitlist-success" style="display:none;">
-            <p style="color: rgba(255,255,255,0.95); font-size: 18px; font-weight: 700; margin-top: 16px; position: relative; z-index: 1;" data-i18n="cta.success.title">🎉 Вы в списке!</p>
-            <p style="color: rgba(255,255,255,0.75); font-size: 15px; margin-top: 6px; position: relative; z-index: 1;" data-i18n="cta.success.sub">Мы напишем вам, когда Safini запустится.</p>
-            <div class="share-prompt">
-                <p data-i18n="cta.success.sharePrompt">Знаете еще одного родителя, которому это подойдет? Поделитесь Safini:</p>
-                <div class="share-buttons">
-                    <a class="share-btn share-btn-twitter" href="#" id="share-twitter" target="_blank" rel="noopener" data-i18n="cta.success.shareX">𝕏 Поделиться в X</a>
-                    <a class="share-btn share-btn-whatsapp" href="#" id="share-whatsapp" target="_blank" rel="noopener" data-i18n="cta.success.shareWhatsapp">💬 Поделиться в WhatsApp</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-    <div class="footer-inner">
-        <div class="footer-left">
-            <a href="#" class="nav-logo footer-logo" aria-label="Safini home">
-                <span class="brand-logo-frame">
-                    <img src="photoLibrary.png" alt="Safini" class="brand-logo-image" decoding="async">
-                </span>
-            </a>
-            <span class="footer-text" data-i18n="footer.copy">© 2026 Safini AI. Все права защищены.</span>
-        </div>
-        <ul class="footer-links">
-            <li><a href="mailto:safini.team@gmail.com">safini.team@gmail.com</a></li>
+    <div class="plans single">
+      <div class="plan feature">
+        <div class="badge">🎉 Early access price</div>
+        <div class="tier">Family</div>
+        <div class="price">$4<span>/mo</span></div>
+        <div class="price-note">Per family · billed monthly</div>
+        <a href="#cta" class="plan-cta">Join the waitlist →</a>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Unlimited child profiles</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Full parent dashboard &amp; analytics</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>All task types &amp; rewards store</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Access to the KidsGPT AI tutor</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Avatar customization &amp; levels</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>App limits &amp; controls</li>
         </ul>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="block testi" id="testimonials" data-screen-label="testimonials">
+  <div class="container">
+    <div class="head">
+      <span class="section-label">Testimonials</span>
+      <h2 class="section-title">Loved by parents <em>worldwide</em></h2>
+    </div>
+    <div class="testi-grid">
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p>"The fighting over the phone just… stopped. He earns his YouTube now and doesn't even argue about it."</p>
+        <div class="who"><span class="av"></span><div><b>Sarah M.</b><small>Mum of two · London</small></div></div>
+      </div>
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p>"Finally a report I understand. I can actually see her attention scores climbing every few weeks."</p>
+        <div class="who"><span class="av"></span><div><b>David Chen</b><small>Dad · Singapore</small></div></div>
+      </div>
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p>"The tutor not giving the answer drove him mad at first. Now he reaches it himself. That's the whole point."</p>
+        <div class="who"><span class="av"></span><div><b>Lucía Romero</b><small>Mum · Madrid</small></div></div>
+      </div>
+      <div class="tcard">
+        <div class="stars">★★★★★</div>
+        <p>"I refer families to it. The per-function trend export saves me explaining what 'attention' even means."</p>
+        <div class="who"><span class="av"></span><div><b>Dr. Amara Okafor</b><small>Child psychologist</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="block" id="faq" data-screen-label="faq">
+  <div class="container">
+    <div class="head">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">Questions, <em>answered</em></h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item">
+        <button class="faq-q">Does Safini actually block apps, or just track them?<span class="pm"></span></button>
+        <div class="faq-a"><p>Both. Safini uses iOS Screen Time, Android Digital Wellbeing and a DNS fallback to gate entertainment apps behind earned Time Coins — and during focus mode it blocks external LLM apps and AI browser modes too. Bypass attempts are logged, never punished; they feed the cognitive profile.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Won't the AI tutor just do my child's homework?<span class="pm"></span></button>
+        <div class="faq-a"><p>No — that's the whole design. KidsGPT, our Socratic AI tutor, is built around a single rule: it never produces the finished answer. It asks scaffolded questions tuned to your child's age and weak areas until they get there themselves.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How do you verify real-world tasks like chores or reading?<span class="pm"></span></button>
+        <div class="faq-a"><p>On-device computer vision does a before/after compare for "room cleaned," checks a book is in frame for "book read," and cross-checks steps with GPS for "walk taken." Images are kept on-device for 24 hours and never used for surveillance.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is my child's data private?<span class="pm"></span></button>
+        <div class="faq-a"><p>Yes. Cognitive profiles are editable by the parent and only shared with a school or clinician if you choose, via a time-bound link or PDF. We build to COPPA-style standards with a clinical advisory board overseeing the measurement layer.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What ages and platforms does it support?<span class="pm"></span></button>
+        <div class="faq-a"><p>Ages 5–16, on iOS 16+ and Android 10+. The task library and tutor vocabulary adapt to the child's age band.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I cancel anytime?<span class="pm"></span></button>
+        <div class="faq-a"><p>Anytime, no lock-in. The Starter plan stays free forever for one child, so you never lose access to the core earn-then-spend loop.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="cta-block" id="cta" data-screen-label="cta">
+  <div class="container">
+    <div class="cta-card">
+      <h2>Raise unscrolled kids.</h2>
+      <p>We're opening the parent alpha. Drop your email and we'll send an invite the moment the next cohort opens.</p>
+      <form class="waitlist" onsubmit="event.preventDefault(); this.querySelector('button').textContent='You’re on the list ✶'; this.querySelector('input').value='';">
+        <input type="email" placeholder="parent@household.email" required />
+        <button type="submit">Join waitlist →</button>
+      </form>
+      <div class="tiny"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer data-screen-label="footer">
+  <div class="container">
+    <div class="foot-wrap">
+      <div>
+        <div class="foot-brand"><img src="assets/safini-penguin.png" alt="" />Safini</div>
+        <p class="foot-tag">Beat the brainrot. Children earn screen time by building cognitive function - with AI as the trainer of thinking, not a shortcut around it.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Product</h5>
+        <ul>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy &amp; COPPA</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Clinical advisory</a></li>
+          <li><a href="mailto:safini.team@gmail.com">safini.team@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Newsletter</h5>
+        <p class="foot-tag" style="margin:0 0 12px;">Unscrolling tips for parents.</p>
+        <form class="news-form" onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('input').placeholder='Subscribed ✶';">
+          <input type="email" placeholder="Your email" required />
+          <button type="submit" aria-label="Subscribe">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 SAFINI TEAM</span>
+      <span>Beat the brainrot</span>
+    </div>
+  </div>
 </footer>
 
 <script>
-    const translations = {
-        ru: {
-            "meta.title": "Safini — Дети зарабатывают экранное время",
-            "meta.ogTitle": "Safini — Дети зарабатывают экранное время",
-            "meta.ogDescription": "Safini заменяет споры из-за гаджетов системой наград, которую дети действительно любят. Присоединяйтесь к 1 247 семьям в листе ожидания.",
-            "meta.twitterTitle": "Safini — Дети зарабатывают экранное время",
-            "meta.twitterDescription": "Safini заменяет споры из-за гаджетов системой наград, которую дети действительно любят.",
-            "lang.switcher": "Переключение языка",
-            "lang.openMenu": "Открыть меню",
-            "lang.closeMenu": "Закрыть меню",
-            "nav.how": "Как это работает",
-            "nav.features": "Возможности",
-            "nav.pricing": "Цена",
-            "nav.cta": "В лист ожидания",
-            "hero.badge": "🚀 Бета-запуск в апреле 2026",
-            "hero.title": "Дети <span class=\"highlight-green\">зарабатывают</span> экранное время.<br>Родители остаются <span class=\"highlight\">в контроле</span>.",
-            "hero.sub": "Safini заменяет споры из-за гаджетов системой наград, которую дети действительно любят. Выполняйте задания, зарабатывайте Time Coins и открывайте развлечения без ежедневных ссор.",
-            "hero.ctaPrimary": "Вступить в лист ожидания →",
-            "hero.ctaSecondary": "Посмотреть, как это работает",
-            "hero.proof": "<strong>1 247 семей уже в листе ожидания</strong><br>Подтверждено 20+ интервью с родителями",
-            "hero.floatEarned": "✅ +20 монет заработано!",
-            "hero.floatUnlocked": "🎮 Открыто 30 мин",
-            "hero.phone.greeting": "Доброе утро 👋",
-            "hero.phone.name": "Исследователь Лео",
-            "hero.phone.coinsLabel": "Монеты времени",
-            "hero.phone.streakLabel": "Дней подряд",
-            "hero.phone.tasksTitle": "Сегодняшние квесты",
-            "hero.phone.task1.name": "Урок в Duolingo",
-            "hero.phone.task1.reward": "Завершить ежедневный урок",
-            "hero.phone.task2.name": "Пройти 5 000 шагов",
-            "hero.phone.task2.reward": "Добавь движения сегодня!",
-            "hero.phone.task3.name": "Логическая задача",
-            "hero.phone.task3.reward": "Время потренировать мозг",
-            "hero.phone.task4.name": "Заправить кровать",
-            "hero.phone.task4.reward": "Задание от родителей",
-            "problem.label": "Проблема",
-            "problem.title": "Дети проводят в телефонах по 6–10 часов в день. У родителей заканчиваются варианты.",
-            "problem.card1.time": "2:47 ночи",
-            "problem.card1.title": "📱 Бесконечный скролл до 3 ночи",
-            "problem.card1.body": "Дети проводят по 6–10 часов в YouTube, TikTok и Roblox, часто тайком поздно ночью и без каких-либо границ.",
-            "problem.card2.subject": "МАТЕМ.",
-            "problem.card2.title": "📉 Оценки падают, концентрация исчезает",
-            "problem.card2.body": "Домашка остается нетронутой, пока дети тонут в бесконечных лентах. Внимание и учебные результаты резко ухудшаются.",
-            "problem.card3.bubble1": "Отдай мне",
-            "problem.card3.bubble2": "телефон! 😤",
-            "problem.card3.reply": "Нет! 😡",
-            "problem.card3.title": "😤 Ежедневные ссоры без решения",
-            "problem.card3.body": "Забрать телефон значит получить споры, обиду и бесконечный торг, который выматывает всю семью.",
-            "how.label": "Как это работает",
-            "how.title": "От конфликтов к сотрудничеству за 4 шага",
-            "how.sub": "Safini превращает экранное время в награду за полезные привычки, а родители настраивают правила.",
-            "how.step1.title": "Родители задают правила",
-            "how.step1.body": "Выберите, какие приложения ограничить, настройте курс Time Coins и создайте задания для ребенка.",
-            "how.step2.title": "Дети выполняют задания",
-            "how.step2.body": "Уроки Duolingo, шаги, головоломки, домашние дела, чтение: полезные действия, которые формируют реальные привычки.",
-            "how.step3.title": "Зарабатывают Time Coins",
-            "how.step3.body": "Каждое выполненное задание приносит монеты. Ребенок видит рост баланса и открывает новые уровни и серии.",
-            "how.step4.title": "Открывают развлечения",
-            "how.step4.body": "Тратьте монеты на YouTube, Roblox, Minecraft и не только. Честно, прозрачно и без конфликтов.",
-            "features.label": "Возможности",
-            "features.title": "Все, что нужно семье",
-            "features.sub": "Два приложения, одна система. Детям интересно, родителям спокойно.",
-            "features.card1.title": "Панель родителя",
-            "features.card1.body": "Смотрите заработанные монеты, потраченные минуты, выполненные задания и тренды экранного времени в одном месте.",
-            "features.card2.title": "Гибкие задания",
-            "features.card2.body": "Создавайте разовые и регулярные задания: домашка, дела по дому, чтение, прогулки с любым количеством монет.",
-            "features.card3.title": "Магазин наград",
-            "features.card3.body": "Дети тратят монеты на время в приложениях или улучшения аватара. Понятная цена, видимый прогресс, мгновенная награда.",
-            "features.card4.title": "AI-тьютор KidsGPT",
-            "features.card4.body": "Безопасный ИИ-помощник для детей, который объясняет школьные темы, отвечает на вопросы и поддерживает интерес к учебе.",
-            "features.card5.title": "Серии и уровни",
-            "features.card5.body": "Игровой прогресс поддерживает мотивацию. Значки, серии и уровни делают полезные привычки по-настоящему увлекательными.",
-            "features.card6.title": "Лимиты по приложениям",
-            "features.card6.body": "Настраивайте дневные лимиты для каждого приложения. Дополнительные минуты дети зарабатывают делом, а не уговорами.",
-            "comparison.label": "Почему Safini",
-            "comparison.title": "Обычные контролеры блокируют. Safini мотивирует.",
-            "comparison.head.control": "Контролирующие приложения",
-            "comparison.head.learning": "Обучающие приложения",
-            "comparison.head.safini": "Safini ✨",
-            "comparison.row1": "Лимиты экранного времени",
-            "comparison.row2": "Обучающие задания",
-            "comparison.row3": "Игровые награды",
-            "comparison.row4": "Мотивация ребенка",
-            "comparison.partial": "Частично",
-            "comparison.row5": "AI-тьютор для детей",
-            "comparison.row6": "Меньше конфликтов в семье",
-            "testimonials.label": "Что говорят родители",
-            "testimonials.title": "Отзывы из интервью с родителями",
-            "testimonials.sub": "Реальные комментарии от 20+ семей, с которыми мы говорили на этапе проверки идеи.",
-            "testimonials.card1.quote": "\"Я пробовала просто забирать телефон, и каждый раз это заканчивалось скандалом. Система, где сын сам зарабатывает время на YouTube, меняет все.\"",
-            "testimonials.card1.role": "Мама 9-летнего ребенка",
-            "testimonials.card2.quote": "\"Моя дочь могла бы сидеть в Roblox весь день. Мне нравится идея, что сначала нужно почитать или сделать уроки. Тогда экранное время становится наградой, а не правом.\"",
-            "testimonials.card2.role": "Папа детей 7 и 11 лет",
-            "testimonials.card3.quote": "\"Мы уже пользовались родительским контролем, но он только вызывал раздражение. Система монет, где ребенок чувствует, что сам влияет на результат, гораздо умнее.\"",
-            "testimonials.card3.role": "Мама детей 6 и 13 лет",
-            "pricing.label": "Простая цена",
-            "pricing.title": "Один тариф для всей семьи",
-            "pricing.sub": "Без доплат за каждого ребенка и скрытых платежей. Одна подписка покрывает всю семью.",
-            "pricing.badge": "🎉 Цена для раннего доступа",
-            "pricing.period": "/ месяц",
-            "pricing.desc": "За семью, списание раз в месяц",
-            "pricing.feature1": "Неограниченное число детских профилей",
-            "pricing.feature2": "Полная панель родителя и аналитика",
-            "pricing.feature3": "Все типы заданий и магазин наград",
-            "pricing.feature4": "Доступ к AI-тьютору KidsGPT",
-            "pricing.feature5": "Кастомизация аватара и уровни",
-            "pricing.feature6": "Лимиты и контроль приложений",
-            "pricing.cta": "Вступить в лист ожидания →",
-            "pricing.trust1": "Разработано с учетом приватности детей",
-            "pricing.trust2": "Никакой рекламы",
-            "pricing.trust3": "Мы не продаем данные",
-            "faq.label": "FAQ",
-            "faq.title": "Вопросы, которые задают родители",
-            "faq.sub": "Все, что нужно знать перед вступлением в лист ожидания.",
-            "faq.q1.q": "Safini уже доступен?",
-            "faq.q1.a": "Пока нет: сейчас идет закрытая бета, а полноценный запуск уже близко. Вступите в лист ожидания, чтобы получить ранний доступ до публичного релиза. Участники листа ожидания фиксируют стартовую цену в $4 в месяц.",
-            "faq.q2.q": "На каких устройствах будет работать Safini?",
-            "faq.q2.a": "Safini выйдет на iOS и Android как для родительской панели, так и для детского приложения. К запуску также планируется веб-панель для родителей.",
-            "faq.q3.q": "Данные моего ребенка в безопасности?",
-            "faq.q3.a": "Защита детской приватности была в центре разработки Safini. Мы не показываем рекламу, не продаем данные и собираем только то, что действительно нужно для работы приложения. Информация вашей семьи не передается третьим лицам.",
-            "faq.q4.q": "Не вызовет ли это еще больше конфликтов, если ребенок не сможет набрать достаточно монет?",
-            "faq.q4.a": "Вся логика Safini построена так, чтобы ребенок чувствовал не наказание, а контроль над процессом. Родители задают честные задания и стоимость наград, а дети точно видят, что нужно сделать, чтобы открыть любимые приложения. Прозрачность и убирает конфликты: никаких случайных решений и «потому что я так сказал».",
-            "faq.q5.q": "Сколько это будет стоить после беты?",
-            "faq.q5.a": "Safini стоит $4 в месяц за всю семью: неограниченное число детских профилей и все функции включены. Участники листа ожидания сохраняют эту стартовую цену. Без доплат за ребенка и скрытых платежей.",
-            "cta.title": "Готовы закончить битву за экранное время?",
-            "cta.sub": "Присоединяйтесь к семьям, которые формируют более здоровые цифровые привычки без ежедневных споров. Попробуйте Safini одними из первых.",
-            "cta.form.label": "Email",
-            "cta.form.placeholder": "Ваш email",
-            "cta.form.submit": "В лист ожидания →",
-            "cta.form.submitting": "Отправляем...",
-            "cta.success.title": "🎉 Вы в списке!",
-            "cta.success.sub": "Мы напишем вам, когда Safini запустится.",
-            "cta.success.sharePrompt": "Знаете еще одного родителя, которому это подойдет? Поделитесь Safini:",
-            "cta.success.shareX": "𝕏 Поделиться в X",
-            "cta.success.shareWhatsapp": "💬 Поделиться в WhatsApp",
-            "cta.error.generic": "Что-то пошло не так. Попробуйте еще раз.",
-            "cta.error.timeout": "Запрос занял слишком много времени. Проверьте подключение и попробуйте снова.",
-            "cta.error.alreadyOnList": "Этот email уже в листе ожидания.",
-            "cta.shareText": "Я только что вступил(а) в лист ожидания Safini — это приложение, где дети зарабатывают экранное время, выполняя задания 🎯 Больше никаких ежедневных споров. Присоединяйтесь:",
-            "footer.copy": "© 2026 Safini AI. Все права защищены."
-        },
-        en: {
-            "meta.title": "Safini — Kids Earn Screen Time",
-            "meta.ogTitle": "Safini — Kids Earn Screen Time",
-            "meta.ogDescription": "Safini replaces screen-time battles with a reward system kids actually love. Join 1,247 families on the waitlist.",
-            "meta.twitterTitle": "Safini — Kids Earn Screen Time",
-            "meta.twitterDescription": "Safini replaces screen-time battles with a reward system kids actually love.",
-            "lang.switcher": "Language switcher",
-            "lang.openMenu": "Open menu",
-            "lang.closeMenu": "Close menu",
-            "nav.how": "How It Works",
-            "nav.features": "Features",
-            "nav.pricing": "Pricing",
-            "nav.cta": "Join Waitlist",
-            "hero.badge": "🚀 Beta launching April 2026",
-            "hero.title": "Kids <span class=\"highlight-green\">earn</span> screen time.<br>Parents stay <span class=\"highlight\">in control</span>.",
-            "hero.sub": "Safini replaces screen-time battles with a reward system kids actually love. Complete tasks, earn Time Coins, and unlock entertainment without the daily arguments.",
-            "hero.ctaPrimary": "Join the Waitlist →",
-            "hero.ctaSecondary": "See How It Works",
-            "hero.proof": "<strong>1,247 families on the waitlist</strong><br>Validated with 20+ parent interviews",
-            "hero.floatEarned": "✅ +20 coins earned!",
-            "hero.floatUnlocked": "🎮 30m unlocked",
-            "hero.phone.greeting": "Good morning 👋",
-            "hero.phone.name": "Explorer Leo",
-            "hero.phone.coinsLabel": "Time Coins",
-            "hero.phone.streakLabel": "Day Streak",
-            "hero.phone.tasksTitle": "Today's Quests",
-            "hero.phone.task1.name": "Duolingo Lesson",
-            "hero.phone.task1.reward": "Complete daily lesson",
-            "hero.phone.task2.name": "Walk 5,000 Steps",
-            "hero.phone.task2.reward": "Get moving today!",
-            "hero.phone.task3.name": "Logic Puzzle",
-            "hero.phone.task3.reward": "Brain training time",
-            "hero.phone.task4.name": "Make Your Bed",
-            "hero.phone.task4.reward": "Parent-assigned",
-            "problem.label": "The Problem",
-            "problem.title": "Kids are spending 6-10 hours a day on their phones. Parents are out of options.",
-            "problem.card1.time": "2:47 AM",
-            "problem.card1.title": "📱 Doom scrolling until 3 AM",
-            "problem.card1.body": "Kids spend 6-10 hours glued to YouTube, TikTok, and Roblox, often secretly late at night with zero boundaries.",
-            "problem.card2.subject": "MATH",
-            "problem.card2.title": "📉 Grades drop, focus disappears",
-            "problem.card2.body": "Homework sits untouched while kids are lost in endless feeds. Attention spans and school performance take a nosedive.",
-            "problem.card3.bubble1": "Give me the",
-            "problem.card3.bubble2": "phone! 😤",
-            "problem.card3.reply": "NO! 😡",
-            "problem.card3.title": "😤 Daily battles, zero solutions",
-            "problem.card3.body": "Taking the phone away creates arguments, resentment, and a cycle of bargaining that exhausts the entire family.",
-            "how.label": "How It Works",
-            "how.title": "From conflict to cooperation in 4 steps",
-            "how.sub": "Safini turns screen time into something kids earn through productive habits, while parents set the rules.",
-            "how.step1.title": "Parents Set Rules",
-            "how.step1.body": "Choose which apps to limit, set Time Coin exchange rates, and create tasks for your child.",
-            "how.step2.title": "Kids Complete Tasks",
-            "how.step2.body": "Duolingo lessons, step goals, puzzles, chores, reading: productive actions that build real habits.",
-            "how.step3.title": "Earn Time Coins",
-            "how.step3.body": "Every completed task earns coins. Kids watch their balance grow and unlock new levels and streaks.",
-            "how.step4.title": "Unlock Entertainment",
-            "how.step4.body": "Spend coins on YouTube, Roblox, Minecraft, and more. Fair, transparent, and conflict-free.",
-            "features.label": "Features",
-            "features.title": "Everything families need",
-            "features.sub": "Two apps, one system. Kids get a fun experience. Parents get peace of mind.",
-            "features.card1.title": "Parent Dashboard",
-            "features.card1.body": "See earned coins, redeemed minutes, completed tasks, and screen-time trends at a glance.",
-            "features.card2.title": "Custom Tasks",
-            "features.card2.body": "Create one-off or recurring tasks for homework, chores, reading, or outdoor time with custom coin values.",
-            "features.card3.title": "Reward Store",
-            "features.card3.body": "Kids spend coins on app time or avatar upgrades. Clear costs, visible progress, instant gratification.",
-            "features.card4.title": "KidsGPT AI Tutor",
-            "features.card4.body": "A safe, child-friendly AI that explains school topics, answers questions, and encourages learning.",
-            "features.card5.title": "Streaks & Levels",
-            "features.card5.body": "Gamified progression keeps kids motivated. Badges, streaks, and levels make good habits feel rewarding.",
-            "features.card6.title": "App Time Limits",
-            "features.card6.body": "Set daily limits for each app. Kids earn extra minutes through productive tasks instead of begging for more.",
-            "comparison.label": "Why Safini",
-            "comparison.title": "Control apps block. Safini motivates.",
-            "comparison.head.control": "Control Apps",
-            "comparison.head.learning": "Learning Apps",
-            "comparison.head.safini": "Safini ✨",
-            "comparison.row1": "Screen time limits",
-            "comparison.row2": "Educational tasks",
-            "comparison.row3": "Gamified rewards",
-            "comparison.row4": "Child motivation",
-            "comparison.partial": "Partial",
-            "comparison.row5": "AI tutor for kids",
-            "comparison.row6": "Reduces family conflict",
-            "testimonials.label": "What Parents Say",
-            "testimonials.title": "From our parent interviews",
-            "testimonials.sub": "Real feedback from 20+ families we spoke to during validation.",
-            "testimonials.card1.quote": "\"I've tried taking the phone away, and it always ends in a fight. A system where my son actually earns his YouTube time? That changes everything.\"",
-            "testimonials.card1.role": "Mother of a 9-year-old",
-            "testimonials.card2.quote": "\"My daughter would play Roblox all day if she could. I love the idea that she'd need to read or do homework first. It makes screen time a reward, not a right.\"",
-            "testimonials.card2.role": "Father of 7- and 11-year-olds",
-            "testimonials.card3.quote": "\"We've used parental controls before, but they just create resentment. A coin system where the child feels in control of earning is much smarter.\"",
-            "testimonials.card3.role": "Mother of 6- and 13-year-olds",
-            "pricing.label": "Simple Pricing",
-            "pricing.title": "One plan. The whole family.",
-            "pricing.sub": "No per-child fees, no surprise charges. One subscription covers your entire family.",
-            "pricing.badge": "🎉 Early bird pricing",
-            "pricing.period": "/ month",
-            "pricing.desc": "Per family, billed monthly",
-            "pricing.feature1": "Unlimited children profiles",
-            "pricing.feature2": "Full parent dashboard & insights",
-            "pricing.feature3": "All task types & reward store",
-            "pricing.feature4": "KidsGPT AI tutor access",
-            "pricing.feature5": "Avatar customization & levels",
-            "pricing.feature6": "App time limits & controls",
-            "pricing.cta": "Join the Waitlist →",
-            "pricing.trust1": "Built with child privacy in mind",
-            "pricing.trust2": "No ads, ever",
-            "pricing.trust3": "No data sold",
-            "faq.label": "FAQ",
-            "faq.title": "Questions parents ask",
-            "faq.sub": "Everything you need to know before joining the waitlist.",
-            "faq.q1.q": "Is Safini available now?",
-            "faq.q1.a": "Not yet. We're in private beta and launching soon. Join the waitlist to get early access before we open to the public. Early members lock in the $4/month founding price.",
-            "faq.q2.q": "What devices will Safini support?",
-            "faq.q2.a": "Safini will launch on iOS and Android for both the parent dashboard and the child app. A web dashboard for parents is also planned.",
-            "faq.q3.q": "Is my child's data safe?",
-            "faq.q3.a": "Protecting children's privacy is central to how we built Safini. We don't show ads, we don't sell data, and we only collect what's necessary to run the app. Your family's information is never shared with third parties.",
-            "faq.q4.q": "Won't this create more conflict if kids can't earn enough coins?",
-            "faq.q4.a": "The whole product is designed to make kids feel in control, not punished. Parents set fair tasks and coin rates. Kids see exactly what they need to do to unlock their favorite apps. That transparency is what makes it work: no arbitrary decisions and no more 'because I said so.'",
-            "faq.q5.q": "How much will it cost after beta?",
-            "faq.q5.a": "Safini is $4/month for your whole family with unlimited child profiles and all features included. Waitlist members lock in this founding price. No per-child fees and no hidden charges.",
-            "cta.title": "Ready to end the screen-time battle?",
-            "cta.sub": "Join families building healthier digital habits without the daily arguments. Be among the first to try Safini.",
-            "cta.form.label": "Email address",
-            "cta.form.placeholder": "Your email address",
-            "cta.form.submit": "Join Waitlist →",
-            "cta.form.submitting": "Joining...",
-            "cta.success.title": "🎉 You're on the list!",
-            "cta.success.sub": "We'll be in touch when Safini launches.",
-            "cta.success.sharePrompt": "Know another parent who'd love this? Share Safini:",
-            "cta.success.shareX": "𝕏 Share on X",
-            "cta.success.shareWhatsapp": "💬 Share on WhatsApp",
-            "cta.error.generic": "Something went wrong. Please try again.",
-            "cta.error.timeout": "The request timed out. Please check your connection and try again.",
-            "cta.error.alreadyOnList": "This email is already on the waitlist.",
-            "cta.shareText": "I just joined the Safini waitlist, an app where kids earn screen time by completing tasks 🎯 No more daily arguments. Join me:",
-            "footer.copy": "© 2026 Safini AI. All rights reserved."
-        }
+  // reveal
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const ans = item.querySelector('.faq-a');
+      const open = item.classList.toggle('open');
+      ans.style.maxHeight = open ? ans.scrollHeight + 'px' : '0';
+    });
+  });
+
+  // ===== Cognitive character select =====
+  (function () {
+    const FINI = 'assets/safini-penguin.png';
+    const ICON = {
+      target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg>',
+      vault: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 9h8M8 13h5"/></svg>',
+      plan: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6h14M5 12h9M5 18h6"/><circle cx="18" cy="17" r="3"/></svg>',
+      shift: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h12l-3-3M20 16H8l3 3"/></svg>',
+      ask: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 9a2.5 2.5 0 1 1 3 2.4c-.9.3-1.5 1-1.5 2.1"/><path d="M11 17h.01"/><circle cx="12" cy="12" r="9"/></svg>',
+      mirror: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17l4-5 4 3 4-7 4 6"/><circle cx="20" cy="14" r="1.4" fill="currentColor"/></svg>'
     };
+    const V = 'var(--violet)', M = 'var(--magenta)', P = 'var(--pink)', PE = 'var(--peach)';
+    const DATA = [
+      { fn:'Sustained attention', cls:'The Focus Keeper', icon:'target', color:V, fg:'#fff', pow:84,
+        does:'Stay locked on one task over time.',
+        degrade:'Short-form video trains the brain for constant novelty-seeking.',
+        train:'Tasks require minutes of single-topic effort; streaks reward consistency, not switching.' },
+      { fn:'Working memory', cls:'The Memory Vault', icon:'vault', color:M, fg:'#fff', pow:78,
+        does:'Hold and manipulate information in your head.',
+        degrade:'Offloading everything to the phone erodes short-term recall.',
+        train:'Logic puzzles, in-app reasoning, and a no-shortcut homework mode.' },
+      { fn:'Executive function', cls:'The Strategist', icon:'plan', color:P, fg:'#fff', pow:90,
+        does:'Plan, sequence, and resist impulses.',
+        degrade:'Feeds remove the need to choose; instant gratification undercuts impulse control.',
+        train:'Earn-before-spend, parent-set goals, and small planning rituals.' },
+      { fn:'Cognitive flexibility', cls:'The Shapeshifter', icon:'shift', color:PE, fg:'#15021f', pow:80,
+        does:'Switch perspectives and solve novel problems.',
+        degrade:'Recommendation engines narrow what a child is ever exposed to.',
+        train:'A deliberately diverse task taxonomy — language, movement, logic, real-world.' },
+      { fn:'Critical thinking', cls:'The Questioner', icon:'ask', color:V, fg:'#fff', pow:88,
+        does:'Evaluate, reason, and question what’s in front of you.',
+        degrade:'AI tools hand over finished answers; the reasoning step gets skipped.',
+        train:'KidsGPT, our Socratic AI tutor, plus homework-integrity mode.' },
+      { fn:'Metacognition', cls:'The Mirror', icon:'mirror', color:M, fg:'#fff', pow:74,
+        does:'Awareness of your own behavior and learning.',
+        degrade:'Passive consumption removes any moment of self-reflection.',
+        train:'Cognitive growth reports and weekly self-reviews.' }
+    ];
 
-    const DEFAULT_LANGUAGE = 'ru';
-    const LANGUAGE_STORAGE_KEY = 'safini-language';
-    const SITE_URL = 'https://safini.fun';
+    const stage = document.getElementById('csStage');
+    if (!stage) return;
+    const el = {
+      counter: document.getElementById('csCounter'),
+      emblem: document.getElementById('csEmblem'),
+      cls: document.getElementById('csClass'),
+      fn: document.getElementById('csFn'),
+      bar: document.getElementById('csPips'),
+      does: document.getElementById('csDoes'),
+      degrade: document.getElementById('csDegrade'),
+      train: document.getElementById('csTrain'),
+      roster: document.getElementById('csRoster')
+    };
+    let cur = 0;
 
-    const nav = document.getElementById('nav');
-    const hamburger = document.getElementById('nav-hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-    const mobileClose = document.getElementById('mobile-nav-close');
-    const waitlistForm = document.getElementById('waitlist-form');
-    const waitlistError = document.getElementById('waitlist-error');
-    const waitlistSubmitButton = waitlistForm.querySelector('button[type=submit]');
-    const shareTwitter = document.getElementById('share-twitter');
-    const shareWhatsapp = document.getElementById('share-whatsapp');
-    let currentLanguage = DEFAULT_LANGUAGE;
-
-    const getTranslation = (lang, key) => translations[lang]?.[key] || translations[DEFAULT_LANGUAGE][key] || '';
-
-    function closeMobileNav() {
-        mobileNav.classList.remove('open');
-        document.body.style.overflow = '';
-    }
-
-    function updateMetaContent(id, value) {
-        const metaElement = document.getElementById(id);
-        if (metaElement) {
-            metaElement.setAttribute('content', value);
-        }
-    }
-
-    function updateShareLinks(lang) {
-        const shareText = getTranslation(lang, 'cta.shareText');
-        const encoded = encodeURIComponent(`${shareText} ${SITE_URL}`);
-        shareTwitter.href = `https://twitter.com/intent/tweet?text=${encoded}`;
-        shareWhatsapp.href = `https://wa.me/?text=${encoded}`;
-    }
-
-    function updateLanguageButtons(lang) {
-        document.querySelectorAll('[data-lang-trigger]').forEach(button => {
-            const isActive = button.dataset.langTrigger === lang;
-            button.classList.toggle('active', isActive);
-            button.setAttribute('aria-pressed', String(isActive));
-        });
-    }
-
-    function syncFormState() {
-        const isLoading = waitlistForm.dataset.state === 'loading';
-        waitlistSubmitButton.disabled = isLoading;
-        waitlistSubmitButton.textContent = getTranslation(
-            currentLanguage,
-            isLoading ? 'cta.form.submitting' : 'cta.form.submit'
-        );
-
-        const errorKey = waitlistError.dataset.errorKey;
-        if (errorKey) {
-            waitlistError.textContent = getTranslation(currentLanguage, errorKey);
-            waitlistError.style.display = 'block';
-        } else {
-            waitlistError.textContent = '';
-            waitlistError.style.display = 'none';
-        }
-    }
-
-    function applyTranslations(lang) {
-        currentLanguage = translations[lang] ? lang : DEFAULT_LANGUAGE;
-        document.documentElement.lang = currentLanguage;
-
-        const pageTitle = getTranslation(currentLanguage, 'meta.title');
-        document.title = pageTitle;
-        document.getElementById('page-title').textContent = pageTitle;
-
-        updateMetaContent('meta-og-title', getTranslation(currentLanguage, 'meta.ogTitle'));
-        updateMetaContent('meta-og-description', getTranslation(currentLanguage, 'meta.ogDescription'));
-        updateMetaContent('meta-twitter-title', getTranslation(currentLanguage, 'meta.twitterTitle'));
-        updateMetaContent('meta-twitter-description', getTranslation(currentLanguage, 'meta.twitterDescription'));
-
-        document.querySelectorAll('[data-i18n]').forEach(element => {
-            element.textContent = getTranslation(currentLanguage, element.dataset.i18n);
-        });
-
-        document.querySelectorAll('[data-i18n-html]').forEach(element => {
-            element.innerHTML = getTranslation(currentLanguage, element.dataset.i18nHtml);
-        });
-
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
-            element.setAttribute('placeholder', getTranslation(currentLanguage, element.dataset.i18nPlaceholder));
-        });
-
-        document.querySelectorAll('[data-i18n-aria-label]').forEach(element => {
-            element.setAttribute('aria-label', getTranslation(currentLanguage, element.dataset.i18nAriaLabel));
-        });
-
-        updateShareLinks(currentLanguage);
-        updateLanguageButtons(currentLanguage);
-        syncFormState();
-
-        try {
-            localStorage.setItem(LANGUAGE_STORAGE_KEY, currentLanguage);
-        } catch (error) {
-            // Ignore storage errors and keep the selection in-memory.
-        }
-    }
-
-    function getInitialLanguage() {
-        try {
-            const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
-            if (stored && translations[stored]) {
-                return stored;
-            }
-        } catch (error) {
-            // Ignore storage errors and fall back to the default language.
-        }
-        return DEFAULT_LANGUAGE;
-    }
-
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
-
-    hamburger.addEventListener('click', () => {
-        mobileNav.classList.add('open');
-        document.body.style.overflow = 'hidden';
+    DATA.forEach((d, i) => {
+      const slot = document.createElement('button');
+      slot.className = 'cs-slot' + (i === 0 ? ' active' : '');
+      slot.style.setProperty('--c', d.color);
+      if (d.fg !== '#fff') slot.setAttribute('data-fg', 'ink');
+      slot.innerHTML =
+        '<div class="cs-avatar"><img src="' + FINI + '" alt=""><span class="badge">' + ICON[d.icon] + '</span></div>' +
+        '<div class="cs-name">' + d.cls + '</div>' +
+        '<div class="cs-num">' + String(i+1).padStart(2,'0') + '</div>';
+      slot.addEventListener('click', () => select(i));
+      el.roster.appendChild(slot);
     });
-    mobileClose.addEventListener('click', closeMobileNav);
-    mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileNav));
-    document.querySelectorAll('[data-lang-trigger]').forEach(button => {
-        button.addEventListener('click', () => applyTranslations(button.dataset.langTrigger));
+    const slots = [...el.roster.children];
+
+    function select(i) {
+      cur = (i + DATA.length) % DATA.length;
+      const d = DATA[cur];
+      stage.style.setProperty('--fn', d.color);
+      stage.style.setProperty('--fnfg', d.fg);
+      el.counter.textContent = String(cur+1).padStart(2,'0') + ' / 06';
+      el.emblem.innerHTML = ICON[d.icon];
+      el.cls.textContent = d.cls;
+      el.fn.textContent = d.fn;
+      el.does.textContent = d.does;
+      el.degrade.textContent = d.degrade;
+      el.train.textContent = d.train;
+      const pips = el.bar.children;
+      for (let k = 0; k < pips.length; k++) {
+        pips[k].classList.remove('on');
+        setTimeout(() => pips[k].classList.add('on'), 120 + k * 90);
+      }
+      slots.forEach((s, k) => s.classList.toggle('active', k === cur));
+    }
+
+    document.getElementById('csNext').addEventListener('click', () => select(cur+1));
+    document.getElementById('csPrev').addEventListener('click', () => select(cur-1));
+
+    document.addEventListener('keydown', (e) => {
+      const r = stage.getBoundingClientRect();
+      if (r.top > window.innerHeight || r.bottom < 0) return;
+      if (e.key === 'ArrowRight') select(cur+1);
+      if (e.key === 'ArrowLeft') select(cur-1);
     });
 
-    waitlistForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        waitlistForm.dataset.state = 'loading';
-        delete waitlistError.dataset.errorKey;
-        syncFormState();
-
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 10000);
-
-        const email = document.getElementById('waitlist-email').value.trim();
-        const rawUtm = new URLSearchParams(window.location.search).get('utm_source');
-        const utmSource = rawUtm ? `landing_page+${rawUtm}` : 'landing_page';
-        const body = { email, utm_source: utmSource };
-
-        try {
-            const resp = await fetch(waitlistForm.action, {
-                method: 'POST',
-                body: JSON.stringify(body),
-                headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-                signal: controller.signal
-            });
-            clearTimeout(timeout);
-
-            if (resp.status === 201) {
-                waitlistForm.dataset.state = 'success';
-                waitlistForm.style.display = 'none';
-                document.getElementById('waitlist-success').style.display = 'block';
-                if (typeof confetti !== 'undefined') {
-                    confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ['#8100D1','#B500B2','#FF52A0','#FFA47F'] });
-                }
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'waitlist_signup', { event_category: 'engagement', event_label: 'waitlist_form' });
-                }
-            } else if (resp.status === 409) {
-                waitlistForm.dataset.state = 'idle';
-                waitlistError.dataset.errorKey = 'cta.error.alreadyOnList';
-                syncFormState();
-            } else {
-                waitlistForm.dataset.state = 'idle';
-                waitlistError.dataset.errorKey = 'cta.error.generic';
-                syncFormState();
-            }
-        } catch (err) {
-            clearTimeout(timeout);
-            waitlistForm.dataset.state = 'idle';
-            waitlistError.dataset.errorKey = err.name === 'AbortError'
-                ? 'cta.error.timeout'
-                : 'cta.error.generic';
-            syncFormState();
-        }
+    let sx = null;
+    stage.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; }, { passive:true });
+    stage.addEventListener('touchend', (e) => {
+      if (sx === null) return;
+      const dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 40) select(cur + (dx < 0 ? 1 : -1));
+      sx = null;
     });
 
-    applyTranslations(getInitialLanguage());
+    select(0);
+  })();
 
-    // FAQ accordion
-    document.querySelectorAll('.faq-question').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const item = btn.closest('.faq-item');
-            const isOpen = item.classList.contains('open');
-            document.querySelectorAll('.faq-item.open').forEach(el => {
-                el.classList.remove('open');
-                el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-            });
-            if (!isOpen) {
-                item.classList.add('open');
-                btn.setAttribute('aria-expanded', 'true');
-            }
-        });
+  // smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        const el = document.querySelector(id);
+        if (el) { e.preventDefault(); window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' }); }
+      }
     });
-
-    // Scroll animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
-
-    document.querySelectorAll('.problem-card, .how-step, .feature-card, .testimonial-card').forEach((el, i) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = `all 0.6s ease ${i % 4 * 0.1}s`;
-        observer.observe(el);
-    });
+  });
 </script>
+
 </body>
 </html>
