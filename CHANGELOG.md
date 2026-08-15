@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.2.0.0] - 2026-08-15
+
+### Added
+- Trilingual landing: `index.html` (en), `ru/index.html` (ru), `uz/index.html` (uz)
+- Language switcher in nav and footer, `hreflang` alternates and per-locale `canonical`
+- Shared `assets/v4.css` and `assets/v4.js` so only copy differs between locales
+
+### Changed
+- Replaced the landing with design V4-A "Price List": earn/spend price-list section,
+  three-step loop, blockers-vs-Safini comparison, honest-promise panels, plans, FAQ
+- Waitlist now posts from two forms (hero + CTA) to `https://api.safini.fun/v1/waiting-list`
+  with localized 201/409/error/timeout messages; `utm_source` passthrough unchanged
+
+### Removed
+- Cognitive-character selector and the old single-language page
+
 ## [0.1.1.0] - 2026-03-19
 
 ### Changed
