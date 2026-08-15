@@ -223,12 +223,19 @@
 </section>
 
 <!-- ===================== PLANS ===================== -->
-<section class="plans" id="plans" data-screen-label="pricing">
+<section class="plans" id="plans" data-cycle="year" data-screen-label="pricing">
   <div class="wrap">
     <div class="plans-intro">
       <span class="eyebrow">Plans</span>
       <h2 class="h2">Start free. Pay less than a coffee a month.</h2>
       <p class="lede">One subscription per family, paid with an Uzcard or Humo card. No per-child fee.</p>
+    </div>
+    <div class="billing" role="group" aria-label="Billing period">
+      <div class="billing-seg">
+        <button type="button" class="billing-opt" data-cycle="month" aria-pressed="false">Monthly</button>
+        <button type="button" class="billing-opt" data-cycle="year" aria-pressed="true">Yearly</button>
+      </div>
+      <span class="billing-save">Save 27%</span>
     </div>
     <div class="g2 plans-grid">
       <div class="plan">
@@ -245,7 +252,7 @@
       <div class="plan featured">
         <div class="plan-tag">Founding price</div>
         <div class="plan-name">Family</div>
-        <div class="plan-price">$20<small>/year</small></div>
+        <div class="plan-price"><span class="cyc cyc-month">$4<small>/month</small></span><span class="cyc cyc-year">$35<small>/year</small></span></div>
         <div class="plan-note">Whole family · cancel anytime</div>
         <a class="plan-cta" href="#join">Join the waitlist</a>
         <ul>

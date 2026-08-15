@@ -72,6 +72,20 @@
     });
   });
 
+  // plans: monthly / yearly toggle. CSS shows the .cyc- span matching data-cycle
+  var plans = document.querySelector('.plans');
+  if (plans) {
+    var opts = plans.querySelectorAll('.billing-opt');
+    opts.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        plans.setAttribute('data-cycle', btn.getAttribute('data-cycle'));
+        opts.forEach(function (b) {
+          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+        });
+      });
+    });
+  }
+
   // smooth scroll for in-page anchors, offset for the sticky nav
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {

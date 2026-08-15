@@ -197,7 +197,7 @@
   <div class="wrap">
     <div class="honest-intro">
       <span class="eyebrow">Ochiq javoblar</span>
-      <h2 class="h2">Nimani va'da qilamiz - va nimani yo'q.</h2>
+      <h2 class="h2">Nimani va'da qilamiz, va nimalarni va'da qila olmaymiz.</h2>
     </div>
     <div class="g2">
       <div class="panel yes-panel">
@@ -223,12 +223,19 @@
 </section>
 
 <!-- ===================== PLANS ===================== -->
-<section class="plans" id="plans" data-screen-label="pricing">
+<section class="plans" id="plans" data-cycle="year" data-screen-label="pricing">
   <div class="wrap">
     <div class="plans-intro">
       <span class="eyebrow">Tariflar</span>
       <h2 class="h2">Bepul boshlang. Oyiga bir chashka qahvadan arzonroq to'lang.</h2>
       <p class="lede">Bir oilaga bitta obuna, Uzcard yoki Humo kartasi bilan to'lanadi. Har bir bola uchun alohida to'lov yo'q.</p>
+    </div>
+    <div class="billing" role="group" aria-label="To'lov davri">
+      <div class="billing-seg">
+        <button type="button" class="billing-opt" data-cycle="month" aria-pressed="false">Oylik</button>
+        <button type="button" class="billing-opt" data-cycle="year" aria-pressed="true">Yillik</button>
+      </div>
+      <span class="billing-save">27% tejaysiz</span>
     </div>
     <div class="g2 plans-grid">
       <div class="plan">
@@ -245,7 +252,7 @@
       <div class="plan featured">
         <div class="plan-tag">Birinchilar narxi</div>
         <div class="plan-name">Oilaviy</div>
-        <div class="plan-price">$20<small>/yil</small></div>
+        <div class="plan-price"><span class="cyc cyc-month">$4<small>/oyiga</small></span><span class="cyc cyc-year">$35<small>/yiliga</small></span></div>
         <div class="plan-note">Butun oila · istalgan vaqtda bekor qilish</div>
         <a class="plan-cta" href="#join">Ro'yxatga yozilish</a>
         <ul>
