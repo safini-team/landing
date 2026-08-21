@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Removed
+- Honest-promise section ("Straight answers" / "What we promise - and what we don't")
+  from en/ru/uz, its nav and footer links, and the now-dead `.honest`/`.panel` CSS
+
 ## [0.2.0.0] - 2026-08-15
 
 ### Added
