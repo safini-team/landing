@@ -6,22 +6,27 @@
 <title>Safini — Media Kit</title>
 <meta name="description" content="Download Safini brand assets, logos, and brand guidelines." />
 <meta name="robots" content="noindex" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Nunito+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400..600&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --violet: #8100D1;
-    --magenta: #B500B2;
-    --pink: #FF52A0;
-    --peach: #FFA47F;
-    --ink: #15021f;
-    --ink-2: #2b0a3a;
-    --paper: #fff5ef;
-    --paper-2: #ffe9dc;
-    --line: rgba(21, 2, 31, 0.12);
-    --display: "Quicksand", system-ui, sans-serif;
-    --sans: "Quicksand", system-ui, sans-serif;
+    --pine: #1A5C4A;
+    --pine-deep: #14453A;
+    --pine-tint: #DCEDE5;
+    --coin: #E8A33D;
+    --coin-ink: #9A6512;
+    --alert: #C2452D;
+    --info: #2E6F8E;
+    --locked: #5B6A72;
+    --ink: #0C231C;
+    --ink-2: #12332A;
+    --paper: #F7F5F0;
+    --paper-2: #EFEBE3;
+    --line: rgba(12, 35, 28, 0.12);
+    --display: "Nunito", system-ui, sans-serif;
+    --sans: "Nunito Sans", system-ui, sans-serif;
     --mono: "JetBrains Mono", ui-monospace, monospace;
   }
 
@@ -35,15 +40,9 @@
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
   }
-  ::selection { background: var(--pink); color: white; }
+  ::selection { background: var(--pine-tint); color: var(--ink); }
 
-  body::before {
-    content: "";
-    position: fixed; inset: 0;
-    pointer-events: none; z-index: 100;
-    opacity: 0.05; mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  }
+  
 
   .container { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
 
@@ -54,7 +53,7 @@
     padding: 14px 24px;
     margin: 16px auto 0;
     max-width: 1100px;
-    background: rgba(255, 245, 239, 0.88);
+    background: rgba(247, 245, 240, 0.88);
     backdrop-filter: saturate(140%) blur(14px);
     -webkit-backdrop-filter: saturate(140%) blur(14px);
     border: 1px solid var(--line);
@@ -84,7 +83,7 @@
   .mk-label {
     display: inline-block;
     font-family: var(--mono); font-size: 12px; font-weight: 500;
-    text-transform: uppercase; letter-spacing: 0.16em; color: var(--violet);
+    text-transform: uppercase; letter-spacing: 0.16em; color: var(--pine);
     margin-bottom: 18px;
   }
   .mk-hero h1 {
@@ -115,7 +114,7 @@
   .section-tag {
     display: inline-block;
     font-family: var(--mono); font-size: 11px; font-weight: 500;
-    text-transform: uppercase; letter-spacing: 0.16em; color: var(--violet);
+    text-transform: uppercase; letter-spacing: 0.16em; color: var(--pine);
     margin-bottom: 10px;
   }
 
@@ -134,16 +133,29 @@
     display: flex; flex-direction: column;
     transition: box-shadow .25s ease, transform .25s ease;
   }
-  .asset-card:hover { transform: translateY(-3px); box-shadow: 0 20px 44px -22px rgba(129,0,209,0.35); }
+  .asset-card:hover { transform: translateY(-3px); box-shadow: 0 20px 44px -22px rgba(12,35,28,0.32); }
 
   .asset-preview {
     display: flex; align-items: center; justify-content: center;
     padding: 40px 28px;
     min-height: 200px;
   }
+  .shot-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .shot-grid.one { grid-template-columns: 1fr; max-width: 820px; margin: 0 auto; }
+  @media (max-width: 760px) { .shot-grid { grid-template-columns: 1fr; } }
+  .shot-card {
+    background: white; border: 1px solid var(--line);
+    border-radius: 24px; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .shot-preview { background: var(--paper-2); padding: 22px; }
+  .shot-preview img { display: block; width: 100%; height: auto; border-radius: 8px; }
+
   .asset-preview.light { background: white; }
   .asset-preview.dark  { background: var(--ink); }
-  .asset-preview.violet { background: var(--violet); }
+  .asset-preview.pine { background: var(--pine); }
   .asset-preview.checker {
     background-color: #f0f0f0;
     background-image:
@@ -195,7 +207,7 @@
   .btn-dl-primary {
     background: var(--ink); color: var(--paper);
   }
-  .btn-dl-primary:hover { background: var(--violet); transform: translateY(-1px); }
+  .btn-dl-primary:hover { background: var(--pine); transform: translateY(-1px); }
   .btn-dl-ghost {
     background: transparent; color: var(--ink);
     border: 1.5px solid var(--line-strong, rgba(21,2,31,0.85));
@@ -218,6 +230,9 @@
   }
   .swatch-block {
     height: 80px;
+    display: flex; align-items: flex-end;
+    padding: 8px 10px;
+    font-family: var(--mono); font-size: 10.5px;
   }
   .swatch-info {
     padding: 12px 14px;
@@ -232,8 +247,12 @@
     cursor: pointer;
     transition: color .15s ease;
   }
-  .swatch-hex:hover { color: var(--violet); }
-  .swatch-hex.copied { color: var(--violet); }
+  .swatch-role {
+    font-size: 12.5px; line-height: 1.4; margin-top: 6px;
+    color: color-mix(in oklab, var(--ink) 62%, transparent);
+  }
+  .swatch-hex:hover { color: var(--pine); }
+  .swatch-hex.copied { color: var(--pine); }
 
   /* ── TYPOGRAPHY ── */
   .type-grid {
@@ -248,7 +267,7 @@
   .type-label {
     font-family: var(--mono); font-size: 11px; font-weight: 500;
     text-transform: uppercase; letter-spacing: 0.14em;
-    color: var(--violet); margin-bottom: 16px;
+    color: var(--pine); margin-bottom: 16px;
   }
   .type-sample-display {
     font-family: var(--display); font-weight: 700;
@@ -432,7 +451,7 @@
       </div>
 
       <div class="asset-card">
-        <div class="asset-preview violet">
+        <div class="asset-preview dark">
           <img src="assets/safini-mascot.png" alt="Safini Mascot" style="filter: drop-shadow(0 12px 24px rgba(0,0,0,0.4));" />
         </div>
         <div class="asset-info">
@@ -458,57 +477,116 @@
   </div>
 </section>
 
+
+<!-- STORE SCREENSHOTS -->
+<section class="mk-section">
+  <div class="container">
+    <div class="mk-section-head">
+      <div class="section-tag">Product shots</div>
+      <h2>App Store screenshots</h2>
+      <p>The four-panel set used on the App Store and Google Play, in Pine &amp; Sand. English only for now - Russian and tablet variants are being regenerated from the approved masters.</p>
+    </div>
+
+    <div class="shot-grid one">
+      <div class="shot-card">
+        <div class="shot-preview"><img src="assets/store/app-screens-en-preview.jpg" alt="Safini App Store screenshots: healthy screen habits, daily tasks, rewards, connected family" loading="lazy" /></div>
+        <div class="asset-info">
+          <div class="asset-meta">
+            <div class="asset-name">App Store set &mdash; English</div>
+            <div class="asset-detail">PNG &middot; 4 panels &middot; 1823&times;863</div>
+          </div>
+          <div class="asset-tags">
+            <span class="tag">Screenshots</span>
+            <span class="tag">Phone</span>
+            <span class="tag">EN</span>
+          </div>
+          <div class="asset-downloads">
+            <a href="assets/store/app-screens-en.png" download="safini-app-store-screens-en.png" class="btn-dl btn-dl-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 11l4 4 4-4M3 17v3a1 1 0 001 1h16a1 1 0 001-1v-3"/></svg>
+              Download PNG
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- COLOR PALETTE -->
 <section class="mk-section">
   <div class="container">
     <div class="mk-section-head">
       <div class="section-tag">Brand colors</div>
       <h2>Color Palette</h2>
-      <p>Click any hex code to copy it. Violet is the primary brand color; use the full palette for illustrations and UI accents.</p>
+      <p>Click any hex code to copy it. Pine 600 is the primary brand color. Coin amber is reserved for Time Coins and nothing else - that exclusivity is what makes the currency read as currency.</p>
     </div>
 
     <div class="color-grid">
       <div class="color-swatch">
-        <div class="swatch-block" style="background:#8100D1;"></div>
+        <div class="swatch-block" style="background:#1A5C4A;color:#fff;"></div>
         <div class="swatch-info">
-          <div class="swatch-name">Violet</div>
-          <div class="swatch-hex" data-hex="#8100D1">#8100D1</div>
+          <div class="swatch-name">Pine 600 — primary</div>
+          <div class="swatch-hex" data-hex="#1A5C4A">#1A5C4A</div>
+          <div class="swatch-role">Buttons, links, the earned state</div>
         </div>
       </div>
       <div class="color-swatch">
-        <div class="swatch-block" style="background:#B500B2;"></div>
+        <div class="swatch-block" style="background:#14453A;color:#fff;"></div>
         <div class="swatch-info">
-          <div class="swatch-name">Magenta</div>
-          <div class="swatch-hex" data-hex="#B500B2">#B500B2</div>
+          <div class="swatch-name">Pine 700</div>
+          <div class="swatch-hex" data-hex="#14453A">#14453A</div>
+          <div class="swatch-role">Hover and pressed</div>
         </div>
       </div>
       <div class="color-swatch">
-        <div class="swatch-block" style="background:#FF52A0;"></div>
+        <div class="swatch-block" style="background:#DCEDE5;color:#14453A;"></div>
         <div class="swatch-info">
-          <div class="swatch-name">Pink</div>
-          <div class="swatch-hex" data-hex="#FF52A0">#FF52A0</div>
+          <div class="swatch-name">Pine 100</div>
+          <div class="swatch-hex" data-hex="#DCEDE5">#DCEDE5</div>
+          <div class="swatch-role">Tints, selected chips</div>
         </div>
       </div>
       <div class="color-swatch">
-        <div class="swatch-block" style="background:#FFA47F;"></div>
+        <div class="swatch-block" style="background:#E8A33D;color:#3A2A08;"></div>
         <div class="swatch-info">
-          <div class="swatch-name">Peach</div>
-          <div class="swatch-hex" data-hex="#FFA47F">#FFA47F</div>
+          <div class="swatch-name">Coin — Time Coins only</div>
+          <div class="swatch-hex" data-hex="#E8A33D">#E8A33D</div>
+          <div class="swatch-role">Coins, balances, earn moments</div>
         </div>
       </div>
       <div class="color-swatch">
-        <div class="swatch-block" style="background:#15021f;"></div>
+        <div class="swatch-block" style="background:#0C231C;color:#fff;"></div>
         <div class="swatch-info">
           <div class="swatch-name">Ink</div>
-          <div class="swatch-hex" data-hex="#15021f">#15021f</div>
+          <div class="swatch-hex" data-hex="#0C231C">#0C231C</div>
+          <div class="swatch-role">Body text and dark sections</div>
         </div>
       </div>
       <div class="color-swatch">
-        <div class="swatch-block" style="background:#fff5ef; border-bottom: 1px solid rgba(21,2,31,0.1);"></div>
+        <div class="swatch-block" style="background:#F7F5F0;color:#0C231C;border-bottom:1px solid rgba(12,35,28,0.1);"></div>
         <div class="swatch-info">
-          <div class="swatch-name">Paper</div>
-          <div class="swatch-hex" data-hex="#fff5ef">#fff5ef</div>
+          <div class="swatch-name">Sand</div>
+          <div class="swatch-hex" data-hex="#F7F5F0">#F7F5F0</div>
+          <div class="swatch-role">Page and app background</div>
         </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#C2452D;color:#fff;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Terracotta — alert</div>
+          <div class="swatch-hex" data-hex="#C2452D">#C2452D</div>
+          <div class="swatch-role">Destructive and over-limit</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="swatch-block" style="background:#5B6A72;color:#fff;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Slate — locked</div>
+          <div class="swatch-hex" data-hex="#5B6A72">#5B6A72</div>
+          <div class="swatch-role">An app is locked. Calm, not punitive</div>
+        </div>
+      </div>
+    </div>
       </div>
     </div>
   </div>
@@ -525,23 +603,34 @@
 
     <div class="type-grid">
       <div class="type-card">
-        <div class="type-label">Display &amp; Body — Quicksand</div>
+        <div class="type-label">Display — Nunito</div>
         <div class="type-sample-display">Beat the brainrot.</div>
         <div class="type-detail">
-          Used for all headings, UI labels, buttons, and body copy. Rounded, friendly, and highly legible at small sizes.
+          Headlines and the logotype. Variable optical sizing; use 800 at display sizes and 600 for section heads. Never set body copy in it.
         </div>
         <div class="type-weights">
-          <div class="weight-chip" style="font-weight:400">Regular <span>400</span></div>
-          <div class="weight-chip" style="font-weight:500">Medium <span>500</span></div>
           <div class="weight-chip" style="font-weight:600">SemiBold <span>600</span></div>
-          <div class="weight-chip" style="font-weight:700">Bold <span>700</span></div>
+          <div class="weight-chip" style="font-weight:800">ExtraBold <span>800</span></div>
+        </div>
+      </div>
+      <div class="type-card">
+        <div class="type-label">UI &amp; body — Nunito Sans</div>
+        <div class="type-sample-display" style="font-family:var(--sans);font-size:32px;font-weight:600">Amir earned 45 minutes today.</div>
+        <div class="type-detail">
+          Every screen in the app and every paragraph on the site. Reads adult to a parent and friendly to a nine-year-old, which is the whole brief.
+        </div>
+        <div class="type-weights">
+          <div class="weight-chip" style="font-family:var(--sans);font-weight:400">Regular <span>400</span></div>
+          <div class="weight-chip" style="font-family:var(--sans);font-weight:500">Medium <span>500</span></div>
+          <div class="weight-chip" style="font-family:var(--sans);font-weight:600">SemiBold <span>600</span></div>
+          <div class="weight-chip" style="font-family:var(--sans);font-weight:700">Bold <span>700</span></div>
         </div>
       </div>
       <div class="type-card">
         <div class="type-label">Monospace — JetBrains Mono</div>
         <div class="type-sample-mono">FOCUS · MEMORY<br />COGNITION / 2026</div>
         <div class="type-detail">
-          Used for labels, section tags, metadata, hex codes, and any technical/data context. Adds a precision feel against Quicksand's warmth.
+          Numerals that need to line up: Restricted to coin amounts, timers and countdowns - places where tabular figures genuinely matter. Do not set eyebrows or section tags in it.
         </div>
         <div class="type-weights">
           <div class="weight-chip" style="font-family:monospace; font-weight:400">Regular <span>400</span></div>
@@ -571,7 +660,8 @@
           <li data-bullet="✓">Use the provided PNG files without modification.</li>
           <li data-bullet="✓">Refer to the product as "Safini" (capital S, no space).</li>
           <li data-bullet="✓">Give the mascot adequate clear space — at least its own width on all sides.</li>
-          <li data-bullet="✓">Use Violet (#8100D1) as the primary accent when the full brand palette isn't available.</li>
+          <li data-bullet="✓">Use Pine 600 (#1A5C4A) as the primary accent when the full brand palette isn't available.</li>
+          <li data-bullet="✓">Reserve Coin amber (#E8A33D) for Time Coins. Nothing else in the product uses it.</li>
           <li data-bullet="✓">Contact us before using assets in video, merchandise, or co-branded materials.</li>
         </ul>
       </div>
@@ -581,7 +671,7 @@
           Don't
         </h4>
         <ul>
-          <li data-bullet="✗">Stretch, rotate, recolor, or add effects to the logo or mascot.</li>
+          <li data-bullet="✗">Stretch, rotate, recolor, or add effects to the logo or mascot - gradients, glows and drop shadows included.</li>
           <li data-bullet="✗">Spell it "SAFINI", "safini", or "Safini app".</li>
           <li data-bullet="✗">Place the logo on a background where contrast is insufficient.</li>
           <li data-bullet="✗">Use the mascot in contexts that could be seen as endorsing third-party products.</li>
