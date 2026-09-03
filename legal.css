@@ -1,15 +1,17 @@
 :root {
-  --violet: #8100d1;
-  --violet-dark: #5d0098;
-  --magenta: #b500b2;
-  --pink: #ff52a0;
-  --peach: #ffa47f;
-  --ink: #15021f;
-  --muted: #6f6076;
-  --paper: #fff5ef;
-  --card: #ffffff;
-  --line: rgba(21, 2, 31, 0.12);
-  --soft: #f7e9ff;
+  --pine: #1A5C4A;
+  --pine-deep: #14453A;
+  --pine-tint: #DCEDE5;
+  --coin: #E8A33D;
+  --alert: #C2452D;
+  --ink: #0C231C;
+  --muted: #5F6E68;
+  --paper: #F7F5F0;
+  --card: #FFFFFF;
+  --line: rgba(12, 35, 28, 0.12);
+  --soft: #EFF6F2;
+  --display: "Nunito", system-ui, sans-serif;
+  --sans: "Nunito Sans", system-ui, -apple-system, sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -18,16 +20,16 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--paper);
-  font-family: "Nunito Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--sans);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 
-a { color: var(--violet-dark); }
-a:hover { color: var(--magenta); }
+a { color: var(--pine-deep); }
+a:hover { color: var(--pine); }
 
 .site-header {
-  background: linear-gradient(135deg, #4a1080 0%, var(--violet) 55%, var(--magenta) 100%);
+  background: var(--pine);
   color: white;
   padding: 26px 22px 72px;
   position: relative;
@@ -59,7 +61,8 @@ a:hover { color: var(--magenta); }
   gap: 10px;
   color: white;
   text-decoration: none;
-  font-family: "Nunito", system-ui, sans-serif;
+  font-family: var(--display);
+  font-optical-sizing: auto;
   font-size: 22px;
   font-weight: 900;
 }
@@ -82,7 +85,8 @@ a:hover { color: var(--magenta); }
 }
 h1 {
   margin: 0;
-  font-family: "Nunito", system-ui, sans-serif;
+  font-family: var(--display);
+  font-optical-sizing: auto;
   font-size: clamp(34px, 7vw, 52px);
   font-weight: 900;
   line-height: 1.08;
@@ -117,7 +121,7 @@ h1 {
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--violet-dark);
+  color: var(--pine-deep);
 }
 .quick-links { display: flex; flex-wrap: wrap; gap: 8px; }
 .quick-links a,
@@ -126,13 +130,13 @@ h1 {
   padding: 6px 12px;
   border-radius: 999px;
   background: var(--soft);
-  color: var(--violet-dark);
+  color: var(--pine-deep);
   text-decoration: none;
   font-size: 13px;
   font-weight: 800;
 }
 .quick-links a:hover,
-.language-link:hover { background: var(--violet); color: white; }
+.language-link:hover { background: var(--pine); color: white; }
 
 .notice,
 .legal-section {
@@ -143,24 +147,25 @@ h1 {
 .notice {
   margin-bottom: 20px;
   padding: 20px 24px;
-  border-left: 5px solid var(--pink);
-  color: #4b3a52;
+  border-left: 5px solid var(--coin);
+  color: var(--muted);
   font-size: 14px;
 }
 .notice strong { color: var(--ink); }
 .legal-section { padding: 30px 32px; margin-bottom: 18px; }
 .legal-section h2 {
   margin: 0 0 14px;
-  font-family: "Nunito", system-ui, sans-serif;
+  font-family: var(--display);
+  font-optical-sizing: auto;
   font-size: 22px;
   line-height: 1.25;
 }
 .legal-section h3 { margin: 22px 0 8px; font-size: 16px; }
-.legal-section p { margin: 0 0 13px; color: #4b3a52; }
+.legal-section p { margin: 0 0 13px; color: var(--muted); }
 .legal-section p:last-child { margin-bottom: 0; }
-.legal-section ul { margin: 10px 0 14px; padding-left: 22px; color: #4b3a52; }
+.legal-section ul { margin: 10px 0 14px; padding-left: 22px; color: var(--muted); }
 .legal-section li { margin: 7px 0; padding-left: 4px; }
-.legal-section li::marker { color: var(--violet); }
+.legal-section li::marker { color: var(--pine); }
 
 .language-heading {
   margin: 52px 0 22px;
@@ -170,7 +175,8 @@ h1 {
 }
 .language-heading h2 {
   margin: 0 0 8px;
-  font-family: "Nunito", system-ui, sans-serif;
+  font-family: var(--display);
+  font-optical-sizing: auto;
   font-size: 32px;
 }
 .language-heading p { margin: 0; color: var(--muted); }
@@ -179,11 +185,12 @@ h1 {
   margin-top: 30px;
   padding: 30px;
   border-radius: 22px;
-  background: linear-gradient(135deg, #4a1080, var(--violet));
+  background: var(--pine-deep);
   color: white;
   text-align: center;
 }
-.contact-card h2 { margin: 0 0 8px; font-family: "Nunito", system-ui, sans-serif; }
+.contact-card h2 { margin: 0 0 8px; font-family: var(--display);
+  font-optical-sizing: auto; }
 .contact-card p { margin: 0 0 18px; color: rgba(255, 255, 255, 0.82); }
 .contact-card a {
   display: inline-flex;

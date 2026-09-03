@@ -4,25 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Политика конфиденциальности — Safini</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --purple: #7B2FBE;
-    --purple-dark: #5A1F8A;
-    --purple-light: #9B59D9;
-    --purple-soft: #F3EAFF;
-    --accent: #A855F7;
-    --text: #1A1A2E;
-    --muted: #6B7280;
-    --bg: #FAFAFA;
+    --pine: #1A5C4A;
+    --pine-deep: #14453A;
+    --pine-light: #2A7A62;
+    --pine-tint: #DCEDE5;
+    --coin: #E8A33D;
+    --text: #0C231C;
+    --muted: #5F6E68;
+    --bg: #F7F5F0;
     --white: #FFFFFF;
-    --border: #EDE8F5;
+    --border: rgba(12, 35, 28, 0.12);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'Nunito Sans', sans-serif;
+    font-family: "Nunito Sans", system-ui, -apple-system, sans-serif;
     background: var(--bg);
     color: var(--text);
     line-height: 1.7;
@@ -30,7 +30,7 @@
 
   /* HERO */
   .hero {
-    background: linear-gradient(135deg, #4A1080 0%, #7B2FBE 50%, #9B59D9 100%);
+    background: var(--pine);
     padding: 60px 24px 80px;
     text-align: center;
     position: relative;
@@ -73,7 +73,8 @@
   }
 
   .logo-name {
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", system-ui, sans-serif;
+    font-optical-sizing: auto;
     font-size: 26px;
     font-weight: 900;
     color: white;
@@ -81,7 +82,8 @@
   }
 
   .hero h1 {
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", system-ui, sans-serif;
+    font-optical-sizing: auto;
     font-size: clamp(28px, 6vw, 42px);
     font-weight: 900;
     color: white;
@@ -135,10 +137,11 @@
   }
 
   .nav-box h3 {
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", system-ui, sans-serif;
+    font-optical-sizing: auto;
     font-size: 13px;
     font-weight: 800;
-    color: var(--purple);
+    color: var(--pine);
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 16px;
@@ -151,8 +154,8 @@
   }
 
   .nav-links a {
-    background: var(--purple-soft);
-    color: var(--purple);
+    background: var(--pine-tint);
+    color: var(--pine);
     text-decoration: none;
     padding: 6px 14px;
     border-radius: 20px;
@@ -162,7 +165,7 @@
   }
 
   .nav-links a:hover {
-    background: var(--purple);
+    background: var(--pine);
     color: white;
     transform: translateY(-1px);
   }
@@ -201,7 +204,7 @@
 
   .section-icon {
     width: 44px; height: 44px;
-    background: var(--purple-soft);
+    background: var(--pine-tint);
     border-radius: 12px;
     display: flex; align-items: center; justify-content: center;
     font-size: 20px;
@@ -209,7 +212,8 @@
   }
 
   .section h2 {
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", system-ui, sans-serif;
+    font-optical-sizing: auto;
     font-size: 20px;
     font-weight: 800;
     color: var(--text);
@@ -217,7 +221,7 @@
   }
 
   .section p {
-    color: #444;
+    color: var(--muted);
     font-size: 15px;
     margin-bottom: 14px;
   }
@@ -237,14 +241,14 @@
     padding: 8px 0;
     border-bottom: 1px solid var(--border);
     font-size: 15px;
-    color: #444;
+    color: var(--muted);
   }
 
   .list li:last-child { border-bottom: none; }
 
   .list li::before {
     content: '•';
-    color: var(--purple);
+    color: var(--pine);
     font-weight: 900;
     font-size: 18px;
     line-height: 1.4;
@@ -253,15 +257,15 @@
 
   /* HIGHLIGHT BOX */
   .highlight {
-    background: var(--purple-soft);
-    border-left: 4px solid var(--purple);
+    background: var(--pine-tint);
+    border-left: 4px solid var(--pine);
     border-radius: 0 12px 12px 0;
     padding: 16px 20px;
     margin: 16px 0;
   }
 
   .highlight p {
-    color: var(--purple-dark);
+    color: var(--pine-deep);
     font-size: 14px;
     font-weight: 600;
     margin: 0;
@@ -272,7 +276,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: linear-gradient(135deg, #7B2FBE, #A855F7);
+    background: var(--pine);
     color: white;
     padding: 6px 16px;
     border-radius: 20px;
@@ -283,7 +287,7 @@
 
   /* CONTACT */
   .contact-card {
-    background: linear-gradient(135deg, #4A1080, #7B2FBE);
+    background: var(--pine-deep);
     border-radius: 20px;
     padding: 32px;
     text-align: center;
@@ -292,7 +296,8 @@
   }
 
   .contact-card h2 {
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", system-ui, sans-serif;
+    font-optical-sizing: auto;
     font-size: 22px;
     font-weight: 900;
     margin-bottom: 10px;
@@ -332,7 +337,7 @@
   }
 
   footer span {
-    color: var(--purple);
+    color: var(--pine);
     font-weight: 700;
   }
 
@@ -342,6 +347,7 @@
     .hero { padding: 48px 20px 70px; }
   }
 </style>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
 
@@ -356,8 +362,8 @@
   <div class="hero-date">Дата вступления в силу: 3 апреля 2026 г.</div>
 </div>
 
-<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#7B2FBE">
-  <path d="M0,60 C360,0 1080,0 1440,60 L1440,60 L0,60 Z" fill="#FAFAFA"/>
+<svg class="wave" viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="background:#1A5C4A">
+  <path d="M0,60 C360,0 1080,0 1440,60 L1440,60 L0,60 Z" fill="#F7F5F0"/>
 </svg>
 
 <!-- MAIN -->
