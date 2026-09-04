@@ -110,7 +110,7 @@ a:hover { color: var(--pine-deep); }
   font-weight: 700; font-size: 20px; letter-spacing: -0.01em;
   color: var(--ink);
 }
-.nav-brand img { width: 30px; height: 30px; border-radius: 9px; }
+.nav-brand .lockup { height: 38px; width: auto; border-radius: 0; }
 .nav-links { display: flex; gap: 24px; font-size: 14px; font-weight: 600; }
 .nav-links a { color: var(--ink); opacity: 0.72; }
 .nav-links a:hover { opacity: 1; color: var(--pine); }
@@ -585,7 +585,7 @@ footer { padding: 52px 0 30px; border-top: 1px solid var(--line); }
   font-size: 22px; font-weight: 700;
   display: flex; align-items: center; gap: 10px;
 }
-.foot-brand img { width: 34px; height: 34px; border-radius: 10px; }
+.foot-brand .lockup { height: 42px; width: auto; border-radius: 0; }
 .foot-tag {
   font-size: 14px; font-weight: 500; margin: 12px 0 0;
   color: color-mix(in oklab, var(--ink) 65%, transparent);
