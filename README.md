@@ -41,6 +41,19 @@ landing/
 
 ## Local Development
 
+### Media kit
+
+`media-kit.html` provides brand artwork, Time Coin icons, screenshots, and usage guidelines. The coin follows the symbol inside the mascot's phone: a golden-yellow face, green rim, and white checkmark with a darker amber outline.
+
+| Coin download | Dimensions | File size |
+| --- | --- | --- |
+| `assets/safini-coin-transparent.png` | 1254×1254 | 867,085 bytes |
+| `assets/safini-coin-white.png` | 1024×1024 | 910,296 bytes |
+
+Both downloads are below 1,000,000 bytes. Use the transparent PNG on backgrounds with sufficient contrast and the white version when a white canvas is required. Keep the supplied proportions, colors, checkmark, and rim intact.
+
+### Preview locally
+
 No build step. Open the file directly:
 
 ```bash

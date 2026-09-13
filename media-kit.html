@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Safini — Media Kit</title>
-<meta name="description" content="Download Safini brand assets, logos, and brand guidelines." />
+<meta name="description" content="Download Safini logos, mascot artwork, Time Coin icons, and brand guidelines." />
 <meta name="robots" content="noindex" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -126,6 +126,10 @@
   }
   @media (max-width: 760px) { .asset-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 480px) { .asset-grid { grid-template-columns: 1fr; } }
+
+  .coin-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 820px; margin: 0 auto; }
+  .coin-grid .asset-preview img { filter: none; }
+  @media (max-width: 480px) { .coin-grid { grid-template-columns: 1fr; } }
 
   .asset-card {
     background: white; border: 1px solid var(--line);
@@ -390,7 +394,7 @@
   <div class="container">
     <div class="mk-label">Press &amp; media</div>
     <h1>Safini Media Kit</h1>
-    <p>Logos, mascots, brand colors, and guidelines for press coverage, partnerships, and integrations. Please read the usage notes before publishing.</p>
+    <p>Logos, mascots, Time Coin icons, brand colors, and guidelines for press coverage, partnerships, and integrations. Please read the usage notes before publishing.</p>
   </div>
 </header>
 
@@ -478,6 +482,65 @@
   </div>
 </section>
 
+
+<!-- TIME COIN -->
+<section class="mk-section" aria-labelledby="time-coin-heading">
+  <div class="container">
+    <div class="mk-section-head">
+      <div class="section-tag">Reward currency</div>
+      <h2 id="time-coin-heading">Time Coin</h2>
+      <p>The standalone coin follows the symbol in Fini's phone: a golden-yellow face, green outer rim, and white checkmark with a darker amber outline for contrast. Use it for Time Coin balances and earned rewards. Preserve its colors and proportions, and keep the checkmark and rim intact.</p>
+    </div>
+    <div class="asset-grid coin-grid">
+      <div class="asset-card">
+        <div class="asset-preview checker">
+          <img src="assets/safini-coin-transparent.png" alt="Golden Safini Time Coin with a green rim and an amber-outlined white checkmark, on a transparent background" width="1254" height="1254" loading="lazy" />
+        </div>
+        <div class="asset-info">
+          <div class="asset-meta">
+            <div class="asset-name">Time Coin — Transparent</div>
+            <div class="asset-detail">PNG · 1254×1254 · 867 KB</div>
+          </div>
+          <div class="asset-tags">
+            <span class="tag">Time Coins</span>
+            <span class="tag">Transparent BG</span>
+            <span class="tag">Under 1 MB</span>
+          </div>
+          <p>For placement on backgrounds with enough contrast to keep the green rim visible.</p>
+          <div class="asset-downloads">
+            <a href="assets/safini-coin-transparent.png" download="safini-coin-transparent.png" class="btn-dl btn-dl-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 11l4 4 4-4M3 17v3a1 1 0 001 1h16a1 1 0 001-1v-3"/></svg>
+              Download transparent PNG
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-preview light">
+          <img src="assets/safini-coin-white.png" alt="Golden Safini Time Coin with a green rim and an amber-outlined white checkmark, on a white background" width="1024" height="1024" loading="lazy" />
+        </div>
+        <div class="asset-info">
+          <div class="asset-meta">
+            <div class="asset-name">Time Coin — White background</div>
+            <div class="asset-detail">PNG · 1024×1024 · 910 KB</div>
+          </div>
+          <div class="asset-tags">
+            <span class="tag">Time Coins</span>
+            <span class="tag">White BG</span>
+            <span class="tag">Under 1 MB</span>
+          </div>
+          <p>For documents, presentations, and placements that need a white canvas.</p>
+          <div class="asset-downloads">
+            <a href="assets/safini-coin-white.png" download="safini-coin-white.png" class="btn-dl btn-dl-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 11l4 4 4-4M3 17v3a1 1 0 001 1h16a1 1 0 001-1v-3"/></svg>
+              Download white PNG
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- STORE SCREENSHOTS -->
 <section class="mk-section">
