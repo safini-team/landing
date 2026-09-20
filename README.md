@@ -72,6 +72,28 @@ The page uses two CDN resources that require an internet connection:
 
 Everything else (layout, interactions, animations) works fully offline.
 
+## App screenshots
+
+The hero uses real Safini iOS Simulator captures, not a fabricated phone UI:
+
+- `assets/screens/safini-app-en.png` — John, English
+- `assets/screens/safini-app-ru.png` — Соня, Russian
+- `assets/screens/safini-app-uz.png` — Alisher, Uzbek
+
+Each capture uses isolated screenshot-demo data and shows real TikTok, Roblox,
+Instagram, and YouTube launcher artwork. Do not replace those icons with emoji
+or approximate marks.
+
+The hero layers the parent dashboard behind an unedited Android emulator
+capture from the real child app, shown inside the landing page's device frame.
+Each locale uses its matching 1080×2424 capture:
+`assets/screens/safini-app-android-instagram-blocked-en.png`,
+`assets/screens/safini-app-android-instagram-blocked-ru.png`, and
+`assets/screens/safini-app-android-instagram-blocked-uz.png`. Each one shows
+Instagram paused, the child's 30-coin balance, and a visible +20 Duolingo task
+in the same language as the screen. Every file is under 222 KB, well within the
+landing page media budget.
+
 ---
 
 ## Page Sections
