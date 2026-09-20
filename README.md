@@ -90,8 +90,9 @@ Each locale uses its matching 1080×2424 capture:
 `assets/screens/safini-app-android-instagram-blocked-en.png`,
 `assets/screens/safini-app-android-instagram-blocked-ru.png`, and
 `assets/screens/safini-app-android-instagram-blocked-uz.png`. Each one shows
-Instagram paused, the child's 30-coin balance, and a visible +20 Duolingo task
-in the same language as the screen. Every file is under 222 KB, well within the
+the real insufficient-coins flow: a 60-coin balance against a 90-coin
+30-minute Instagram offer, with a visible +20 Duolingo task in the same
+language as the screen. Every file is under 230 KB, well within the
 landing page media budget.
 
 ---
