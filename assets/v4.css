@@ -330,7 +330,7 @@ a:hover { color: var(--pine-deep); }
 
 /* ---- product-device stack ---- */
 .hero-device-stack {
-  position: relative; width: 470px; height: 560px; max-width: 100%;
+  position: relative; width: 500px; height: 560px; max-width: 100%;
   isolation: isolate;
 }
 .device-frame {
@@ -349,12 +349,12 @@ a:hover { color: var(--pine-deep); }
 .device-frame::before { width: 3px; height: 52px; left: -11px; top: 116px; }
 .device-frame::after { width: 3px; height: 78px; right: -11px; top: 148px; }
 .device-parent {
-  position: absolute; width: 255px; right: 16px; top: 12px; z-index: 1;
+  position: absolute; width: 280px; right: 0; top: 8px; z-index: 1;
   transform: rotate(7deg); transform-origin: 50% 55%;
 }
 .device-parent img { display: block; width: 100%; height: auto; border-radius: 32px; }
 .device-child {
-  position: absolute; width: 278px; left: 26px; top: 0; z-index: 2;
+  position: absolute; width: 278px; left: 0; top: 0; z-index: 2;
   transform: rotate(-4deg); transform-origin: 50% 62%;
 }
 .device-child img { display: block; width: 100%; height: auto; border-radius: 33px; }
@@ -688,9 +688,9 @@ footer ul a:hover { color: var(--pine); }
   .float-card { right: -2px; }
   .float-pill { left: -2px; }
   .hero { overflow: hidden; }
-  .hero-device-stack { width: 340px; height: 472px; margin: 0 auto; }
-  .device-parent { width: 190px; right: 3px; top: 10px; }
-  .device-child { width: 225px; left: 4px; top: 0; }
+  .hero-device-stack { width: 350px; height: 472px; margin: 0 auto; }
+  .device-parent { width: 205px; right: 0; top: 8px; }
+  .device-child { width: 225px; left: 0; top: 0; }
   .device-frame { border-width: 6px; border-radius: 35px; }
   .device-parent img { border-radius: 26px; }
 }
