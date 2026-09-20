@@ -72,11 +72,14 @@ Instagram, and YouTube launcher artwork. Do not replace those icons with emoji
 or approximate marks.
 
 The hero layers the parent dashboard behind an unedited Android emulator
-capture from the real child app, shown inside the landing page's device frame:
-`assets/screens/safini-app-android-instagram-blocked.png`. It shows Instagram
-paused, the child's 30-coin balance, and a visible Duolingo task offering +20
-coins. The screenshot is 1080×2424 PNG and 218 KB, so it is safe for the
-landing page's media budget.
+capture from the real child app, shown inside the landing page's device frame.
+Each locale uses its matching 1080×2424 capture:
+`assets/screens/safini-app-android-instagram-blocked-en.png`,
+`assets/screens/safini-app-android-instagram-blocked-ru.png`, and
+`assets/screens/safini-app-android-instagram-blocked-uz.png`. Each one shows
+Instagram paused, the child's 30-coin balance, and a visible +20 Duolingo task
+in the same language as the screen. Every file is under 222 KB, well within the
+landing page media budget.
 
 ---
 
