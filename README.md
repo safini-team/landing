@@ -59,6 +59,18 @@ The page uses two CDN resources that require an internet connection:
 
 Everything else (layout, interactions, animations) works fully offline.
 
+## App screenshots
+
+The hero uses real Safini iOS Simulator captures, not a fabricated phone UI:
+
+- `assets/screens/safini-app-en.png` — John, English
+- `assets/screens/safini-app-ru.png` — Соня, Russian
+- `assets/screens/safini-app-uz.png` — Alisher, Uzbek
+
+Each capture uses isolated screenshot-demo data and shows real TikTok, Roblox,
+Instagram, and YouTube launcher artwork. Do not replace those icons with emoji
+or approximate marks.
+
 ---
 
 ## Page Sections

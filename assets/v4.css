@@ -314,6 +314,20 @@ a:hover { color: var(--pine-deep); }
 }
 .float-pill span { color: var(--coin-ink); }
 
+/* Captured product UI: keep the simulator frame intact rather than rebuilding
+   an approximation in CSS. */
+.phone.phone-shot {
+  width: min(302px, 78vw);
+  height: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 38px;
+  overflow: hidden;
+  background: transparent;
+}
+.phone-shot img { display: block; width: 100%; height: auto; }
+
 /* ============ PRICE LIST ============ */
 .prices { padding: 80px 0 20px; }
 .sec-head {
