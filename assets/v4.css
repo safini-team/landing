@@ -328,6 +328,73 @@ a:hover { color: var(--pine-deep); }
 }
 .phone-shot img { display: block; width: 100%; height: auto; }
 
+/* ---- product-device stack ---- */
+.hero-device-stack {
+  position: relative; width: 470px; height: 560px; max-width: 100%;
+  isolation: isolate;
+}
+.device-frame {
+  box-sizing: border-box; margin: 0; overflow: hidden;
+  border: 7px solid #252927; border-radius: 42px; background: #111513;
+  padding: 3px; box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.42),
+    0 0 0 2px rgba(8,13,11,.65),
+    0 28px 50px -22px rgba(4,15,11,.85);
+}
+.device-frame::before,
+.device-frame::after {
+  content: ""; position: absolute; display: block; background: #1d211f;
+  border-radius: 3px;
+}
+.device-frame::before { width: 3px; height: 52px; left: -11px; top: 116px; }
+.device-frame::after { width: 3px; height: 78px; right: -11px; top: 148px; }
+.device-parent {
+  position: absolute; width: 255px; right: 16px; top: 12px; z-index: 1;
+  transform: rotate(7deg); transform-origin: 50% 55%;
+}
+.device-parent img { display: block; width: 100%; height: auto; border-radius: 32px; }
+.device-child {
+  position: absolute; width: 278px; left: 26px; top: 0; z-index: 2;
+  transform: rotate(-4deg); transform-origin: 50% 62%;
+}
+.child-block-screen {
+  box-sizing: border-box; min-height: 574px; padding: 13px 14px 18px;
+  border-radius: 33px; overflow: hidden; color: var(--ink);
+  background: linear-gradient(160deg, #f8f7f2 0%, #eeefe8 100%);
+  font-family: var(--sans); text-align: left;
+}
+.child-status {
+  height: 31px; display: flex; align-items: flex-start; justify-content: space-between;
+  font-family: var(--sans); font-size: 10px; letter-spacing: -.03em; color: #111;
+}
+.child-status > b { font-size: 13px; }
+.child-status > span:last-child { font-size: 9px; letter-spacing: .06em; }
+.dynamic-island { width: 79px; height: 22px; margin-top: -4px; border-radius: 999px; background: #080908; }
+.blocked-app { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 800; }
+.blocked-app img { width: 27px; height: 27px; border-radius: 7px; }
+.block-illustration {
+  width: 58px; height: 58px; margin: 22px auto 8px; border-radius: 21px;
+  display: grid; place-items: center; background: #ffb53d; color: #714000;
+  font-size: 28px; box-shadow: 0 12px 24px -13px #e69b20;
+}
+.block-eyebrow { margin: 0; text-align: center; font-family: var(--mono); color: #587065; font-size: 7px; letter-spacing: .12em; font-weight: 700; }
+.child-block-screen h2 { margin: 6px 0 4px; text-align: center; font-family: var(--display); font-size: 22px; line-height: 1.04; letter-spacing: -.045em; }
+.block-copy { margin: 0 auto; max-width: 28ch; text-align: center; color: #5c6962; font-size: 10px; line-height: 1.35; font-weight: 600; }
+.coin-shortfall {
+  display: flex; align-items: center; gap: 5px; margin: 13px 0 14px; padding: 9px 10px;
+  background: #fff; border: 1px solid #e6e4dc; border-radius: 13px; box-shadow: 0 8px 18px -17px rgba(7,27,20,.8);
+}
+.coin-dot { width: 19px; height: 19px; display: grid; place-items: center; border-radius: 50%; background: #ffb63e; color: #fff; font-weight: 900; font-size: 12px; }
+.coin-shortfall b { font-size: 11px; }
+.coin-shortfall small { margin-left: auto; color: #bb6b20; font-size: 9px; font-weight: 800; }
+.earn-heading { margin: 0 0 7px; font-family: var(--display); font-size: 13px; font-weight: 800; }
+.earn-task { display: flex; align-items: center; gap: 8px; min-height: 49px; padding: 5px 8px; margin-top: 7px; background: #fff; border: 1px solid #e3e4dc; border-radius: 13px; box-shadow: 0 9px 16px -18px rgba(7,27,20,.9); }
+.earn-task > span { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 9px; background: #f7f1df; font-size: 16px; }
+.earn-task p { display: flex; flex-direction: column; gap: 1px; margin: 0; min-width: 0; }
+.earn-task b { font-size: 10px; line-height: 1.15; }
+.earn-task small { color: #758078; font-size: 8px; font-weight: 600; }
+.earn-task strong { margin-left: auto; color: #c9791d; font-size: 11px; }
+
 /* ============ PRICE LIST ============ */
 .prices { padding: 80px 0 20px; }
 .sec-head {
@@ -629,6 +696,7 @@ footer ul a:hover { color: var(--pine); }
 /* ============ RESPONSIVE ============ */
 @media (max-width: 1000px) {
   .hero-grid { grid-template-columns: 1fr; gap: 34px; }
+  .hero-grid > * { min-width: 0; }
   .hero-art { padding-top: 0; }
 }
 @media (max-width: 900px) {
@@ -655,6 +723,24 @@ footer ul a:hover { color: var(--pine); }
   .cta-card { padding-left: 22px; padding-right: 22px; }
   .float-card { right: -2px; }
   .float-pill { left: -2px; }
+  .hero { overflow: hidden; }
+  .hero-device-stack { width: 340px; height: 472px; margin: 0 auto; }
+  .device-parent { width: 190px; right: 3px; top: 10px; }
+  .device-child { width: 225px; left: 4px; top: 0; }
+  .device-frame { border-width: 6px; border-radius: 35px; }
+  .device-parent img { border-radius: 26px; }
+  .child-block-screen { min-height: 467px; padding: 11px 11px 14px; border-radius: 27px; }
+  .child-status { height: 27px; }
+  .dynamic-island { width: 66px; height: 19px; }
+  .block-illustration { width: 49px; height: 49px; margin-top: 15px; font-size: 23px; }
+  .child-block-screen h2 { font-size: 18px; }
+  .block-copy { font-size: 8.5px; }
+  .coin-shortfall { margin: 9px 0 10px; padding: 7px 8px; }
+  .earn-heading { font-size: 11px; margin-bottom: 5px; }
+  .earn-task { min-height: 39px; margin-top: 5px; padding: 4px 6px; }
+  .earn-task > span { width: 23px; height: 23px; font-size: 12px; }
+  .earn-task b { font-size: 8.5px; }
+  .earn-task small { font-size: 7px; }
 }
 @media (max-width: 380px) {
   .float-card, .float-pill { display: none; }

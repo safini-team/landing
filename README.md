@@ -71,6 +71,11 @@ Each capture uses isolated screenshot-demo data and shows real TikTok, Roblox,
 Instagram, and YouTube launcher artwork. Do not replace those icons with emoji
 or approximate marks.
 
+The hero layers the parent dashboard behind a current iPhone-styled child
+blocking screen. The foreground shows Instagram paused, a 12-coin balance,
+and two visible tasks that cover the missing 8 coins. Its Instagram artwork is
+the official icon stored at `assets/screens/instagram-app-icon.png`.
+
 ---
 
 ## Page Sections
