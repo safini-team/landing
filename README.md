@@ -71,10 +71,12 @@ Each capture uses isolated screenshot-demo data and shows real TikTok, Roblox,
 Instagram, and YouTube launcher artwork. Do not replace those icons with emoji
 or approximate marks.
 
-The hero layers the parent dashboard behind a current iPhone-styled child
-blocking screen. The foreground shows Instagram paused, a 12-coin balance,
-and two visible tasks that cover the missing 8 coins. Its Instagram artwork is
-the official icon stored at `assets/screens/instagram-app-icon.png`.
+The hero layers the parent dashboard behind an unedited Android emulator
+capture from the real child app, shown inside the landing page's device frame:
+`assets/screens/safini-app-android-instagram-blocked.png`. It shows Instagram
+paused, the child's 30-coin balance, and a visible Duolingo task offering +20
+coins. The screenshot is 1080×2424 PNG and 218 KB, so it is safe for the
+landing page's media budget.
 
 ---
 

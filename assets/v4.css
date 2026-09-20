@@ -357,43 +357,7 @@ a:hover { color: var(--pine-deep); }
   position: absolute; width: 278px; left: 26px; top: 0; z-index: 2;
   transform: rotate(-4deg); transform-origin: 50% 62%;
 }
-.child-block-screen {
-  box-sizing: border-box; min-height: 574px; padding: 13px 14px 18px;
-  border-radius: 33px; overflow: hidden; color: var(--ink);
-  background: linear-gradient(160deg, #f8f7f2 0%, #eeefe8 100%);
-  font-family: var(--sans); text-align: left;
-}
-.child-status {
-  height: 31px; display: flex; align-items: flex-start; justify-content: space-between;
-  font-family: var(--sans); font-size: 10px; letter-spacing: -.03em; color: #111;
-}
-.child-status > b { font-size: 13px; }
-.child-status > span:last-child { font-size: 9px; letter-spacing: .06em; }
-.dynamic-island { width: 79px; height: 22px; margin-top: -4px; border-radius: 999px; background: #080908; }
-.blocked-app { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 800; }
-.blocked-app img { width: 27px; height: 27px; border-radius: 7px; }
-.block-illustration {
-  width: 58px; height: 58px; margin: 22px auto 8px; border-radius: 21px;
-  display: grid; place-items: center; background: #ffb53d; color: #714000;
-  font-size: 28px; box-shadow: 0 12px 24px -13px #e69b20;
-}
-.block-eyebrow { margin: 0; text-align: center; font-family: var(--mono); color: #587065; font-size: 7px; letter-spacing: .12em; font-weight: 700; }
-.child-block-screen h2 { margin: 6px 0 4px; text-align: center; font-family: var(--display); font-size: 22px; line-height: 1.04; letter-spacing: -.045em; }
-.block-copy { margin: 0 auto; max-width: 28ch; text-align: center; color: #5c6962; font-size: 10px; line-height: 1.35; font-weight: 600; }
-.coin-shortfall {
-  display: flex; align-items: center; gap: 5px; margin: 13px 0 14px; padding: 9px 10px;
-  background: #fff; border: 1px solid #e6e4dc; border-radius: 13px; box-shadow: 0 8px 18px -17px rgba(7,27,20,.8);
-}
-.coin-dot { width: 19px; height: 19px; display: grid; place-items: center; border-radius: 50%; background: #ffb63e; color: #fff; font-weight: 900; font-size: 12px; }
-.coin-shortfall b { font-size: 11px; }
-.coin-shortfall small { margin-left: auto; color: #bb6b20; font-size: 9px; font-weight: 800; }
-.earn-heading { margin: 0 0 7px; font-family: var(--display); font-size: 13px; font-weight: 800; }
-.earn-task { display: flex; align-items: center; gap: 8px; min-height: 49px; padding: 5px 8px; margin-top: 7px; background: #fff; border: 1px solid #e3e4dc; border-radius: 13px; box-shadow: 0 9px 16px -18px rgba(7,27,20,.9); }
-.earn-task > span { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 9px; background: #f7f1df; font-size: 16px; }
-.earn-task p { display: flex; flex-direction: column; gap: 1px; margin: 0; min-width: 0; }
-.earn-task b { font-size: 10px; line-height: 1.15; }
-.earn-task small { color: #758078; font-size: 8px; font-weight: 600; }
-.earn-task strong { margin-left: auto; color: #c9791d; font-size: 11px; }
+.device-child img { display: block; width: 100%; height: auto; border-radius: 33px; }
 
 /* ============ PRICE LIST ============ */
 .prices { padding: 80px 0 20px; }
@@ -729,18 +693,6 @@ footer ul a:hover { color: var(--pine); }
   .device-child { width: 225px; left: 4px; top: 0; }
   .device-frame { border-width: 6px; border-radius: 35px; }
   .device-parent img { border-radius: 26px; }
-  .child-block-screen { min-height: 467px; padding: 11px 11px 14px; border-radius: 27px; }
-  .child-status { height: 27px; }
-  .dynamic-island { width: 66px; height: 19px; }
-  .block-illustration { width: 49px; height: 49px; margin-top: 15px; font-size: 23px; }
-  .child-block-screen h2 { font-size: 18px; }
-  .block-copy { font-size: 8.5px; }
-  .coin-shortfall { margin: 9px 0 10px; padding: 7px 8px; }
-  .earn-heading { font-size: 11px; margin-bottom: 5px; }
-  .earn-task { min-height: 39px; margin-top: 5px; padding: 4px 6px; }
-  .earn-task > span { width: 23px; height: 23px; font-size: 12px; }
-  .earn-task b { font-size: 8.5px; }
-  .earn-task small { font-size: 7px; }
 }
 @media (max-width: 380px) {
   .float-card, .float-pill { display: none; }
