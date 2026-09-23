@@ -415,7 +415,7 @@ a:hover { color: var(--pine-deep); }
 }
 
 /* ============ HOW IT WORKS ============ */
-.loop { padding: 84px 0; margin-top: 60px; background: var(--paper-2); }
+.loop { padding: 84px 0; background: var(--paper-2); }
 .loop-intro { max-width: 640px; margin-bottom: 44px; }
 .loop-intro .h2 { margin-bottom: 12px; }
 .step {
