@@ -19,8 +19,10 @@ All notable changes to this project will be documented in this file.
   CTAs say Download, the bottom CTA (`#join` -> `#download`) leads with the store badges,
   and "launching", "146 families", "first 500 families" and "founding price" copy is removed
   from en/ru/uz, including meta and `og:description`
-- Hero leads with the store badges instead of the waitlist form. Hero pill and footer
-  tagline say the app is free on iOS & Android
+- Hero leads with the store badges instead of the waitlist form. Hero pill, footer tagline
+  and meta say "Try it Free on iOS & Android"
+- Privacy policy (en/ru) covers newsletter emails: collected from the website newsletter or
+  earlier waitlist, used to send the newsletter, unsubscribe by email. Date -> 2026-09-23
 - Launch date copy moved from "September" to "Fall 2026" across en/ru/uz
   (meta description, `og:description`, hero badge, footer tagline in each locale)
 

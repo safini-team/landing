@@ -5,7 +5,7 @@
 
   // newsletter signups still land in the waiting-list table
   var API = 'https://api.safini.fun/v1/waiting-list';
-  var APP_STORE = 'https://apps.apple.com/app/id6761075183';
+  var APP_STORE = 'https://apps.apple.com/us/app/safini/id6761075183';
   var PLAY = 'https://play.google.com/store/apps/details?id=com.safini.app';
   var MSG = window.SAFINI_MSG || {};
 
