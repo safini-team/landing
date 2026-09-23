@@ -4,7 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- App Store and Google Play badges in the hero and a "Download Safini" block in the footer,
+  across en/ru/uz. Badges are HTML + inline SVG so the small line is localized
+- `apple-itunes-app` meta so Safari on iOS shows the Smart App Banner
+
 ### Changed
+- Hero leads with the store badges instead of the waitlist form (the waitlist stays in the
+  bottom CTA and nav). Hero pill and footer tagline now say the app is free on iOS & Android
 - Launch date copy moved from "September" to "Fall 2026" across en/ru/uz
   (meta description, `og:description`, hero badge, footer tagline in each locale)
 

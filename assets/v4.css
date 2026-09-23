@@ -700,3 +700,58 @@ footer ul a:hover { color: var(--pine); }
 @media (prefers-reduced-motion: reduce) {
   .phone { animation: none; }
 }
+
+/* ============ STORE BADGES ============ */
+/* Built in HTML so the small line localizes; proportions follow the official black badges. */
+.stores { display: flex; flex-wrap: wrap; gap: 12px; }
+.hero .stores { margin-top: 30px; }
+.store {
+  display: inline-flex; align-items: center; gap: 10px;
+  height: 56px; padding: 0 20px 0 16px;
+  background: #000; color: #fff;
+  border: 1px solid #A6A6A6; border-radius: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  box-shadow: 0 14px 30px -18px rgba(6, 20, 16, 0.7);
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.store:hover {
+  color: #fff; transform: translateY(-2px);
+  box-shadow: 0 18px 34px -16px rgba(6, 20, 16, 0.75);
+}
+.store:active { transform: translateY(0); }
+.store:focus-visible { outline: 3px solid var(--coin); outline-offset: 3px; }
+.store svg { flex: none; display: block; }
+.store-apple svg { width: 26px; height: 30px; margin-top: -3px; }
+.store-play svg { width: 26px; height: 28px; }
+.store span { display: flex; flex-direction: column; line-height: 1; white-space: nowrap; }
+.store small { font-size: 11px; font-weight: 500; letter-spacing: 0.01em; }
+.store-play small { text-transform: uppercase; font-size: 10px; letter-spacing: 0.04em; }
+.store b { font-size: 23px; font-weight: 600; letter-spacing: -0.02em; margin-top: 3px; }
+
+.hero-proof.stores-note { margin-top: 16px; }
+
+.foot-download { margin-top: 26px; }
+.foot-download h5 { margin-bottom: 12px; }
+.foot-download .stores { gap: 10px; }
+.foot-download .store { height: 46px; padding: 0 16px 0 12px; border-radius: 10px; gap: 8px; box-shadow: none; }
+.foot-download .store-apple svg { width: 21px; height: 25px; }
+.foot-download .store-play svg { width: 21px; height: 23px; }
+.foot-download .store small { font-size: 9.5px; }
+.foot-download .store-play small { font-size: 8.5px; }
+.foot-download .store b { font-size: 19px; margin-top: 2px; }
+
+@media (max-width: 600px) {
+  .hero .stores { gap: 10px; }
+  .hero .store { flex: 1 1 0; min-width: 0; justify-content: center; gap: 8px; padding: 0 10px; height: 52px; }
+  .hero .store-apple svg { width: 22px; height: 26px; }
+  .hero .store-play svg { width: 22px; height: 24px; }
+  .hero .store small { font-size: 10px; }
+  .hero .store-play small { font-size: 9px; }
+  .hero .store b { font-size: 18px; }
+}
+@media (max-width: 340px) {
+  .hero .store { flex-basis: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .store, .store:hover { transition: none; transform: none; }
+}
