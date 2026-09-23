@@ -9,6 +9,8 @@ All notable changes to this project will be documented in this file.
   English stays on `/`. Uzbek is never auto-selected from `navigator.language`
   (the switcher still offers it). An explicit pick is remembered in
   `localStorage`.
+- Nav language control is a flag dropdown (uz / ru / en), matching the
+  in-app picker: SVG flags, native names, check on the current language.
 - App Store and Google Play badges in the hero and a "Download Safini" block in the footer,
   across en/ru/uz. Badges are HTML + inline SVG so the small line is localized
 - `apple-itunes-app` meta so Safari on iOS shows the Smart App Banner

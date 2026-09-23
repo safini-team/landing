@@ -20,7 +20,8 @@ function runBoot(opts) {
   var document = {
     addEventListener: function (type, fn, capture) {
       clicks.push({ type: type, fn: fn, capture: capture });
-    }
+    },
+    querySelectorAll: function () { return []; }
   };
   var sandbox = {
     window: null,
@@ -42,13 +43,18 @@ function runBoot(opts) {
     store: store,
     clicks: clicks,
     api: sandbox.SAFINI_LOCALE,
-    fireClick: function (hreflang) {
+    fireClick: function (hreflang, fromChild) {
+      var link = {
+        nodeType: 1,
+        tagName: 'A',
+        classList: { contains: function () { return false; } },
+        getAttribute: function (name) { return name === 'hreflang' ? hreflang : null; },
+        parentNode: document
+      };
       var event = {
-        target: {
-          tagName: 'A',
-          getAttribute: function (name) { return name === 'hreflang' ? hreflang : null; },
-          parentNode: document
-        }
+        target: fromChild
+          ? { nodeType: 1, tagName: 'SPAN', classList: { contains: function () { return false; } }, parentNode: link }
+          : link
       };
       clicks.forEach(function (c) {
         if (c.type === 'click') c.fn(event);
@@ -101,5 +107,9 @@ assert.strictEqual(qs.replaced, '/ru/?utm_source=telegram#download');
 var clicker = runBoot({ pathname: '/', languages: ['en'] });
 clicker.fireClick('uz');
 assert.strictEqual(clicker.store.safini_lang, 'uz', 'switcher click persists Uzbek');
+
+var nested = runBoot({ pathname: '/', languages: ['en'] });
+nested.fireClick('ru', true);
+assert.strictEqual(nested.store.safini_lang, 'ru', 'flag click inside the option still persists');
 
 console.log('boot ok');

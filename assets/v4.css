@@ -104,6 +104,7 @@ a:hover { color: var(--pine-deep); }
   border: 1px solid var(--line);
   border-radius: 999px;
   box-shadow: 0 10px 34px -18px rgba(6, 20, 16, 0.55);
+  overflow: visible;
 }
 .nav-brand {
   display: flex; align-items: center; gap: 10px;
@@ -115,17 +116,82 @@ a:hover { color: var(--pine-deep); }
 .nav-links a { color: var(--ink); opacity: 0.72; }
 .nav-links a:hover { opacity: 1; color: var(--pine); }
 .nav-right { display: flex; align-items: center; gap: 10px; }
-.lang { display: flex; align-items: center; gap: 2px; }
-.lang a {
-  font-family: var(--mono); font-size: 11px; font-weight: 600;
-  letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--ink); opacity: 0.45;
-  padding: 6px 8px; border-radius: 9px;
+.lang { display: flex; align-items: center; }
+.lang-dd { position: relative; }
+.lang-dd[open] { z-index: 2; }
+.lang-dd summary {
+  list-style: none;
+  display: flex; align-items: center; gap: 7px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: var(--ink);
+  user-select: none;
 }
-.lang a:hover { opacity: 1; color: var(--pine); }
-.lang a[aria-current="page"] {
-  opacity: 1; color: var(--pine);
-  background: var(--pine-tint);
+.lang-dd summary::-webkit-details-marker { display: none; }
+.lang-dd summary::marker { content: ""; }
+.lang-dd summary:hover { background: var(--paper-2); }
+.lang-dd[open] summary { background: var(--pine-tint); color: var(--pine); }
+.lang-code {
+  font-family: var(--mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.08em;
+}
+.lang-dd summary::after {
+  content: "";
+  width: 6px; height: 6px; margin-left: 1px;
+  border-right: 1.6px solid currentColor;
+  border-bottom: 1.6px solid currentColor;
+  transform: rotate(45deg) translate(-1px, -2px);
+  opacity: 0.55;
+}
+.lang-dd[open] summary::after {
+  transform: rotate(-135deg) translate(-1px, -1px);
+}
+.lang-flag {
+  display: block;
+  width: 21px; height: 14px; flex: 0 0 21px;
+  border-radius: 2.6px;
+  border: 0.5px solid rgba(12, 35, 28, 0.12);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.lang-flag-uz { background-image: url("flag-uz.svg"); }
+.lang-flag-ru { background-image: url("flag-ru.svg"); }
+.lang-flag-en { background-image: url("flag-en.svg"); }
+.lang-menu {
+  position: absolute;
+  right: 0; top: calc(100% + 8px);
+  z-index: 60;
+  margin: 0; padding: 6px;
+  min-width: 196px;
+  list-style: none;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 14px 36px -16px rgba(6, 20, 16, 0.45);
+}
+.lang-menu a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 11px 12px;
+  border-radius: 12px;
+  font-family: var(--sans);
+  font-size: 15px; font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+}
+.lang-menu a:hover { background: var(--paper); color: var(--ink); }
+.lang-menu a[aria-current="page"] {
+  background: var(--pine-tint); color: var(--pine);
+}
+.lang-menu a[aria-current="page"]::after {
+  content: "";
+  margin-left: auto;
+  width: 14px; height: 14px;
+  background: var(--pine);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' d='M3.2 8.4 6.4 11.6 12.8 4.4'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' d='M3.2 8.4 6.4 11.6 12.8 4.4'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 .nav-cta {
   background: var(--ink); color: var(--paper);
@@ -674,7 +740,7 @@ footer ul a:hover { color: var(--pine); }
   .nav { margin-left: 12px; margin-right: 12px; padding: 10px 12px 10px 16px; gap: 10px; }
   .nav-brand { font-size: 18px; }
   .nav-cta { padding: 9px 14px; font-size: 13px; }
-  .lang a { padding: 5px 5px; }
+  .lang-dd summary { padding: 5px 8px; }
   .foot-grid { grid-template-columns: 1fr; }
   .cmp-row { grid-template-columns: 1.2fr 0.5fr 0.5fr; padding-left: 18px; padding-right: 18px; font-size: 15px; }
   .hero { padding-top: 32px; }

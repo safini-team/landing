@@ -73,17 +73,30 @@
   function boot() {
     if (typeof document === 'undefined' || typeof location === 'undefined') return;
 
+    function closeLangMenus() {
+      var open = document.querySelectorAll('details.lang-dd[open]');
+      for (var i = 0; i < open.length; i++) open[i].removeAttribute('open');
+    }
+
     document.addEventListener('click', function (e) {
       var node = e.target;
+      var inPicker = false;
       while (node && node !== document) {
-        if (node.tagName === 'A') {
-          var h = node.getAttribute && node.getAttribute('hreflang');
-          if (isStoredLang(h)) writeStored(h);
-          return;
+        if (node.nodeType === 1) {
+          if (node.tagName === 'A') {
+            var h = node.getAttribute && node.getAttribute('hreflang');
+            if (isStoredLang(h)) writeStored(h);
+          }
+          if (node.classList && node.classList.contains('lang-dd')) inPicker = true;
         }
         node = node.parentNode;
       }
+      if (!inPicker) closeLangMenus();
     }, true);
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' || e.keyCode === 27) closeLangMenus();
+    });
 
     var page = pageLangFromPath(location.pathname);
     var target = resolveLang({
