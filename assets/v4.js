@@ -1,9 +1,12 @@
-/* Safini landing V4-A - waitlist + nav behaviour, shared by en / ru / uz.
+/* Safini landing V4-A - newsletter, store links + nav behaviour, shared by en / ru / uz.
    Copy strings come from window.SAFINI_MSG, set inline on each language page. */
 (function () {
   'use strict';
 
+  // newsletter signups still land in the waiting-list table
   var API = 'https://api.safini.fun/v1/waiting-list';
+  var APP_STORE = 'https://apps.apple.com/us/app/safini/id6761075183';
+  var PLAY = 'https://play.google.com/store/apps/details?id=com.safini.app';
   var MSG = window.SAFINI_MSG || {};
 
   function say(el, text, state) {
@@ -24,8 +27,8 @@
       var email = (field && field.value || '').trim();
       if (!email) return;
 
-      if (btn) { btn.disabled = true; btn.textContent = MSG.sending || 'Joining…'; }
-      say(msgEl, MSG.sending || 'Joining…', 'pending');
+      if (btn) { btn.disabled = true; btn.textContent = MSG.sending || 'Subscribing…'; }
+      say(msgEl, MSG.sending || 'Subscribing…', 'pending');
 
       var controller = new AbortController();
       var timer = setTimeout(function () { controller.abort(); }, 10000);
@@ -46,17 +49,17 @@
         clearTimeout(timer);
 
         if (resp.status === 201) {
-          say(msgEl, MSG.ok || "You're on the list.", 'ok');
+          say(msgEl, MSG.ok || "You're subscribed.", 'ok');
           form.reset();
           reset();
           if (typeof gtag !== 'undefined') {
-            gtag('event', 'waitlist_signup', {
+            gtag('event', 'newsletter_signup', {
               event_category: 'engagement',
-              event_label: form.id || 'waitlist_form'
+              event_label: form.id || 'newsletter_form'
             });
           }
         } else if (resp.status === 409) {
-          say(msgEl, MSG.duplicate || 'That email is already on the list.', 'error');
+          say(msgEl, MSG.duplicate || 'That email is already subscribed.', 'error');
           reset();
         } else {
           say(msgEl, MSG.error || 'Something went wrong. Please try again.', 'error');
@@ -84,6 +87,14 @@
         });
       });
     });
+  }
+
+  // Download buttons go straight to the store on a phone, to #download elsewhere
+  var ua = navigator.userAgent;
+  var store = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1) ? APP_STORE
+    : /Android/.test(ua) ? PLAY : null;
+  if (store) {
+    document.querySelectorAll('a[data-store-link]').forEach(function (a) { a.href = store; });
   }
 
   // smooth scroll for in-page anchors, offset for the sticky nav

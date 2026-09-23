@@ -4,7 +4,25 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- App Store and Google Play badges in the hero and a "Download Safini" block in the footer,
+  across en/ru/uz. Badges are HTML + inline SVG so the small line is localized
+- `apple-itunes-app` meta so Safari on iOS shows the Smart App Banner
+
+- Newsletter signup in the bottom CTA, posting to the same `/v1/waiting-list` endpoint;
+  the GA event is now `newsletter_signup`
+- `data-store-link` Download buttons open the App Store on iOS and Google Play on Android,
+  and scroll to `#download` on desktop
+
 ### Changed
+- The page now presents Safini as live on both stores. The waitlist is gone: nav CTA and plan
+  CTAs say Download, the bottom CTA (`#join` -> `#download`) leads with the store badges,
+  and "launching", "146 families", "first 500 families" and "founding price" copy is removed
+  from en/ru/uz, including meta and `og:description`
+- Hero leads with the store badges instead of the waitlist form. Hero pill, footer tagline
+  and meta say "Try it Free on iOS & Android"
+- Privacy policy (en/ru) covers newsletter emails: collected from the website newsletter or
+  earlier waitlist, used to send the newsletter, unsubscribe by email. Date -> 2026-09-23
 - Launch date copy moved from "September" to "Fall 2026" across en/ru/uz
   (meta description, `og:description`, hero badge, footer tagline in each locale)
 
