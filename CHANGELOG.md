@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Locale defaulting on first visit: browser language Russian opens `/ru/`,
+  English stays on `/`. Uzbek is never auto-selected from `navigator.language`
+  (the switcher still offers it). An explicit pick is remembered in
+  `localStorage`.
 - App Store and Google Play badges in the hero and a "Download Safini" block in the footer,
   across en/ru/uz. Badges are HTML + inline SVG so the small line is localized
 - `apple-itunes-app` meta so Safari on iOS shows the Smart App Banner
