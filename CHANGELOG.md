@@ -19,14 +19,16 @@ All notable changes to this project will be documented in this file.
   CTAs say Download, the bottom CTA (`#join` -> `#download`) leads with the store badges,
   and "launching", "146 families", "first 500 families" and "founding price" copy is removed
   from en/ru/uz, including meta and `og:description`
-- Hero leads with the store badges instead of the waitlist form. Hero pill, footer tagline
-  and meta say "Try it Free on iOS & Android"
+- Hero leads with the store badges instead of the waitlist form. Footer tagline and meta say
+  "Try it Free on iOS & Android"
 - Privacy policy (en/ru) covers newsletter emails: collected from the website newsletter or
   earlier waitlist, used to send the newsletter, unsubscribe by email. Date -> 2026-09-23
 - Launch date copy moved from "September" to "Fall 2026" across en/ru/uz
   (meta description, `og:description`, hero badge, footer tagline in each locale)
 
 ### Removed
+- Hero pill, and the "A price list, instead of an argument" section with its "Time Coins"
+  nav and footer links and the now-dead `.badge`/`.prices`/`.pricecard`/`.row` CSS
 - Honest-promise section ("Straight answers" / "What we promise - and what we don't")
   from en/ru/uz, its nav and footer links, and the now-dead `.honest`/`.panel` CSS
 
