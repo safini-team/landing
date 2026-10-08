@@ -21,7 +21,7 @@ A parent who fought with their kid over a phone tonight lands here at 11pm. In 8
 5. Features (6-card grid)
 6. Comparison table
 7. Testimonials (3 quotes)
-8. Pricing (single plan $4/month)
+8. Pricing (single plan $7/month or $67/year)
 9. CTA + waitlist form
 10. Footer
 
