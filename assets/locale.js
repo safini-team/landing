@@ -1,12 +1,14 @@
 /* Safini landing locale defaults.
    Match the parent-app rule: follow the phone when it is Russian or English.
-   Uzbek is offered in the switcher but is never chosen from navigator.language
-   / Accept-Language. An explicit pick (localStorage) wins forever. */
+   Uzbek, Kyrgyz and Kazakh are offered in the switcher but are never chosen
+   from navigator.language / Accept-Language. An explicit pick (localStorage)
+   wins forever. */
 (function (root) {
   'use strict';
 
   var KEY = 'safini_lang';
   var AUTO = { en: true, ru: true };
+  var PAGES = { ru: true, uz: true, ky: true, kk: true };
 
   function languageCode(tag) {
     if (!tag) return '';
@@ -14,14 +16,13 @@
   }
 
   function isStoredLang(code) {
-    return code === 'en' || code === 'ru' || code === 'uz';
+    return code === 'en' || PAGES[code] === true;
   }
 
   function detectFromLanguages(list) {
     if (!list || !list.length) return 'en';
     for (var i = 0; i < list.length; i++) {
       var code = languageCode(list[i]);
-      if (code === 'uz') continue;
       if (AUTO[code]) return code;
     }
     return 'en';
@@ -29,22 +30,21 @@
 
   function pageLangFromPath(pathname) {
     var p = String(pathname || '/').replace(/\/index\.html$/i, '/');
-    if (p === '/uz' || p.indexOf('/uz/') === 0) return 'uz';
-    if (p === '/ru' || p.indexOf('/ru/') === 0) return 'ru';
+    for (var code in PAGES) {
+      if (p === '/' + code || p.indexOf('/' + code + '/') === 0) return code;
+    }
     return 'en';
   }
 
   function resolveLang(opts) {
     opts = opts || {};
     if (isStoredLang(opts.stored)) return opts.stored;
-    if (opts.page === 'ru' || opts.page === 'uz') return opts.page;
+    if (PAGES[opts.page]) return opts.page;
     return detectFromLanguages(opts.languages);
   }
 
   function pathFor(lang) {
-    if (lang === 'ru') return '/ru/';
-    if (lang === 'uz') return '/uz/';
-    return '/';
+    return PAGES[lang] ? '/' + lang + '/' : '/';
   }
 
   function readStored() {

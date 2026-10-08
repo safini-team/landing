@@ -159,6 +159,8 @@ a:hover { color: var(--pine-deep); }
 .lang-flag-uz { background-image: url("flag-uz.svg"); }
 .lang-flag-ru { background-image: url("flag-ru.svg"); }
 .lang-flag-en { background-image: url("flag-en.svg"); }
+.lang-flag-ky { background-image: url("flag-ky.svg"); }
+.lang-flag-kk { background-image: url("flag-kk.svg"); }
 .lang-menu {
   position: absolute;
   right: 0; top: calc(100% + 8px);

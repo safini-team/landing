@@ -112,4 +112,24 @@ var nested = runBoot({ pathname: '/', languages: ['en'] });
 nested.fireClick('ru', true);
 assert.strictEqual(nested.store.safini_lang, 'ru', 'flag click inside the option still persists');
 
+var kyKz = runBoot({ pathname: '/', languages: ['ky-KG', 'kk-KZ'] });
+assert.strictEqual(kyKz.replaced, null, 'Kyrgyz or Kazakh browser on / stays English');
+
+var kyThenRu = runBoot({ pathname: '/', languages: ['ky', 'ru'] });
+assert.strictEqual(kyThenRu.replaced, '/ru/', 'skip ky then take ru from the list');
+
+var honorKk = runBoot({ pathname: '/kk/', languages: ['ru'] });
+assert.strictEqual(honorKk.replaced, null, 'direct /kk/ is not overwritten');
+
+var storedKy = runBoot({
+  pathname: '/ru/',
+  languages: ['ru'],
+  store: { safini_lang: 'ky' }
+});
+assert.strictEqual(storedKy.replaced, '/ky/', 'explicit Kyrgyz pick wins on later visits');
+
+var kkClicker = runBoot({ pathname: '/', languages: ['en'] });
+kkClicker.fireClick('kk');
+assert.strictEqual(kkClicker.store.safini_lang, 'kk', 'switcher click persists Kazakh');
+
 console.log('boot ok');
