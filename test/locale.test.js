@@ -46,8 +46,9 @@ eq(
 );
 eq(locale.detectFromLanguages(['tr', 'en']), 'en');
 eq(locale.detectFromLanguages(['de']), 'en', 'unmatched falls back to English');
-eq(locale.detectFromLanguages(['kk']), 'en');
-eq(locale.detectFromLanguages(['ky']), 'en');
+eq(locale.detectFromLanguages(['kk']), 'en', 'Kazakh-only must not auto-select kk');
+eq(locale.detectFromLanguages(['ky']), 'en', 'Kyrgyz-only must not auto-select ky');
+eq(locale.detectFromLanguages(['ky-KG', 'kk-KZ', 'ru']), 'ru');
 eq(locale.detectFromLanguages([]), 'en');
 eq(locale.detectFromLanguages(null), 'en');
 eq(locale.detectFromLanguages(undefined), 'en');
@@ -61,6 +62,11 @@ eq(locale.pageLangFromPath('/ru/index.html'), 'ru');
 eq(locale.pageLangFromPath('/uz/'), 'uz');
 eq(locale.pageLangFromPath('/uz'), 'uz');
 eq(locale.pageLangFromPath('/uz/index.html'), 'uz');
+eq(locale.pageLangFromPath('/ky/'), 'ky');
+eq(locale.pageLangFromPath('/ky/index.html'), 'ky');
+eq(locale.pageLangFromPath('/kk/'), 'kk');
+eq(locale.pageLangFromPath('/kk'), 'kk');
+eq(locale.pageLangFromPath('/kkx/'), 'en');
 
 // --- resolveLang: stored pick wins; URL ru/uz honored; else detect ---
 eq(
@@ -83,17 +89,29 @@ eq(
   'en',
   'Uzbek browser on / stays English'
 );
-eq(locale.resolveLang({ stored: 'kk', page: 'en', languages: ['ru'] }), 'ru');
+eq(
+  locale.resolveLang({ stored: 'kk', page: 'en', languages: ['ru'] }),
+  'kk',
+  'explicit Kazakh pick is allowed and wins'
+);
+eq(locale.resolveLang({ stored: null, page: 'ky', languages: ['ru'] }), 'ky');
+eq(locale.resolveLang({ stored: null, page: 'en', languages: ['ky', 'kk'] }), 'en');
+eq(locale.resolveLang({ stored: 'de', page: 'en', languages: ['ru'] }), 'ru');
 eq(locale.resolveLang({ stored: '', page: 'en', languages: ['ru'] }), 'ru');
 
 eq(locale.pathFor('en'), '/');
 eq(locale.pathFor('ru'), '/ru/');
 eq(locale.pathFor('uz'), '/uz/');
+eq(locale.pathFor('ky'), '/ky/');
+eq(locale.pathFor('kk'), '/kk/');
+eq(locale.pathFor('de'), '/');
 
 eq(locale.isStoredLang('uz'), true);
 eq(locale.isStoredLang('en'), true);
 eq(locale.isStoredLang('ru'), true);
-eq(locale.isStoredLang('kk'), false);
+eq(locale.isStoredLang('ky'), true);
+eq(locale.isStoredLang('kk'), true);
+eq(locale.isStoredLang('de'), false);
 eq(locale.isStoredLang(null), false);
 
 console.log('ok');

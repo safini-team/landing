@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Kyrgyz (`/ky/`) and Kazakh (`/kk/`) pages for the KG and KZ launch, with KG and
+  KZ flags in the nav and footer switchers and hreflang/`og:locale` alternates on
+  every page. Both switchers list RU, EN, KG, UZ, KZ, matching the app. Like Uzbek, neither is ever picked from `navigator.language`; a
+  Kyrgyz or Kazakh browser lands on English or Russian until the visitor chooses.
+  The FAQ on every page lists all five app languages. The ky/kk pages leave out
+  the Uzcard/Humo and Uzbek data-registration lines and reuse the Russian app
+  screenshots until localized ones exist.
 - Locale defaulting on first visit: browser language Russian opens `/ru/`,
   English stays on `/`. Uzbek is never auto-selected from `navigator.language`
   (the switcher still offers it). An explicit pick is remembered in
