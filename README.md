@@ -110,7 +110,7 @@ The page is structured to answer a parent's questions in order:
 | **Features** | 6-card grid: coin economy, app blocking, parental controls, progress tracking, multi-child, cross-platform |
 | **Comparison** | Safini vs screen time limits vs "just say no" |
 | **Testimonials** | Sarah M., David T., Jennifer L. |
-| **Pricing** | $4/month, whole family, waitlist members lock in founding price |
+| **Pricing** | $7/month or $67/year, whole family, waitlist members lock in founding price |
 | **FAQ** | 5 questions covering the top conversion objections |
 | **CTA** | Waitlist form + confetti on success + Twitter/WhatsApp share buttons |
 | **Footer** | Logo + contact email |
