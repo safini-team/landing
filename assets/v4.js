@@ -1,4 +1,4 @@
-/* Safini landing V4-A - newsletter, store links + nav behaviour, shared by en / ru / uz.
+/* Safini landing V4-A - newsletter, store links + nav behaviour, shared by all five locales.
    Copy strings come from window.SAFINI_MSG, set inline on each language page. */
 (function () {
   'use strict';
@@ -22,6 +22,7 @@
 
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
+      if ((btn && btn.disabled) || !form.reportValidity()) return;
 
       var field = form.querySelector('input[name=email]');
       var email = (field && field.value || '').trim();
@@ -33,7 +34,8 @@
       var controller = new AbortController();
       var timer = setTimeout(function () { controller.abort(); }, 10000);
       var rawUtm = new URLSearchParams(window.location.search).get('utm_source');
-      var utmSource = rawUtm ? 'landing_page+' + rawUtm : 'landing_page';
+      // The API accepts at most 120 characters, including our prefix.
+      var utmSource = (rawUtm ? 'landing_page+' + rawUtm : 'landing_page').slice(0, 120);
 
       function reset() {
         if (btn) { btn.disabled = false; btn.textContent = btnLabel; }
@@ -52,12 +54,10 @@
           say(msgEl, MSG.ok || "You're subscribed.", 'ok');
           form.reset();
           reset();
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'newsletter_signup', {
-              event_category: 'engagement',
-              event_label: form.id || 'newsletter_form'
-            });
-          }
+          track('newsletter_signup', {
+            placement: form.id || 'newsletter_form',
+            language: document.documentElement.lang
+          });
         } else if (resp.status === 409) {
           say(msgEl, MSG.duplicate || 'That email is already subscribed.', 'error');
           reset();
@@ -75,20 +75,6 @@
     });
   });
 
-  // plans: monthly / yearly toggle. CSS shows the .cyc- span matching data-cycle
-  var plans = document.querySelector('.plans');
-  if (plans) {
-    var opts = plans.querySelectorAll('.billing-opt');
-    opts.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        plans.setAttribute('data-cycle', btn.getAttribute('data-cycle'));
-        opts.forEach(function (b) {
-          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
-        });
-      });
-    });
-  }
-
   // Download buttons go straight to the store on a phone, to #download elsewhere
   var ua = navigator.userAgent;
   var store = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1) ? APP_STORE
@@ -97,15 +83,21 @@
     document.querySelectorAll('a[data-store-link]').forEach(function (a) { a.href = store; });
   }
 
-  // smooth scroll for in-page anchors, offset for the sticky nav
-  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      var id = a.getAttribute('href');
-      if (id.length < 2) return;
-      var target = document.querySelector(id);
-      if (!target) return;
-      e.preventDefault();
-      window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+  // Hooks for the site's analytics integration; never include email or URL queries.
+  function track(name, data) {
+    window.dispatchEvent(new CustomEvent('safini:conversion', { detail: { event: name, ...data } }));
+    if (typeof window.gtag === 'function') window.gtag('event', name, data);
+  }
+  document.querySelectorAll('a.store, a[data-store-link], .plan.featured .plan-cta').forEach(function (link) {
+    link.addEventListener('click', function () {
+      var section = link.closest('[data-screen-label]');
+      var destination = link.href.indexOf('apps.apple.com') !== -1 ? 'app_store'
+        : link.href.indexOf('play.google.com') !== -1 ? 'google_play' : 'download_section';
+      track('download_click', {
+        destination: destination,
+        placement: section ? section.getAttribute('data-screen-label') : 'unknown',
+        language: document.documentElement.lang
+      });
     });
   });
 })();
