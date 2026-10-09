@@ -5,7 +5,7 @@ Prepared as a local preview on `codex/landing-conversion-review`, based on the l
 ## What changed and why
 
 - Lead with the family outcome: “Less negotiating. Screen time they earn.” Explain tasks, parental approval, coins and extra time in plain language.
-- Make the free limits visible beside the first download buttons, and retain the real product screenshots.
+- Retain the real product screenshots and keep free-plan limits in pricing and the FAQ.
 - Replace the unsupported category-wide competitor comparison with a labeled example: reading earns 30 coins; approval awards them; the child exchanges them for 15 extra minutes. These are illustrative values chosen by a parent.
 - Restore the missing `#prices` destination so both “Time Coins” navigation links work.
 - Show $7/month first, with $67/year and a 20% saving beside it. No toggle and no hidden prices. $67 versus $84 is a 20.24% saving, rounded down to 20%.
@@ -22,7 +22,7 @@ Free limits come from the updated `safini-api` `origin/main`, commit `34df523`, 
 
 The subscription API reports entitlements, not monetary prices. USD prices retain the latest merged landing values ($7 and $67). Mobile `pro_store.dart` loads localized prices from StoreKit, and `paywall_screen.dart` lists the paid features. The store implementation and updated feature translations were inspected in mobile `origin/main` (`61e6a95`); its paywall source comment still mentions the old 3/3 limits, but the rendered translations match the API’s 5/5 limits. The API and mobile checkouts were not edited.
 
-`assets/plans.json` records the last imported source. `scripts/sync-plans.py` can import future API changes from a fetched Git ref or its working tree and update all static numeric values, including FAQ and hero copy. `--check` detects drift. Run this when changing the API; the published landing does not depend on a live API request to display prices or limits.
+`assets/plans.json` records the last imported source. `scripts/sync-plans.py` can import future API changes from a fetched Git ref or its working tree and update all static numeric values, including pricing and FAQ copy. `--check` detects drift. Run this when changing the API; the published landing does not depend on a live API request to display prices or limits.
 
 Store destinations were verified against the official [App Store listing](https://apps.apple.com/us/app/safini/id6761075183) and [Google Play listing](https://play.google.com/store/apps/details?id=com.safini.app). The privacy FAQ follows the repository's Privacy Policy.
 
