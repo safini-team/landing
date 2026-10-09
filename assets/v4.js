@@ -75,20 +75,6 @@
     });
   });
 
-  // plans: monthly / yearly toggle. CSS shows the .cyc- span matching data-cycle
-  var plans = document.querySelector('.plans');
-  if (plans) {
-    var opts = plans.querySelectorAll('.billing-opt');
-    opts.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        plans.setAttribute('data-cycle', btn.getAttribute('data-cycle'));
-        opts.forEach(function (b) {
-          b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
-        });
-      });
-    });
-  }
-
   // Download buttons go straight to the store on a phone, to #download elsewhere
   var ua = navigator.userAgent;
   var store = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1) ? APP_STORE

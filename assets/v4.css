@@ -535,42 +535,13 @@ a:hover { color: var(--pine-deep); }
 .plans { padding: 84px 0; background: var(--paper-2); }
 .plans-intro { max-width: 620px; margin: 0 auto 40px; text-align: center; }
 .plans-intro .h2 { margin-bottom: 12px; }
-.plans-grid { max-width: 820px; margin: 0 auto; }
+.plans-grid { max-width: 1000px; margin: 0 auto; }
 
-/* billing period toggle */
-.billing {
-  display: flex; align-items: center; justify-content: center;
-  gap: 12px; flex-wrap: wrap; margin: 0 auto 26px;
-}
-.billing-seg {
-  display: inline-flex; gap: 2px; padding: 4px;
-  background: var(--surface); border: 1px solid var(--line-strong);
-  border-radius: 999px;
-}
-.billing-opt {
-  border: none; background: transparent; cursor: pointer;
-  font-family: var(--sans); font-size: 14px; font-weight: 700;
-  color: var(--ink); opacity: 0.55;
-  padding: 9px 18px; border-radius: 999px;
-  transition: background 0.16s ease, opacity 0.16s ease, color 0.16s ease;
-}
-.billing-opt:hover { opacity: 0.85; }
-.billing-opt[aria-pressed="true"] {
-  background: var(--ink); color: var(--paper); opacity: 1;
-}
-.billing-save {
-  font-family: var(--mono); font-size: 10.5px; font-weight: 600;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--pine); background: var(--pine-tint);
-  padding: 6px 11px; border-radius: 999px;
-}
-.plans[data-cycle="year"] .cyc-month,
-.plans[data-cycle="month"] .cyc-year { display: none; }
 .plan {
   background: var(--surface); border: 1px solid var(--line-strong);
   border-radius: 26px; padding: 32px;
 }
-.plan-name { font-size: 16px; font-weight: 700; letter-spacing: 0.02em; }
+.plan-name { margin: 0; font-size: 16px; font-weight: 700; letter-spacing: 0.02em; }
 .plan-price {
   font-weight: 700; font-size: 44px; letter-spacing: -0.02em;
   margin: 12px 0 4px; line-height: 1;
@@ -615,6 +586,29 @@ a:hover { color: var(--pine-deep); }
   text-transform: uppercase; letter-spacing: 0.12em;
   background: var(--coin); color: var(--ink);
   padding: 5px 11px; border-radius: 999px;
+}
+
+/* Monthly price with a visible annual alternative. */
+.plan-price { margin: 20px 0 12px; }
+.plan-price-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin: 20px 0 12px; }
+.plan-price-row .plan-price { margin: 0; white-space: nowrap; }
+.plan-annual { display: flex; flex: 1 1 160px; flex-direction: column; gap: 6px; padding-left: 18px; border-left: 1px solid rgba(247,245,240,.25); line-height: 1.4; }
+.plan-annual > span { font-size: 15px; font-weight: 700; }
+.plan-annual b { font-size: 12px; color: var(--coin); }
+.plan-annual small { font-size: 11px; color: rgba(247,245,240,.75); }
+.plan.featured { padding-top: 58px; }
+.plan li > span { flex: 0 0 16px; }
+.plan li { line-height: 1.5; }
+@media (min-width: 901px) {
+  .plan { display: grid; grid-template-rows: 24px 96px 40px 70px auto; padding-top: 58px; }
+  .plan-price, .plan-price-row { margin: 0; align-self: center; }
+  .plan-note { margin: 0; }
+  .plan-cta { margin: 0; align-self: start; }
+}
+@media (max-width: 600px) {
+  .plan-price { font-size: 40px; }
+  .plan-price-row { gap: 14px; }
+  .plan-annual { flex-basis: 140px; }
 }
 
 /* ============ FAQ ============ */
