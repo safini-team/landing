@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Subscription legal copy for Safini Pro (SAF-217), needed by App Review 3.1.2 and
+  Paddle's domain review. Terms section 6 now covers auto-renewal, App Store and
+  website (Paddle as Merchant of Record) billing, trials, cancelling, price changes,
+  failed payments, promo codes and refunds. New `/refund-policy`: Apple refunds App
+  Store purchases, Paddle refunds any website payment asked for within 14 days.
+  Privacy lists the purchase data Apple and Paddle send us, names both as recipients
+  and says payment records outlive a deleted family. Terms, privacy and refund pages
+  each carry en, ru and uz versions (`#ru`, `#uz`); ru/ky/kk footers link `#ru`, uz
+  links `#uz`, and every footer links the refund policy. Delete-account tells parents
+  to cancel Safini Pro first.
 - Kyrgyz (`/ky/`) and Kazakh (`/kk/`) pages for the KG and KZ launch, with KG and
   KZ flags in the nav and footer switchers and hreflang/`og:locale` alternates on
   every page. Both switchers list RU, EN, KG, UZ, KZ, matching the app. Like Uzbek, neither is ever picked from `navigator.language`; a

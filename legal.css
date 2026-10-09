@@ -163,7 +163,8 @@ h1 {
 .legal-section h3 { margin: 22px 0 8px; font-size: 16px; }
 .legal-section p { margin: 0 0 13px; color: var(--muted); }
 .legal-section p:last-child { margin-bottom: 0; }
-.legal-section ul { margin: 10px 0 14px; padding-left: 22px; color: var(--muted); }
+.legal-section ul,
+.legal-section ol { margin: 10px 0 14px; padding-left: 22px; color: var(--muted); }
 .legal-section li { margin: 7px 0; padding-left: 4px; }
 .legal-section li::marker { color: var(--pine); }
 
