@@ -54,6 +54,7 @@
 }
 .account-error { background: rgba(194, 69, 45, 0.08); color: var(--alert); }
 .account-warning { background: rgba(232, 163, 61, 0.14); color: var(--ink); }
+.account-notice { padding: 12px 14px; border-radius: 12px; font-size: 14px; background: var(--soft); color: var(--pine-deep); font-weight: 700; }
 
 .account-form { display: grid; gap: 8px; }
 .account-form label { font-size: 14px; font-weight: 700; }
@@ -90,6 +91,7 @@
 .btn-primary { background: var(--pine); color: white; }
 .btn-primary:hover:not(:disabled) { background: var(--pine-deep); color: white; }
 .btn-secondary { width: auto; background: var(--soft); color: var(--pine-deep); }
+.btn-secondary.btn-wide { width: 100%; }
 .btn-google { background: white; border-color: #747775; color: #1F1F1F; font-family: Roboto, var(--sans); font-weight: 600; }
 .btn-google svg { width: 20px; height: 20px; flex: none; }
 

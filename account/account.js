@@ -12,6 +12,14 @@
   var RESEND_SECONDS = 60;
   // Supabase's built-in mailer only reaches members of the Supabase org; turn on once custom SMTP is set.
   var EMAIL_SIGN_IN = false;
+  var PADDLE = {
+    environment: 'sandbox',
+    token: 'test_7168e365b97bf155f876b55c7c6',
+    prices: { monthly: 'pri_01m4jn1zae1736c66yprynjzt0', yearly: 'pri_01m4jn3hstyahmgssewzbt1bp3' },
+    // Off until the live Paddle account is approved; ?checkout=sandbox turns it on for testing.
+    live: false
+  };
+  var PADDLE_JS = 'https://cdn.paddle.com/paddle/v2/paddle.js';
 
   var STRINGS = {
     en: {
@@ -59,6 +67,14 @@
       proPrice: '$7 a month or $67 a year, one subscription for the whole family.',
       upgrade: 'Upgrade to Pro',
       upgradeSoon: 'Buying Safini Pro on the website is coming soon. You can already subscribe in the Safini app on iPhone: Settings → Safini Pro.',
+      buyMonthly: 'Monthly · $7',
+      buyYearly: 'Yearly · $67, save 20%',
+      checkoutNote: 'Renews automatically until you cancel. Payments are handled by Paddle, our reseller.',
+      checkoutDone: 'Payment received. Turning on Safini Pro…',
+      checkoutSlow: 'Payment received. Safini Pro can take a minute to show up here; refresh the page shortly.',
+      managePaddleNote: 'Opens Paddle, where the parent who paid can change the card, get receipts or cancel.',
+      portalForbidden: 'Only the parent who paid can manage this subscription. They can use the link in their Paddle receipt email.',
+      opening: 'Opening…',
       source: { apple: 'Bought in the App Store', paddle: 'Bought on safini.fun', promo: 'Promo code', manual: 'Gift from the Safini team', finik: 'Finik pass' },
       period: { monthly: 'Monthly', yearly: 'Yearly' },
       renewsOn: 'Renews on {date}',
@@ -132,6 +148,14 @@
       proPrice: '$7 в месяц или $67 в год, одна подписка на всю семью.',
       upgrade: 'Перейти на Pro',
       upgradeSoon: 'Покупка Safini Pro на сайте скоро появится. Уже сейчас подписку можно оформить в приложении Safini на iPhone: Настройки → Safini Pro.',
+      buyMonthly: 'Помесячно · $7',
+      buyYearly: 'На год · $67, экономия 20%',
+      checkoutNote: 'Продлевается автоматически, пока вы не отмените. Платежи обрабатывает наш реселлер Paddle.',
+      checkoutDone: 'Оплата получена. Включаем Safini Pro…',
+      checkoutSlow: 'Оплата получена. Safini Pro может появиться здесь через минуту; обновите страницу чуть позже.',
+      managePaddleNote: 'Откроется Paddle: там оплативший родитель может сменить карту, получить чеки или отменить подписку.',
+      portalForbidden: 'Управлять подпиской может только оплативший родитель. Он может воспользоваться ссылкой из письма-чека от Paddle.',
+      opening: 'Открываем…',
       source: { apple: 'Куплено в App Store', paddle: 'Куплено на safini.fun', promo: 'Промокод', manual: 'Подарок от команды Safini', finik: 'Пропуск Finik' },
       period: { monthly: 'Помесячно', yearly: 'На год' },
       renewsOn: 'Продлится {date}',
@@ -205,6 +229,14 @@
       proPrice: 'Oyiga $7 yoki yiliga $67, butun oila uchun bitta obuna.',
       upgrade: 'Pro’ga o‘tish',
       upgradeSoon: 'Safini Pro’ni saytda sotib olish tez orada paydo bo‘ladi. Hozircha obunani iPhone’dagi Safini ilovasida rasmiylashtirishingiz mumkin: Sozlamalar → Safini Pro.',
+      buyMonthly: 'Oylik · $7',
+      buyYearly: 'Yillik · $67, 20% tejash',
+      checkoutNote: 'Bekor qilmaguningizcha avtomatik yangilanadi. To‘lovlarni reseller hamkorimiz Paddle amalga oshiradi.',
+      checkoutDone: 'To‘lov qabul qilindi. Safini Pro yoqilmoqda…',
+      checkoutSlow: 'To‘lov qabul qilindi. Safini Pro bu yerda bir daqiqada paydo bo‘lishi mumkin; sahifani birozdan keyin yangilang.',
+      managePaddleNote: 'Paddle ochiladi: u yerda to‘lagan ota-ona kartani almashtirishi, cheklarni olishi yoki obunani bekor qilishi mumkin.',
+      portalForbidden: 'Obunani faqat to‘lagan ota-ona boshqarishi mumkin. U Paddle chek xatidagi havoladan foydalanishi mumkin.',
+      opening: 'Ochilmoqda…',
       source: { apple: 'App Store’da sotib olingan', paddle: 'safini.fun’da sotib olingan', promo: 'Promokod', manual: 'Safini jamoasidan sovg‘a', finik: 'Finik chiptasi' },
       period: { monthly: 'Oylik', yearly: 'Yillik' },
       renewsOn: '{date} kuni yangilanadi',
@@ -327,7 +359,11 @@
         label: plan.source === 'apple' ? s.manageApple : s.manage,
         note: plan.source === 'apple' ? s.manageAppleNote : ''
       };
+    } else if (plan.source === 'paddle' && (isPro || plan.status === 'in_billing_retry')) {
+      out.manage = { portal: true, label: s.manage, note: s.managePaddleNote };
     }
+    // Paying again while a payment is being retried would charge twice.
+    out.canUpgrade = !isPro && plan.status !== 'in_billing_retry';
     return out;
   }
 
@@ -348,7 +384,8 @@
   root.SAFINI_ACCOUNT = api;
 
   var app = document.getElementById('app');
-  var state = { view: 'loading', lang: 'en', email: '', message: '', session: null, me: null, family: null, plan: null, busy: false, resendAt: 0 };
+  var state = { view: 'loading', lang: 'en', email: '', message: '', notice: '', session: null, me: null, family: null, plan: null, busy: false, resendAt: 0 };
+  var paddleReady = null;
   var client = null;
 
   function t(key) {
@@ -463,6 +500,98 @@
       if (res.status === 401) throw { auth: true };
       if (!res.ok) throw { status: res.status };
       return res.json();
+    });
+  }
+
+  function checkoutEnabled() {
+    if (PADDLE.live) return true;
+    try {
+      if (new URLSearchParams(location.search).get('checkout') === 'sandbox') sessionStorage.setItem('safini_checkout', 'sandbox');
+      return sessionStorage.getItem('safini_checkout') === 'sandbox';
+    } catch (err) {
+      return false;
+    }
+  }
+
+  function loadPaddle() {
+    if (paddleReady) return paddleReady;
+    paddleReady = new Promise(function (resolve, reject) {
+      var script = document.createElement('script');
+      script.src = PADDLE_JS;
+      script.onload = function () {
+        if (PADDLE.environment === 'sandbox') root.Paddle.Environment.set('sandbox');
+        root.Paddle.Initialize({ token: PADDLE.token, eventCallback: onPaddleEvent });
+        resolve(root.Paddle);
+      };
+      script.onerror = function () {
+        paddleReady = null;
+        reject(new Error('paddle.js'));
+      };
+      document.head.appendChild(script);
+    });
+    return paddleReady;
+  }
+
+  function openCheckout(period) {
+    state.busy = true;
+    state.message = '';
+    render();
+    loadPaddle().then(function (Paddle) {
+      state.busy = false;
+      render();
+      var email = state.session && state.session.user && state.session.user.email;
+      Paddle.Checkout.open({
+        items: [{ priceId: PADDLE.prices[period], quantity: 1 }],
+        customer: email ? { email: email } : undefined,
+        customData: { family_id: state.me.family_id },
+        settings: { displayMode: 'overlay', variant: 'one-page', locale: state.lang === 'en' ? 'en' : 'ru' }
+      });
+    }, function () {
+      show('account', t('errGeneric'));
+    });
+  }
+
+  function onPaddleEvent(event) {
+    if (!event || event.name !== 'checkout.completed') return;
+    state.notice = t('checkoutDone');
+    render();
+    setTimeout(function () { root.Paddle.Checkout.close(); }, 2500);
+    waitForPro(0);
+  }
+
+  // The webhook, not the browser, makes the family Pro; the page waits for it.
+  function waitForPro(attempt) {
+    apiGet('/families/current/subscription').then(function (plan) {
+      state.plan = plan;
+      if (plan.plan === 'pro') {
+        state.notice = '';
+      } else if (attempt < 15) {
+        setTimeout(function () { waitForPro(attempt + 1); }, 2000);
+      } else {
+        state.notice = t('checkoutSlow');
+      }
+      render();
+    }, function () {
+      state.notice = t('checkoutSlow');
+      render();
+    });
+  }
+
+  function openPortal() {
+    state.busy = true;
+    state.message = '';
+    render();
+    fetch(API_BASE + '/billing/paddle/portal', {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + state.session.access_token, Accept: 'application/json' }
+    }).then(function (res) {
+      if (res.status === 403) throw { forbidden: true };
+      if (!res.ok) throw { status: res.status };
+      return res.json();
+    }).then(function (body) {
+      location.href = body.url;
+    }).catch(function (err) {
+      show('account', t(err && err.forbidden ? 'portalForbidden' : 'errGeneric'));
     });
   }
 
@@ -590,20 +719,33 @@
       d.warning ? el('p', { className: 'account-warning', role: 'status', text: d.warning }) : null,
       d.note ? el('p', { className: 'account-meta', text: d.note }) : null
     ];
-    if (d.manage) {
+    if (state.notice) children.unshift(el('p', { className: 'account-notice', role: 'status', text: state.notice }));
+    if (d.manage && d.manage.url) {
       children.push(el('a', { className: 'btn btn-primary', href: d.manage.url, target: '_blank', rel: 'noopener', text: d.manage.label }));
-      if (d.manage.note) children.push(el('p', { className: 'account-meta', text: d.manage.note }));
+    } else if (d.manage) {
+      children.push(el('button', { type: 'button', className: 'btn btn-primary', disabled: state.busy, on: { click: openPortal }, text: state.busy ? t('opening') : d.manage.label }));
     }
+    if (d.manage && d.manage.note) children.push(el('p', { className: 'account-meta', text: d.manage.note }));
     if (!d.isPro) {
       var s = STRINGS[state.lang];
       children.push(
         el('p', { className: 'account-meta', text: s.freeLimits }),
         el('p', { className: 'account-label', text: s.proAdds }),
-        el('ul', { className: 'account-list checks' }, s.proFeatures.map(function (f) { return el('li', { text: f }); })),
-        el('p', { className: 'account-meta', text: s.proPrice }),
-        el('button', { type: 'button', className: 'btn btn-primary', disabled: true, text: s.upgrade }),
-        el('p', { className: 'account-meta', text: s.upgradeSoon })
+        el('ul', { className: 'account-list checks' }, s.proFeatures.map(function (f) { return el('li', { text: f }); }))
       );
+      if (d.canUpgrade && checkoutEnabled()) {
+        children.push(
+          el('button', { type: 'button', className: 'btn btn-primary', disabled: state.busy, on: { click: function () { openCheckout('yearly'); } }, text: s.buyYearly }),
+          el('button', { type: 'button', className: 'btn btn-secondary btn-wide', disabled: state.busy, on: { click: function () { openCheckout('monthly'); } }, text: s.buyMonthly }),
+          el('p', { className: 'account-meta', text: s.checkoutNote })
+        );
+      } else if (d.canUpgrade) {
+        children.push(
+          el('p', { className: 'account-meta', text: s.proPrice }),
+          el('button', { type: 'button', className: 'btn btn-primary', disabled: true, text: s.upgrade }),
+          el('p', { className: 'account-meta', text: s.upgradeSoon })
+        );
+      }
     }
     return card(t('planTitle'), children, d.isPro ? 'is-pro' : '');
   }
@@ -637,10 +779,10 @@
       case 'child': nodes = [signedInBar(), card(t('childTitle'), [el('p', { className: 'account-lede', text: t('childBody') })])]; break;
       case 'fatal': nodes = [card('', [el('p', { className: 'account-error', role: 'alert', text: t('errGeneric') })])]; break;
       case 'error': nodes = [signedInBar(), card(t('loadError'), [el('button', { type: 'button', className: 'btn btn-primary', on: { click: loadAccount }, text: t('retry') })])]; break;
-      default: nodes = [signedInBar(), viewPlan(), viewFamily(), viewAccountLinks()];
+      default: nodes = [signedInBar(), message(), viewPlan(), viewFamily(), viewAccountLinks()];
     }
     app.textContent = '';
-    nodes.forEach(function (n) { app.appendChild(n); });
+    nodes.forEach(function (n) { if (n) app.appendChild(n); });
   }
 
   function urlError() {
