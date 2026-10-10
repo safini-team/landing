@@ -10,6 +10,8 @@
   var LANGS = ['en', 'ru', 'uz'];
   var LANG_KEY = 'safini_account_lang';
   var RESEND_SECONDS = 60;
+  // Supabase's built-in mailer only reaches members of the Supabase org; turn on once custom SMTP is set.
+  var EMAIL_SIGN_IN = false;
 
   var STRINGS = {
     en: {
@@ -20,6 +22,8 @@
       heroSub: 'Your family and your Safini Pro plan, in one place.',
       signInTitle: 'Sign in',
       signInLede: 'Use the same Google account or email you use in the Safini app.',
+      signInLedeGoogle: 'Use the same Google account you use in the Safini app.',
+      appleSoon: 'Signed in to the app with Apple? Sign in with Apple is coming to the website soon.',
       google: 'Continue with Google',
       or: 'or',
       emailLabel: 'Email',
@@ -91,6 +95,8 @@
       heroSub: 'Ваша семья и план Safini Pro в одном месте.',
       signInTitle: 'Вход',
       signInLede: 'Используйте тот же аккаунт Google или email, что и в приложении Safini.',
+      signInLedeGoogle: 'Используйте тот же аккаунт Google, что и в приложении Safini.',
+      appleSoon: 'Входите в приложение через Apple? Вход через Apple на сайте скоро появится.',
       google: 'Войти через Google',
       or: 'или',
       emailLabel: 'Email',
@@ -162,6 +168,8 @@
       heroSub: 'Oilangiz va Safini Pro tarifingiz bir joyda.',
       signInTitle: 'Kirish',
       signInLede: 'Safini ilovasidagi Google hisobi yoki email manzilingizdan foydalaning.',
+      signInLedeGoogle: 'Safini ilovasidagi Google hisobingizdan foydalaning.',
+      appleSoon: 'Ilovaga Apple orqali kirasizmi? Saytda Apple orqali kirish tez orada paydo bo‘ladi.',
       google: 'Google orqali kirish',
       or: 'yoki',
       emailLabel: 'Email',
@@ -520,11 +528,12 @@
       el('button', { type: 'submit', className: 'btn btn-primary', disabled: state.busy, text: state.busy ? t('sending') : t('sendCode') })
     ]);
     return card(t('signInTitle'), [
-      el('p', { className: 'account-lede', text: t('signInLede') }),
+      el('p', { className: 'account-lede', text: t(EMAIL_SIGN_IN ? 'signInLede' : 'signInLedeGoogle') }),
       message(),
       el('button', { type: 'button', className: 'btn btn-google', disabled: state.busy, on: { click: signInWithGoogle } }, [googleIcon(), el('span', { text: t('google') })]),
-      el('div', { className: 'account-or' }, [el('span', { text: t('or') })]),
-      form
+      EMAIL_SIGN_IN ? el('div', { className: 'account-or' }, [el('span', { text: t('or') })]) : null,
+      EMAIL_SIGN_IN ? form : null,
+      el('p', { className: 'account-meta', text: t('appleSoon') })
     ]);
   }
 
