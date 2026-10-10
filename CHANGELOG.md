@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+- `/account/` signs in with Google only for now (`EMAIL_SIGN_IN = false` in
+  `account/account.js`): Supabase's built-in mailer only delivers to members of the
+  Supabase org, so the email code failed for every parent. The email flow stays in
+  the code for when custom SMTP is set up. A line under the Google button tells
+  parents who use Apple in the app that Sign in with Apple is coming.
+
 ### Added
 - `/account/` (SAF-210): a parent signs in with Google or an emailed code, using the
   same Supabase accounts as the app, and sees the family (name, parents, number of
