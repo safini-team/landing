@@ -12,13 +12,7 @@
   var RESEND_SECONDS = 60;
   // Supabase's built-in mailer only reaches members of the Supabase org; turn on once custom SMTP is set.
   var EMAIL_SIGN_IN = false;
-  var PADDLE = {
-    environment: 'sandbox',
-    token: 'test_7168e365b97bf155f876b55c7c6',
-    prices: { monthly: 'pri_01m4jn1zae1736c66yprynjzt0', yearly: 'pri_01m4jn3hstyahmgssewzbt1bp3' },
-    // Off until the live Paddle account is approved; ?checkout=sandbox turns it on for testing.
-    live: false
-  };
+  var BUY_KEY = 'safini_buy';
   var PADDLE_JS = 'https://cdn.paddle.com/paddle/v2/paddle.js';
 
   var STRINGS = {
@@ -29,6 +23,8 @@
       title: 'Your Safini account',
       heroSub: 'Your family and your Safini Pro plan, in one place.',
       signInTitle: 'Sign in',
+      signInToBuy: 'Sign in to get Safini Pro',
+      noFamilyBuy: 'Once your family is set up in the app, come back here to get Safini Pro.',
       signInLede: 'Use the same Google account or email you use in the Safini app.',
       signInLedeGoogle: 'Use the same Google account you use in the Safini app.',
       appleSoon: 'Signed in to the app with Apple? Sign in with Apple is coming to the website soon.',
@@ -110,6 +106,8 @@
       title: 'Ваш аккаунт Safini',
       heroSub: 'Ваша семья и план Safini Pro в одном месте.',
       signInTitle: 'Вход',
+      signInToBuy: 'Войдите, чтобы подключить Safini Pro',
+      noFamilyBuy: 'Когда семья будет создана в приложении, вернитесь сюда, чтобы подключить Safini Pro.',
       signInLede: 'Используйте тот же аккаунт Google или email, что и в приложении Safini.',
       signInLedeGoogle: 'Используйте тот же аккаунт Google, что и в приложении Safini.',
       appleSoon: 'Входите в приложение через Apple? Вход через Apple на сайте скоро появится.',
@@ -191,6 +189,8 @@
       title: 'Safini hisobingiz',
       heroSub: 'Oilangiz va Safini Pro tarifingiz bir joyda.',
       signInTitle: 'Kirish',
+      signInToBuy: 'Safini Pro olish uchun kiring',
+      noFamilyBuy: 'Oilangiz ilovada yaratilgach, Safini Pro olish uchun shu yerga qayting.',
       signInLede: 'Safini ilovasidagi Google hisobi yoki email manzilingizdan foydalaning.',
       signInLedeGoogle: 'Safini ilovasidagi Google hisobingizdan foydalaning.',
       appleSoon: 'Ilovaga Apple orqali kirasizmi? Saytda Apple orqali kirish tez orada paydo bo‘ladi.',
@@ -384,8 +384,9 @@
   root.SAFINI_ACCOUNT = api;
 
   var app = document.getElementById('app');
-  var state = { view: 'loading', lang: 'en', email: '', message: '', notice: '', session: null, me: null, family: null, plan: null, busy: false, resendAt: 0 };
+  var state = { view: 'loading', lang: 'en', email: '', message: '', notice: '', session: null, me: null, family: null, plan: null, busy: false, resendAt: 0, buying: false };
   var paddleReady = null;
+  var PADDLE = root.SAFINI_CHECKOUT || { live: false, enabled: function () { return false; } };
   var client = null;
 
   function t(key) {
@@ -504,13 +505,7 @@
   }
 
   function checkoutEnabled() {
-    if (PADDLE.live) return true;
-    try {
-      if (new URLSearchParams(location.search).get('checkout') === 'sandbox') sessionStorage.setItem('safini_checkout', 'sandbox');
-      return sessionStorage.getItem('safini_checkout') === 'sandbox';
-    } catch (err) {
-      return false;
-    }
+    return PADDLE.enabled();
   }
 
   function loadPaddle() {
@@ -605,6 +600,15 @@
         state.family = res[0];
         state.plan = res[1];
         show('account');
+        if (state.buying) {
+          state.buying = false;
+          try { sessionStorage.removeItem(BUY_KEY); } catch (err) { /* private mode */ }
+          var buy = app.querySelector('.plan-buy');
+          if (buy) {
+            buy.scrollIntoView({ block: 'center' });
+            buy.focus();
+          }
+        }
       });
     }).catch(function (err) {
       if (err && err.auth) signOut(t('errSession'));
@@ -656,7 +660,7 @@
       input,
       el('button', { type: 'submit', className: 'btn btn-primary', disabled: state.busy, text: state.busy ? t('sending') : t('sendCode') })
     ]);
-    return card(t('signInTitle'), [
+    return card(t(state.buying ? 'signInToBuy' : 'signInTitle'), [
       el('p', { className: 'account-lede', text: t(EMAIL_SIGN_IN ? 'signInLede' : 'signInLedeGoogle') }),
       message(),
       el('button', { type: 'button', className: 'btn btn-google', disabled: state.busy, on: { click: signInWithGoogle } }, [googleIcon(), el('span', { text: t('google') })]),
@@ -735,7 +739,7 @@
       );
       if (d.canUpgrade && checkoutEnabled()) {
         children.push(
-          el('button', { type: 'button', className: 'btn btn-primary', disabled: state.busy, on: { click: function () { openCheckout('yearly'); } }, text: s.buyYearly }),
+          el('button', { type: 'button', className: 'btn btn-primary plan-buy', disabled: state.busy, on: { click: function () { openCheckout('yearly'); } }, text: s.buyYearly }),
           el('button', { type: 'button', className: 'btn btn-secondary btn-wide', disabled: state.busy, on: { click: function () { openCheckout('monthly'); } }, text: s.buyMonthly }),
           el('p', { className: 'account-meta', text: s.checkoutNote })
         );
@@ -775,7 +779,7 @@
       case 'signin': nodes = [viewSignIn()]; break;
       case 'code': nodes = [viewCode()]; break;
       case 'loading': nodes = [card('', [el('p', { className: 'account-lede', text: t('loading') })])]; break;
-      case 'nofamily': nodes = [signedInBar(), card(t('noFamilyTitle'), [el('p', { className: 'account-lede', text: t('noFamilyBody') }), storeBadges()]), viewAccountLinks()]; break;
+      case 'nofamily': nodes = [signedInBar(), card(t('noFamilyTitle'), [el('p', { className: 'account-lede', text: t('noFamilyBody') }), state.buying ? el('p', { className: 'account-lede', text: t('noFamilyBuy') }) : null, storeBadges()]), viewAccountLinks()]; break;
       case 'child': nodes = [signedInBar(), card(t('childTitle'), [el('p', { className: 'account-lede', text: t('childBody') })])]; break;
       case 'fatal': nodes = [card('', [el('p', { className: 'account-error', role: 'alert', text: t('errGeneric') })])]; break;
       case 'error': nodes = [signedInBar(), card(t('loadError'), [el('button', { type: 'button', className: 'btn btn-primary', on: { click: loadAccount }, text: t('retry') })])]; break;
@@ -793,7 +797,12 @@
   }
 
   function boot() {
-    var query = new URLSearchParams(location.search).get('lang');
+    var params = new URLSearchParams(location.search);
+    var query = params.get('lang');
+    try {
+      if (params.get('buy')) sessionStorage.setItem(BUY_KEY, '1');
+      state.buying = sessionStorage.getItem(BUY_KEY) === '1';
+    } catch (err) { /* private mode */ }
     var session = null;
     try { session = sessionStorage.getItem(LANG_KEY); } catch (err) { /* private mode */ }
     var stored = null;
