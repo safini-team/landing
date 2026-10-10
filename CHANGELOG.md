@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- `/account/` (SAF-210): a parent signs in with Google or an emailed code, using the
+  same Supabase accounts as the app, and sees the family (name, parents, number of
+  children) and its plan from `GET /v1/families/current/subscription`: Free or Pro,
+  where it was bought, renew or end date, payment problems, and a Manage button for
+  App Store purchases. Free families see what Pro adds with a disabled Upgrade button
+  until web checkout lands. Email sign-in never creates an account. en/ru/uz, linked
+  from every footer. supabase-js 2.117.2 is pinned with SRI. `node test/account.test.js`
+  covers the plan wording, language pick and plurals.
 - Subscription legal copy for Safini Pro (SAF-217), needed by App Review 3.1.2 and
   Paddle's domain review. Terms section 6 now covers auto-renewal, App Store and
   website (Paddle as Merchant of Record) billing, trials, cancelling, price changes,
