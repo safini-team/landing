@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- Web checkout on `/account/` through Paddle (SAF-215). A free family picks yearly
+  ($67) or monthly ($7) and Paddle's overlay checkout carries the family id; the page
+  waits for the webhook (safini-api#92) to turn Pro on. Website buyers get a Manage
+  button that opens Paddle's customer portal (only the parent who paid). Off on prod
+  until the live Paddle account is approved (`PADDLE.live` in `account/account.js`);
+  `?checkout=sandbox` turns the sandbox on for testing. No second purchase is offered
+  while a payment is being retried.
+- The landing's Pro button sells on the web once checkout is on: it leads to
+  `/account/?buy=1`, which titles sign-in "Sign in to get Safini Pro" and, once
+  signed in, lands on the yearly button. Until then it still opens the App Store.
+  The switch, token and price ids live in `assets/checkout.js`, shared by the
+  landing and the account page.
+
 ### Changed
 - `/account/` signs in with Google only for now (`EMAIL_SIGN_IN = false` in
   `account/account.js`): Supabase's built-in mailer only delivers to members of the

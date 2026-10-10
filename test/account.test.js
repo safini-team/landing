@@ -78,6 +78,23 @@ eq(retry.manage.label, 'Manage in the App Store', 'a lapsed App Store plan still
 var refunded = account.describePlan({ plan: 'free', status: 'revoked', source: 'apple', product_id: 'pro.monthly', is_trial: false, expires_at: '2026-10-01T12:00:00Z', will_renew: false, manage_url: 'https://apps.apple.com/account/subscriptions' }, 'en');
 eq(refunded.note, 'This purchase was refunded.');
 
+eq(free.canUpgrade, true);
+eq(retry.canUpgrade, false, 'no second purchase while a payment is retried');
+eq(monthly.canUpgrade, false);
+
+var web = account.describePlan({ plan: 'pro', status: 'active', source: 'paddle', product_id: 'pro.yearly', is_trial: false, expires_at: '2026-11-09T12:00:00Z', will_renew: true, manage_url: null }, 'en');
+eq(web.lines, ['Bought on safini.fun', 'Yearly', 'Renews on ' + date]);
+eq(web.manage.portal, true, 'website buyers manage in the Paddle portal');
+eq(web.manage.label, 'Manage subscription');
+
+var webRetry = account.describePlan({ plan: 'free', status: 'in_billing_retry', source: 'paddle', product_id: 'pro.monthly', is_trial: false, expires_at: '2026-10-01T12:00:00Z', will_renew: true, manage_url: null }, 'en');
+eq(webRetry.manage.portal, true, 'a failed card is fixed in the portal');
+eq(webRetry.warning, 'Your last payment did not go through, so Pro is paused. Update your payment method to turn it back on.');
+
+var webEnded = account.describePlan({ plan: 'free', status: 'expired', source: 'paddle', product_id: 'pro.monthly', is_trial: false, expires_at: '2026-10-01T12:00:00Z', will_renew: false, manage_url: null }, 'en');
+eq(webEnded.manage, null);
+eq(webEnded.canUpgrade, true);
+
 var expired = account.describePlan({ plan: 'free', status: 'expired', source: 'promo', product_id: 'pro.promo', is_trial: true, expires_at: '2026-11-09T12:00:00Z', will_renew: false, manage_url: null }, 'en');
 eq(expired.note, 'Pro ended on ' + date + '.');
 
