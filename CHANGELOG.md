@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+- Google Play links on the landing (en / ru / uz / kk / ky) and `/account/` open an
+  "update in review" dialog instead of the store, until the new Android build is live.
+
 ### Added
 - Web checkout on `/account/` through Paddle (SAF-215). A free family picks yearly
   ($67) or monthly ($7) and Paddle's overlay checkout carries the family id; the page

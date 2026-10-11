@@ -94,6 +94,9 @@
       retry: 'Try again',
       accountTitle: 'Account',
       deleteAccount: 'Delete account',
+      playReviewTitle: "Update in review",
+      playReviewBody: "The new Safini version is in review on Google Play. Check back soon.",
+      playReviewClose: "Got it",
       terms: 'Terms of Service',
       privacy: 'Privacy Policy',
       refund: 'Refund Policy',
@@ -177,6 +180,9 @@
       retry: 'Попробовать снова',
       accountTitle: 'Аккаунт',
       deleteAccount: 'Удалить аккаунт',
+      playReviewTitle: "Обновление на проверке",
+      playReviewBody: "Новая версия Safini проходит проверку в Google Play. Загляните чуть позже.",
+      playReviewClose: "Понятно",
       terms: 'Условия использования',
       privacy: 'Политика конфиденциальности',
       refund: 'Политика возврата',
@@ -260,6 +266,9 @@
       retry: 'Qayta urinish',
       accountTitle: 'Hisob',
       deleteAccount: 'Hisobni o‘chirish',
+      playReviewTitle: "Yangilanish tekshiruvda",
+      playReviewBody: "Safini'ning yangi versiyasi Google Play'da tekshiruvda. Birozdan keyin qaytib ko'ring.",
+      playReviewClose: "Tushunarli",
       terms: 'Foydalanish shartlari',
       privacy: 'Maxfiylik siyosati',
       refund: 'Pulni qaytarish siyosati',
@@ -768,8 +777,20 @@
   function storeBadges() {
     return el('div', { className: 'account-links' }, [
       el('a', { className: 'btn btn-secondary', href: 'https://apps.apple.com/us/app/safini/id6761075183', rel: 'noopener', text: 'App Store' }),
-      el('a', { className: 'btn btn-secondary', href: 'https://play.google.com/store/apps/details?id=com.safini.app', rel: 'noopener', text: 'Google Play' })
+      el('a', { className: 'btn btn-secondary', href: 'https://play.google.com/store/apps/details?id=com.safini.app', rel: 'noopener', text: 'Google Play', on: { click: function (e) { e.preventDefault(); showPlayReview(); } } })
     ]);
+  }
+
+  function showPlayReview() {
+    var dialog = el('dialog', { className: 'play-review' }, [
+      el('h3', { text: t('playReviewTitle') }),
+      el('p', { text: t('playReviewBody') }),
+      el('button', { type: 'button', className: 'btn', text: t('playReviewClose'), on: { click: function () { dialog.close(); } } })
+    ]);
+    dialog.addEventListener('click', function (e) { if (e.target === dialog) dialog.close(); });
+    dialog.addEventListener('close', function () { dialog.remove(); });
+    document.body.appendChild(dialog);
+    dialog.showModal();
   }
 
   function render() {
