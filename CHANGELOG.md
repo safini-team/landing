@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Changed
+- Legal pages are one page per language: `/privacy-policy`, `/terms-of-service`,
+  `/refund-policy`, `/delete-account` in English, and the same paths under `/ru/`, `/uz/`,
+  `/ky/` and `/kk/`, each with a language switcher. Kyrgyz and Kazakh are new, Delete Account
+  gains Uzbek. Old `#ru` / `#uz` links redirect to the new pages, and the locale landings link
+  to their own language. Terms now name the laws of the Kyrgyz Republic, and Terms and Privacy
+  say the English text prevails over translations. The outdated duplicate at `/policy/` is gone
+  and redirects to `/privacy-policy`.
 - Live Paddle client token and prices sit next to the sandbox ones in
   `assets/checkout.js` (SAF-261). Setting `live: true` switches checkout to the live
   account; until then `?checkout=sandbox` keeps testing against sandbox.

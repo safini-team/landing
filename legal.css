@@ -93,6 +93,18 @@ h1 {
   letter-spacing: -0.025em;
 }
 .hero-sub { max-width: 620px; margin: 16px auto 0; color: rgba(255, 255, 255, 0.82); }
+.lang-switch {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 16px;
+  margin-top: 18px;
+  font-size: 14px;
+  font-weight: 700;
+}
+.lang-switch a { color: rgba(255, 255, 255, 0.78); text-decoration: none; }
+.lang-switch a:hover { color: white; }
+.lang-switch a[aria-current="page"] { color: white; text-decoration: underline; text-underline-offset: 5px; }
 .effective-date {
   display: inline-block;
   margin-top: 20px;
