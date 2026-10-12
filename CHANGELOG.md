@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+- Beta testing button in the nav and hero, plus Instagram, Threads and X in the
+  footer, on every locale (SAF-265). URLs live in `assets/links.js`.
+
 ### Changed
 - Live Paddle client token and prices sit next to the sandbox ones in
   `assets/checkout.js` (SAF-261). Setting `live: true` switches checkout to the live
