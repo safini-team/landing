@@ -8,6 +8,28 @@
   var APP_STORE = 'https://apps.apple.com/us/app/safini/id6761075183';
   var PLAY = 'https://play.google.com/store/apps/details?id=com.safini.app';
   var MSG = window.SAFINI_MSG || {};
+  var SOCIAL_LINKS = [
+    { name: 'Instagram', mark: 'IG', url: 'https://www.instagram.com/safini.app/' },
+    { name: 'Threads', mark: 'Th', url: 'https://www.threads.com/@safini.app' },
+    { name: 'X', mark: 'X', url: 'https://x.com/safini_ai' }
+  ];
+
+  document.querySelectorAll('[data-social-links]').forEach(function (list) {
+    SOCIAL_LINKS.forEach(function (social) {
+      var item = document.createElement('li');
+      var link = document.createElement('a');
+      var mark = document.createElement('span');
+      mark.className = 'social-mark';
+      mark.setAttribute('aria-hidden', 'true');
+      mark.textContent = social.mark;
+      link.href = social.url;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.append(mark, document.createTextNode(social.name));
+      item.appendChild(link);
+      list.appendChild(item);
+    });
+  });
 
   function say(el, text, state) {
     if (!el) return;

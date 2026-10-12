@@ -687,7 +687,7 @@ details p {
 
 /* ============ FOOTER ============ */
 footer { padding: 52px 0 30px; border-top: 1px solid var(--line); }
-.foot-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 34px; }
+.foot-grid { display: grid; grid-template-columns: 2fr repeat(4, 1fr); gap: 34px; }
 .foot-brand {
   font-size: 22px; font-weight: 700;
   display: flex; align-items: center; gap: 10px;
@@ -710,6 +710,15 @@ footer ul {
 }
 footer ul a { color: var(--ink); font-size: 14px; font-weight: 600; }
 footer ul a:hover { color: var(--pine); }
+.social-links a { display: inline-flex; align-items: center; gap: 10px; }
+.social-mark {
+  display: grid; place-items: center;
+  width: 28px; height: 28px; flex: 0 0 28px;
+  border: 1px solid var(--line-strong); border-radius: 50%;
+  font-family: var(--mono); font-size: 10px; font-weight: 600;
+  letter-spacing: -0.04em;
+}
+.social-links a:hover .social-mark { border-color: var(--pine); background: var(--pine); color: var(--paper); }
 .foot-bottom {
   margin-top: 40px; padding-top: 20px;
   border-top: 1px solid var(--line);
@@ -791,6 +800,18 @@ footer ul a:hover { color: var(--pine); }
 .store b { font-size: 23px; font-weight: 600; letter-spacing: -0.02em; margin-top: 3px; }
 
 .hero-proof.stores-note { margin-top: 16px; }
+
+.beta-cta {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  max-width: 100%; min-height: 48px; margin-top: 16px; padding: 12px 20px;
+  border: 1px solid var(--coin); border-radius: 999px;
+  background: var(--coin); color: var(--ink);
+  font-size: 15px; font-weight: 800;
+  transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+}
+.beta-cta:hover { background: var(--coin-lift); border-color: var(--coin-lift); color: var(--ink); transform: translateY(-2px); }
+.beta-cta:focus-visible { outline: 3px solid var(--paper); outline-offset: 3px; }
+.beta-cta-arrow { font-size: 18px; line-height: 1; }
 
 .foot-download { margin-top: 26px; }
 .foot-download h5 { margin-bottom: 12px; }
