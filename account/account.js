@@ -45,6 +45,7 @@
       errRate: 'Too many attempts. Wait a minute and try again.',
       errGeneric: 'Something went wrong. Please try again.',
       errOauth: 'Sign-in was cancelled or did not work. Please try again.',
+      errHandoff: 'The link from the app has expired. Sign in once more, or open it again from the app.',
       errSession: 'Your session has ended. Please sign in again.',
       loading: 'Loading your account…',
       signedInAs: 'Signed in as {email}',
@@ -128,6 +129,7 @@
       errRate: 'Слишком много попыток. Подождите минуту и попробуйте снова.',
       errGeneric: 'Что-то пошло не так. Попробуйте ещё раз.',
       errOauth: 'Вход отменён или не удался. Попробуйте ещё раз.',
+      errHandoff: 'Ссылка из приложения устарела. Войдите ещё раз или откройте её из приложения заново.',
       errSession: 'Сессия закончилась. Войдите снова.',
       loading: 'Загружаем аккаунт…',
       signedInAs: 'Вы вошли как {email}',
@@ -211,6 +213,7 @@
       errRate: 'Urinishlar juda ko‘p. Bir daqiqa kutib, qayta urinib ko‘ring.',
       errGeneric: 'Nimadir xato ketdi. Qayta urinib ko‘ring.',
       errOauth: 'Kirish bekor qilindi yoki amalga oshmadi. Qayta urinib ko‘ring.',
+      errHandoff: 'Ilovadagi havolaning muddati tugadi. Qayta kiring yoki uni ilovadan yana oching.',
       errSession: 'Seans tugadi. Qayta kiring.',
       loading: 'Hisobingiz yuklanmoqda…',
       signedInAs: '{email} sifatida kirdingiz',
@@ -367,6 +370,11 @@
     return out;
   }
 
+  function handoffToken(hash) {
+    var token = new URLSearchParams(String(hash || '').replace(/^#/, '')).get('t');
+    return token && /^[A-Za-z0-9_-]{8,200}$/.test(token) ? token : null;
+  }
+
   var api = {
     STRINGS: STRINGS,
     LANGS: LANGS,
@@ -374,7 +382,8 @@
     pickLang: pickLang,
     formatDate: formatDate,
     childrenLabel: childrenLabel,
-    describePlan: describePlan
+    describePlan: describePlan,
+    handoffToken: handoffToken
   };
 
   if (typeof module !== 'undefined' && module.exports) {
@@ -617,6 +626,7 @@
   }
 
   function onSession(session) {
+    if (state.handoff) return;
     var hadSession = !!state.session;
     state.session = session;
     if (!session) {
@@ -789,6 +799,22 @@
     nodes.forEach(function (n) { if (n) app.appendChild(n); });
   }
 
+  // The app opens the page with a one-time token for the parent it has signed in.
+  function signInFromApp(token) {
+    state.handoff = true;
+    show('loading');
+    client.auth.verifyOtp({ token_hash: token, type: 'magiclink' }).then(function (res) {
+      state.handoff = false;
+      if (res.error || !res.data || !res.data.session) {
+        state.session = null;
+        show('signin', t('errHandoff'));
+        return;
+      }
+      state.session = res.data.session;
+      loadAccount();
+    });
+  }
+
   function urlError() {
     var params = new URLSearchParams(location.hash.replace(/^#/, '') + '&' + location.search.replace(/^\?/, ''));
     if (!params.get('error') && !params.get('error_description')) return '';
@@ -816,7 +842,9 @@
     }
     setLang(state.lang);
 
-    state.message = urlError();
+    var token = handoffToken(location.hash);
+    if (token) history.replaceState(null, '', location.pathname + location.search);
+    state.message = token ? '' : urlError();
     if (!root.supabase || !root.supabase.createClient) {
       show('fatal');
       return;
@@ -828,6 +856,7 @@
       // supabase-js asks not to await its own calls inside this callback.
       setTimeout(function () { onSession(session); }, 0);
     });
+    if (token) signInFromApp(token);
   }
 
   boot();

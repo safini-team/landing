@@ -107,4 +107,11 @@ eq(account.formatDate('2026-10-26T12:00:00Z', 'uz'), '26-oktabr, 2026');
 var uz = account.describePlan(null, 'uz');
 eq(uz.title, 'Bepul tarif');
 
+// --- the app's one-time sign-in token rides in the fragment ---
+eq(account.handoffToken('#t=0a1b2c3d4e5f60718293a4b5c6d7e8f9'), '0a1b2c3d4e5f60718293a4b5c6d7e8f9');
+eq(account.handoffToken('#access_token=x&t=abcDEF_123-xyz'), 'abcDEF_123-xyz');
+eq(account.handoffToken('#t=short'), null);
+eq(account.handoffToken('#t=<script>alert(1)</script>'), null);
+eq(account.handoffToken(''), null);
+
 console.log('account ok');
