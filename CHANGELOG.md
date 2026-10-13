@@ -12,8 +12,6 @@ All notable changes to this project will be documented in this file.
 - Live Paddle client token and prices sit next to the sandbox ones in
   `assets/checkout.js` (SAF-261). Setting `live: true` switches checkout to the live
   account; until then `?checkout=sandbox` keeps testing against sandbox.
-- Google Play links on the landing (en / ru / uz / kk / ky) and `/account/` open an
-  "update in review" dialog instead of the store, until the new Android build is live.
 
 ### Added
 - Web checkout on `/account/` through Paddle (SAF-215). A free family picks yearly

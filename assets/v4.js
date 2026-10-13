@@ -83,34 +83,6 @@
     document.querySelectorAll('a[data-store-link]').forEach(function (a) { a.href = store; });
   }
 
-  var dialog;
-  function showPlayReview() {
-    if (!dialog) {
-      dialog = document.createElement('dialog');
-      dialog.className = 'play-review';
-      var h = document.createElement('h3');
-      h.textContent = MSG.playReviewTitle || 'Update in review';
-      var p = document.createElement('p');
-      p.textContent = MSG.playReviewBody || 'The new Safini version is in review on Google Play. Check back soon.';
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'play-review-close';
-      b.textContent = MSG.playReviewClose || 'Got it';
-      b.addEventListener('click', function () { dialog.close(); });
-      dialog.addEventListener('click', function (e) { if (e.target === dialog) dialog.close(); });
-      dialog.append(h, p, b);
-      document.body.appendChild(dialog);
-    }
-    if (!dialog.open) dialog.showModal();
-  }
-
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[href]');
-    if (!a || a.href.indexOf('play.google.com') === -1) return;
-    e.preventDefault();
-    showPlayReview();
-  });
-
   // smooth scroll for in-page anchors, offset for the sticky nav
   document.querySelectorAll('a[href^="#"]').forEach(function (a) {
     a.addEventListener('click', function (e) {
