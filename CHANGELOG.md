@@ -9,6 +9,11 @@ All notable changes to this project will be documented in this file.
   footer, on every locale (SAF-265). URLs live in `assets/links.js`.
 
 ### Changed
+- Web checkout is on (SAF-261). The landing's Pro button now says "Get Safini Pro" (and
+  the same in every locale) instead of "Get Pro on iOS", and goes straight to
+  `/account/?buy=1`: the parent signs in, lands on the yearly/monthly buttons and pays in
+  Paddle's overlay. The link is in the HTML, so it works before or without JavaScript,
+  and the landing no longer loads `assets/checkout.js`.
 - Legal pages are one page per language: `/privacy-policy`, `/terms-of-service`,
   `/refund-policy`, `/delete-account` in English, and the same paths under `/ru/`, `/uz/`,
   `/ky/` and `/kk/`, each with a language switcher. Kyrgyz and Kazakh are new, Delete Account
