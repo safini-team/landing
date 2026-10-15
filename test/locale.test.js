@@ -115,3 +115,12 @@ eq(locale.isStoredLang('de'), false);
 eq(locale.isStoredLang(null), false);
 
 console.log('ok');
+
+// Explicit store language wins without changing the saved preference.
+eq(locale.languageFromSearch('?lang=en'), 'en');
+eq(locale.languageFromSearch('?utm_source=appstore&lang=ru'), 'ru');
+eq(locale.languageFromSearch('?lang=de'), '');
+eq(locale.languageFromSearch('?notlang=ru'), '');
+eq(locale.languageFromSearch('?lang=english'), '');
+eq(locale.resolveLang({ explicit: 'en', stored: 'ru', page: 'en', languages: ['ru'] }), 'en');
+eq(locale.resolveLang({ explicit: 'ru', stored: 'en', page: 'ru', languages: ['en'] }), 'ru');

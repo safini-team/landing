@@ -133,3 +133,11 @@ kkClicker.fireClick('kk');
 assert.strictEqual(kkClicker.store.safini_lang, 'kk', 'switcher click persists Kazakh');
 
 console.log('boot ok');
+
+var storeEn = runBoot({ pathname: '/', search: '?lang=en', languages: ['ru'], store: { safini_lang: 'ru' } });
+assert.strictEqual(storeEn.replaced, null, 'English store link stays English');
+assert.strictEqual(storeEn.store.safini_lang, 'ru', 'store link preserves saved preference');
+var storeRu = runBoot({ pathname: '/ru/', search: '?lang=ru', languages: ['en'], store: { safini_lang: 'en' } });
+assert.strictEqual(storeRu.replaced, null, 'Russian store link stays Russian');
+var misplaced = runBoot({ pathname: '/', search: '?lang=ru&utm_source=play', hash: '#download', languages: ['en'] });
+assert.strictEqual(misplaced.replaced, '/ru/?lang=ru&utm_source=play#download');
