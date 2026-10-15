@@ -2,7 +2,7 @@
    Match the parent-app rule: follow the phone when it is Russian or English.
    Uzbek, Kyrgyz and Kazakh are offered in the switcher but are never chosen
    from navigator.language / Accept-Language. An explicit pick (localStorage)
-   wins forever. */
+   wins on ordinary visits. Store links may pin a language with ?lang=en or ?lang=ru. */
 (function (root) {
   'use strict';
 
@@ -36,8 +36,15 @@
     return 'en';
   }
 
+  function languageFromSearch(search) {
+    var match = /(?:^\?|&)lang=([a-z]{2})(?:&|$)/i.exec(String(search || ''));
+    var code = match ? match[1].toLowerCase() : '';
+    return isStoredLang(code) ? code : '';
+  }
+
   function resolveLang(opts) {
     opts = opts || {};
+    if (isStoredLang(opts.explicit)) return opts.explicit;
     if (isStoredLang(opts.stored)) return opts.stored;
     if (PAGES[opts.page]) return opts.page;
     return detectFromLanguages(opts.languages);
@@ -100,6 +107,7 @@
 
     var page = pageLangFromPath(location.pathname);
     var target = resolveLang({
+      explicit: languageFromSearch(location.search),
       stored: readStored(),
       page: page,
       languages: browserLanguages()
@@ -118,6 +126,7 @@
     isStoredLang: isStoredLang,
     detectFromLanguages: detectFromLanguages,
     pageLangFromPath: pageLangFromPath,
+    languageFromSearch: languageFromSearch,
     resolveLang: resolveLang,
     pathFor: pathFor
   };
