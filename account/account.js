@@ -70,6 +70,7 @@
       checkoutDone: 'Payment received. Turning on Safini Pro…',
       checkoutSlow: 'Payment received. Safini Pro can take a minute to show up here; refresh the page shortly.',
       managePaddleNote: 'Opens Paddle, where the parent who paid can change the card, get receipts or cancel.',
+      paidByOther: 'Another parent in your family pays for Safini Pro. Only they can change or cancel it.',
       portalForbidden: 'Only the parent who paid can manage this subscription. They can use the link in their Paddle receipt email.',
       opening: 'Opening…',
       source: { apple: 'Bought in the App Store', paddle: 'Bought on safini.fun', promo: 'Promo code', manual: 'Gift from the Safini team', finik: 'Finik pass' },
@@ -154,6 +155,7 @@
       checkoutDone: 'Оплата получена. Включаем Safini Pro…',
       checkoutSlow: 'Оплата получена. Safini Pro может появиться здесь через минуту; обновите страницу чуть позже.',
       managePaddleNote: 'Откроется Paddle: там оплативший родитель может сменить карту, получить чеки или отменить подписку.',
+      paidByOther: 'Safini Pro оплачивает другой родитель в вашей семье. Изменить или отменить подписку может только он.',
       portalForbidden: 'Управлять подпиской может только оплативший родитель. Он может воспользоваться ссылкой из письма-чека от Paddle.',
       opening: 'Открываем…',
       source: { apple: 'Куплено в App Store', paddle: 'Куплено на safini.fun', promo: 'Промокод', manual: 'Подарок от команды Safini', finik: 'Пропуск Finik' },
@@ -238,6 +240,7 @@
       checkoutDone: 'To‘lov qabul qilindi. Safini Pro yoqilmoqda…',
       checkoutSlow: 'To‘lov qabul qilindi. Safini Pro bu yerda bir daqiqada paydo bo‘lishi mumkin; sahifani birozdan keyin yangilang.',
       managePaddleNote: 'Paddle ochiladi: u yerda to‘lagan ota-ona kartani almashtirishi, cheklarni olishi yoki obunani bekor qilishi mumkin.',
+      paidByOther: 'Safini Pro uchun oilangizdagi boshqa ota-ona toʻlaydi. Obunani faqat u oʻzgartira yoki bekor qila oladi.',
       portalForbidden: 'Obunani faqat to‘lagan ota-ona boshqarishi mumkin. U Paddle chek xatidagi havoladan foydalanishi mumkin.',
       opening: 'Ochilmoqda…',
       source: { apple: 'App Store’da sotib olingan', paddle: 'safini.fun’da sotib olingan', promo: 'Promokod', manual: 'Safini jamoasidan sovg‘a', finik: 'Finik chiptasi' },
@@ -356,7 +359,10 @@
       out.note = fmt(s.endedOn, { date: date });
     }
 
-    if (plan.manage_url) {
+    if (plan.payer === 'other_parent') {
+      // Only the parent who pays can change it (SAF-296).
+      out.note = s.paidByOther;
+    } else if (plan.manage_url) {
       out.manage = {
         url: plan.manage_url,
         label: plan.source === 'apple' ? s.manageApple : s.manage,
@@ -368,6 +374,12 @@
     // Paying again while a payment is being retried would charge twice.
     out.canUpgrade = !isPro && plan.status !== 'in_billing_retry';
     return out;
+  }
+
+  // Paddle tags the subscription with the parent who pays; the API makes it
+  // theirs, and falls back to the family for an unknown payer (SAF-296).
+  function checkoutData(me) {
+    return { user_id: me.user_id, family_id: me.family_id };
   }
 
   function handoffToken(hash) {
@@ -383,6 +395,7 @@
     formatDate: formatDate,
     childrenLabel: childrenLabel,
     describePlan: describePlan,
+    checkoutData: checkoutData,
     handoffToken: handoffToken
   };
 
@@ -547,7 +560,7 @@
       Paddle.Checkout.open({
         items: [{ priceId: PADDLE.prices[period], quantity: 1 }],
         customer: email ? { email: email } : undefined,
-        customData: { family_id: state.me.family_id },
+        customData: checkoutData(state.me),
         settings: { displayMode: 'overlay', variant: 'one-page', locale: state.lang === 'en' ? 'en' : 'ru' }
       });
     }, function () {
