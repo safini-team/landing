@@ -87,6 +87,18 @@ eq(web.lines, ['Bought on safini.fun', 'Yearly', 'Renews on ' + date]);
 eq(web.manage.portal, true, 'website buyers manage in the Paddle portal');
 eq(web.manage.label, 'Manage subscription');
 
+// Another parent pays (SAF-296): only they can manage it.
+var otherWeb = account.describePlan({ plan: 'pro', status: 'active', source: 'paddle', product_id: 'pro.yearly', is_trial: false, expires_at: '2026-11-09T12:00:00Z', will_renew: true, manage_url: null, payer: 'other_parent' }, 'en');
+eq(otherWeb.manage, null, 'no portal for a parent who did not pay');
+eq(otherWeb.note, 'Another parent in your family pays for Safini Pro. Only they can change or cancel it.');
+var otherApple = account.describePlan({ plan: 'pro', status: 'active', source: 'apple', product_id: 'pro.monthly', is_trial: false, expires_at: '2026-11-09T12:00:00Z', will_renew: true, manage_url: null, payer: 'other_parent' }, 'ru');
+eq(otherApple.manage, null);
+eq(otherApple.note, 'Safini Pro оплачивает другой родитель в вашей семье. Изменить или отменить подписку может только он.');
+eq(web.note, '', 'the payer sees no such note');
+
+// Checkout names the parent who pays and their family.
+eq(account.checkoutData({ user_id: 'u-1', family_id: 'f-1' }), { user_id: 'u-1', family_id: 'f-1' });
+
 var webRetry = account.describePlan({ plan: 'free', status: 'in_billing_retry', source: 'paddle', product_id: 'pro.monthly', is_trial: false, expires_at: '2026-10-01T12:00:00Z', will_renew: true, manage_url: null }, 'en');
 eq(webRetry.manage.portal, true, 'a failed card is fixed in the portal');
 eq(webRetry.warning, 'Your last payment did not go through, so Pro is paused. Update your payment method to turn it back on.');
