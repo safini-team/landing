@@ -8,7 +8,9 @@
   var ENVIRONMENTS = {
     production: {
       token: 'live_b633622619f872f3807659232dd',
-      prices: { monthly: 'pri_01m4n3ej7tptv16kj6baed5kgx', yearly: 'pri_01m4n3ejfvpe33qnyrkv02fgqh' }
+      prices: { monthly: 'pri_01m4n3ej7tptv16kj6baed5kgx', yearly: 'pri_01m4n3ejfvpe33qnyrkv02fgqh' },
+      // Central Asia prices (SAF-305), what the App Store charges in KG, KZ, UZ.
+      regional: { monthly: 'pri_01m5989vcfceh273pm92dn69vf', yearly: 'pri_01m598afvntrrvaspy4br1frfv' }
     },
     sandbox: {
       token: 'test_7168e365b97bf155f876b55c7c6',
@@ -49,6 +51,16 @@
   Object.defineProperty(CHECKOUT, 'environment', { get: environment });
   Object.defineProperty(CHECKOUT, 'token', { get: function () { return ENVIRONMENTS[environment()].token; } });
   Object.defineProperty(CHECKOUT, 'prices', { get: function () { return ENVIRONMENTS[environment()].prices; } });
+  // English pages sell at the global price ($9.99 / $59.99); Russian, Uzbek,
+  // Kyrgyz and Kazakh pages at the Central Asia price ($4.99 / $29.99), the
+  // same as the price shown on that page (SAF-305).
+  function pricesFor(pageLang) {
+    var env = ENVIRONMENTS[environment()];
+    var code = String(pageLang || '').toLowerCase().split('-')[0];
+    return code === 'en' ? env.prices : (env.regional || env.prices);
+  }
+
+  CHECKOUT.pricesFor = pricesFor;
   CHECKOUT.accountLang = accountLang;
   CHECKOUT.landingHref = landingHref;
 
