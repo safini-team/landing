@@ -16,6 +16,7 @@
 .account-langs button[aria-pressed="true"] { background: var(--pine); color: white; }
 
 .account-card {
+  overflow-wrap: anywhere;
   margin-bottom: 18px;
   padding: 26px 28px;
   border: 1px solid var(--line);
