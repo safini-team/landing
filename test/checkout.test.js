@@ -43,3 +43,18 @@ assert.strictEqual(checkout.landingHref('kk'), '/account/?buy=1&lang=ru', 'Kazak
 });
 
 console.log('checkout ok');
+
+// SAF-305: the price a page shows is the price its checkout charges.
+assert.strictEqual(checkout.pricesFor('en'), live.prices, 'English pages sell at the global price');
+['ru', 'uz', 'ky', 'kk'].forEach(function (lang) {
+  assert.strictEqual(checkout.pricesFor(lang), live.regional, lang + ' pages sell at the Central Asia price');
+});
+assert.ok(/^pri_/.test(live.regional.monthly) && /^pri_/.test(live.regional.yearly));
+assert.notStrictEqual(live.regional.yearly, live.prices.yearly);
+[['index.html', '$9.99', '$59.99'], ['ru/index.html', '$4.99', '$29.99'], ['uz/index.html', '$4.99', '$29.99'],
+ ['ky/index.html', '$4.99', '$29.99'], ['kk/index.html', '$4.99', '$29.99']].forEach(function (row) {
+  var html = fs.readFileSync(path.join(__dirname, '..', row[0]), 'utf8');
+  assert.ok(html.indexOf('<div class="plan-price">' + row[1] + '<small>') !== -1, row[0] + ' shows ' + row[1]);
+  assert.ok(html.indexOf(row[2] + '/') !== -1, row[0] + ' shows ' + row[2]);
+  assert.ok(html.indexOf('$67') === -1 && html.indexOf('>$7<') === -1, row[0] + ' has no old price');
+});
