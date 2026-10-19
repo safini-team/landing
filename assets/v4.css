@@ -891,3 +891,6 @@ footer ul a:hover { color: var(--pine); }
   color: rgba(255, 255, 255, 0.78);
 }
 .cta-card .newsletter .joinform { margin: 0 auto; }
+
+/* Setup expectations beside the install buttons. */
+.platform-note{max-width:36rem;font-size:14px;line-height:1.5;color:#e8eee9;margin:16px 0}.platform-note a{color:inherit;text-decoration:underline;text-underline-offset:3px}
