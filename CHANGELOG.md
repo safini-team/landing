@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- `/get`: a share-link landing page that redirects straight to the App Store on iOS
+  and Google Play on Android (UA-sniffed), and shows both store badges on desktop.
+  Lets the mobile app's in-app share sheet send one platform-agnostic link.
 - Beta testing button in the nav and hero, plus Instagram, Threads and X in the
   footer, on every locale (SAF-265). URLs live in `assets/links.js`.
 
