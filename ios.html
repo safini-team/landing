@@ -3,195 +3,77 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Safini: родительский контроль для iPhone</title>
+  <title>Safini для iPhone</title>
   <meta name="robots" content="noindex, follow" />
-  <meta name="description" content="Safini: экранное время с Fini. Задания, награды и понятные лимиты для семьи. Скачайте в App Store." />
-  <meta name="theme-color" content="#ffffff" />
-  <meta property="og:title" content="Safini: родительский контроль" />
-  <meta property="og:description" content="Экранное время с Fini. Скачайте Safini в App Store." />
+  <meta name="description" content="Safini: экранное время с Fini. Загрузите в App Store." />
+  <meta property="og:title" content="Safini для iPhone" />
+  <meta property="og:description" content="Загрузите Safini в App Store." />
   <meta property="og:image" content="https://safini.fun/og-image.png" />
   <meta property="og:url" content="https://safini.fun/ios" />
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/assets/ios/app-icon.png" />
   <link rel="canonical" href="https://safini.fun/ios" />
   <style>
-    :root {
-      --bg: #ffffff;
-      --text: #000000;
-      --muted: #8a8a8e;
-      --line: rgba(60, 60, 67, 0.18);
-      --blue: #007aff;
-      --pill: #eef0f3;
-    }
     * { box-sizing: border-box; }
-    html { -webkit-text-size-adjust: 100%; }
     body {
       margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+      background: #F7F5F0;
+      color: #0C231C;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", system-ui, sans-serif;
       -webkit-font-smoothing: antialiased;
     }
-    .page { max-width: 480px; margin: 0 auto; padding: 18px 0 calc(110px + env(safe-area-inset-bottom)); }
-    .pad { padding: 0 20px; }
-
-    .head { display: flex; gap: 16px; align-items: flex-start; }
-    .icon {
-      width: 118px; height: 118px; flex: none;
-      border-radius: 26px;
-      border: 1px solid var(--line);
-    }
-    .head-text { display: flex; flex-direction: column; min-height: 118px; }
-    .head h1 { margin: 2px 0 2px; font-size: 21px; line-height: 1.2; font-weight: 600; letter-spacing: -0.2px; }
-    .head .sub { margin: 0; color: var(--muted); font-size: 15px; }
-    .head .row { margin-top: auto; display: flex; align-items: center; gap: 10px; }
-    .get {
-      display: inline-block;
-      padding: 7px 22px;
-      border-radius: 999px;
-      background: var(--blue);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 700;
-      text-decoration: none;
-    }
-    .head .iap { color: var(--muted); font-size: 10px; line-height: 1.2; }
-
-    .facts {
+    .page {
+      min-height: 100vh;
+      min-height: 100svh;
+      max-width: 440px;
+      margin: 0 auto;
+      padding: 32px 20px calc(32px + env(safe-area-inset-bottom));
       display: flex;
-      margin: 22px 0 0;
-      padding: 12px 0;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .facts::-webkit-scrollbar { display: none; }
-    .fact {
-      flex: 1 0 auto;
-      min-width: 92px;
-      padding: 0 12px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
       text-align: center;
-      border-left: 1px solid var(--line);
     }
-    .fact:first-child { border-left: 0; }
-    .fact small { display: block; color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: .4px; text-transform: uppercase; }
-    .fact b { display: block; margin: 4px 0 2px; color: #3c3c43; font-size: 19px; font-weight: 700; }
-    .fact span { display: block; color: var(--muted); font-size: 11px; }
-
-    .shots {
-      display: flex;
-      gap: 10px;
-      margin-top: 18px;
-      padding: 0 20px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-padding: 0 20px;
-      scrollbar-width: none;
-    }
-    .shots::-webkit-scrollbar { display: none; }
-    .shots img {
-      flex: none;
-      width: 62%;
-      max-width: 250px;
+    .icon {
+      width: clamp(96px, 30vw, 128px);
       height: auto;
-      aspect-ratio: 600 / 1304;
+      aspect-ratio: 1;
+      border-radius: 22.5%;
+      box-shadow: 0 10px 28px rgba(12, 35, 28, .14);
+    }
+    h1 { margin: 10px 0 0; font-size: clamp(24px, 7vw, 30px); line-height: 1.2; font-weight: 700; }
+    .sub { margin: 0 0 18px; color: #5F6E68; font-size: clamp(15px, 4.5vw, 18px); }
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(8px, 2.5vw, 12px);
+      width: 100%;
+      padding: clamp(16px, 5vw, 20px) clamp(12px, 4vw, 24px);
       border-radius: 18px;
-      border: 1px solid var(--line);
-      scroll-snap-align: start;
-    }
-    .device { margin: 10px 20px 0; color: var(--muted); font-size: 13px; display: flex; align-items: center; gap: 6px; }
-    .device svg { width: 12px; height: 16px; }
-
-    .desc { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 15px; line-height: 1.45; }
-    .desc p { margin: 0 0 12px; }
-    .desc h2 { margin: 18px 0 6px; font-size: 20px; font-weight: 700; letter-spacing: -0.2px; }
-    .desc ul { margin: 0; padding: 0; list-style: none; }
-    .desc li { padding: 10px 0; border-bottom: 1px solid var(--line); }
-    .desc li b { display: block; font-size: 15px; }
-    .desc li span { color: #3c3c43; font-size: 14px; }
-
-    .privacy { margin-top: 20px; padding: 14px 16px; border-radius: 14px; background: var(--pill); font-size: 14px; }
-    .privacy b { display: block; margin-bottom: 2px; }
-    .privacy span { color: #3c3c43; }
-
-    .foot { margin-top: 22px; color: var(--muted); font-size: 12px; text-align: center; }
-    .foot a { color: var(--muted); }
-
-    .bar {
-      position: fixed; left: 0; right: 0; bottom: 0;
-      padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
-      background: rgba(255, 255, 255, 0.92);
-      -webkit-backdrop-filter: blur(16px);
-      backdrop-filter: blur(16px);
-      border-top: 1px solid var(--line);
-    }
-    .bar a {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      max-width: 440px; margin: 0 auto;
-      padding: 14px 18px;
-      border-radius: 14px;
       background: #000;
       color: #fff;
       text-decoration: none;
-      font-size: 17px;
-      font-weight: 600;
+      font-size: clamp(17px, 5.4vw, 22px);
+      font-weight: 700;
+      white-space: nowrap;
     }
-    .bar svg { width: 20px; height: 20px; margin-top: -3px; }
+    .cta svg { flex: none; width: 1.2em; height: 1.2em; margin-top: -0.2em; }
+    .foot { margin-top: 18px; color: #8a8a8e; font-size: 13px; }
+    .foot a { color: #8a8a8e; }
   </style>
 </head>
 <body>
   <main class="page">
-    <section class="pad head">
-      <img class="icon" src="/assets/ios/app-icon.png" width="256" height="256" alt="Иконка Safini" />
-      <div class="head-text">
-        <h1>Safini: родительский контроль</h1>
-        <p class="sub">Экранное время с Fini</p>
-        <div class="row">
-          <a class="get" href="https://apps.apple.com/app/apple-store/id6761075183?pt=127778194&amp;ct=metaads22&amp;mt=8" rel="noopener">Загрузить</a>
-          <span class="iap">Встроенные<br />покупки</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="pad">
-      <div class="facts" aria-label="Информация о приложении">
-        <div class="fact"><small>Возраст</small><b>4+</b><span>лет</span></div>
-        <div class="fact"><small>Категория</small><b>&#9787;</b><span>Образ жизни</span></div>
-        <div class="fact"><small>Языки</small><b>RU</b><span>+ ещё 4</span></div>
-        <div class="fact"><small>Реклама</small><b>Нет</b><span>в приложении</span></div>
-      </div>
-    </section>
-
-    <div class="shots" aria-label="Снимки экрана">
-      <img src="/assets/ios/ru-01-fini.jpg" width="600" height="1304" alt="Fini, ИИ-помощник для родителей" />
-      <img src="/assets/ios/ru-02-tasks.jpg" width="600" height="1304" alt="Задания и награды" />
-      <img src="/assets/ios/ru-03-limits.jpg" width="600" height="1304" alt="Лимиты приложений" />
-      <img src="/assets/ios/ru-04-plan.jpg" width="600" height="1304" alt="План для семьи" />
-      <img src="/assets/ios/ru-05-control.jpg" width="600" height="1304" alt="Решения остаются за родителем" />
-    </div>
-    <p class="device"><svg viewBox="0 0 12 16" aria-hidden="true"><rect x="1" y="0.5" width="10" height="15" rx="2" fill="none" stroke="currentColor" /></svg>iPhone</p>
-
-    <section class="pad desc">
-      <p>Полезные дела превращаются в награды. Safini помогает родителям настроить экранное время, выстроить понятные семейные правила и дать ребенку возможность заработать дополнительные минуты в приложениях.</p>
-      <h2>Что внутри</h2>
-      <ul>
-        <li><b>Fini, ИИ-помощник для родителей</b><span>Выберите цель: меньше игр и ленты, сначала уроки или спокойный отход ко сну. Fini помогает следовать плану в рамках ваших правил.</span></li>
-        <li><b>Задания и награды</b><span>Чтение, уроки, прогулки и помощь по дому приносят Time Coins. Ребенок обменивает их на время в выбранных приложениях.</span></li>
-        <li><b>Понятные лимиты</b><span>Дневные ограничения и стоимость дополнительных минут задаете вы, а управляете семьей со своего телефона.</span></li>
-        <li><b>Решения остаются за вами</b><span>Выбирайте, что Fini делает сам и когда нужно ваше согласие.</span></li>
-      </ul>
-      <div class="privacy"><b>Данные не собираются</b><span>Разработчик не собирает данные в этом приложении.</span></div>
-    </section>
-
-    <p class="foot pad">safini.fun · <a href="/privacy-policy">Политика конфиденциальности</a> · <a href="/ru/">О Safini</a></p>
-  </main>
-
-  <nav class="bar">
-    <a href="https://apps.apple.com/app/apple-store/id6761075183?pt=127778194&amp;ct=metaads22&amp;mt=8" rel="noopener" aria-label="Загрузить Safini в App Store">
+    <img class="icon" src="/assets/ios/app-icon.png" width="256" height="256" alt="Safini" />
+    <h1>Safini</h1>
+    <p class="sub">Экранное время с Fini</p>
+    <a class="cta" href="https://apps.apple.com/app/apple-store/id6761075183?pt=127778194&amp;ct=metaads22&amp;mt=8" rel="noopener">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
       Загрузить в App Store
     </a>
-  </nav>
+    <p class="foot"><a href="/ru/">safini.fun</a> · <a href="/privacy-policy">Конфиденциальность</a></p>
+  </main>
 </body>
 </html>
