@@ -13,6 +13,7 @@
   // Supabase's built-in mailer only reaches members of the Supabase org; turn on once custom SMTP is set.
   var EMAIL_SIGN_IN = false;
   var BUY_KEY = 'safini_buy';
+  var PLAN_KEY = 'safini_buy_plan';
   var PADDLE_JS = 'https://cdn.paddle.com/paddle/v2/paddle.js';
 
   var STRINGS = {
@@ -387,6 +388,13 @@
     return token && /^[A-Za-z0-9_-]{8,200}$/.test(token) ? token : null;
   }
 
+  // The Android app's plans screen opens the page with the plan the parent
+  // tapped, so checkout opens for it right after sign-in.
+  function checkoutPlan(search) {
+    var plan = new URLSearchParams(String(search || '')).get('plan');
+    return plan === 'yearly' || plan === 'monthly' ? plan : null;
+  }
+
   var api = {
     STRINGS: STRINGS,
     LANGS: LANGS,
@@ -396,7 +404,8 @@
     childrenLabel: childrenLabel,
     describePlan: describePlan,
     checkoutData: checkoutData,
-    handoffToken: handoffToken
+    handoffToken: handoffToken,
+    checkoutPlan: checkoutPlan
   };
 
   if (typeof module !== 'undefined' && module.exports) {
@@ -406,7 +415,7 @@
   root.SAFINI_ACCOUNT = api;
 
   var app = document.getElementById('app');
-  var state = { view: 'loading', lang: 'en', email: '', message: '', notice: '', session: null, me: null, family: null, plan: null, busy: false, resendAt: 0, buying: false };
+  var state = { view: 'loading', lang: 'en', email: '', message: '', notice: '', session: null, me: null, family: null, plan: null, busy: false, resendAt: 0, buying: false, planToBuy: null };
   var paddleReady = null;
   var PADDLE = root.SAFINI_CHECKOUT || { live: false, enabled: function () { return false; } };
   var client = null;
@@ -624,7 +633,16 @@
         show('account');
         if (state.buying) {
           state.buying = false;
-          try { sessionStorage.removeItem(BUY_KEY); } catch (err) { /* private mode */ }
+          var plan = state.planToBuy;
+          state.planToBuy = null;
+          try {
+            sessionStorage.removeItem(BUY_KEY);
+            sessionStorage.removeItem(PLAN_KEY);
+          } catch (err) { /* private mode */ }
+          if (plan && describePlan(state.plan, state.lang).canUpgrade && checkoutEnabled()) {
+            openCheckout(plan);
+            return;
+          }
           var buy = app.querySelector('.plan-buy');
           if (buy) {
             buy.scrollIntoView({ block: 'center' });
@@ -842,6 +860,12 @@
       if (params.get('buy')) sessionStorage.setItem(BUY_KEY, '1');
       state.buying = sessionStorage.getItem(BUY_KEY) === '1';
     } catch (err) { /* private mode */ }
+    // Kept for the tab, so a Google sign-in after an expired app link still buys it.
+    state.planToBuy = checkoutPlan(location.search);
+    try {
+      if (state.planToBuy) sessionStorage.setItem(PLAN_KEY, state.planToBuy);
+      else state.planToBuy = checkoutPlan('plan=' + (sessionStorage.getItem(PLAN_KEY) || ''));
+    } catch (err) { /* private mode */ }
     var session = null;
     try { session = sessionStorage.getItem(LANG_KEY); } catch (err) { /* private mode */ }
     var stored = null;
@@ -856,7 +880,10 @@
     setLang(state.lang);
 
     var token = handoffToken(location.hash);
-    if (token) history.replaceState(null, '', location.pathname + location.search);
+    // Checkout opens once: a reload or Back must not open it again.
+    params.delete('plan');
+    var search = params.toString() ? '?' + params.toString() : '';
+    if (token || search !== location.search) history.replaceState(null, '', location.pathname + search);
     state.message = token ? '' : urlError();
     if (!root.supabase || !root.supabase.createClient) {
       show('fatal');
