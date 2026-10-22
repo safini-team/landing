@@ -35,24 +35,31 @@
       gap: 14px;
       text-align: center;
     }
-    .icon { width: 112px; height: 112px; border-radius: 25px; box-shadow: 0 10px 28px rgba(12, 35, 28, .14); }
-    h1 { margin: 10px 0 0; font-size: 26px; line-height: 1.2; font-weight: 700; }
-    .sub { margin: 0 0 18px; color: #5F6E68; font-size: 17px; }
+    .icon {
+      width: clamp(96px, 30vw, 128px);
+      height: auto;
+      aspect-ratio: 1;
+      border-radius: 22.5%;
+      box-shadow: 0 10px 28px rgba(12, 35, 28, .14);
+    }
+    h1 { margin: 10px 0 0; font-size: clamp(24px, 7vw, 30px); line-height: 1.2; font-weight: 700; }
+    .sub { margin: 0 0 18px; color: #5F6E68; font-size: clamp(15px, 4.5vw, 18px); }
     .cta {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: clamp(8px, 2.5vw, 12px);
       width: 100%;
-      padding: 20px 24px;
+      padding: clamp(16px, 5vw, 20px) clamp(12px, 4vw, 24px);
       border-radius: 18px;
       background: #000;
       color: #fff;
       text-decoration: none;
-      font-size: 21px;
+      font-size: clamp(17px, 5.4vw, 22px);
       font-weight: 700;
+      white-space: nowrap;
     }
-    .cta svg { width: 26px; height: 26px; margin-top: -4px; }
+    .cta svg { flex: none; width: 1.2em; height: 1.2em; margin-top: -0.2em; }
     .foot { margin-top: 18px; color: #8a8a8e; font-size: 13px; }
     .foot a { color: #8a8a8e; }
   </style>
