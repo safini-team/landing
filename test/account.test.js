@@ -127,3 +127,10 @@ eq(account.handoffToken('#t=<script>alert(1)</script>'), null);
 eq(account.handoffToken(''), null);
 
 console.log('account ok');
+
+// --- checkoutPlan: the plan the Android app's plans screen sends ---
+eq(account.checkoutPlan('?lang=ru&buy=1&plan=yearly'), 'yearly');
+eq(account.checkoutPlan('lang=en&buy=1&plan=monthly'), 'monthly');
+eq(account.checkoutPlan('?buy=1'), null, 'no plan, no checkout');
+eq(account.checkoutPlan('?plan=weekly'), null, 'unknown plan is ignored');
+eq(account.checkoutPlan(''), null);
