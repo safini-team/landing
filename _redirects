@@ -1,2 +1,8 @@
 /policy /privacy-policy 301
 /policy/* /privacy-policy 301
+# Creator links (SAF-143): safini.fun/c/AIGUL keeps the code for the visit.
+/c/:code /?ref=:code 302
+/ru/c/:code /ru/?ref=:code 302
+/uz/c/:code /uz/?ref=:code 302
+/ky/c/:code /ky/?ref=:code 302
+/kk/c/:code /kk/?ref=:code 302

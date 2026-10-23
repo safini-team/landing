@@ -831,6 +831,12 @@ footer ul a:hover { color: var(--pine); }
 /* Built in HTML so the small line localizes; proportions follow the official black badges. */
 .stores { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero .stores { margin-top: 30px; }
+/* SAF-143: the creator code a visitor arrived with, to type in the app. */
+.creator-code {
+  display: inline-block; margin: 12px 0 0; padding: 8px 14px;
+  border-radius: 999px; background: var(--pine-tint); color: var(--pine-deep);
+  font-size: 14px; font-weight: 700; line-height: 1.35;
+}
 .store {
   display: inline-flex; align-items: center; gap: 10px;
   height: 56px; padding: 0 20px 0 16px;
