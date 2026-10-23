@@ -80,10 +80,14 @@ The hero uses real Safini iOS Simulator captures, not a fabricated phone UI:
 - `assets/screens/safini-app-ru.png` — Соня, Russian
 - `assets/screens/safini-app-uz.png` — Alisher, Uzbek
 
-The Kyrgyz (`/ky/`) and Kazakh (`/kk/`) pages reuse the Russian captures until
-localized ones exist. Only `/` (English) and `/ru/` are ever chosen from the
-browser language; `/uz/`, `/ky/` and `/kk/` open only from a link or the
-switcher, and an explicit pick is remembered (`assets/locale.js`).
+The Kyrgyz (`/ky/`) and Kazakh (`/kk/`) pages reuse the Russian captures, and
+the Turkish, Spanish, Portuguese, German, French, Indonesian and Arabic pages
+(`/tr/`, `/es/`, `/pt/`, `/de/`, `/fr/`, `/id/`, `/ar/`) reuse the English ones,
+until localized ones exist. Every language except Uzbek, Kyrgyz and Kazakh is
+chosen from the browser language, like the app; `/uz/`, `/ky/` and `/kk/` open
+only from a link or the switcher, and an explicit pick is remembered
+(`assets/locale.js`). The seven newer pages sell at the global price and link to
+the English legal pages.
 
 Each capture uses isolated screenshot-demo data and shows real TikTok, Roblox,
 Instagram, and YouTube launcher artwork. Do not replace those icons with emoji

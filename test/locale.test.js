@@ -40,12 +40,21 @@ eq(
 );
 eq(locale.detectFromLanguages(['uz-UZ', 'en-GB']), 'en');
 eq(
-  locale.detectFromLanguages(['de', 'ru', 'en']),
+  locale.detectFromLanguages(['ja', 'ru', 'en']),
   'ru',
   'walk the preference list like mobile'
 );
-eq(locale.detectFromLanguages(['tr', 'en']), 'en');
-eq(locale.detectFromLanguages(['de']), 'en', 'unmatched falls back to English');
+eq(locale.detectFromLanguages(['it', 'en']), 'en');
+eq(locale.detectFromLanguages(['ja']), 'en', 'unmatched falls back to English');
+eq(locale.detectFromLanguages(['tr-TR']), 'tr', 'Turkish phone -> Turkish');
+eq(locale.detectFromLanguages(['es-MX']), 'es');
+eq(locale.detectFromLanguages(['pt-BR']), 'pt');
+eq(locale.detectFromLanguages(['pt-PT']), 'pt');
+eq(locale.detectFromLanguages(['de-AT', 'en']), 'de');
+eq(locale.detectFromLanguages(['fr-CA']), 'fr');
+eq(locale.detectFromLanguages(['id-ID']), 'id', 'Indonesian phone -> Indonesian');
+eq(locale.detectFromLanguages(['ar-SA']), 'ar');
+eq(locale.detectFromLanguages(['uz', 'id', 'en']), 'id', 'skip uz, then take Indonesian');
 eq(locale.detectFromLanguages(['kk']), 'en', 'Kazakh-only must not auto-select kk');
 eq(locale.detectFromLanguages(['ky']), 'en', 'Kyrgyz-only must not auto-select ky');
 eq(locale.detectFromLanguages(['ky-KG', 'kk-KZ', 'ru']), 'ru');
@@ -67,6 +76,13 @@ eq(locale.pageLangFromPath('/ky/index.html'), 'ky');
 eq(locale.pageLangFromPath('/kk/'), 'kk');
 eq(locale.pageLangFromPath('/kk'), 'kk');
 eq(locale.pageLangFromPath('/kkx/'), 'en');
+['tr', 'es', 'pt', 'de', 'fr', 'id', 'ar'].forEach(function (code) {
+  eq(locale.pageLangFromPath('/' + code + '/'), code);
+  eq(locale.pageLangFromPath('/' + code + '/index.html'), code);
+  eq(locale.pathFor(code), '/' + code + '/');
+  eq(locale.isStoredLang(code), true);
+});
+eq(locale.pageLangFromPath('/idx/'), 'en');
 
 // --- resolveLang: stored pick wins; URL ru/uz honored; else detect ---
 eq(
@@ -96,7 +112,9 @@ eq(
 );
 eq(locale.resolveLang({ stored: null, page: 'ky', languages: ['ru'] }), 'ky');
 eq(locale.resolveLang({ stored: null, page: 'en', languages: ['ky', 'kk'] }), 'en');
-eq(locale.resolveLang({ stored: 'de', page: 'en', languages: ['ru'] }), 'ru');
+eq(locale.resolveLang({ stored: 'ja', page: 'en', languages: ['ru'] }), 'ru');
+eq(locale.resolveLang({ stored: 'de', page: 'en', languages: ['ru'] }), 'de');
+eq(locale.resolveLang({ stored: null, page: 'ar', languages: ['en'] }), 'ar');
 eq(locale.resolveLang({ stored: '', page: 'en', languages: ['ru'] }), 'ru');
 
 eq(locale.pathFor('en'), '/');
@@ -104,14 +122,14 @@ eq(locale.pathFor('ru'), '/ru/');
 eq(locale.pathFor('uz'), '/uz/');
 eq(locale.pathFor('ky'), '/ky/');
 eq(locale.pathFor('kk'), '/kk/');
-eq(locale.pathFor('de'), '/');
+eq(locale.pathFor('ja'), '/');
 
 eq(locale.isStoredLang('uz'), true);
 eq(locale.isStoredLang('en'), true);
 eq(locale.isStoredLang('ru'), true);
 eq(locale.isStoredLang('ky'), true);
 eq(locale.isStoredLang('kk'), true);
-eq(locale.isStoredLang('de'), false);
+eq(locale.isStoredLang('ja'), false);
 eq(locale.isStoredLang(null), false);
 
 console.log('ok');
@@ -119,7 +137,8 @@ console.log('ok');
 // Explicit store language wins without changing the saved preference.
 eq(locale.languageFromSearch('?lang=en'), 'en');
 eq(locale.languageFromSearch('?utm_source=appstore&lang=ru'), 'ru');
-eq(locale.languageFromSearch('?lang=de'), '');
+eq(locale.languageFromSearch('?lang=ja'), '');
+eq(locale.languageFromSearch('?lang=id'), 'id');
 eq(locale.languageFromSearch('?notlang=ru'), '');
 eq(locale.languageFromSearch('?lang=english'), '');
 eq(locale.resolveLang({ explicit: 'en', stored: 'ru', page: 'en', languages: ['ru'] }), 'en');
