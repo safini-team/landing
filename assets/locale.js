@@ -1,14 +1,18 @@
 /* Safini landing locale defaults.
-   Match the parent-app rule: follow the phone when it is Russian or English.
-   Uzbek, Kyrgyz and Kazakh are offered in the switcher but are never chosen
-   from navigator.language / Accept-Language. An explicit pick (localStorage)
-   wins on ordinary visits. Store links may pin a language with ?lang=en or ?lang=ru. */
+   Match the parent-app rule: follow the phone for every shipped language
+   except Uzbek, Kyrgyz and Kazakh, which are offered in the switcher but are
+   never chosen from navigator.language / Accept-Language. An explicit pick
+   (localStorage) wins on ordinary visits. Store links may pin a language with
+   ?lang=en or ?lang=ru. */
 (function (root) {
   'use strict';
 
   var KEY = 'safini_lang';
-  var AUTO = { en: true, ru: true };
-  var PAGES = { ru: true, uz: true, ky: true, kk: true };
+  var AUTO = { en: true, ru: true, tr: true, es: true, pt: true, de: true, fr: true, id: true, ar: true };
+  var PAGES = {
+    ru: true, uz: true, ky: true, kk: true,
+    tr: true, es: true, pt: true, de: true, fr: true, id: true, ar: true
+  };
 
   function languageCode(tag) {
     if (!tag) return '';

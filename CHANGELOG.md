@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- Home pages in Turkish, Spanish, Portuguese (Brazil), German, French, Indonesian and Arabic
+  (`/tr/`, `/es/`, `/pt/`, `/de/`, `/fr/`, `/id/`, `/ar/`, Arabic right to left), in the
+  switcher, footer and hreflang of every home page. They follow the browser language like the
+  app, sell at the global price and link to the English legal pages.
 - `/get`: a share-link landing page that redirects straight to the App Store on iOS
   and Google Play on Android (UA-sniffed), and shows both store badges on desktop.
   Lets the mobile app's in-app share sheet send one platform-agnostic link.

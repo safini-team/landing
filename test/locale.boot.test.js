@@ -132,6 +132,15 @@ var kkClicker = runBoot({ pathname: '/', languages: ['en'] });
 kkClicker.fireClick('kk');
 assert.strictEqual(kkClicker.store.safini_lang, 'kk', 'switcher click persists Kazakh');
 
+var idBrowser = runBoot({ pathname: '/', languages: ['id-ID', 'en'] });
+assert.strictEqual(idBrowser.replaced, '/id/', 'Indonesian browser on / redirects to /id/');
+
+var arBrowser = runBoot({ pathname: '/', languages: ['ar-AE'] });
+assert.strictEqual(arBrowser.replaced, '/ar/', 'Arabic browser on / redirects to /ar/');
+
+var honorDe = runBoot({ pathname: '/de/', languages: ['ru'] });
+assert.strictEqual(honorDe.replaced, null, 'direct /de/ is not overwritten');
+
 console.log('boot ok');
 
 var storeEn = runBoot({ pathname: '/', search: '?lang=en', languages: ['ru'], store: { safini_lang: 'ru' } });

@@ -20,10 +20,12 @@
   var CHECKOUT = { live: true, environments: ENVIRONMENTS };
   var KEY = 'safini_checkout';
 
+  var REGIONAL = { ru: true, uz: true, ky: true, kk: true };
+
   function accountLang(pageLang) {
     var code = String(pageLang || '').toLowerCase().split('-')[0];
-    if (code === 'en' || code === 'uz') return code;
-    return 'ru';
+    if (code === 'uz') return code;
+    return REGIONAL[code] ? 'ru' : 'en';
   }
 
   function landingHref(pageLang) {
@@ -51,13 +53,13 @@
   Object.defineProperty(CHECKOUT, 'environment', { get: environment });
   Object.defineProperty(CHECKOUT, 'token', { get: function () { return ENVIRONMENTS[environment()].token; } });
   Object.defineProperty(CHECKOUT, 'prices', { get: function () { return ENVIRONMENTS[environment()].prices; } });
-  // English pages sell at the global price ($9.99 / $59.99); Russian, Uzbek,
-  // Kyrgyz and Kazakh pages at the Central Asia price ($4.99 / $29.99), the
-  // same as the price shown on that page (SAF-305).
+  // Russian, Uzbek, Kyrgyz and Kazakh pages sell at the Central Asia price
+  // ($4.99 / $29.99), every other page at the global price ($9.99 / $59.99),
+  // the same as the price shown on that page (SAF-305).
   function pricesFor(pageLang) {
     var env = ENVIRONMENTS[environment()];
     var code = String(pageLang || '').toLowerCase().split('-')[0];
-    return code === 'en' ? env.prices : (env.regional || env.prices);
+    return REGIONAL[code] ? (env.regional || env.prices) : env.prices;
   }
 
   CHECKOUT.pricesFor = pricesFor;
