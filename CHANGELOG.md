@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- FAQ item on every home page: how to uninstall the Safini child app on Android,
+  including the device-admin steps that replace a home-screen long-press.
 - Home pages in Turkish, Spanish, Portuguese (Brazil), German, French, Indonesian and Arabic
   (`/tr/`, `/es/`, `/pt/`, `/de/`, `/fr/`, `/id/`, `/ar/`, Arabic right to left), in the
   switcher, footer and hreflang of every home page. They follow the browser language like the
