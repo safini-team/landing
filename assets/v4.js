@@ -52,12 +52,6 @@
           say(msgEl, MSG.ok || "You're subscribed.", 'ok');
           form.reset();
           reset();
-          if (typeof gtag !== 'undefined') {
-            gtag('event', 'newsletter_signup', {
-              event_category: 'engagement',
-              event_label: form.id || 'newsletter_form'
-            });
-          }
         } else if (resp.status === 409) {
           say(msgEl, MSG.duplicate || 'That email is already subscribed.', 'error');
           reset();
