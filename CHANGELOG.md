@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- `/join/<child|parent>/<code>`: the page behind an invite link a parent shares from the app.
+  It shows the code, sends the phone to its store (Google Play gets the invite as an install
+  referrer), and offers "Open Safini" through `safini://join/...` for a phone that already
+  has the app. 12 languages, not indexed, and it never calls the API. Logic lives in
+  `assets/join.js`.
+- `/.well-known/apple-app-site-association`, served as JSON through `_headers`, so an invite
+  link opens the iOS app directly once the app ships the matching entitlement.
 - FAQ item on every home page: how to uninstall the Safini child app on Android,
   including the device-admin steps that replace a home-screen long-press.
 - Home pages in Turkish, Spanish, Portuguese (Brazil), German, French, Indonesian and Arabic

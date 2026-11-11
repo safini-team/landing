@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Safini invite</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <!-- The address carries the invite code: keep it out of the Referer header. -->
+  <meta name="referrer" content="no-referrer" />
+  <meta name="description" content="An invite to a family on Safini." />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/legal.css" />
+  <style>
+    .join-shell {
+      min-height: 100vh;
+      max-width: 440px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 18px;
+      padding: 40px 20px;
+    }
+    .join-shell .lockup { height: 30px; align-self: flex-start; }
+    .join-shell h1 {
+      color: var(--ink);
+      font-size: clamp(26px, 7vw, 32px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    .join-shell [hidden] { display: none !important; }
+    .join-card {
+      background: var(--pine-deep);
+      color: #fff;
+      border-radius: 22px;
+      padding: 22px 20px;
+      text-align: center;
+    }
+    .join-card .label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .join-card .code {
+      /* Codes are Latin; keep them left to right on an Arabic page. */
+      direction: ltr;
+      font-family: var(--display);
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      line-height: 1.2;
+      margin: 6px 0 12px;
+      font-variant-numeric: tabular-nums;
+    }
+    .join-card button {
+      border: 0;
+      border-radius: 999px;
+      padding: 9px 16px;
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+      font: 600 15px var(--sans);
+      cursor: pointer;
+    }
+    .join-steps { margin: 0; padding-inline-start: 22px; color: var(--ink); line-height: 1.5; }
+    .join-steps li + li { margin-top: 6px; }
+    .join-actions { display: flex; flex-direction: column; gap: 10px; }
+    .join-btn {
+      display: block;
+      text-align: center;
+      padding: 16px 20px;
+      border-radius: 16px;
+      background: var(--pine);
+      color: #fff;
+      text-decoration: none;
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: 17px;
+    }
+    .join-btn:hover { background: var(--pine-deep); color: #fff; }
+    .join-btn.secondary { background: #EFEAE2; color: var(--ink); }
+    .join-btn.secondary:hover { background: #E6E0D6; color: var(--ink); }
+    .join-note, .join-have { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
+    .join-have { margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <main class="join-shell">
+    <a href="/"><img class="lockup" src="/assets/safini-logo.png" alt="Safini" /></a>
+    <h1 id="join-title">Safini invite</h1>
+
+    <div class="join-card" id="join-invite">
+      <div class="label" id="join-code-label">Invite code</div>
+      <div class="code" id="join-code"></div>
+      <button type="button" id="join-copy" hidden>Copy code</button>
+    </div>
+
+    <ol class="join-steps" id="join-steps">
+      <li id="join-step1">Install Safini on this phone.</li>
+      <li id="join-step2">Then tap the invite link again, or enter this code in the app.</li>
+    </ol>
+
+    <p class="join-note" id="join-note"></p>
+
+    <div class="join-actions">
+      <a class="join-btn" id="join-get-ios" rel="noopener" href="https://apps.apple.com/us/app/safini-parental-control/id6761075183">Get Safini · App Store</a>
+      <a class="join-btn" id="join-get-android" rel="noopener" href="https://play.google.com/store/apps/details?id=com.safini.app">Get Safini · Google Play</a>
+    </div>
+
+    <div class="join-actions" id="join-open-block">
+      <p class="join-have" id="join-have">Already have Safini?</p>
+      <a class="join-btn secondary" id="join-open" href="/get">Open Safini</a>
+    </div>
+  </main>
+  <script src="/assets/join.js"></script>
+</body>
+</html>
