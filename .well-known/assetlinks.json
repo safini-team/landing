@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.safini.app",
+      "sha256_cert_fingerprints": [
+        "49:74:94:3F:B6:76:24:52:A9:57:F3:62:2A:B2:B7:0C:26:66:71:94:E5:C3:C7:E2:BA:E2:07:C8:C9:D1:6C:DB"
+      ]
+    }
+  }
+]

@@ -105,4 +105,19 @@ assert.ok(
   'the association file is served as JSON'
 );
 
+// Android reads this file to verify that https://safini.fun/join/... may open
+// the app. The fingerprint is the Play app signing key (Play Console, App
+// integrity); a wrong or missing one silently sends the link to the browser.
+var assetLinks = JSON.parse(
+  fs.readFileSync(path.join(ROOT, '.well-known', 'assetlinks.json'), 'utf8')
+);
+eq(assetLinks.length, 1);
+eq(assetLinks[0].relation, ['delegate_permission/common.handle_all_urls']);
+eq(assetLinks[0].target.namespace, 'android_app');
+eq(assetLinks[0].target.package_name, 'com.safini.app');
+assetLinks[0].target.sha256_cert_fingerprints.forEach(function (print) {
+  assert.ok(/^([0-9A-F]{2}:){31}[0-9A-F]{2}$/.test(print), 'fingerprint is 32 upper-case hex bytes');
+});
+assert.ok(assetLinks[0].target.sha256_cert_fingerprints.length > 0, 'at least one fingerprint');
+
 console.log('join.test.js: ok');

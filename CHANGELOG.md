@@ -10,6 +10,8 @@ All notable changes to this project will be documented in this file.
   referrer), and offers "Open Safini" through `safini://join/...` for a phone that already
   has the app. 12 languages, not indexed, and it never calls the API. Logic lives in
   `assets/join.js`.
+- `/.well-known/assetlinks.json` with the Play app signing key, so an invite link opens the
+  Android app directly instead of the `/join` page.
 - `/.well-known/apple-app-site-association`, served as JSON through `_headers`, so an invite
   link opens the iOS app directly once the app ships the matching entitlement.
 - FAQ item on every home page: how to uninstall the Safini child app on Android,
