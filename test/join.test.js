@@ -118,6 +118,8 @@ eq(assetLinks[0].target.package_name, 'com.safini.app');
 assetLinks[0].target.sha256_cert_fingerprints.forEach(function (print) {
   assert.ok(/^([0-9A-F]{2}:){31}[0-9A-F]{2}$/.test(print), 'fingerprint is 32 upper-case hex bytes');
 });
-assert.ok(assetLinks[0].target.sha256_cert_fingerprints.length > 0, 'at least one fingerprint');
+// The Play app signing key, then the upload key for release builds installed
+// straight from a developer's machine.
+eq(assetLinks[0].target.sha256_cert_fingerprints.length, 2);
 
 console.log('join.test.js: ok');
