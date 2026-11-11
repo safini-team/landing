@@ -1,0 +1,9 @@
+# iOS only accepts this file as JSON, and it has no extension to say so.
+/.well-known/apple-app-site-association
+  Content-Type: application/json
+
+# Invite links carry a code in the address: no indexing, no Referer.
+/join/*
+  X-Robots-Tag: noindex, nofollow
+  Referrer-Policy: no-referrer
+  Cache-Control: no-store

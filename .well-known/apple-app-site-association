@@ -1,0 +1,12 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["X3B4RJS8GN.com.safini.app"],
+        "components": [
+          { "/": "/join/*", "comment": "Invite links shared from the app" }
+        ]
+      }
+    ]
+  }
+}
