@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.safini.app",
       "sha256_cert_fingerprints": [
-        "49:74:94:3F:B6:76:24:52:A9:57:F3:62:2A:B2:B7:0C:26:66:71:94:E5:C3:C7:E2:BA:E2:07:C8:C9:D1:6C:DB"
+        "49:74:94:3F:B6:76:24:52:A9:57:F3:62:2A:B2:B7:0C:26:66:71:94:E5:C3:C7:E2:BA:E2:07:C8:C9:D1:6C:DB",
+        "F6:52:42:AA:AD:6A:93:94:58:23:22:44:22:38:6D:77:09:CA:59:92:D6:71:09:E3:C7:F5:BA:11:6A:9F:41:BB"
       ]
     }
   }
